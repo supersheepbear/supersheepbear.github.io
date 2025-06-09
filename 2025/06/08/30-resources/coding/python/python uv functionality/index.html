@@ -1,0 +1,402 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>python uv functionality | Bear's dream</title><meta name="description" content="python uv functionality"><meta name="keywords" content="Tutorial,Development,Tools,Python,Package"><meta name="author" content="supersheepbear"><meta name="copyright" content="supersheepbear"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_1.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="p43hXBn3_dLvbyxUzx0eo5eYmj9OVYOV52pdrhBa2sw"><meta name="baidu-site-verification" content="EXLlfLv2pV"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="python uv functionality"><meta name="twitter:description" content="python uv functionality"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta property="og:type" content="article"><meta property="og:title" content="python uv functionality"><meta property="og:url" content="https://yxiong.org/2025/06/08/30-resources/coding/python/python%20uv%20functionality/"><meta property="og:site_name" content="Bear's dream"><meta property="og:description" content="python uv functionality"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://yxiong.org/2025/06/08/30-resources/coding/python/python%20uv%20functionality/"><link rel="prev" title="yaml_load" href="https://yxiong.org/2025/06/08/30-resources/coding/python/yaml_load/"><link rel="next" title="complex-transaction-example" href="https://yxiong.org/2025/06/08/30-resources/coding/sql/complex-transaction-example/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">178</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">160</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">23</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#UV的主要特点"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">UV的主要特点</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#UV与其他工具的比较"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">UV与其他工具的比较</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#UV的主要功能"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">UV的主要功能</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#包管理"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">包管理</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#虚拟环境管理"><span class="toc_mobile_items-number">5.</span> <span class="toc_mobile_items-text">虚拟环境管理</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#工具运行"><span class="toc_mobile_items-number">6.</span> <span class="toc_mobile_items-text">工具运行</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#全局工具安装"><span class="toc_mobile_items-number">7.</span> <span class="toc_mobile_items-text">全局工具安装</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Citations"><span class="toc_mobile_items-number">7.1.</span> <span class="toc_mobile_items-text">Citations</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Citations-1"><span class="toc_mobile_items-number">7.2.</span> <span class="toc_mobile_items-text">Citations</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#Uv怎么管理包-是不是也是用requirements-txt或者pyproject-toml"><span class="toc_mobile_items-number">8.</span> <span class="toc_mobile_items-text">Uv怎么管理包? 是不是也是用requirements.txt或者pyproject.toml</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#UV的依赖管理方式"><span class="toc_mobile_items-number">8.1.</span> <span class="toc_mobile_items-text">UV的依赖管理方式</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#使用pyproject-toml（推荐方式）"><span class="toc_mobile_items-number">8.2.</span> <span class="toc_mobile_items-text">使用pyproject.toml（推荐方式）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#使用requirements-txt（兼容传统方式）"><span class="toc_mobile_items-number">8.3.</span> <span class="toc_mobile_items-text">使用requirements.txt（兼容传统方式）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#从requirements-txt迁移到pyproject-toml"><span class="toc_mobile_items-number">8.4.</span> <span class="toc_mobile_items-text">从requirements.txt迁移到pyproject.toml</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#UV的依赖管理特点"><span class="toc_mobile_items-number">8.5.</span> <span class="toc_mobile_items-text">UV的依赖管理特点</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Citations-2"><span class="toc_mobile_items-number">8.5.1.</span> <span class="toc_mobile_items-text">Citations</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#环境创建和管理"><span class="toc_mobile_items-number">8.6.</span> <span class="toc_mobile_items-text">环境创建和管理</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#创建虚拟环境"><span class="toc_mobile_items-number">8.7.</span> <span class="toc_mobile_items-text">创建虚拟环境</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#安装依赖"><span class="toc_mobile_items-number">8.8.</span> <span class="toc_mobile_items-text">安装依赖</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#运行程序"><span class="toc_mobile_items-number">8.9.</span> <span class="toc_mobile_items-text">运行程序</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#直接运行脚本"><span class="toc_mobile_items-number">8.10.</span> <span class="toc_mobile_items-text">直接运行脚本</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#运行工具和命令"><span class="toc_mobile_items-number">8.11.</span> <span class="toc_mobile_items-text">运行工具和命令</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#环境同步"><span class="toc_mobile_items-number">8.12.</span> <span class="toc_mobile_items-text">环境同步</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#自动化特性"><span class="toc_mobile_items-number">8.13.</span> <span class="toc_mobile_items-text">自动化特性</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Citations-3"><span class="toc_mobile_items-number">8.13.1.</span> <span class="toc_mobile_items-text">Citations</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#实践"><span class="toc_mobile_items-number">9.</span> <span class="toc_mobile_items-text">实践</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#Package-Project"><span class="toc_mobile_items-number">10.</span> <span class="toc_mobile_items-text">Package Project</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#Uv一般流程"><span class="toc_mobile_items-number">11.</span> <span class="toc_mobile_items-text">Uv一般流程</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#使用-uv-的现代-Python-包管理方法论-依据提供文章"><span class="toc_mobile_items-number">11.1.</span> <span class="toc_mobile_items-text">使用 uv 的现代 Python 包管理方法论 (依据提供文章)</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UV的主要特点"><span class="toc-number">1.</span> <span class="toc-text">UV的主要特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UV与其他工具的比较"><span class="toc-number">2.</span> <span class="toc-text">UV与其他工具的比较</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UV的主要功能"><span class="toc-number">3.</span> <span class="toc-text">UV的主要功能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#包管理"><span class="toc-number">4.</span> <span class="toc-text">包管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#虚拟环境管理"><span class="toc-number">5.</span> <span class="toc-text">虚拟环境管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#工具运行"><span class="toc-number">6.</span> <span class="toc-text">工具运行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#全局工具安装"><span class="toc-number">7.</span> <span class="toc-text">全局工具安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Citations"><span class="toc-number">7.1.</span> <span class="toc-text">Citations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Citations-1"><span class="toc-number">7.2.</span> <span class="toc-text">Citations</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Uv怎么管理包-是不是也是用requirements-txt或者pyproject-toml"><span class="toc-number">8.</span> <span class="toc-text">Uv怎么管理包? 是不是也是用requirements.txt或者pyproject.toml</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#UV的依赖管理方式"><span class="toc-number">8.1.</span> <span class="toc-text">UV的依赖管理方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用pyproject-toml（推荐方式）"><span class="toc-number">8.2.</span> <span class="toc-text">使用pyproject.toml（推荐方式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用requirements-txt（兼容传统方式）"><span class="toc-number">8.3.</span> <span class="toc-text">使用requirements.txt（兼容传统方式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从requirements-txt迁移到pyproject-toml"><span class="toc-number">8.4.</span> <span class="toc-text">从requirements.txt迁移到pyproject.toml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UV的依赖管理特点"><span class="toc-number">8.5.</span> <span class="toc-text">UV的依赖管理特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Citations-2"><span class="toc-number">8.5.1.</span> <span class="toc-text">Citations</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境创建和管理"><span class="toc-number">8.6.</span> <span class="toc-text">环境创建和管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建虚拟环境"><span class="toc-number">8.7.</span> <span class="toc-text">创建虚拟环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装依赖"><span class="toc-number">8.8.</span> <span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行程序"><span class="toc-number">8.9.</span> <span class="toc-text">运行程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#直接运行脚本"><span class="toc-number">8.10.</span> <span class="toc-text">直接运行脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行工具和命令"><span class="toc-number">8.11.</span> <span class="toc-text">运行工具和命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境同步"><span class="toc-number">8.12.</span> <span class="toc-text">环境同步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自动化特性"><span class="toc-number">8.13.</span> <span class="toc-text">自动化特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Citations-3"><span class="toc-number">8.13.1.</span> <span class="toc-text">Citations</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实践"><span class="toc-number">9.</span> <span class="toc-text">实践</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Package-Project"><span class="toc-number">10.</span> <span class="toc-text">Package Project</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Uv一般流程"><span class="toc-number">11.</span> <span class="toc-text">Uv一般流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-uv-的现代-Python-包管理方法论-依据提供文章"><span class="toc-number">11.1.</span> <span class="toc-text">使用 uv 的现代 Python 包管理方法论 (依据提供文章)</span></a></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">python uv functionality</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2025-06-08<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2025-06-08</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/30-resources/">30-resources</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/30-resources/coding/">coding</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/30-resources/coding/python/">python</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2025/06/08/30-resources/coding/python/python%20uv%20functionality/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2025/06/08/30-resources/coding/python/python%20uv%20functionality/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><p>UV是一个现代化、高性能的Python包管理器和安装工具，由Rust语言编写<a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">2</a>。它被设计为传统Python包管理工具（如pip）的直接替代品，提供显著的速度、可靠性和依赖解析改进<a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">2</a>。</p>
+<h1 id="UV的主要特点"><a href="#UV的主要特点" class="headerlink" title="UV的主要特点"></a>UV的主要特点</h1><ul>
+<li><p><strong>极快的性能</strong>：比传统包管理器快10-100倍，特别是在大型项目中<a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">2</a><a href="https://astral.sh/blog/uv" target="_blank" rel="external nofollow noopener noreferrer">4</a></p>
+</li>
+<li><p><strong>内存效率高</strong>：在包安装和依赖解析过程中使用明显更少的内存<a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">2</a></p>
+</li>
+<li><p><strong>集成环境管理</strong>：结合了包管理和虚拟环境创建功能于一体<a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">2</a></p>
+</li>
+<li><p><strong>兼容性</strong>：与现有Python工具和工作流程完全兼容<a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">2</a><a href="https://astral.sh/blog/uv" target="_blank" rel="external nofollow noopener noreferrer">4</a></p>
+</li>
+<li><p><strong>可靠的依赖锁定</strong>：确保跨不同系统的一致环境<a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">2</a></p>
+</li>
+</ul>
+<h1 id="UV与其他工具的比较"><a href="#UV与其他工具的比较" class="headerlink" title="UV与其他工具的比较"></a>UV与其他工具的比较</h1><p>与pip和virtualenv相比，UV提供了：</p>
+<ul>
+<li><p>更快的包安装和依赖解析速度</p>
+</li>
+<li><p>集成的环境管理功能</p>
+</li>
+<li><p>更清晰的错误信息和更好的冲突解决能力</p>
+</li>
+<li><p>更好的可重现性<a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">2</a></p>
+</li>
+</ul>
+<h1 id="UV的主要功能"><a href="#UV的主要功能" class="headerlink" title="UV的主要功能"></a>UV的主要功能</h1><h1 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h1><ul>
+<li><p><code>uv pip install</code>：安装包</p>
+</li>
+<li><p><code>uv pip compile</code>：锁定依赖</p>
+</li>
+<li><p><code>uv pip sync</code>：同步环境<a href="https://astral.sh/blog/uv" target="_blank" rel="external nofollow noopener noreferrer">4</a></p>
+</li>
+</ul>
+<h1 id="虚拟环境管理"><a href="#虚拟环境管理" class="headerlink" title="虚拟环境管理"></a>虚拟环境管理</h1><ul>
+<li><p><code>uv venv</code>：创建虚拟环境</p>
+</li>
+<li><p><code>uv sync</code>：同步环境与项目依赖<a href="https://www.saaspegasus.com/guides/uv-deep-dive/" target="_blank" rel="external nofollow noopener noreferrer">6</a><a href="https://flocode.substack.com/p/044-python-environments-again-uv" target="_blank" rel="external nofollow noopener noreferrer">8</a></p>
+</li>
+</ul>
+<h1 id="工具运行"><a href="#工具运行" class="headerlink" title="工具运行"></a>工具运行</h1><p>UV提供了两种特殊接口来管理命令行工具：</p>
+<ol>
+<li><p><code>uv tool run</code>：运行Python包提供的命令</p>
+</li>
+<li><p><code>uvx</code>：<code>uv tool run</code>的便捷别名<a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">2</a><a href="https://docs.astral.sh/uv/reference/cli/" target="_blank" rel="external nofollow noopener noreferrer">3</a></p>
+</li>
+</ol>
+<p>这些命令在UV缓存中创建临时虚拟环境，安装并运行请求的工具，无需将它们安装到项目的虚拟环境中<a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">2</a><a href="https://docs.astral.sh/uv/reference/cli/" target="_blank" rel="external nofollow noopener noreferrer">3</a><a href="https://docs.astral.sh/uv/guides/tools/" target="_blank" rel="external nofollow noopener noreferrer">7</a>。</p>
+<h1 id="全局工具安装"><a href="#全局工具安装" class="headerlink" title="全局工具安装"></a>全局工具安装</h1><ul>
+<li><p><code>uv tool install</code>：将Python包作为命令行工具安装到全局环境<a href="https://docs.astral.sh/uv/reference/cli/" target="_blank" rel="external nofollow noopener noreferrer">3</a><a href="https://mathspp.com/blog/using-uv-to-build-and-install-python-cli-apps" target="_blank" rel="external nofollow noopener noreferrer">5</a></p>
+</li>
+<li><p><code>uv tool upgrade</code>：升级已安装的工具</p>
+</li>
+<li><p><code>uv tool uninstall</code>：卸载工具<a href="https://docs.astral.sh/uv/reference/cli/" target="_blank" rel="external nofollow noopener noreferrer">3</a></p>
+</li>
+</ul>
+<p>UV代表了Python包管理的新一代工具，旨在解决Python生态系统中的常见痛点，如安装时间慢、依赖冲突和环境管理复杂性<a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">2</a>。它作为一个统一且模块化的工具，可以替代多个传统工具，简化Python开发工作流程<a href="https://astral.sh/blog/uv" target="_blank" rel="external nofollow noopener noreferrer">4</a>。</p>
+<h2 id="Citations"><a href="#Citations" class="headerlink" title="Citations"></a>Citations</h2><ol>
+<li><a href="https://github.com/camel-ai/owl.git" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/camel-ai/owl.git</a></li>
+<li><a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">https://www.datacamp.com/tutorial/python-uv</a></li>
+<li><a href="https://docs.astral.sh/uv/reference/cli/" target="_blank" rel="external nofollow noopener noreferrer">https://docs.astral.sh/uv/reference/cli/</a></li>
+<li><a href="https://astral.sh/blog/uv" target="_blank" rel="external nofollow noopener noreferrer">https://astral.sh/blog/uv</a></li>
+<li><a href="https://mathspp.com/blog/using-uv-to-build-and-install-python-cli-apps" target="_blank" rel="external nofollow noopener noreferrer">https://mathspp.com/blog/using-uv-to-build-and-install-python-cli-apps</a></li>
+<li><a href="https://www.saaspegasus.com/guides/uv-deep-dive/" target="_blank" rel="external nofollow noopener noreferrer">https://www.saaspegasus.com/guides/uv-deep-dive/</a></li>
+<li><a href="https://docs.astral.sh/uv/guides/tools/" target="_blank" rel="external nofollow noopener noreferrer">https://docs.astral.sh/uv/guides/tools/</a></li>
+<li><a href="https://flocode.substack.com/p/044-python-environments-again-uv" target="_blank" rel="external nofollow noopener noreferrer">https://flocode.substack.com/p/044-python-environments-again-uv</a></li>
+</ol>
+<hr>
+<p>Answer from Perplexity: <a href="https://www.perplexity.ai/search/pplx.ai/share" target="_blank" rel="external nofollow noopener noreferrer">pplx.ai/share</a></p>
+<p>他什么时候开始流行的? 是不是语法和pip一样?</p>
+<p>UV于2024年2月中旬首次发布，作为pip和pip-tools的替代品<a href="https://astral.sh/blog/uv" target="_blank" rel="external nofollow noopener noreferrer">2</a>。自发布以来，它迅速获得了广泛的流行，截至2024年中期，每月下载量已达到1600万次，占PyPI请求的10%以上<a href="https://www.janestreet.com/tech-talks/uv-an-extremely-fast-python-package-manager/" target="_blank" rel="external nofollow noopener noreferrer">5</a>。到2025年初，UV已经成为Python社区中广受推崇的包管理工具，许多开发者开始从pip迁移到UV<a href="https://blog.det.life/changing-package-manager-from-pip-to-uv-81ac3b5a037d" target="_blank" rel="external nofollow noopener noreferrer">1</a><a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">3</a>。</p>
+<p>UV的语法设计为与pip兼容，大多数常见的pip命令可以直接替换使用。例如，可以将<code>pip install</code>替换为<code>uv pip install</code><a href="https://docs.astral.sh/uv/pip/compatibility/" target="_blank" rel="external nofollow noopener noreferrer">4</a>。UV被设计为pip和pip-tools工作流程的”直接替代品”，这意味着现有的pip用户可以在不对其包管理工作流程进行重大更改的情况下切换到UV<a href="https://docs.astral.sh/uv/pip/compatibility/" target="_blank" rel="external nofollow noopener noreferrer">4</a>。</p>
+<p>然而，UV并不是pip的完全克隆，它不支持pip的所有命令行选项和子命令，尽管它支持大部分常用功能<a href="https://docs.astral.sh/uv/pip/compatibility/" target="_blank" rel="external nofollow noopener noreferrer">4</a>。此外，UV不读取pip特定的配置文件或环境变量（如pip.conf或PIP_INDEX_URL），而是使用自己的环境变量（如UV_INDEX_URL）和配置文件（uv.toml或pyproject.toml中的[tool.uv.pip]部分）<a href="https://docs.astral.sh/uv/pip/compatibility/" target="_blank" rel="external nofollow noopener noreferrer">4</a>。</p>
+<p>在处理某些特定情况时，UV和pip也有一些行为差异，例如在处理存在于多个索引上的包时，UV会按顺序迭代索引并在找到匹配项后停止搜索，而pip会合并所有索引中的候选版本<a href="https://docs.astral.sh/uv/pip/compatibility/" target="_blank" rel="external nofollow noopener noreferrer">4</a>。</p>
+<h2 id="Citations-1"><a href="#Citations-1" class="headerlink" title="Citations"></a>Citations</h2><ol>
+<li><a href="https://blog.det.life/changing-package-manager-from-pip-to-uv-81ac3b5a037d" target="_blank" rel="external nofollow noopener noreferrer">https://blog.det.life/changing-package-manager-from-pip-to-uv-81ac3b5a037d</a></li>
+<li><a href="https://astral.sh/blog/uv" target="_blank" rel="external nofollow noopener noreferrer">https://astral.sh/blog/uv</a></li>
+<li><a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">https://www.datacamp.com/tutorial/python-uv</a></li>
+<li><a href="https://docs.astral.sh/uv/pip/compatibility/" target="_blank" rel="external nofollow noopener noreferrer">https://docs.astral.sh/uv/pip/compatibility/</a></li>
+<li><a href="https://www.janestreet.com/tech-talks/uv-an-extremely-fast-python-package-manager/" target="_blank" rel="external nofollow noopener noreferrer">https://www.janestreet.com/tech-talks/uv-an-extremely-fast-python-package-manager/</a></li>
+<li><a href="https://astral.sh/blog/uv-unified-python-packaging" target="_blank" rel="external nofollow noopener noreferrer">https://astral.sh/blog/uv-unified-python-packaging</a></li>
+<li><a href="https://dev.to/astrojuanlu/python-packaging-is-great-now-uv-is-all-you-need-4i2d" target="_blank" rel="external nofollow noopener noreferrer">https://dev.to/astrojuanlu/python-packaging-is-great-now-uv-is-all-you-need-4i2d</a></li>
+<li><a href="https://thedataquarry.com/blog/towards-a-unified-python-toolchain" target="_blank" rel="external nofollow noopener noreferrer">https://thedataquarry.com/blog/towards-a-unified-python-toolchain</a></li>
+<li><a href="https://www.reddit.com/r/Python/comments/1aroork/announcing_uv_python_packaging_in_rust/" target="_blank" rel="external nofollow noopener noreferrer">https://www.reddit.com/r/Python/comments/1aroork/announcing_uv_python_packaging_in_rust/</a></li>
+<li><a href="https://news.ycombinator.com/item?id=42676432" target="_blank" rel="external nofollow noopener noreferrer">https://news.ycombinator.com/item?id=42676432</a></li>
+</ol>
+<hr>
+<p>Answer from Perplexity: <a href="https://www.perplexity.ai/search/pplx.ai/share" target="_blank" rel="external nofollow noopener noreferrer">pplx.ai/share</a></p>
+<h1 id="Uv怎么管理包-是不是也是用requirements-txt或者pyproject-toml"><a href="#Uv怎么管理包-是不是也是用requirements-txt或者pyproject-toml" class="headerlink" title="Uv怎么管理包? 是不是也是用requirements.txt或者pyproject.toml"></a>Uv怎么管理包? 是不是也是用requirements.txt或者pyproject.toml</h1><p>UV是一个现代化的Python包管理器，它支持两种主要的依赖管理方式：传统的requirements.txt和更现代的pyproject.toml。</p>
+<h2 id="UV的依赖管理方式"><a href="#UV的依赖管理方式" class="headerlink" title="UV的依赖管理方式"></a>UV的依赖管理方式</h2><h2 id="使用pyproject-toml（推荐方式）"><a href="#使用pyproject-toml（推荐方式）" class="headerlink" title="使用pyproject.toml（推荐方式）"></a>使用pyproject.toml（推荐方式）</h2><p>UV主要使用pyproject.toml作为项目的配置文件，这是一个符合PEP 621标准的现代Python项目配置方式<a href="https://www.saaspegasus.com/guides/uv-deep-dive/" target="_blank" rel="external nofollow noopener noreferrer">5</a>。当使用UV管理项目时：</p>
+<ul>
+<li><p>pyproject.toml文件定义项目的主要依赖关系（类似于pip-tools中的requirements.in）</p>
+</li>
+<li><p>UV自动创建和维护uv.lock文件，记录所有依赖的精确版本（类似于requirements.txt的作用）<a href="https://www.saaspegasus.com/guides/uv-deep-dive/" target="_blank" rel="external nofollow noopener noreferrer">5</a><a href="https://docs.astral.sh/uv/concepts/projects/layout/" target="_blank" rel="external nofollow noopener noreferrer">8</a></p>
+</li>
+</ul>
+<p>使用pyproject.toml的基本工作流程：</p>
+<p>bash</p>
+<p><code># 初始化项目 uv init myproject cd myproject # 添加依赖 uv add requests pandas # 同步环境（其他开发者克隆项目后使用） uv sync</code></p>
+<h2 id="使用requirements-txt（兼容传统方式）"><a href="#使用requirements-txt（兼容传统方式）" class="headerlink" title="使用requirements.txt（兼容传统方式）"></a>使用requirements.txt（兼容传统方式）</h2><p>UV完全兼容传统的requirements.txt文件，可以直接使用以下命令安装依赖<a href="https://stackoverflow.com/questions/79344035/how-to-add-requirements-txt-to-uv-environment" target="_blank" rel="external nofollow noopener noreferrer">4</a><a href="https://pydevtools.com/handbook/how-to/migrate-requirements.txt/" target="_blank" rel="external nofollow noopener noreferrer">7</a>：</p>
+<p>bash</p>
+<p><code># 安装requirements.txt中的依赖 uv pip install -r requirements.txt</code></p>
+<h2 id="从requirements-txt迁移到pyproject-toml"><a href="#从requirements-txt迁移到pyproject-toml" class="headerlink" title="从requirements.txt迁移到pyproject.toml"></a>从requirements.txt迁移到pyproject.toml</h2><p>如果你想从传统的requirements.txt迁移到现代的pyproject.toml，UV提供了简便的迁移方式<a href="https://pydevtools.com/handbook/how-to/migrate-requirements.txt/" target="_blank" rel="external nofollow noopener noreferrer">7</a>：</p>
+<p>bash</p>
+<p><code># 初始化项目 uv init --no-sample # 导入现有requirements.txt uv add -r requirements.txt # 导入开发依赖 uv add --dev -r requirements-dev.txt</code></p>
+<h2 id="UV的依赖管理特点"><a href="#UV的依赖管理特点" class="headerlink" title="UV的依赖管理特点"></a>UV的依赖管理特点</h2><ol>
+<li><p><strong>自动环境管理</strong>：UV自动创建和管理虚拟环境，无需手动激活<a href="https://pydevtools.com/blog/requirementstxt-vs-pyprojecttoml/" target="_blank" rel="external nofollow noopener noreferrer">3</a></p>
+</li>
+<li><p><strong>跨平台锁文件</strong>：uv.lock文件是跨平台的，确保在不同操作系统和Python版本上安装一致的依赖<a href="https://www.saaspegasus.com/guides/uv-deep-dive/" target="_blank" rel="external nofollow noopener noreferrer">5</a><a href="https://docs.astral.sh/uv/concepts/projects/layout/" target="_blank" rel="external nofollow noopener noreferrer">8</a></p>
+</li>
+<li><p><strong>高效缓存系统</strong>：UV使用全局缓存来最小化冗余，确保相同的包只存储一次，无论有多少项目需要它<a href="https://flocode.substack.com/p/044-python-environments-again-uv" target="_blank" rel="external nofollow noopener noreferrer">6</a></p>
+</li>
+<li><p><strong>环境同步</strong>：<code>uv sync</code>命令会比较当前环境与依赖文件的差异，安装缺失的依赖，升级/降级版本，删除不需要的包<a href="https://flocode.substack.com/p/044-python-environments-again-uv" target="_blank" rel="external nofollow noopener noreferrer">6</a></p>
+</li>
+</ol>
+<p>UV代表了Python包管理的新一代工具，旨在解决传统包管理的痛点，如安装速度慢、依赖冲突和环境管理复杂等问题，同时保持与现有Python工具和工作流程的兼容性。</p>
+<h3 id="Citations-2"><a href="#Citations-2" class="headerlink" title="Citations"></a>Citations</h3><ol>
+<li><a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">https://www.datacamp.com/tutorial/python-uv</a></li>
+<li><a href="https://paiml.com/blog/2024-12-01-uv-architecture/" target="_blank" rel="external nofollow noopener noreferrer">https://paiml.com/blog/2024-12-01-uv-architecture/</a></li>
+<li><a href="https://pydevtools.com/blog/requirementstxt-vs-pyprojecttoml/" target="_blank" rel="external nofollow noopener noreferrer">https://pydevtools.com/blog/requirementstxt-vs-pyprojecttoml/</a></li>
+<li><a href="https://stackoverflow.com/questions/79344035/how-to-add-requirements-txt-to-uv-environment" target="_blank" rel="external nofollow noopener noreferrer">https://stackoverflow.com/questions/79344035/how-to-add-requirements-txt-to-uv-environment</a></li>
+<li><a href="https://www.saaspegasus.com/guides/uv-deep-dive/" target="_blank" rel="external nofollow noopener noreferrer">https://www.saaspegasus.com/guides/uv-deep-dive/</a></li>
+<li><a href="https://flocode.substack.com/p/044-python-environments-again-uv" target="_blank" rel="external nofollow noopener noreferrer">https://flocode.substack.com/p/044-python-environments-again-uv</a></li>
+<li><a href="https://pydevtools.com/handbook/how-to/migrate-requirements.txt/" target="_blank" rel="external nofollow noopener noreferrer">https://pydevtools.com/handbook/how-to/migrate-requirements.txt/</a></li>
+<li><a href="https://docs.astral.sh/uv/concepts/projects/layout/" target="_blank" rel="external nofollow noopener noreferrer">https://docs.astral.sh/uv/concepts/projects/layout/</a></li>
+<li><a href="https://www.youtube.com/watch?v=JtR7EyMcaWU" target="_blank" rel="external nofollow noopener noreferrer">https://www.youtube.com/watch?v=JtR7EyMcaWU</a></li>
+<li><a href="https://www.janestreet.com/tech-talks/uv-an-extremely-fast-python-package-manager/" target="_blank" rel="external nofollow noopener noreferrer">https://www.janestreet.com/tech-talks/uv-an-extremely-fast-python-package-manager/</a></li>
+<li><a href="https://www.reddit.com/r/learnpython/comments/1j2bg8e/utility_to_convert_requirementstxt_to_uv/" target="_blank" rel="external nofollow noopener noreferrer">https://www.reddit.com/r/learnpython/comments/1j2bg8e/utility_to_convert_requirementstxt_to_uv/</a></li>
+</ol>
+<hr>
+<p>Answer from Perplexity: <a href="https://www.perplexity.ai/search/pplx.ai/share" target="_blank" rel="external nofollow noopener noreferrer">pplx.ai/share</a></p>
+<p>那我用UV运行程序和用venv有什么不一样? 实际命令的区别</p>
+<p>使用UV运行Python程序与传统的venv方式相比有几个关键区别。</p>
+<h2 id="环境创建和管理"><a href="#环境创建和管理" class="headerlink" title="环境创建和管理"></a>环境创建和管理</h2><h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2><ul>
+<li><p><strong>UV方式</strong>：<code>uv venv [PATH]</code> 或 <code>uv venv --python 3.12</code></p>
+</li>
+<li><p><strong>传统venv方式</strong>：<code>python -m venv [PATH]</code> 或 <code>virtualenv -p python3.12 [PATH]</code></p>
+</li>
+</ul>
+<p>UV创建虚拟环境更快，并且如果指定的Python版本不存在，UV会自动下载安装该版本<a href="https://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv" target="_blank" rel="external nofollow noopener noreferrer">2</a><a href="https://docs.astral.sh/uv/reference/cli/" target="_blank" rel="external nofollow noopener noreferrer">4</a>。</p>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><ul>
+<li><p><strong>UV方式</strong>：<code>uv pip install &lt;packages&gt;</code> 或 <code>uv add &lt;packages&gt;</code></p>
+</li>
+<li><p><strong>传统方式</strong>：<code>pip install &lt;packages&gt;</code></p>
+</li>
+</ul>
+<p>UV的安装速度比传统pip快10-100倍，特别是在大型项目中<a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">1</a>。</p>
+<h2 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h2><h2 id="直接运行脚本"><a href="#直接运行脚本" class="headerlink" title="直接运行脚本"></a>直接运行脚本</h2><ul>
+<li><p><strong>UV方式</strong>：<code>uv run hello.py</code></p>
+</li>
+<li><p><strong>传统方式</strong>：<code>python hello.py</code> (需要先激活环境：<code>source .venv/bin/activate</code>)</p>
+</li>
+</ul>
+<p>UV不需要手动激活虚拟环境就能运行脚本，它会自动检测和使用项目目录或父目录中的<code>.venv</code>环境<a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">1</a><a href="https://docs.astral.sh/uv/pip/environments/" target="_blank" rel="external nofollow noopener noreferrer">5</a>。</p>
+<h2 id="运行工具和命令"><a href="#运行工具和命令" class="headerlink" title="运行工具和命令"></a>运行工具和命令</h2><ul>
+<li><p><strong>UV方式</strong>：<code>uv tool run black hello.py</code> 或更简洁的 <code>uvx black hello.py</code></p>
+</li>
+<li><p><strong>传统方式</strong>：需要先激活环境，然后直接运行 <code>black hello.py</code></p>
+</li>
+</ul>
+<p>UV的工具运行机制会在缓存中创建临时虚拟环境，安装并运行请求的工具，无需将它们安装到项目的虚拟环境中<a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">1</a>。</p>
+<h2 id="环境同步"><a href="#环境同步" class="headerlink" title="环境同步"></a>环境同步</h2><ul>
+<li><p><strong>UV方式</strong>：<code>uv sync</code> 会比较当前环境与依赖文件的差异，安装缺失的依赖</p>
+</li>
+<li><p><strong>传统方式</strong>：<code>pip install -r requirements.txt</code> 只会安装文件中的依赖，不会移除多余的包</p>
+</li>
+</ul>
+<h2 id="自动化特性"><a href="#自动化特性" class="headerlink" title="自动化特性"></a>自动化特性</h2><p>UV提供了更多自动化功能：</p>
+<ul>
+<li><p>自动创建虚拟环境（当添加第一个依赖时）</p>
+</li>
+<li><p>自动被VS Code识别（<code>.venv</code>文件夹位于项目根目录）</p>
+</li>
+<li><p>使用全局缓存重用包，加速安装过程<a href="https://flocode.substack.com/p/044-python-environments-again-uv" target="_blank" rel="external nofollow noopener noreferrer">3</a></p>
+</li>
+</ul>
+<p>总的来说，UV提供了更现代、更快速、更集成的Python环境和包管理体验，减少了手动步骤，简化了工作流程。</p>
+<h3 id="Citations-3"><a href="#Citations-3" class="headerlink" title="Citations"></a>Citations</h3><ol>
+<li><a href="https://www.datacamp.com/tutorial/python-uv" target="_blank" rel="external nofollow noopener noreferrer">https://www.datacamp.com/tutorial/python-uv</a></li>
+<li><a href="https://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv" target="_blank" rel="external nofollow noopener noreferrer">https://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv</a></li>
+<li><a href="https://flocode.substack.com/p/044-python-environments-again-uv" target="_blank" rel="external nofollow noopener noreferrer">https://flocode.substack.com/p/044-python-environments-again-uv</a></li>
+<li><a href="https://docs.astral.sh/uv/reference/cli/" target="_blank" rel="external nofollow noopener noreferrer">https://docs.astral.sh/uv/reference/cli/</a></li>
+<li><a href="https://docs.astral.sh/uv/pip/environments/" target="_blank" rel="external nofollow noopener noreferrer">https://docs.astral.sh/uv/pip/environments/</a></li>
+<li><a href="https://www.reddit.com/r/learnpython/comments/1dq5zor/how_to_use_venv_in_vscode_to_run_python_scripts/" target="_blank" rel="external nofollow noopener noreferrer">https://www.reddit.com/r/learnpython/comments/1dq5zor/how_to_use_venv_in_vscode_to_run_python_scripts/</a></li>
+<li><a href="https://www.youtube.com/watch?v=zgSQr0d5EVg" target="_blank" rel="external nofollow noopener noreferrer">https://www.youtube.com/watch?v=zgSQr0d5EVg</a></li>
+<li><a href="https://treyhunner.com/2024/12/lazy-self-installing-python-scripts-with-uv/" target="_blank" rel="external nofollow noopener noreferrer">https://treyhunner.com/2024/12/lazy-self-installing-python-scripts-with-uv/</a></li>
+</ol>
+<hr>
+<p>Answer from Perplexity: <a href="https://www.perplexity.ai/search/pplx.ai/share" target="_blank" rel="external nofollow noopener noreferrer">pplx.ai/share</a></p>
+<h1 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h1><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cmd</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">pip install uv</span><br><span class="line">uv python list</span><br><span class="line">uv python install cpython-<span class="number">3</span>.<span class="number">12</span>.<span class="number">9</span></span><br><span class="line">@<span class="built_in">echo</span> 用default python <span class="number">3</span>.<span class="number">13</span>跑特定script</span><br><span class="line">uv run -p <span class="number">3</span>.<span class="number">13</span> python my_script.py</span><br><span class="line">@<span class="built_in">echo</span> 建立一个python <span class="number">3</span>.<span class="number">13</span>的git 库</span><br><span class="line">uv init -p <span class="number">3</span>.<span class="number">13</span></span><br><span class="line">@<span class="built_in">echo</span> .python-version可以直接换版本</span><br><span class="line">@<span class="built_in">echo</span> create venv</span><br><span class="line">uv venv --python <span class="number">3</span>.<span class="number">13</span></span><br><span class="line">@<span class="built_in">echo</span> add package</span><br><span class="line">@<span class="built_in">echo</span> python packages will be added to pyproject toml automatically</span><br><span class="line">uv add pydantic_ai</span><br><span class="line">@<span class="built_in">echo</span> dependency <span class="built_in">tree</span></span><br><span class="line">uv <span class="built_in">tree</span></span><br><span class="line">@<span class="built_in">echo</span> add ruff <span class="keyword">for</span> static check</span><br><span class="line">uv add ruff --dev</span><br><span class="line">@<span class="built_in">echo</span> remove ruff</span><br><span class="line">uv remove ruff --dev</span><br><span class="line">@<span class="built_in">echo</span> install tool</span><br><span class="line">uv tool install ruff</span><br><span class="line">@check tool list</span><br><span class="line">uv tool list</span><br></pre></td></tr></table></figure></div>
+<h1 id="Package-Project"><a href="#Package-Project" class="headerlink" title="Package Project"></a>Package Project</h1><p>在pyproject.toml中加入<br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[project.scripts]</span><br><span class="line">ai &#x3D; &quot;ai:main&quot;</span><br></pre></td></tr></table></figure></div></p>
+<p>然后用 uv build就可以打包成whl</p>
+<p>本地就可以用uv安装whl<br>可以用uv tool install xxx.whl<br>或者 uv add xxx.whl</p>
+<h1 id="Uv一般流程"><a href="#Uv一般流程" class="headerlink" title="Uv一般流程"></a>Uv一般流程</h1><p><a href="https://www.cnblogs.com/wang_yb/p/18635441" target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/wang_yb/p/18635441</a></p>
+<p>好的，我已经仔细阅读了你提供的这篇关于 <code>uv</code> 的最新文章（写于2025年4月，介绍了截至2024年12月的功能）。现在，我将根据这篇文章的内容，为你重新组织一份完整、清晰的 Python 包管理方法论，并用中文回答。</p>
+<hr>
+<h2 id="使用-uv-的现代-Python-包管理方法论-依据提供文章"><a href="#使用-uv-的现代-Python-包管理方法论-依据提供文章" class="headerlink" title="使用 uv 的现代 Python 包管理方法论 (依据提供文章)"></a>使用 <code>uv</code> 的现代 Python 包管理方法论 (依据提供文章)</h2><p><code>uv</code> 旨在提供一个快速、统一、类似 <code>Cargo</code> (Rust 的包管理器) 的 Python 包管理体验。以下是基于文章描述的推荐工作流程：</p>
+<p><strong>核心文件：</strong></p>
+<ol>
+<li><strong><code>pyproject.toml</code></strong>: 项目的 <strong>配置文件</strong>。由 <strong>用户定义和编辑</strong>，用于声明项目的元数据（名称、版本、描述等）、所需的 Python 版本以及 <strong>直接依赖项</strong>。可以区分不同的依赖组（例如开发依赖、生产依赖）。这是项目依赖的 <strong>意图</strong> 来源。</li>
+<li><strong><code>uv.lock</code></strong>: 项目的 <strong>锁文件</strong>。由 <strong><code>uv</code> 自动生成和管理</strong>，记录了项目所有依赖项（包括直接依赖和间接依赖）的 <strong>精确版本和来源</strong>。目的是确保在任何不同环境下安装依赖时都能获得完全一致的结果，保证可重复性。<strong>用户不应手动编辑此文件</strong>。</li>
+</ol>
+<p><strong>方法论步骤：</strong></p>
+<p><strong>1. 初始化项目 (<code>uv init</code>)</strong></p>
+<ul>
+<li><strong>目的:</strong> 创建一个新的 Python 项目结构，并使用 <code>uv</code> 进行管理。</li>
+<li><strong>操作:</strong><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uv init &lt;你的项目名称&gt; <span class="comment"># 例如: uv init my-cool-project</span></span><br><span class="line"><span class="built_in">cd</span> &lt;你的项目名称&gt;</span><br></pre></td></tr></table></figure></div></li>
+<li><strong>结果:</strong> <code>uv</code> 会创建一个包含以下基本文件的项目目录：<ul>
+<li><code>pyproject.toml</code>: 包含项目基本信息和空的依赖列表。你需要在这里声明你的直接依赖。</li>
+<li><code>.gitignore</code>: 预设的 Git 忽略文件。</li>
+<li><code>.python-version</code>: 指定项目使用的 Python 版本。</li>
+<li><code>hello.py</code> / <code>README.md</code>: 示例文件，可以替换或删除。</li>
+<li>项目会自动初始化为 Git 仓库。</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. 同步环境与依赖 (<code>uv sync</code>)</strong></p>
+<ul>
+<li><strong>目的:</strong> 这是项目设置和保持环境一致性的 <strong>核心命令</strong>。它执行多项任务：<ul>
+<li>查找或下载 <code>pyproject.toml</code> (或 <code>.python-version</code>) 中指定的兼容 Python 版本。</li>
+<li>在项目根目录下创建或更新虚拟环境 (<code>.venv</code>)。</li>
+<li><strong>首次运行时</strong>：读取 <code>pyproject.toml</code>，解析所有依赖（包括间接依赖），并将精确版本信息写入 <strong><code>uv.lock</code> 文件</strong>。</li>
+<li><strong>后续运行时</strong>：读取 <code>uv.lock</code> 文件。</li>
+<li>将虚拟环境 (<code>.venv</code>) 中的包与 <code>uv.lock</code> 文件中定义的 <strong>精确状态同步</strong> (安装缺失的、卸载多余的、更新/降级版本不符的)。</li>
+</ul>
+</li>
+<li><strong>操作:</strong> 在项目根目录下运行：<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uv sync</span><br></pre></td></tr></table></figure></div></li>
+<li><strong>关键点:</strong><ul>
+<li>新项目克隆下来后，第一步就应该是运行 <code>uv sync</code> 来创建环境并安装所有锁定的依赖。</li>
+<li>当 <code>uv.lock</code> 文件更新后（例如，通过 <code>git pull</code> 或 <code>uv add/remove</code>），运行 <code>uv sync</code> 来使本地环境与锁文件保持一致。</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. 管理依赖 (<code>uv add</code> / <code>uv remove</code>)</strong></p>
+<ul>
+<li><strong>目的:</strong> 添加或移除项目的依赖项，并自动更新配置文件、锁文件和虚拟环境。</li>
+<li><p><strong>操作:</strong></p>
+<ul>
+<li><p><strong>添加运行时依赖:</strong></p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uv add &lt;包名&gt; <span class="comment"># 例如: uv add requests fastapi</span></span><br></pre></td></tr></table></figure></div>
+<p>这会自动将 <code>requests</code> 和 <code>fastapi</code> 添加到 <code>pyproject.toml</code> 的 <code>[project.dependencies]</code> (或者根据文章示例，可能添加到 <code>[dependency-groups].production</code>，具体行为需关注 <code>uv</code> 版本更新)，更新 <code>uv.lock</code>，并将这些包及其依赖安装到 <code>.venv</code> 中。</p>
+</li>
+<li><p><strong>添加开发依赖 (或其他组):</strong></p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uv add --group dev &lt;包名&gt; <span class="comment"># 例如: uv add --group dev pytest ruff</span></span><br></pre></td></tr></table></figure></div>
+<p>这会将 <code>pytest</code> 和 <code>ruff</code> 添加到 <code>pyproject.toml</code> 的 <code>[dependency-groups].dev</code> 部分，更新 <code>uv.lock</code>，并将它们安装到 <code>.venv</code> 中。</p>
+</li>
+<li><p><strong>移除依赖:</strong></p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uv remove &lt;包名&gt; <span class="comment"># 例如: uv remove pandas</span></span><br></pre></td></tr></table></figure></div>
+<p>这会从 <code>pyproject.toml</code> (如果存在于相应部分) 和 <code>uv.lock</code> 中移除 <code>pandas</code> 及其不再需要的间接依赖，并从 <code>.venv</code> 中卸载它们。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>关键点:</strong> 使用 <code>uv add</code> 和 <code>uv remove</code> 是管理依赖的首选方式，因为它们能自动处理 <code>pyproject.toml</code>、<code>uv.lock</code> 和 <code>.venv</code> 的一致性。</p>
+</li>
+</ul>
+<p><strong>4. 在虚拟环境中运行代码 (<code>uv run</code>)</strong></p>
+<ul>
+<li><strong>目的:</strong> 在 <code>uv</code> 管理的、包含正确依赖的虚拟环境中执行 Python 脚本或任何命令。</li>
+<li><strong>操作:</strong><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uv run python your_script.py</span><br><span class="line">uv run pytest  <span class="comment"># 运行安装在 dev 组的 pytest</span></span><br><span class="line">uv run uvicorn main:app --reload <span class="comment"># 运行 uvicorn</span></span><br></pre></td></tr></table></figure></div></li>
+<li><strong>优势:</strong> 无需手动激活 (<code>source .venv/bin/activate</code>) 虚拟环境，<code>uv run</code> 会自动确保命令在正确的环境中执行。</li>
+</ul>
+<p><strong>5. 工作流程总结与版本控制</strong></p>
+<ol>
+<li><strong>初始化:</strong> <code>uv init myproject &amp;&amp; cd myproject</code></li>
+<li><strong>添加依赖:</strong><ul>
+<li><code>uv add requests</code> (生产依赖)</li>
+<li><code>uv add --group dev pytest</code> (开发依赖)</li>
+</ul>
+</li>
+<li><strong>同步/安装:</strong> （通常 <code>uv add</code> 会自动同步，但如果手动修改 <code>pyproject.toml</code> 或拉取代码后需要）<code>uv sync</code></li>
+<li><strong>编码与测试:</strong> 编写代码，使用 <code>uv run python main.py</code> 或 <code>uv run pytest</code> 等运行。</li>
+<li><strong>提交:</strong> 将 <code>pyproject.toml</code> 和 <code>uv.lock</code> 文件提交到 Git。<strong><code>uv.lock</code> 文件必须提交</strong>，以保证团队成员和 CI/CD 环境的一致性。<code>.venv</code> 目录通常添加到 <code>.gitignore</code> 中，不提交。</li>
+<li><strong>新环境设置:</strong> 其他人克隆仓库后，只需进入项目目录，运行 <code>uv sync</code> 即可创建完全一致的开发环境。</li>
+</ol>
+<p><strong>与 <code>requirements.txt</code> 的关系</strong></p>
+<p>根据这篇文章描述的 <code>uv</code> 工作流，<code>pyproject.toml</code> 用于声明直接依赖，<code>uv.lock</code> 用于锁定所有依赖。<strong>传统的 <code>requirements.txt</code> 文件在这个流程中不是必需的核心部分</strong>。</p>
+<ul>
+<li><code>uv</code> 可以读取 <code>requirements.txt</code> 文件进行安装 (<code>uv pip install -r requirements.txt</code>)，以兼容旧项目或特定场景。</li>
+<li><code>uv</code> 也可以生成 <code>requirements.txt</code> 格式的文件 (<code>uv pip freeze &gt; requirements.txt</code>)，用于需要这种格式的部署流程或工具。</li>
+</ul>
+<p>但对于使用 <code>uv</code> 进行现代包管理的项目，<strong>推荐主要依赖 <code>pyproject.toml</code> 和 <code>uv.lock</code></strong>。</p>
+<hr>
+<p>这份基于你提供文章的方法论应该能清晰地指导你如何使用 <code>uv</code> 来管理你的 Python 项目。它强调了 <code>pyproject.toml</code> 作为用户配置入口、<code>uv.lock</code> 作为机器管理的锁文件、以及 <code>uv sync</code> 作为环境同步核心命令的角色。</p>
+<p><a href="https://github.com/fpgmaas/cookiecutter-uv/blob/main/Makefile" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/fpgmaas/cookiecutter-uv/blob/main/Makefile</a></p>
+<p>这是个带uv的cookiecutter project template</p>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Tutorial/">Tutorial    </a><a class="post-meta__tags" href="/tags/Development/">Development    </a><a class="post-meta__tags" href="/tags/Tools/">Tools    </a><a class="post-meta__tags" href="/tags/Python/">Python    </a><a class="post-meta__tags" href="/tags/Package/">Package    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2025/06/08/30-resources/coding/python/yaml_load/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>yaml_load</span></div></a></div><div class="next-post pull_right"><a href="/2025/06/08/30-resources/coding/sql/complex-transaction-example/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>complex-transaction-example</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2025/06/08/30-resources/coding/python/pydantic cheatsheet/" title="pydantic cheatsheet"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">pydantic cheatsheet</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/30-resources/coding/python/pandas_frame_creation_and_insertion/" title="pandas_frame_creation_and_insertion"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200201165020.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">pandas_frame_creation_and_insertion</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/30-resources/coding/python/numpy_basic_command_quick_lookup_table/" title="numpy_basic_command_quick_lookup_table"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202104250.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">numpy_basic_command_quick_lookup_table</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/30-resources/coding/python/pyqt_study_guide/" title="pyqt_study_guide"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">pyqt_study_guide</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/ai/Cursor MCP setup/" title="Cursor MCP setup"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">Cursor MCP setup</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/30-resources/coding/python/Cookiecutter file explanation/" title="Cookiecutter file explanation"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">Cookiecutter file explanation</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'xvMxbws16Erd8WUfqxkvHmb5-gzGzoHsz',
+  appKey:'4U0Vo7NQIUL0eJzHdkPzdCDr',
+  placeholder:'不说话的人会疯掉吗?',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'en',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2025 By supersheepbear</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="external nofollow noopener noreferrer"><span>Butterfly</span></a></div><div class="footer_custom_text">外向孤独者患者</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="255,240,245" opacity="0.7" zindex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="external nofollow noopener noreferrer" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>

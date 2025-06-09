@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>274 - default constructor | Bear's dream</title><meta name="description" content="274 - default constructor"><meta name="keywords" content="Cpp,Coding,Tutorial,Class,Constructor"><meta name="author" content="supersheepbear"><meta name="copyright" content="supersheepbear"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_1.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="p43hXBn3_dLvbyxUzx0eo5eYmj9OVYOV52pdrhBa2sw"><meta name="baidu-site-verification" content="EXLlfLv2pV"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="274 - default constructor"><meta name="twitter:description" content="274 - default constructor"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta property="og:type" content="article"><meta property="og:title" content="274 - default constructor"><meta property="og:url" content="https://yxiong.org/2025/06/08/10-projects/cplusplus/lectures/274%20-%20default%20constructor/"><meta property="og:site_name" content="Bear's dream"><meta property="og:description" content="274 - default constructor"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://yxiong.org/2025/06/08/10-projects/cplusplus/lectures/274%20-%20default%20constructor/"><link rel="prev" title="277 - IDE 创建 cpp 类方法" href="https://yxiong.org/2025/06/08/10-projects/cplusplus/lectures/277%20-%20IDE%20%E5%88%9B%E5%BB%BA%20cpp%20%E7%B1%BB%E6%96%B9%E6%B3%95/"><link rel="next" title="276 - Class across multiple files" href="https://yxiong.org/2025/06/08/10-projects/cplusplus/lectures/276%20-%20Class%20across%20multiple%20files/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">178</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">160</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">23</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#274-Default-Constructor"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">274 - Default Constructor</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#C-教程：轻松理解默认构造函数-default"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">C++ 教程：轻松理解默认构造函数 (&#x3D; default)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#详细讲解"><span class="toc_mobile_items-number">1.1.1.</span> <span class="toc_mobile_items-text">详细讲解</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#代码示例"><span class="toc_mobile_items-number">1.1.2.</span> <span class="toc_mobile_items-text">代码示例</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#QA-闪卡-QA-Flash-Cards"><span class="toc_mobile_items-number">1.1.3.</span> <span class="toc_mobile_items-text">QA 闪卡 (QA Flash Cards)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#常见误解或易犯错误"><span class="toc_mobile_items-number">1.1.4.</span> <span class="toc_mobile_items-text">常见误解或易犯错误</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#编码练习"><span class="toc_mobile_items-number">1.1.5.</span> <span class="toc_mobile_items-text">编码练习</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#7-对练习的解答与评分"><span class="toc_mobile_items-number">1.1.6.</span> <span class="toc_mobile_items-text">7. 对练习的解答与评分</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#8-扩展学习与思考建议"><span class="toc_mobile_items-number">1.1.7.</span> <span class="toc_mobile_items-text">8. 扩展学习与思考建议</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#274-Default-Constructor"><span class="toc-number">1.</span> <span class="toc-text">274 - Default Constructor</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-教程：轻松理解默认构造函数-default"><span class="toc-number">1.1.</span> <span class="toc-text">C++ 教程：轻松理解默认构造函数 (&#x3D; default)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#详细讲解"><span class="toc-number">1.1.1.</span> <span class="toc-text">详细讲解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码示例"><span class="toc-number">1.1.2.</span> <span class="toc-text">代码示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QA-闪卡-QA-Flash-Cards"><span class="toc-number">1.1.3.</span> <span class="toc-text">QA 闪卡 (QA Flash Cards)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见误解或易犯错误"><span class="toc-number">1.1.4.</span> <span class="toc-text">常见误解或易犯错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编码练习"><span class="toc-number">1.1.5.</span> <span class="toc-text">编码练习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-对练习的解答与评分"><span class="toc-number">1.1.6.</span> <span class="toc-text">7. 对练习的解答与评分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-扩展学习与思考建议"><span class="toc-number">1.1.7.</span> <span class="toc-text">8. 扩展学习与思考建议</span></a></li></ol></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">274 - default constructor</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2025-06-08<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2025-06-08</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/">10-projects</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/cplusplus/">cplusplus</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/cplusplus/lectures/">lectures</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2025/06/08/10-projects/cplusplus/lectures/274%20-%20default%20constructor/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2025/06/08/10-projects/cplusplus/lectures/274%20-%20default%20constructor/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="274-Default-Constructor"><a href="#274-Default-Constructor" class="headerlink" title="274 - Default Constructor"></a>274 - Default Constructor</h1><p>好的，同学你好！今天我们来学习 C++ 中的一个重要概念：默认构造函数 (default constructor)，以及如何使用 <code>= default</code> 这种现代 C++ 语法来让编译器为我们生成它。</p>
+<h2 id="C-教程：轻松理解默认构造函数-default"><a href="#C-教程：轻松理解默认构造函数-default" class="headerlink" title="C++ 教程：轻松理解默认构造函数 (= default)"></a><strong>C++ 教程：轻松理解默认构造函数 (<code>= default</code>)</strong></h2><p><strong>简要总结:</strong> 本节课我们将重点学习什么是默认构造函数，为什么在定义了其他构造函数后我们可能仍然需要它，以及如何使用 <code>= default</code> 关键字让编译器为我们自动生成一个默认构造函数。我们还会讨论构造函数的访问权限，比如 <code>public</code> (公有的)。</p>
+<hr>
+<h3 id="详细讲解"><a href="#详细讲解" class="headerlink" title="详细讲解"></a><strong>详细讲解</strong></h3><p><strong>1. 什么是构造函数 (Constructor)？</strong></p>
+<p>在我们深入默认构造函数之前，我们先来回顾一下什么是构造函数。在 C++ 中，构造函数是一种特殊的成员函数 (member function)，它会在我们创建类的一个新对象 (object) 时自动被调用。它的主要职责是初始化对象的数据成员 (data members)，确保对象在创建之初就处于一个有效的、可用的状态。构造函数的名称与类名完全相同，并且它没有返回类型 (return type)，连 <code>void</code> 都没有。</p>
+<p><strong>2. 什么是默认构造函数 (Default Constructor)？</strong></p>
+<p>默认构造函数是一种特殊的构造函数，它<strong>不接受任何参数</strong>。如果你在类定义中没有提供任何构造函数，C++ 编译器会自动为你生成一个隐式的 (implicit) 默认构造函数。这个由编译器生成的默认构造函数通常是一个空函数，它不做任何特定的初始化操作（对于基本数据类型，它们的值将是未定义的；对于类类型的成员，它们的默认构造函数会被调用）。</p>
+<p><strong>例如：</strong></p>
+<p><strong>C++</strong></p>
+<p>`class MyClass { public: int x; // 编译器会自动生成一个 MyClass() {} 这样的默认构造函数 };</p>
+<p>MyClass obj; // 这里会调用编译器生成的默认构造函数`</p>
+<p><strong>3. 编译器行为的变化：当你定义了自己的构造函数</strong></p>
+<p>这里有一个非常关键的点：<strong>一旦你在类中定义了任何一个构造函数（无论是带参数的还是不带参数的），编译器就不再自动生成那个隐式的默认构造函数了。</strong></p>
+<p>这是 C++ 的一个设计规则。编译器的逻辑是：“哦，程序员已经开始自己定义构造函数了，那么他/她可能对对象的创建有特定的要求，我就不再擅自添加默认的了。”</p>
+<p><strong>问题来了：</strong> 如果你定义了一个带参数的构造函数，比如用来初始化圆柱体的半径和高度：</p>
+<p><strong>C++</strong></p>
+<p>`class Cylinder { public: double base_radius; double height;</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 带参数的构造函数</span><br><span class="line">Cylinder(double r, double h) &#123;</span><br><span class="line">    base_radius &#x3D; r;</span><br><span class="line">    height &#x3D; h;</span><br><span class="line">    std::cout &lt;&lt; &quot;带参数的构造函数被调用！半径 &#x3D; &quot; &lt;&lt; base_radius &lt;&lt; &quot;, 高度 &#x3D; &quot; &lt;&lt; height &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double volume() &#123;</span><br><span class="line">    return 3.1415926 * base_radius * base_radius * height;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>};`</p>
+<p>现在，如果你尝试创建一个不带参数的 <code>Cylinder</code> 对象，就会编译失败：</p>
+<p><strong>C++</strong></p>
+<p><code>// Cylinder cylinder1; // 编译错误！编译器找不到 Cylinder() 这样的构造函数 Cylinder cylinder2(10.0, 5.0); // 这个没问题</code></p>
+<p>编译器会报错，因为它找不到一个不接受参数的 <code>Cylinder()</code> 构造函数。</p>
+<p><strong>4. 如何重新获得默认构造函数？</strong></p>
+<p>如果你定义了其他构造函数，但仍然希望能够创建不带参数的对象（即拥有一个默认构造函数），你有两种主要方法：</p>
+<ul>
+<li><p>方法一：手动定义一个空的默认构造函数 (旧方法)</p>
+<p>  你可以自己显式地 (explicitly) 写一个不带参数的构造函数，函数体可以为空，或者在里面进行一些默认的初始化。</p>
+<p>  <strong>C++</strong></p>
+<p>  `class Cylinder { public: double base_radius; double height;</p>
+  <div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 手动定义的默认构造函数</span><br><span class="line">Cylinder() &#123;</span><br><span class="line">    base_radius &#x3D; 1.0; &#x2F;&#x2F; 默认半径</span><br><span class="line">    height &#x3D; 1.0;    &#x2F;&#x2F; 默认高度</span><br><span class="line">    std::cout &lt;&lt; &quot;手动定义的默认构造函数被调用！&quot; &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">Cylinder(double r, double h) &#123;</span><br><span class="line">    base_radius &#x3D; r;</span><br><span class="line">    height &#x3D; h;</span><br><span class="line">    std::cout &lt;&lt; &quot;带参数的构造函数被调用！半径 &#x3D; &quot; &lt;&lt; base_radius &lt;&lt; &quot;, 高度 &#x3D; &quot; &lt;&lt; height &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">double volume() &#123;</span><br><span class="line">    return 3.1415926 * base_radius * base_radius * height;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>  };</p>
+<p>  Cylinder c1; // 现在可以了，调用我们手动定义的默认构造函数 Cylinder c2(2.0, 3.0);`</p>
+</li>
+<li><p>方法二：使用 = default (现代 C++ 推荐方法)</p>
+<p>  从 C++11 开始，引入了一种更简洁、更明确的方式来告诉编译器：“请为我生成那个默认版本的函数实现。” 这就是使用 = default 语法。对于默认构造函数，你可以这样做：</p>
+<p>  <strong>C++</strong></p>
+<p>  `class Cylinder { public: double base_radius; double height;</p>
+  <div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 告诉编译器生成默认构造函数</span><br><span class="line">Cylinder() &#x3D; default;</span><br><span class="line">    </span><br><span class="line">Cylinder(double r, double h) &#123;</span><br><span class="line">    base_radius &#x3D; r; &#x2F;&#x2F; 通常，如果有了 &#x3D;default 的构造函数，我们期望它不做特别的初始化</span><br><span class="line">                    &#x2F;&#x2F; 或者像之前那样，如果你想让默认构造函数有特定的默认值，</span><br><span class="line">                    &#x2F;&#x2F; 那么你还是需要手动实现它，而不是用 &#x3D;default。</span><br><span class="line">                    &#x2F;&#x2F; &#x3D;default 通常意味着“给我一个最基础、编译器认为合适的版本”</span><br><span class="line">                    &#x2F;&#x2F; 对于这里的例子，如果用了 &#x3D;default，base_radius 和 height</span><br><span class="line">                    &#x2F;&#x2F; 将会是未初始化的（对于基本类型）或默认构造的（对于类类型）。</span><br><span class="line">                    &#x2F;&#x2F; 如果我们希望它们有初始值，我们可以这样做：</span><br><span class="line">                    &#x2F;&#x2F; double base_radius &#x3D; 1.0;</span><br><span class="line">                    &#x2F;&#x2F; double height &#x3D; 1.0;</span><br><span class="line">                    &#x2F;&#x2F; 然后 Cylinder() &#x3D; default; 就会使用这些类内初始值。</span><br><span class="line">                    &#x2F;&#x2F; 或者，更常见的是，如果用了&#x3D;default，就不再期望它有特定的值，除非有类内初始化。</span><br><span class="line">                    &#x2F;&#x2F; 为了清晰，如果用&#x3D;default，我们假设它就是创建一个“空”的对象，其成员的值依赖于它们的类型和是否有类内初始化。</span><br><span class="line">                    &#x2F;&#x2F; 在原始课程中，作者似乎是期望一个“空”的，不做事的默认构造函数。</span><br><span class="line">    height &#x3D; h;</span><br><span class="line">    std::cout &lt;&lt; &quot;带参数的构造函数被调用！半径 &#x3D; &quot; &lt;&lt; base_radius &lt;&lt; &quot;, 高度 &#x3D; &quot; &lt;&lt; height &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">&#x2F;&#x2F; 为了让 &#x3D; default 行为更符合“空”的默认构造函数的预期，并且能够被演示</span><br><span class="line">&#x2F;&#x2F; 我们假设成员变量在类定义时没有赋初始值，除非在带参构造函数中赋值</span><br><span class="line">&#x2F;&#x2F; Cylinder() &#x3D; default; &#x2F;&#x2F; 将生成一个不做任何事情的构造函数，base_radius 和 height 将是未初始化的</span><br><span class="line">    </span><br><span class="line">double volume() &#123;</span><br><span class="line">    return 3.1415926 * base_radius * base_radius * height;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>  };`</p>
+<p>  使用 <code>= default</code> 有几个好处：</p>
+<ul>
+<li><strong>意图明确：</strong> 它清楚地表达了你想要一个由编译器生成的默认行为。</li>
+<li><strong>简洁：</strong> 代码更少。</li>
+<li><p><strong>潜在的性能优势：</strong> 编译器生成的版本有时可能比手写的空函数体更高效（尽管对于简单的默认构造函数，这种差异通常可以忽略不计）。它也允许编译器将这种类型的构造函数视为“平凡的”(trivial)，这在某些高级场景下有意义。</p>
+<p>注意成员初始化：</p>
+<p>如果你的类成员有类内初始值 (in-class initializers)，那么 = default 生成的构造函数会使用这些初始值。</p>
+<p><strong>C++</strong></p>
+<p>`class CylinderWithDefaultInit { public: double base_radius = 1.0; // 类内初始值 double height = 1.0; // 类内初始值</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CylinderWithDefaultInit() &#x3D; default; &#x2F;&#x2F; 编译器生成的默认构造函数会使用上面的初始值</span><br><span class="line">    </span><br><span class="line">CylinderWithDefaultInit(double r, double h) &#123;</span><br><span class="line">    base_radius &#x3D; r;</span><br><span class="line">    height &#x3D; h;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">void print_values() &#123;</span><br><span class="line">    std::cout &lt;&lt; &quot;半径: &quot; &lt;&lt; base_radius &lt;&lt; &quot;, 高度: &quot; &lt;&lt; height &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>};</p>
+<p>CylinderWithDefaultInit c_default; // c_default.base_radius 会是 1.0, c_default.height 会是 1.0 c_default.print_values();`</p>
+<p>如果成员没有类内初始值，且是基本数据类型，那么 <code>= default</code> 生成的构造函数不会初始化它们，它们的值将是未定义的。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>5. 构造函数的访问权限：<code>public</code> vs <code>private</code></strong></p>
+<p>构造函数和普通成员函数一样，也有访问权限修饰符 (access specifiers)，如 <code>public</code> (公有的), <code>private</code> (私有的), 和 <code>protected</code> (受保护的)。</p>
+<ul>
+<li><p><strong><code>public</code> (公有的):</strong> 如果构造函数是 <code>public</code> 的，那么类的外部代码（比如 <code>main</code> 函数）就可以调用它来创建对象。这是最常见的情况。</p>
+<p>  <strong>C++</strong></p>
+<p>  `class MyGadget { public: MyGadget() = default; // 公有构造函数 // … };</p>
+<p>  MyGadget gadget; // OK，可以调用`</p>
+</li>
+<li><p><strong><code>private</code> (私有的):</strong> 如果构造函数是 <code>private</code> 的，那么类的外部代码就不能直接调用它来创建对象了。这通常用于实现一些特殊的设计模式，比如单例模式 (Singleton Pattern)，或者当类只希望通过特定的静态成员函数 (static member function) 来创建对象时。</p>
+<p>  <strong>C++</strong></p>
+<p>  `class OnlyInternal { private: OnlyInternal() = default; // 私有构造函数 public: static OnlyInternal createInstance() { return OnlyInternal(); // 类的内部或友元可以调用 } };</p>
+<p>  // OnlyInternal oi; // 编译错误！’OnlyInternal::OnlyInternal()’ is private OnlyInternal oi = OnlyInternal::createInstance(); // OK`</p>
+<p>  在课程的例子中，如果将 <code>Cylinder() = default;</code> 声明为 <code>private</code>，那么在 <code>main</code> 函数中尝试 <code>Cylinder cylinder1;</code> 就会导致编译错误，因为 <code>main</code> 函数无权访问私有的构造函数。</p>
+</li>
+</ul>
+<hr>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a><strong>代码示例</strong></h3><p>让我们回顾并整合一下课程中提到的 <code>Cylinder</code> 类的例子：</p>
+<p><strong>C++</strong></p>
+<p>`#<strong>include</strong> <iostream>const double PI = 3.14159265358979323846;</iostream></p>
+<p>class Cylinder { public: // 构造函数通常需要是公有的 // 成员变量 (member variables) double base_radius = 1.0; // 给定默认值，这样 =default 的构造函数会使用它们 double height = 1.0;</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 使用 &#x3D; default 来让编译器生成默认构造函数</span><br><span class="line">&#x2F;&#x2F; 这样我们就可以创建 Cylinder c1; 这样的对象了</span><br><span class="line">Cylinder() &#x3D; default;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 2. 带参数的构造函数</span><br><span class="line">Cylinder(double radius_param, double height_param) &#123;</span><br><span class="line">    base_radius &#x3D; radius_param;</span><br><span class="line">    height &#x3D; height_param;</span><br><span class="line">    std::cout &lt;&lt; &quot;带参数的构造函数被调用。半径: &quot; &lt;&lt; base_radius &lt;&lt; &quot;, 高度: &quot; &lt;&lt; height &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 成员函数 (member function)</span><br><span class="line">double volume() &#123;</span><br><span class="line">    return PI * base_radius * base_radius * height;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>};</p>
+<p>int main() { // 情况一：使用默认构造函数创建对象 // 由于 Cylinder() = default; 并且成员有类内初始值， // cylinder1 会有 base_radius = 1.0 和 height = 1.0 Cylinder cylinder1; std::cout &lt;&lt; “cylinder1 (默认构造) 的体积: “ &lt;&lt; cylinder1.volume() &lt;&lt; std::endl; std::cout &lt;&lt; “cylinder1 的半径: “ &lt;&lt; cylinder1.base_radius &lt;&lt; “, 高度: “ &lt;&lt; cylinder1.height &lt;&lt; std::endl;</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 情况二：使用带参数的构造函数创建对象</span><br><span class="line">Cylinder cylinder2(2.0, 5.0);</span><br><span class="line">std::cout &lt;&lt; &quot;cylinder2 (带参构造) 的体积: &quot; &lt;&lt; cylinder2.volume() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 如果我们把 Cylinder() &#x3D; default; 注释掉或删除，</span><br><span class="line">&#x2F;&#x2F; 并且 Cylinder 类中存在其他构造函数（如 Cylinder(double, double)），</span><br><span class="line">&#x2F;&#x2F; 那么 Cylinder cylinder1; 这一行将会导致编译错误。</span><br><span class="line">&#x2F;&#x2F; 因为编译器不再自动生成默认构造函数。</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 演示如果构造函数是 private 的情况</span><br><span class="line">&#x2F;&#x2F; 假设我们将 Cylinder() &#x3D; default; 移到 private 区：</span><br><span class="line">&#x2F;*</span><br><span class="line">class Cylinder &#123;</span><br><span class="line">private:</span><br><span class="line">    Cylinder() &#x3D; default; &#x2F;&#x2F; 现在是私有的</span><br><span class="line">public:</span><br><span class="line">    double base_radius &#x3D; 1.0;</span><br><span class="line">    double height &#x3D; 1.0;</span><br><span class="line">    Cylinder(double r, double h) : base_radius(r), height(h) &#123;&#125;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">&#125;;</span><br><span class="line">&#x2F;&#x2F; Cylinder c_private; &#x2F;&#x2F; 这将导致编译错误: &#39;Cylinder::Cylinder()&#39; is private</span><br><span class="line">*&#x2F;</span><br><span class="line"></span><br><span class="line">return 0;</span><br></pre></td></tr></table></figure></div>
+<p>}`</p>
+<p><strong>代码解释步骤：</strong></p>
+<ol>
+<li><strong>包含头文件和定义常量:</strong> <code>iostream</code> 用于输入输出，<code>PI</code> 是圆周率。</li>
+<li><strong>定义 <code>Cylinder</code> 类:</strong><ul>
+<li><code>public:</code> 访问修饰符表明接下来的成员是公有的。</li>
+<li><code>double base_radius = 1.0;</code> 和 <code>double height = 1.0;</code> 是类的成员变量，并给予了类内初始值。这意味着如果对象是通过默认构造函数创建的，这些成员将自动获得这些值。</li>
+<li><code>Cylinder() = default;</code> 这是核心。我们告诉编译器：“请为我生成一个标准的默认构造函数。” 因为成员有类内初始值，这个默认构造函数会使用它们。</li>
+<li><code>Cylinder(double radius_param, double height_param)</code> 是一个带参数的构造函数，它允许我们在创建对象时提供自定义的半径和高度。</li>
+<li><code>double volume()</code> 是一个计算圆柱体积的成员函数。</li>
+</ul>
+</li>
+<li><strong><code>main</code> 函数:</strong><ul>
+<li><code>Cylinder cylinder1;</code>：这行代码现在是合法的，因为它会调用由 <code>= default</code> 生成的默认构造函数。<code>cylinder1.base_radius</code> 将是 <code>1.0</code>，<code>cylinder1.height</code> 将是 <code>1.0</code>。</li>
+<li><code>std::cout &lt;&lt; &quot;cylinder1 (默认构造) 的体积: &quot; &lt;&lt; cylinder1.volume() &lt;&lt; std::endl;</code>：打印 <code>cylinder1</code> 的体积。</li>
+<li><code>Cylinder cylinder2(2.0, 5.0);</code>：这行代码调用带参数的构造函数，创建 <code>cylinder2</code> 对象，其半径为 <code>2.0</code>，高度为 <code>5.0</code>。</li>
+<li>注释部分演示了如果默认构造函数缺失或为私有时会发生什么。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="QA-闪卡-QA-Flash-Cards"><a href="#QA-闪卡-QA-Flash-Cards" class="headerlink" title="QA 闪卡 (QA Flash Cards)"></a><strong>QA 闪卡 (QA Flash Cards)</strong></h3><ol>
+<li><p>问： 什么是默认构造函数 (default constructor)？</p>
+<p> 答： 一个不接受任何参数的构造函数。</p>
+</li>
+<li><p>问： 如果我没有在类中定义任何构造函数，会发生什么？</p>
+<p> 答： 编译器会自动为你生成一个公有的、隐式的默认构造函数。</p>
+</li>
+<li><p>问： 如果我定义了一个带参数的构造函数，编译器还会自动生成默认构造函数吗？</p>
+<p> 答： 不会。一旦你定义了任何构造函数，编译器就不再自动生成默认构造函数。</p>
+</li>
+<li><p>问： 如何在定义了其他构造函数后，仍然让类拥有一个默认构造函数（使用现代C++方法）？</p>
+<p> 答： 使用 YourClassName() = default; 语法。</p>
+</li>
+<li><p>问： Cylinder() = default; 这行代码是什么意思？</p>
+<p> 答： 它指示编译器为 Cylinder 类生成一个默认的、不做特殊操作的构造函数。如果类成员有类内初始值，这些值会被使用。</p>
+</li>
+<li><p>问： 构造函数通常应该是什么访问权限 (access specifier)才能在类外部创建对象？</p>
+<p> 答： public (公有的)。</p>
+</li>
+<li><p>问： 如果一个类的默认构造函数是 private (私有的)，我可以在 main 函数中直接创建该类的对象吗（例如 MyClass obj;）？</p>
+<p> 答： 不可以，会导致编译错误，因为 main 函数无权访问私有构造函数。</p>
+</li>
+</ol>
+<hr>
+<h3 id="常见误解或易犯错误"><a href="#常见误解或易犯错误" class="headerlink" title="常见误解或易犯错误"></a><strong>常见误解或易犯错误</strong></h3><ol>
+<li><p><strong>忘记 <code>= default</code> 或手动定义：</strong> 当程序员定义了一个带参数的构造函数后，常常忘记如果还需要无参数构造对象的能力，就必须显式地使用 <code>= default</code> 或手动提供一个默认构造函数。然后尝试 <code>MyClass obj;</code> 时就会遇到编译错误。</p>
+</li>
+<li><p><strong><code>= default</code> 与自定义逻辑混淆：</strong> <code>= default</code> 的意思是“给我编译器生成的版本”。如果你希望默认构造函数执行一些特定的自定义初始化逻辑（而不仅仅是依赖类内初始化），那么你应该手动编写构造函数体，而不是使用 <code>= default</code>。</p>
+<ul>
+<li><p>例如，如果想在默认构造时打印日志或设置一些不方便通过类内初始化器设置的值，就需要手动写：</p>
+<p>  <strong>C++</strong></p>
+<p>  <code>class Logger { public: Logger() { // 手动实现，非 =default std::cout &lt;&lt; &quot;Logger object created by default constructor.&quot; &lt;&lt; std::endl; // 可能还有其他初始化代码 } };</code></p>
+</li>
+</ul>
+</li>
+<li><p><strong>访问权限问题：</strong> 忘记将构造函数（包括 <code>= default</code> 的构造函数）声明为 <code>public</code>，导致在类外部无法创建对象。编译器会提示构造函数不可访问 (inaccessible) 或私有 (private)。</p>
+</li>
+<li><p><strong>对未初始化成员的假设：</strong> 如果使用 <code>= default</code> 且成员变量没有类内初始值，那么基本数据类型的成员将不会被初始化（它们的值是未定义的）。依赖这些未定义的值会导致程序行为不可预测。</p>
+<ul>
+<li><p>错误示范：</p>
+<p>  <strong>C++</strong></p>
+<p>  <code>class BadExample { public: int value; // 没有类内初始化 BadExample() = default; }; BadExample ex; // std::cout &lt;&lt; ex.value; // ex.value 的值是未定义的！</code></p>
+</li>
+</ul>
+</li>
+<li><p><strong>认为 <code>= default</code> 总是最好的：</strong> 虽然 <code>= default</code> 很方便，但如第2点所述，如果默认构造需要特定逻辑，则必须手动实现。<code>= default</code> 适用于你接受编译器提供的标准行为的场景。</p>
+</li>
+</ol>
+<hr>
+<h3 id="编码练习"><a href="#编码练习" class="headerlink" title="编码练习"></a><strong>编码练习</strong></h3><p>现在，这里有一个 <code>Point</code> 类的代码片段。你需要修改它，使得：</p>
+<ol>
+<li>即使我们有带参数的构造函数 <code>Point(int x_val, int y_val)</code>，我们仍然可以创建一个不带参数的 <code>Point</code> 对象 (例如 <code>Point p1;</code>)。</li>
+<li>使用现代 C++ 的 <code>= default</code> 语法来实现这个默认构造函数。</li>
+<li>确保新添加的默认构造函数是公有的。</li>
+<li>为了让默认构造的对象有确定的初始值，请给成员变量 <code>x</code> 和 <code>y</code> 添加类内初始值，都设为 <code>0</code>。</li>
+</ol>
+<p><strong>C++</strong></p>
+<p>`#<strong>include</strong> <iostream>class Point { // TODO: 为 x 和 y 添加类内初始值，都设为 0</iostream></p>
+<p>public: int x;`</p>
+<p>好的，我们继续！</p>
+<hr>
+<h3 id="7-对练习的解答与评分"><a href="#7-对练习的解答与评分" class="headerlink" title="7. 对练习的解答与评分"></a><strong>7. 对练习的解答与评分</strong></h3><p>由于你没有直接提供代码，我就直接给出这个练习的正确答案和解释。如果你自己尝试了，可以对照一下看看思路是否一致。</p>
+<p><strong>练习的正确代码：</strong></p>
+<p><strong>C++</strong></p>
+<p>`#<strong>include</strong> <iostream>class Point { public: // 确保成员和构造函数有合适的访问权限 // 1. 为 x 和 y 添加类内初始值，都设为 0 int x = 0; int y = 0;</iostream></p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 2. 在这里添加代码，使用 &#x3D; default 来声明一个公有的默认构造函数</span><br><span class="line">Point() &#x3D; default;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 带参数的构造函数</span><br><span class="line">Point(int x_val, int y_val) &#123;</span><br><span class="line">    x &#x3D; x_val;</span><br><span class="line">    y &#x3D; y_val;</span><br><span class="line">    std::cout &lt;&lt; &quot;带参数的 Point 构造函数被调用: x &#x3D; &quot; &lt;&lt; x &lt;&lt; &quot;, y &#x3D; &quot; &lt;&lt; y &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void display() &#123;</span><br><span class="line">    std::cout &lt;&lt; &quot;Point(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot; &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>};</p>
+<p>int main() { // 测试默认构造函数 Point p1; // 应该使用默认构造函数，x和y应该因为类内初始化而为0 std::cout &lt;&lt; “p1 (默认构造): “; p1.display();</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 测试带参数的构造函数</span><br><span class="line">Point p2(10, 20);</span><br><span class="line">std::cout &lt;&lt; &quot;p2 (带参构造): &quot;;</span><br><span class="line">p2.display();</span><br><span class="line"></span><br><span class="line">return 0;</span><br></pre></td></tr></table></figure></div>
+<p>}`</p>
+<p><strong>评分和解释：</strong></p>
+<p>假设你按照以下方式完成了修改（或者你的思路与此一致），那么你做得非常好！</p>
+<ol>
+<li><p><strong>添加类内初始值 (In-class initializers):</strong></p>
+<p> <strong>C++</strong></p>
+<p> <code>int x = 0; int y = 0;</code></p>
+<ul>
+<li><strong>为什么这么做？</strong> 当我们使用 <code>Point() = default;</code> 时，编译器生成的默认构造函数会检查成员变量是否有类内初始值。如果有，这些初始值就会被用来初始化对象的成员。这样，通过默认构造函数创建的 <code>Point</code> 对象 (如 <code>Point p1;</code>) 就会自动拥有 <code>x=0</code> 和 <code>y=0</code> 的状态，而不是未定义的值。这是现代 C++ 中推荐的做法，可以确保对象成员总是有良好定义的初始状态。</li>
+</ul>
+</li>
+<li><p><strong>声明公有的默认构造函数使用 <code>= default</code>:</strong></p>
+<p> <strong>C++</strong></p>
+<p> <code>public: // 确保在 public 区 Point() = default;</code></p>
+<ul>
+<li><strong>为什么这么做？</strong><ul>
+<li><code>Point()</code>：定义了一个名为 <code>Point</code> 的构造函数，它没有参数，这正是默认构造函数的形式。</li>
+<li><code>= default</code>：告诉编译器：“请你为我生成这个默认构造函数的标准实现版本。” 因为我们已经有了带参数的构造函数 <code>Point(int x_val, int y_val)</code>，编译器不会再自动提供隐式的默认构造函数，所以我们必须显式地要求一个。使用 <code>= default</code> 是最简洁、最能体现意图的方式。</li>
+<li><code>public:</code>：将默认构造函数放在 <code>public</code> 区域，使得类的外部代码（例如 <code>main</code> 函数）可以调用它来创建 <code>Point</code> 对象，如 <code>Point p1;</code>。如果它是 <code>private</code> 或 <code>protected</code> 的，那么 <code>Point p1;</code> 这样的语句在 <code>main</code> 中就会编译失败。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>总结一下关键点：</strong></p>
+<ul>
+<li>一旦定义了任何自定义构造函数，就不会再有隐式的默认构造函数。</li>
+<li><code>= default</code> 用于请求编译器生成默认版本的特殊成员函数（构造函数、析构函数、拷贝/移动操作等）。</li>
+<li>类内初始化 (<code>int x = 0;</code>) 与 <code>= default</code> 的默认构造函数配合良好，可以为通过默认构造函数创建的对象提供明确的初始值。</li>
+<li>构造函数的访问权限（通常是 <code>public</code>）决定了它在哪里可以被调用。</li>
+</ul>
+<hr>
+<h3 id="8-扩展学习与思考建议"><a href="#8-扩展学习与思考建议" class="headerlink" title="8. 扩展学习与思考建议"></a><strong>8. 扩展学习与思考建议</strong></h3><p>非常好！你已经掌握了默认构造函数和 <code>= default</code> 的基本用法。为了进一步加深理解和拓展你的 C++ 知识，你可以思考和研究以下问题：</p>
+<ol>
+<li><strong>析构函数 (Destructor) 与 <code>= default</code>：</strong><ul>
+<li>了解什么是析构函数 (<code>~ClassName()</code>)。</li>
+<li>析构函数可以被 <code>= default</code> 吗？在什么情况下你会这样做？（提示：通常是的，特别是当类不管理需要手动释放的资源时。）</li>
+</ul>
+</li>
+<li><strong>拷贝构造函数 (Copy Constructor) 与 <code>= default</code>：</strong><ul>
+<li>什么是拷贝构造函数 (<code>ClassName(const ClassName&amp; other)</code>)？它什么时候被调用？</li>
+<li>如果你不提供拷贝构造函数，编译器会自动生成一个吗？它的行为是什么？</li>
+<li>什么时候你会使用 <code>ClassName(const ClassName&amp; other) = default;</code>？什么时候你会选择 <code>= delete</code>？（<code>= delete</code> 是另一个有用的关键字，表示禁止编译器生成某个函数。）</li>
+</ul>
+</li>
+<li><strong>拷贝赋值运算符 (Copy Assignment Operator) 与 <code>= default</code>：</strong><ul>
+<li>什么是拷贝赋值运算符 (<code>ClassName&amp; operator=(const ClassName&amp; other)</code>)？</li>
+<li>与拷贝构造函数类似，研究编译器行为以及 <code>= default</code> 和 <code>= delete</code> 的应用。</li>
+</ul>
+</li>
+<li><strong>移动构造函数 (Move Constructor) 与移动赋值运算符 (Move Assignment Operator)（C++11及以后）：</strong><ul>
+<li>这些是更高级的概念，与右值引用 (rvalue reference) 和资源所有权转移相关。了解它们也可以使用 <code>= default</code> 和 <code>= delete</code>。</li>
+</ul>
+</li>
+<li><strong>“平凡的” (Trivial) 默认构造函数：</strong><ul>
+<li>搜索一下什么是 “trivial default constructor”。了解一个类在什么条件下其默认构造函数是平凡的。使用 <code>= default</code> 有时可以帮助生成平凡的特殊成员函数，这在某些性能敏感或底层编程场景下有意义。</li>
+</ul>
+</li>
+<li><strong>构造函数中的 <code>explicit</code> 关键字：</strong><ul>
+<li>了解单参数构造函数（除了拷贝/移动构造函数）默认可以用于隐式类型转换。</li>
+<li>学习如何使用 <code>explicit</code> 关键字来阻止这种隐式转换，以及为什么这通常是个好主意。例如：<code>explicit Point(int val) : x(val), y(val) {}</code>。</li>
+</ul>
+</li>
+<li><strong>委托构造函数 (Delegating Constructors) (C++11及以后)：</strong><ul>
+<li>一个构造函数可以调用同一个类中的另一个构造函数来完成部分或全部初始化工作。这如何与默认构造函数或 <code>= default</code> 配合（或不配合）？</li>
+</ul>
+</li>
+</ol>
+<p>通过研究这些相关主题，你将对 C++ 中的类、对象创建、资源管理以及编译器提供的便利功能有更全面的理解。</p>
+<p>继续努力，C++ 的世界非常广阔且充满乐趣！如果你在学习这些新内容时遇到任何问题，随时可以提问。</p>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Cpp/">Cpp    </a><a class="post-meta__tags" href="/tags/Coding/">Coding    </a><a class="post-meta__tags" href="/tags/Tutorial/">Tutorial    </a><a class="post-meta__tags" href="/tags/Class/">Class    </a><a class="post-meta__tags" href="/tags/Constructor/">Constructor    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2025/06/08/10-projects/cplusplus/lectures/277%20-%20IDE%20%E5%88%9B%E5%BB%BA%20cpp%20%E7%B1%BB%E6%96%B9%E6%B3%95/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>277 - IDE 创建 cpp 类方法</span></div></a></div><div class="next-post pull_right"><a href="/2025/06/08/10-projects/cplusplus/lectures/276%20-%20Class%20across%20multiple%20files/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>276 - Class across multiple files</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2025/06/08/10-projects/cplusplus/lectures/296 - 构造函数默认参数/" title="296 - 构造函数默认参数"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">296 - 构造函数默认参数</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/10-projects/cplusplus/lectures/306 -  cpp 初始化列表构造函数详解/" title="306 -  cpp 初始化列表构造函数详解"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">306 -  cpp 初始化列表构造函数详解</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/10-projects/cplusplus/lectures/273 - constructor/" title="273 - constructor"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">273 - constructor</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/10-projects/cplusplus/lectures/280 - 构造与析构顺序 倒序析构/" title="280 - 构造与析构顺序 倒序析构"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">280 - 构造与析构顺序 倒序析构</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/10-projects/cplusplus/lectures/282 - cpp结构体与类的区别和用法/" title="282 - cpp结构体与类的区别和用法"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">282 - cpp结构体与类的区别和用法</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/10-projects/cplusplus/lectures/297 - 构造函数初始化列表/" title="297 - 构造函数初始化列表"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">297 - 构造函数初始化列表</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'xvMxbws16Erd8WUfqxkvHmb5-gzGzoHsz',
+  appKey:'4U0Vo7NQIUL0eJzHdkPzdCDr',
+  placeholder:'不说话的人会疯掉吗?',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'en',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2025 By supersheepbear</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="external nofollow noopener noreferrer"><span>Butterfly</span></a></div><div class="footer_custom_text">外向孤独者患者</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="255,240,245" opacity="0.7" zindex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="external nofollow noopener noreferrer" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>

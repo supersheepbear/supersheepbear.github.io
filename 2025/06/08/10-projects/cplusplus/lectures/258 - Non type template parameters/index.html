@@ -1,0 +1,372 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>258 - Non type template parameters | Bear's dream</title><meta name="description" content="258 - Non type template parameters"><meta name="keywords" content="Cpp,Coding,Function,Template,Development"><meta name="author" content="supersheepbear"><meta name="copyright" content="supersheepbear"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_1.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="p43hXBn3_dLvbyxUzx0eo5eYmj9OVYOV52pdrhBa2sw"><meta name="baidu-site-verification" content="EXLlfLv2pV"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="258 - Non type template parameters"><meta name="twitter:description" content="258 - Non type template parameters"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta property="og:type" content="article"><meta property="og:title" content="258 - Non type template parameters"><meta property="og:url" content="https://yxiong.org/2025/06/08/10-projects/cplusplus/lectures/258%20-%20Non%20type%20template%20parameters/"><meta property="og:site_name" content="Bear's dream"><meta property="og:description" content="258 - Non type template parameters"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://yxiong.org/2025/06/08/10-projects/cplusplus/lectures/258%20-%20Non%20type%20template%20parameters/"><link rel="prev" title="257 - cpp Default template arguments" href="https://yxiong.org/2025/06/08/10-projects/cplusplus/lectures/257%20-%20cpp%20Default%20template%20arguments/"><link rel="next" title="259 - Auto Function Templates" href="https://yxiong.org/2025/06/08/10-projects/cplusplus/lectures/259%20-%20Auto%20Function%20Templates/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">178</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">160</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">23</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#258-Non-Type-Template-Parameters"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">258 - Non Type Template Parameters</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-标题与简介-Title-and-Summary"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">1. 标题与简介 (Title and Summary)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-详细分步讲解-Detailed-Explanation"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">2. 详细分步讲解 (Detailed Explanation)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#3-代码示例-Code-Example"><span class="toc_mobile_items-number">1.3.</span> <span class="toc_mobile_items-text">3. 代码示例 (Code Example)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#4-问答卡片-Q-amp-A-Flash-Cards"><span class="toc_mobile_items-number">1.4.</span> <span class="toc_mobile_items-text">4. 问答卡片 (Q&amp;A Flash Cards)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#5-常见误解-错误-Common-Misunderstandings-Mistakes"><span class="toc_mobile_items-number">1.5.</span> <span class="toc_mobile_items-text">5. 常见误解&#x2F;错误 (Common Misunderstandings&#x2F;Mistakes)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#6-编程练习-Coding-Exercise"><span class="toc_mobile_items-number">1.6.</span> <span class="toc_mobile_items-text">6. 编程练习 (Coding Exercise)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#7-评价你的答案与讲解-Rating-Your-Solution-amp-Explanation"><span class="toc_mobile_items-number">1.7.</span> <span class="toc_mobile_items-text">7. 评价你的答案与讲解 (Rating Your Solution &amp; Explanation)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#8-建议和扩展问题-Suggestions-amp-Extended-Questions"><span class="toc_mobile_items-number">1.8.</span> <span class="toc_mobile_items-text">8. 建议和扩展问题 (Suggestions &amp; Extended Questions)</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#258-Non-Type-Template-Parameters"><span class="toc-number">1.</span> <span class="toc-text">258 - Non Type Template Parameters</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-标题与简介-Title-and-Summary"><span class="toc-number">1.1.</span> <span class="toc-text">1. 标题与简介 (Title and Summary)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-详细分步讲解-Detailed-Explanation"><span class="toc-number">1.2.</span> <span class="toc-text">2. 详细分步讲解 (Detailed Explanation)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-代码示例-Code-Example"><span class="toc-number">1.3.</span> <span class="toc-text">3. 代码示例 (Code Example)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-问答卡片-Q-amp-A-Flash-Cards"><span class="toc-number">1.4.</span> <span class="toc-text">4. 问答卡片 (Q&amp;A Flash Cards)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-常见误解-错误-Common-Misunderstandings-Mistakes"><span class="toc-number">1.5.</span> <span class="toc-text">5. 常见误解&#x2F;错误 (Common Misunderstandings&#x2F;Mistakes)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-编程练习-Coding-Exercise"><span class="toc-number">1.6.</span> <span class="toc-text">6. 编程练习 (Coding Exercise)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-评价你的答案与讲解-Rating-Your-Solution-amp-Explanation"><span class="toc-number">1.7.</span> <span class="toc-text">7. 评价你的答案与讲解 (Rating Your Solution &amp; Explanation)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-建议和扩展问题-Suggestions-amp-Extended-Questions"><span class="toc-number">1.8.</span> <span class="toc-text">8. 建议和扩展问题 (Suggestions &amp; Extended Questions)</span></a></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">258 - Non type template parameters</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2025-06-08<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2025-06-08</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/">10-projects</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/cplusplus/">cplusplus</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/cplusplus/lectures/">lectures</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2025/06/08/10-projects/cplusplus/lectures/258%20-%20Non%20type%20template%20parameters/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2025/06/08/10-projects/cplusplus/lectures/258%20-%20Non%20type%20template%20parameters/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="258-Non-Type-Template-Parameters"><a href="#258-Non-Type-Template-Parameters" class="headerlink" title="258 - Non Type Template Parameters"></a>258 - Non Type Template Parameters</h1><p><a href="https://gemini.google.com/u/2/app/a90fe4536e5091d1" target="_blank" rel="external nofollow noopener noreferrer">https://gemini.google.com/u/2/app/a90fe4536e5091d1</a></p>
+<p>好的，没问题！作为一名经验丰富的 C++ 开发者和热爱教学的老师，我非常乐意用最适合初学者的方式，带你一步步学习 C++ 的 <code>非类型模板参数 [Non-type template parameters]</code>。我们开始吧！</p>
+<hr>
+<h2 id="1-标题与简介-Title-and-Summary"><a href="#1-标题与简介-Title-and-Summary" class="headerlink" title="1. 标题与简介 (Title and Summary)"></a><strong>1. 标题与简介 (Title and Summary)</strong></h2><p><strong>标题:</strong> C++ 模板进阶：深入理解非类型模板参数</p>
+<p>简介:</p>
+<p>本节课我们将学习 C++ 模板中的一个重要概念——非类型模板参数 [Non-type template parameters]。与我们之前熟悉的 类型模板参数 [Type template parameters]（如 typename T，代表一个待定的数据类型）不同，非类型模板参数是用来代表一个 值 的占位符，其具体类型在模板声明时就已经确定。我们将探讨它的语法、用途、与类型参数的区别、C++ 版本间的差异，并通过实例来理解它。</p>
+<hr>
+<h2 id="2-详细分步讲解-Detailed-Explanation"><a href="#2-详细分步讲解-Detailed-Explanation" class="headerlink" title="2. 详细分步讲解 (Detailed Explanation)"></a><strong>2. 详细分步讲解 (Detailed Explanation)</strong></h2><p>让我们循序渐进地深入了解非类型模板参数：</p>
+<ul>
+<li><p><strong>回顾：类型模板参数 (Type Template Parameters)</strong></p>
+<ul>
+<li>首先，回忆一下我们常用的 <code>类型模板参数 [Type template parameters]</code>。在像 <code>template&lt;typename T&gt;</code> 这样的声明中，<code>T</code> 是一个占位符。当我们使用这个模板（比如函数模板或类模板）时，我们需要为 <code>T</code> 指定一个具体的类型，比如 <code>int</code>、<code>double</code> 或者我们自己定义的类。<code>T</code> 代表的是一个 <em>类型</em>。</li>
+</ul>
+</li>
+<li><p><strong>引入：非类型模板参数 (Non-Type Template Parameters)</strong></p>
+<ul>
+<li>现在，我们来看 <code>非类型模板参数 [Non-type template parameters]</code>。顾名思义，它不是用来代表类型的。相反，它代表一个 <em>值</em>。</li>
+<li>它的语法是在模板声明中直接指定一个 <strong>具体的 C++ 类型</strong>，后面跟着参数名，例如：<code>template&lt;int MaxSize, typename T&gt;</code>。</li>
+<li>在这个例子中，<code>MaxSize</code> 就是一个非类型模板参数。它的类型被明确指定为 <code>int</code>。当我们使用这个模板时，我们需要为 <code>MaxSize</code> 提供一个具体的 <code>int</code> <em>值</em>，比如 <code>100</code> 或 <code>512</code>。</li>
+<li><code>T</code> 仍然是一个类型模板参数，代表一个待定的 <em>类型</em>。</li>
+</ul>
+</li>
+<li><p><strong>关键区别 (Key Difference)</strong></p>
+<ul>
+<li><strong>类型模板参数 (e.g., <code>typename T</code>)</strong>: 占位符，代表一个 <strong>类型</strong>。调用时提供具体类型（如 <code>double</code>）。</li>
+<li><strong>非类型模板参数 (e.g., <code>int Threshold</code>)</strong>: 占位符，代表一个 <strong>值</strong>。其类型在模板声明时已固定（如 <code>int</code>）。调用时提供具体的值（如 <code>200</code>）。</li>
+</ul>
+</li>
+<li><p><strong>示例：<code>is_valid</code> 函数 (Example: <code>is_valid</code> function)</strong></p>
+<ul>
+<li><strong>目的:</strong> 假设我们需要一个函数来判断一个数组（例如存储温度数据）是否“有效”。有效性的标准是：数组中所有元素的总和必须大于某个预设的阈值。</li>
+<li><p><strong>使用非类型参数的实现:</strong></p>
+<p>  C++</p>
+  <div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstddef&gt; &#x2F;&#x2F; for std::size_t</span><br><span class="line">#include &lt;numeric&gt; &#x2F;&#x2F; 潜在的，如果用 std::accumulate</span><br><span class="line"></span><br><span class="line">template &lt;int Threshold, typename T&gt; &#x2F;&#x2F; Threshold 是 int 类型的非类型模板参数</span><br><span class="line">bool is_valid(const T arr[], std::size_t size) &#123;</span><br><span class="line">    T sum &#x3D; T&#123;&#125;; &#x2F;&#x2F; 初始化为 T 类型的零值 (e.g., 0 for int&#x2F;double)</span><br><span class="line">    for (std::size_t i &#x3D; 0; i &lt; size; ++i) &#123;</span><br><span class="line">        sum +&#x3D; arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 将计算出的总和与模板参数 Threshold (一个编译时已知的值) 进行比较</span><br><span class="line">    return sum &gt; Threshold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>解释:</strong></p>
+<ol>
+<li><code>template &lt;int Threshold, typename T&gt;</code>: 声明了一个模板，它有两个参数。第一个 <code>int Threshold</code> 是非类型参数，类型为 <code>int</code>。第二个 <code>typename T</code> 是类型参数。</li>
+<li><code>bool is_valid(const T arr[], std::size_t size)</code>: 函数签名。它接受一个类型为 <code>T</code> 的数组 <code>arr</code> 和它的大小 <code>size</code>。</li>
+<li><code>T sum = T{};</code>: 初始化一个和变量 <code>sum</code>，其类型与数组元素类型 <code>T</code> 相同。<code>T{}</code> 是零初始化，对于数字类型通常是 0。</li>
+<li><code>for</code> 循环: 遍历数组，累加所有元素到 <code>sum</code>。</li>
+<li><code>return sum &gt; Threshold;</code>: <strong>核心部分</strong>。这里将运行时计算出的 <code>sum</code> 与编译时就已确定的 <code>Threshold</code> 值进行比较。</li>
+</ol>
+</li>
+<li><p><strong>如何调用:</strong></p>
+<p>  C++</p>
+  <div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">double temperatures[] &#x3D; &#123;10.5, 20.0, 30.5, 40.0, 50.0&#125;;</span><br><span class="line">std::size_t count &#x3D; sizeof(temperatures) &#x2F; sizeof(double); &#x2F;&#x2F; 或者使用 std::size(temperatures) in C++17</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 调用 is_valid，为非类型参数 Threshold 提供值 150，为类型参数 T 提供类型 double</span><br><span class="line">bool result &#x3D; is_valid&lt;150, double&gt;(temperatures, count);</span><br><span class="line">&#x2F;&#x2F;                 ^^^^^  ^^^^^^</span><br><span class="line">&#x2F;&#x2F;                  值     类型</span><br></pre></td></tr></table></figure></div>
+<p>  在这个调用中，<code>150</code> 是传递给 <code>Threshold</code> 参数的 <em>值</em>，<code>double</code> 是传递给 <code>T</code> 参数的 <em>类型</em>。编译器会根据 <code>&lt;150, double&gt;</code> 生成一个特定的 <code>is_valid</code> 函数实例。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>实用性与替代方案 (Usefulness and Alternatives)</strong></p>
+<ul>
+<li><strong>优点:</strong> 将像 <code>Threshold</code> 这样的值“嵌入”到函数（或类）的类型中。这在某些元编程或需要编译时常量的场景下可能有用。</li>
+<li><strong>缺点 (原文作者观点):</strong> 这种方式可能让函数调用看起来有些笨拙（<code>is_valid&lt;150, double&gt;(...)</code>），参数列表 <code>&lt;...&gt;</code> 中既有类型又有值，可能降低代码的可读性。</li>
+<li><p><strong>替代方案 (更常见):</strong> 将阈值作为普通的函数参数传递。</p>
+<p>  C++</p>
+  <div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">template &lt;typename T&gt; &#x2F;&#x2F; 只需要类型参数 T</span><br><span class="line">bool is_valid_alternative(const T arr[], std::size_t size, T threshold) &#123; &#x2F;&#x2F; threshold 作为普通参数</span><br><span class="line">    T sum &#x3D; T&#123;&#125;;</span><br><span class="line">    for (std::size_t i &#x3D; 0; i &lt; size; ++i) &#123;</span><br><span class="line">        sum +&#x3D; arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">    return sum &gt; threshold; &#x2F;&#x2F; 与运行时传入的 threshold 比较</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 调用方式更直观</span><br><span class="line">bool result_alt &#x3D; is_valid_alternative&lt;double&gt;(temperatures, count, 150.0);</span><br><span class="line">&#x2F;&#x2F;                                                                  ^^^^^</span><br><span class="line">&#x2F;&#x2F;                                                                  阈值作为普通参数</span><br></pre></td></tr></table></figure></div>
+<p>  这种方式通常更灵活，也更容易阅读和理解。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>支持的类型 (Supported Types &amp; C++ Version Differences)</strong></p>
+<ul>
+<li><strong>C++17及更早版本:</strong> 对非类型模板参数的类型有限制。通常只支持：<ul>
+<li>整型 (<code>int</code>, <code>unsigned int</code>, <code>char</code>, <code>bool</code>, <code>long long</code>, etc.)</li>
+<li>枚举类型 (<code>enum</code>)</li>
+<li>指针类型 (<code>Type*</code>, 包括函数指针和成员指针)</li>
+<li>左值引用类型 (<code>Type&amp;</code>)</li>
+<li><code>std::nullptr_t</code></li>
+<li><strong>不支持</strong> 浮点类型 (<code>float</code>, <code>double</code>) 和大多数类类型。如果你尝试使用 <code>double</code> 作为非类型参数，编译器会报错。</li>
+</ul>
+</li>
+<li><strong>C++20:</strong> 极大地放宽了限制！现在支持：<ul>
+<li>所有之前的类型。</li>
+<li><strong>浮点类型 (<code>float</code>, <code>double</code>)</strong></li>
+<li><strong>字面量类类型 (<code>Literal Class Types</code>)</strong>: 这是一种特殊的类类型，可以在编译时求值。这超出了我们目前的范围，但知道C++20扩展了对类类型的支持很重要。</li>
+</ul>
+</li>
+<li><strong>注意:</strong> 原文提到，作者使用的 GCC 10 编译器还不支持 C++20 的浮点非类型参数，需要 GCC 11 或更高版本（或像 Wandbox 这样的在线编译器提前体验）。</li>
+</ul>
+</li>
+<li><p><strong>浮点非类型参数示例 (Floating-point Example - C++20)</strong></p>
+<ul>
+<li><p>原文展示了一个 C++20 的例子，使用 <code>double</code> 作为非类型参数：</p>
+<p>  C++</p>
+  <div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 需要 C++20 和支持该特性的编译器 (如 GCC 11+)</span><br><span class="line">template &lt;typename T, double Coefficient&gt; &#x2F;&#x2F; Coefficient 是 double 类型的非类型参数</span><br><span class="line">T process(T a, T b) &#123;</span><br><span class="line">    &#x2F;&#x2F; 使用编译时确定的 Coefficient 值</span><br><span class="line">    return a * b - Coefficient;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 调用 (假设编译器支持)</span><br><span class="line">&#x2F;&#x2F; double result_process &#x3D; process&lt;double, 5.5&gt;(10.0, 2.0); &#x2F;&#x2F; 结果会是 10.0 * 2.0 - 5.5 &#x3D; 14.5</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>重点:</strong> 这个特性依赖于较新的 C++ 标准和编译器。如果在旧环境（如 C++17 或使用不支持的编译器如 GCC 10）下尝试编译，会失败。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="3-代码示例-Code-Example"><a href="#3-代码示例-Code-Example" class="headerlink" title="3. 代码示例 (Code Example)"></a><strong>3. 代码示例 (Code Example)</strong></h2><p>这里是本节课讨论的主要代码示例：</p>
+<p><strong>示例 1: 使用非类型模板参数的 <code>is_valid</code> 函数</strong></p>
+<p>C++</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstddef&gt;      &#x2F;&#x2F; for std::size_t</span><br><span class="line">#include &lt;vector&gt;       &#x2F;&#x2F; 使用 vector 更方便管理大小</span><br><span class="line">#include &lt;numeric&gt;      &#x2F;&#x2F; std::accumulate 可以简化求和</span><br><span class="line">#include &lt;iomanip&gt;      &#x2F;&#x2F; for std::boolalpha</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 模板定义：Threshold 是非类型参数，T 是类型参数</span><br><span class="line">template &lt;int Threshold, typename T&gt;</span><br><span class="line">bool is_valid(const T arr[], std::size_t size) &#123;</span><br><span class="line">    T sum &#x3D; T&#123;&#125;; &#x2F;&#x2F; 初始化为零值</span><br><span class="line">    for (std::size_t i &#x3D; 0; i &lt; size; ++i) &#123;</span><br><span class="line">        sum +&#x3D; arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; &quot;  [Debug] Sum is: &quot; &lt;&lt; sum &lt;&lt; &quot;, Threshold is: &quot; &lt;&lt; Threshold &lt;&lt; std::endl;</span><br><span class="line">    return sum &gt; Threshold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 更现代化的版本，使用 std::vector 和 std::accumulate</span><br><span class="line">template &lt;int Threshold, typename Container&gt;</span><br><span class="line">bool is_valid_v2(const Container&amp; data) &#123;</span><br><span class="line">    &#x2F;&#x2F; 使用 typename 在依赖类型中访问嵌套类型</span><br><span class="line">    using T &#x3D; typename Container::value_type;</span><br><span class="line">    &#x2F;&#x2F; std::accumulate 需要 &lt;numeric&gt; 头文件</span><br><span class="line">    T sum &#x3D; std::accumulate(data.begin(), data.end(), T&#123;&#125;);</span><br><span class="line">    std::cout &lt;&lt; &quot;  [Debug V2] Sum is: &quot; &lt;&lt; sum &lt;&lt; &quot;, Threshold is: &quot; &lt;&lt; Threshold &lt;&lt; std::endl;</span><br><span class="line">    return sum &gt; Threshold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    double temperatures[] &#x3D; &#123;10.0, 20.0, 30.0, 40.0, 50.0&#125;; &#x2F;&#x2F; Sum &#x3D; 150</span><br><span class="line">    std::size_t count &#x3D; std::size(temperatures); &#x2F;&#x2F; C++17</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; std::boolalpha; &#x2F;&#x2F; 让输出 bool 时显示 true&#x2F;false 而不是 1&#x2F;0</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 测试1：阈值设为 200，数组总和 150，应为 false</span><br><span class="line">    std::cout &lt;&lt; &quot;Testing with Threshold &#x3D; 200:&quot; &lt;&lt; std::endl;</span><br><span class="line">    bool result1 &#x3D; is_valid&lt;200, double&gt;(temperatures, count);</span><br><span class="line">    std::cout &lt;&lt; &quot;Is the array valid (Threshold 200)? &quot; &lt;&lt; result1 &lt;&lt; std::endl &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 测试2：阈值设为 100，数组总和 150，应为 true</span><br><span class="line">    std::cout &lt;&lt; &quot;Testing with Threshold &#x3D; 100:&quot; &lt;&lt; std::endl;</span><br><span class="line">    bool result2 &#x3D; is_valid&lt;100, double&gt;(temperatures, count);</span><br><span class="line">    std::cout &lt;&lt; &quot;Is the array valid (Threshold 100)? &quot; &lt;&lt; result2 &lt;&lt; std::endl &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 使用 V2 版本和 std::vector</span><br><span class="line">    std::vector&lt;double&gt; temps_vec &#x3D; &#123;10.0, 20.0, 30.0, 40.0, 50.0, 100.0&#125;; &#x2F;&#x2F; Sum &#x3D; 250</span><br><span class="line">    std::cout &lt;&lt; &quot;Testing V2 with Threshold &#x3D; 200 and extra element:&quot; &lt;&lt; std::endl;</span><br><span class="line">    bool result_v2 &#x3D; is_valid_v2(temps_vec); &#x2F;&#x2F; T 可以被推导出来</span><br><span class="line">    std::cout &lt;&lt; &quot;Is the vector valid (Threshold 200)? &quot; &lt;&lt; result_v2 &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p><strong>示例 2: 使用普通函数参数传递阈值的替代方案</strong></p>
+<p>C++</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstddef&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;numeric&gt;</span><br><span class="line">#include &lt;iomanip&gt;</span><br><span class="line"></span><br><span class="line">template &lt;typename T&gt;</span><br><span class="line">bool is_valid_alternative(const T arr[], std::size_t size, T threshold) &#123; &#x2F;&#x2F; threshold 是普通参数</span><br><span class="line">    T sum &#x3D; T&#123;&#125;;</span><br><span class="line">    for (std::size_t i &#x3D; 0; i &lt; size; ++i) &#123;</span><br><span class="line">        sum +&#x3D; arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; &quot;  [Debug Alt] Sum is: &quot; &lt;&lt; sum &lt;&lt; &quot;, Threshold is: &quot; &lt;&lt; threshold &lt;&lt; std::endl;</span><br><span class="line">    return sum &gt; threshold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    double temperatures[] &#x3D; &#123;10.0, 20.0, 30.0, 40.0, 50.0&#125;; &#x2F;&#x2F; Sum &#x3D; 150</span><br><span class="line">    std::size_t count &#x3D; std::size(temperatures);</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; std::boolalpha;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 调用替代方案，阈值作为最后一个参数传递</span><br><span class="line">    std::cout &lt;&lt; &quot;Testing alternative with threshold &#x3D; 200:&quot; &lt;&lt; std::endl;</span><br><span class="line">    bool result_alt1 &#x3D; is_valid_alternative&lt;double&gt;(temperatures, count, 200.0);</span><br><span class="line">    std::cout &lt;&lt; &quot;Is the array valid (Threshold 200)? &quot; &lt;&lt; result_alt1 &lt;&lt; std::endl &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; &quot;Testing alternative with threshold &#x3D; 100:&quot; &lt;&lt; std::endl;</span><br><span class="line">    bool result_alt2 &#x3D; is_valid_alternative&lt;double&gt;(temperatures, count, 100.0);</span><br><span class="line">    std::cout &lt;&lt; &quot;Is the array valid (Threshold 100)? &quot; &lt;&lt; result_alt2 &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p><strong>示例 3: 浮点非类型参数 (C++20, 可能需特定编译器)</strong></p>
+<p>C++</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 需要 C++20 和支持该特性的编译器 (e.g., GCC 11+, Clang 12+)</span><br><span class="line">template &lt;typename T, double Coefficient&gt; &#x2F;&#x2F; 非类型参数是 double</span><br><span class="line">T process(T a, T b) &#123;</span><br><span class="line">    return a * b - Coefficient;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    &#x2F;&#x2F; 编译这部分代码需要 C++20 模式和支持的编译器</span><br><span class="line">    &#x2F;&#x2F; 尝试编译：g++ your_code.cpp -std&#x3D;c++20 -o your_app</span><br><span class="line">    &#x2F;*</span><br><span class="line">    double result_process &#x3D; process&lt;double, 5.5&gt;(10.0, 2.0);</span><br><span class="line">    std::cout &lt;&lt; &quot;Processing result (10.0 * 2.0 - 5.5): &quot; &lt;&lt; result_process &lt;&lt; std::endl;</span><br><span class="line">    *&#x2F;</span><br><span class="line">   std::cout &lt;&lt; &quot;Floating point non-type parameter example requires C++20 and compatible compiler.&quot; &lt;&lt; std::endl;</span><br><span class="line">   std::cout &lt;&lt; &quot;Uncomment the code and compile with e.g., g++ -std&#x3D;c++20 ...&quot; &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>非代码类比 (Non-code Analogy):</p>
+<p>想象你在设计一个“制作蛋糕”的通用流程模板。</p>
+<ul>
+<li><code>烘焙温度 [Baking Temperature]</code> 可以是一个 <strong>非类型模板参数</strong>。比如你设计一个模板 <code>&lt;int TempC&gt;</code>，当你实例化这个模板时，你提供一个具体的值，如 ，代表这次蛋糕必须在 180°C 下烘烤。这个温度值在“编译”（准备阶段）时就固定了。</li>
+<li><code>主要干性成分 [Main Dry Ingredient]</code> 可以是一个 <strong>类型模板参数</strong>。比如 <code>&lt;typename FlourType&gt;</code>。当你实例化时，你可以指定用 <code>低筋面粉 [Cake Flour]</code> 还是 <code>全麦面粉 [Whole Wheat Flour]</code>。这代表的是一个 <em>类型</em>。</li>
+</ul>
+<hr>
+<h2 id="4-问答卡片-Q-amp-A-Flash-Cards"><a href="#4-问答卡片-Q-amp-A-Flash-Cards" class="headerlink" title="4. 问答卡片 (Q&amp;A Flash Cards)"></a><strong>4. 问答卡片 (Q&amp;A Flash Cards)</strong></h2><ul>
+<li><p>问: 什么是非类型模板参数 (Non-type template parameter)？</p>
+<p>  答: 它是一种模板参数，代表一个编译时已知的 值，而不是一个类型。它的具体类型在模板声明时就被指定了 (例如 int N, bool Flag)。</p>
+</li>
+<li><p>问: 非类型模板参数和类型模板参数 (Type template parameter) 的主要区别是什么？</p>
+<p>  答: 类型模板参数 (如 typename T) 是 类型 的占位符；非类型模板参数 (如 int Threshold) 是 值 的占位符，其类型是固定的。</p>
+</li>
+<li><p>问: 在调用使用了非类型模板参数的函数或类模板时，如何提供参数？</p>
+<p>  答: 在模板参数列表（尖括号 &lt;&gt;）中，为非类型参数提供具体的值，为类型参数提供具体的类型。例如：my_template<10, double>(…)，这里的 10 是给非类型参数的值，double 是给类型参数的类型。</10,></p>
+</li>
+<li><p>问: 在 C++17 标准中，可以使用 double 或 float 作为非类型模板参数吗？</p>
+<p>  答: 不可以。C++17 及更早版本不支持浮点类型作为非类型模板参数。</p>
+</li>
+<li><p>问: C++20 对非类型模板参数做了哪些重要的扩展？</p>
+<p>  答: C++20 允许使用浮点类型 (float, double) 以及满足特定条件的类类型（字面量类类型）作为非类型模板参数。</p>
+</li>
+</ul>
+<hr>
+<h2 id="5-常见误解-错误-Common-Misunderstandings-Mistakes"><a href="#5-常见误解-错误-Common-Misunderstandings-Mistakes" class="headerlink" title="5. 常见误解/错误 (Common Misunderstandings/Mistakes)"></a><strong>5. 常见误解/错误 (Common Misunderstandings/Mistakes)</strong></h2><ol>
+<li><p><strong>类型与值混淆 (Confusing Types and Values):</strong></p>
+<ul>
+<li><p>错误：试图为非类型参数提供类型，或为类型参数提供值。</p>
+<p>  C++</p>
+  <div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 错误示例</span><br><span class="line">&#x2F;&#x2F; is_valid&lt;double, 200&gt;(arr, size); &#x2F;&#x2F; 顺序反了，200 是值，double 是类型</span><br><span class="line">&#x2F;&#x2F; is_valid&lt;MyClass, double&gt;(arr, size); &#x2F;&#x2F; 假设 MyClass 是一个值，但这里需要 int</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>正确：<code>is_valid&lt;200, double&gt;(arr, size);</code> (值在前，类型在后，符合模板定义 <code>template &lt;int Threshold, typename T&gt;</code>)</p>
+</li>
+</ul>
+</li>
+<li><p><strong>使用 C++17 不支持的类型 (Using Unsupported Types in C++17):</strong></p>
+<ul>
+<li><p>错误：在 C++17 或更早版本的编译器环境下，尝试使用 <code>double</code>, <code>float</code> 或不符合要求的类类型作为非类型模板参数。</p>
+<p>  C++</p>
+  <div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 C++17 下编译会报错</span><br><span class="line">&#x2F;&#x2F; template &lt;double MaxValue, typename T&gt; &#x2F;&#x2F; 错误: C++17 不支持 double</span><br><span class="line">&#x2F;&#x2F; void process_data(...) &#123;&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>正确 (C++17): 只能使用整型、枚举、指针、引用等允许的类型。</p>
+</li>
+<li>正确 (C++20): 可以使用 <code>double</code> 等，但需确保编译器支持 C++20 标准。</li>
+</ul>
+</li>
+<li><p><strong>过度设计 (Over-engineering):</strong></p>
+<ul>
+<li>误解：认为任何编译时常量都应该用非类型模板参数。</li>
+<li>实践：如果一个值逻辑上更像是函数的配置参数，并且不需要它成为类型系统的一部分，那么使用普通的函数参数通常更清晰、更灵活。如 <code>is_valid</code> 例子中，将 <code>threshold</code> 作为函数参数传递通常是更好的选择。</li>
+</ul>
+</li>
+<li><p><strong>忘记提供模板参数 (Forgetting Template Arguments):</strong></p>
+<ul>
+<li><p>错误：调用需要显式指定非类型参数的模板函数时，忘记了 <code>&lt;...&gt;</code> 部分。</p>
+<p>  C++</p>
+  <div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 错误: is_valid(temperatures, count); &#x2F;&#x2F; 编译器无法推断 Threshold 的值</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>正确：<code>is_valid&lt;150, double&gt;(temperatures, count);</code> (显式提供模板参数)</p>
+<ul>
+<li>注意: 类型参数 <code>T</code> 有时可以被编译器从函数参数中推导出来（如 <code>is_valid_v2(temps_vec);</code> 中 <code>T</code> 可以从 <code>temps_vec</code> 推导为 <code>double</code>），但非类型参数通常需要显式指定，除非有默认模板参数。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="6-编程练习-Coding-Exercise"><a href="#6-编程练习-Coding-Exercise" class="headerlink" title="6. 编程练习 (Coding Exercise)"></a><strong>6. 编程练习 (Coding Exercise)</strong></h2><p>现在，让我们来做个小练习巩固一下。下面是一个函数模板 <code>print_repeatedly</code> 的骨架，它应该接受一个整数 <code>N</code> 作为非类型模板参数，以及一个类型 <code>T</code> 作为类型模板参数。函数的功能是接收一个 <code>T</code> 类型的值 <code>message</code>，并将其打印输出 <code>N</code> 次。</p>
+<p>请你填充 <code>/* ??? */</code> 部分的代码，使其能够正确编译和运行。</p>
+<p>C++</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; TODO: 请填充模板声明部分</span><br><span class="line">&#x2F;* ??? *&#x2F;</span><br><span class="line">void print_repeatedly(T message) &#123;</span><br><span class="line">    for (int i &#x3D; 0; i &lt; N; ++i) &#123; &#x2F;&#x2F; 使用非类型参数 N 作为循环次数</span><br><span class="line">        std::cout &lt;&lt; message &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    &#x2F;&#x2F; TODO: 填充函数调用部分，使其打印 &quot;Hello&quot; 3 次</span><br><span class="line">    &#x2F;* ??? *&#x2F;</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; &quot;---&quot; &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; TODO: 填充函数调用部分，使其打印整数 42 两次</span><br><span class="line">    &#x2F;* ??? *&#x2F;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>请尝试完成 <code>/* ??? */</code> 部分的代码。完成后，请将你的答案发给我，我会进行评估并给出反馈。</p>
+<p>作业：<br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">c++</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">// <span class="doctag">TODO:</span> 请填充模板声明部分</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* ??? */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">int</span> N, <span class="keyword">typename</span> T&gt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_repeatedly</span><span class="params">(T message)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; ++i) &#123;  <span class="comment">// 使用非类型参数 N 作为循环次数</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; message &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 填充函数调用部分，使其打印 "Hello" 3 次</span></span><br><span class="line"></span><br><span class="line">    print_repeatedly&lt;<span class="number">3</span>, <span class="built_in">std</span>::<span class="built_in">string</span>&gt;(</span><br><span class="line"></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span>&#123;<span class="string">"Hello"</span>&#125;);  <span class="comment">// N=3, T deduced as const char*</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"---"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 填充函数调用部分，使其打印整数 42 两次</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* ??? */</span></span><br><span class="line"></span><br><span class="line">    print_repeatedly&lt;<span class="number">2</span>, <span class="keyword">int</span>&gt;(<span class="number">42</span>);</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
+<p>好的，我们来看看你完成的练习！</p>
+<hr>
+<h2 id="7-评价你的答案与讲解-Rating-Your-Solution-amp-Explanation"><a href="#7-评价你的答案与讲解-Rating-Your-Solution-amp-Explanation" class="headerlink" title="7. 评价你的答案与讲解 (Rating Your Solution &amp; Explanation)"></a><strong>7. 评价你的答案与讲解 (Rating Your Solution &amp; Explanation)</strong></h2><p><strong>评价:</strong> <strong>非常好 (Excellent)!</strong> 👍</p>
+<p>你的代码完全正确地实现了练习要求。</p>
+<ul>
+<li><strong>模板声明 (<code>template &lt;int N, typename T&gt;</code>)</strong>: 你准确地定义了一个接受 <code>int</code> 类型非类型参数 <code>N</code> 和一个类型参数 <code>T</code> 的模板。这完全符合我们的学习目标。</li>
+<li><p><strong>第一次调用 (<code>print_repeatedly&lt;3, std::string&gt;(std::string{&quot;Hello&quot;});</code>)</strong>:</p>
+<ul>
+<li>你正确地在尖括号 <code>&lt;&gt;</code> 中为非类型参数 <code>N</code> 提供了值 <code>3</code>，并为类型参数 <code>T</code> 显式指定了类型 <code>std::string</code>。</li>
+<li>传递的参数 <code>std::string{&quot;Hello&quot;}</code> 与你指定的 <code>T=std::string</code> 类型匹配。</li>
+<li>(一个小说明：你代码旁的注释 <code>// N=3, T deduced as const char*</code> 稍微有点偏差。因为你显式指定了 <code>&lt;..., std::string&gt;</code>，所以 <code>T</code> 在这里就是 <code>std::string</code>，而不是通过推导得到的 <code>const char*</code>。如果你写成 <code>print_repeatedly(&quot;Hello&quot;);</code>，那么 <code>T</code> 才会确实被推导为 <code>const char*</code>。不过，你写的代码本身是完全正确的，只是注释内容可以更精确些。)</li>
+</ul>
+</li>
+<li><p><strong>第二次调用 (<code>print_repeatedly&lt;2, int&gt;(42);</code>)</strong>:</p>
+<ul>
+<li>同样，你正确地为 <code>N</code> 提供了值 <code>2</code>，为 <code>T</code> 指定了类型 <code>int</code>。</li>
+<li>传递的参数 <code>42</code> (一个 <code>int</code> 字面量) 与 <code>T=int</code> 匹配。</li>
+</ul>
+</li>
+</ul>
+<p>总的来说，你清晰地展示了如何定义带有非类型和类型模板参数的函数模板，以及如何在调用时显式地为它们提供参数。做得很好！</p>
+<p><strong>标准答案与你的代码一致:</strong></p>
+<p>C++</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 正确的模板声明</span><br><span class="line">template &lt;int N, typename T&gt;</span><br><span class="line">void print_repeatedly(T message) &#123;</span><br><span class="line">    for (int i &#x3D; 0; i &lt; N; ++i) &#123; &#x2F;&#x2F; 使用非类型参数 N</span><br><span class="line">        std::cout &lt;&lt; message &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    &#x2F;&#x2F; 正确的调用，显式指定 N&#x3D;3, T&#x3D;std::string</span><br><span class="line">    print_repeatedly&lt;3, std::string&gt;(std::string&#123;&quot;Hello&quot;&#125;);</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; &quot;---&quot; &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 正确的调用，显式指定 N&#x3D;2, T&#x3D;int</span><br><span class="line">    print_repeatedly&lt;2, int&gt;(42);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>工作原理回顾:</p>
+<p>当你调用 print_repeatedly<3, std::string>(…) 时，编译器会根据 <3, std::string> 这个“指令”生成一个特定版本的 print_repeatedly 函数，其中 N 被替换为 3，T 被替换为 std::string。然后，这个生成的函数会用你传递的 “Hello” 字符串作为 message 参数来执行。第二次调用同理。</3,></3,></p>
+<hr>
+<h2 id="8-建议和扩展问题-Suggestions-amp-Extended-Questions"><a href="#8-建议和扩展问题-Suggestions-amp-Extended-Questions" class="headerlink" title="8. 建议和扩展问题 (Suggestions &amp; Extended Questions)"></a><strong>8. 建议和扩展问题 (Suggestions &amp; Extended Questions)</strong></h2><p>为了让你更深入地探索模板，这里有一些建议和可以思考的问题：</p>
+<ul>
+<li><p><strong>建议1：探索类型推导 (Explore Type Deduction)</strong></p>
+<ul>
+<li><p>试试看，如果你在调用时不显式指定类型参数 <code>T</code> 会怎样？</p>
+<p>  C++</p>
+  <div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print_repeatedly(&quot;World&quot;); &#x2F;&#x2F; T 会被推导成什么？ (提示: const char*)</span><br><span class="line">print_repeatedly(123.45); &#x2F;&#x2F; T 会被推导成什么？ (提示: double)</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>思考一下，为什么非类型参数 <code>N</code> 通常不能被推导，而必须显式指定？ (提示：它不直接对应于函数参数的类型)</p>
+</li>
+</ul>
+</li>
+<li><p><strong>建议2：默认模板参数 (Default Template Arguments)</strong></p>
+<ul>
+<li><p>模板参数也可以有默认值，就像函数参数一样。</p>
+<p>  C++</p>
+  <div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">template &lt;int N &#x3D; 1, typename T &#x3D; std::string&gt; &#x2F;&#x2F; N 默认是 1, T 默认是 std::string</span><br><span class="line">void print_default(T message &#x3D; &quot;Default Message&quot;) &#123;</span><br><span class="line">    for (int i &#x3D; 0; i &lt; N; ++i) &#123;</span><br><span class="line">        std::cout &lt;&lt; message &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 如何调用 print_default() 来使用默认值？</span><br><span class="line">&#x2F;&#x2F; print_default&lt;&gt;(); &#x2F;&#x2F; 编译通过吗？会打印什么？</span><br><span class="line">&#x2F;&#x2F; print_default(); &#x2F;&#x2F; 打印什么？</span><br><span class="line">&#x2F;&#x2F; print_default(&quot;Custom&quot;); &#x2F;&#x2F; 打印什么？</span><br></pre></td></tr></table></figure></div>
+</li>
+</ul>
+</li>
+<li><p><strong>建议3：了解 C++20 的 <code>auto</code> 非类型参数 (Learn about C++20 <code>auto</code> Non-type Parameters)</strong></p>
+<ul>
+<li><p>在 C++20 中，你可以用 <code>auto</code> 关键字让编译器自动推断非类型参数的类型：</p>
+<p>  C++</p>
+  <div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; C++20 only</span><br><span class="line">template &lt;auto Value, typename T&gt;</span><br><span class="line">void process_value(T data) &#123;</span><br><span class="line">    std::cout &lt;&lt; &quot;Value: &quot; &lt;&lt; Value &lt;&lt; &quot;, Data: &quot; &lt;&lt; data &lt;&lt; std::endl;</span><br><span class="line">    &#x2F;&#x2F; &#39;Value&#39; 的类型由调用时提供的值决定</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; process_value(&#39;A&#39;);    &#x2F;&#x2F; Value 是 int 类型</span><br><span class="line">&#x2F;&#x2F; process_value&lt;true&gt;(&#39;B&#39;); &#x2F;&#x2F; Value 是 bool 类型</span><br><span class="line">&#x2F;&#x2F; process_value&lt;&#39;X&#39;&gt;(&#39;C&#39;);  &#x2F;&#x2F; Value 是 char 类型</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>这使得模板更加灵活，但需要 C++20 的编译器支持。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>扩展问题1:</strong></p>
+<ul>
+<li>你能修改 <code>print_repeatedly</code> 模板，让重复次数 <code>N</code> 有一个默认值，比如默认打印 1 次吗？该如何修改模板声明？</li>
+</ul>
+</li>
+<li><p><strong>扩展问题2:</strong></p>
+<ul>
+<li>尝试编写一个函数模板 <code>create_array</code>。它接受一个 <code>int Size</code> (非类型参数) 和一个 <code>typename T</code> (类型参数)。函数需要创建并返回一个 <code>std::array&lt;T, Size&gt;</code> 类型的数组（需要包含 <code>&lt;array&gt;</code> 头文件）。数组元素可以用 <code>T{}</code> (零初始化/默认初始化) 来初始化。</li>
+<li>调用示例：<code>auto my_arr = create_array&lt;5, int&gt;();</code> 应该能得到一个包含 5 个 <code>int</code>（初始值为 0）的 <code>std::array</code>。</li>
+</ul>
+</li>
+<li><p><strong>扩展问题3 (挑战):</strong></p>
+<ul>
+<li>回顾一下 C++17 和 C++20 对非类型模板参数类型的限制。如果你试图将 <code>print_repeatedly</code> 的非类型参数 <code>N</code> 定义为 <code>double</code> (即 <code>template &lt;double N, typename T&gt;</code>)，然后在 C++17 环境下调用 <code>print_repeatedly&lt;2.5, std::string&gt;(&quot;Test&quot;);</code> 会发生什么？在 C++20 环境下呢？为什么会有差异？</li>
+</ul>
+</li>
+</ul>
+<p>希望这些建议和问题能帮助你更好地理解和运用 C++ 模板！继续努力，你在 C++ 的学习之路上会越走越远！</p>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Cpp/">Cpp    </a><a class="post-meta__tags" href="/tags/Coding/">Coding    </a><a class="post-meta__tags" href="/tags/Function/">Function    </a><a class="post-meta__tags" href="/tags/Template/">Template    </a><a class="post-meta__tags" href="/tags/Development/">Development    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2025/06/08/10-projects/cplusplus/lectures/257%20-%20cpp%20Default%20template%20arguments/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>257 - cpp Default template arguments</span></div></a></div><div class="next-post pull_right"><a href="/2025/06/08/10-projects/cplusplus/lectures/259%20-%20Auto%20Function%20Templates/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>259 - Auto Function Templates</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2025/06/08/10-projects/cplusplus/return type for lambda function template/" title="return type for lambda function template"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">return type for lambda function template</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/10-projects/cplusplus/lectures/257 - cpp Default template arguments/" title="257 - cpp Default template arguments"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">257 - cpp Default template arguments</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/10-projects/cplusplus/lectures/259 - Auto Function Templates/" title="259 - Auto Function Templates"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">259 - Auto Function Templates</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/10-projects/cplusplus/lectures/328 - cpp命名空间/" title="328 - cpp命名空间"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">328 - cpp命名空间</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/10-projects/cplusplus/notes/c plus plus template declaration best practice/" title="c plus plus template declaration best practice"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">c plus plus template declaration best practice</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/10-projects/planning/c plus plus learning/" title="c plus plus learning"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">c plus plus learning</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'xvMxbws16Erd8WUfqxkvHmb5-gzGzoHsz',
+  appKey:'4U0Vo7NQIUL0eJzHdkPzdCDr',
+  placeholder:'不说话的人会疯掉吗?',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'en',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2025 By supersheepbear</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="external nofollow noopener noreferrer"><span>Butterfly</span></a></div><div class="footer_custom_text">外向孤独者患者</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="255,240,245" opacity="0.7" zindex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="external nofollow noopener noreferrer" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>
