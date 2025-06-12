@@ -2,16 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://yxiong.org/2025/06/12/00-inbox/%E7%95%99%E7%BE%8E%E8%B7%AF%E5%BE%84%E5%8F%AF%E8%83%BD%E6%80%A7%E8%A7%A3%E9%87%8A/</loc>
-    
-    <lastmod>2025-06-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/2025/06/12/10-projects/%E7%9B%B8%E4%BA%B2/%E7%9B%B8%E4%BA%B2%E7%9A%84%E9%97%AE%E9%A2%98%E8%AE%A8%E8%AE%BA%E5%BB%BA%E8%AE%AE/</loc>
+    <loc>https://yxiong.org/2025/06/12/10-projects/%E7%9B%B8%E4%BA%B2/%E7%95%99%E7%BE%8E%E8%B7%AF%E5%BE%84%E5%8F%AF%E8%83%BD%E6%80%A7%E8%A7%A3%E9%87%8A/</loc>
     
     <lastmod>2025-06-12</lastmod>
     
@@ -1507,27 +1498,6 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/AI/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Chatgpt/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Knowledge/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yxiong.org/tags/Cursor/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -1556,21 +1526,21 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/LLM/</loc>
+    <loc>https://yxiong.org/tags/AI/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Model/</loc>
+    <loc>https://yxiong.org/tags/Chatgpt/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Ollama/</loc>
+    <loc>https://yxiong.org/tags/Knowledge/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1584,7 +1554,14 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Prom/</loc>
+    <loc>https://yxiong.org/tags/LLM/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Model/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1612,14 +1589,7 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Guide/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Research/</loc>
+    <loc>https://yxiong.org/tags/Ollama/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1633,20 +1603,6 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Developer/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Software/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yxiong.org/tags/Aider/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -1654,14 +1610,14 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Local/</loc>
+    <loc>https://yxiong.org/tags/Guide/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Configuration/</loc>
+    <loc>https://yxiong.org/tags/Research/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1703,7 +1659,21 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Engineering/</loc>
+    <loc>https://yxiong.org/tags/Prom/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Local/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Configuration/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1739,6 +1709,13 @@
   
   <url>
     <loc>https://yxiong.org/tags/Summary/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Engineering/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1794,6 +1771,20 @@
   </url>
   
   <url>
+    <loc>https://yxiong.org/tags/Developer/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Software/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yxiong.org/tags/Internet/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -1822,20 +1813,6 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Investing/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Stock/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yxiong.org/tags/Ubuntu/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -1850,35 +1827,14 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Anxiety/</loc>
+    <loc>https://yxiong.org/tags/Investing/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Behavior/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Cognition/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Psychology/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Therapy/</loc>
+    <loc>https://yxiong.org/tags/Stock/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1892,6 +1848,13 @@
   </url>
   
   <url>
+    <loc>https://yxiong.org/tags/Psychology/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yxiong.org/tags/Self/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -1899,7 +1862,56 @@
   </url>
   
   <url>
+    <loc>https://yxiong.org/tags/Behavior/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yxiong.org/tags/Intrinsic/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Anxiety/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Cognition/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Therapy/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Flow/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Focus/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Productivity/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1941,34 +1953,6 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Unconscious/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Flow/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Focus/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Productivity/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yxiong.org/tags/Love/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -1984,20 +1968,6 @@
   
   <url>
     <loc>https://yxiong.org/tags/Project/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Archetypes/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Jung/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2039,6 +2009,34 @@
   </url>
   
   <url>
+    <loc>https://yxiong.org/tags/Archetypes/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Unconscious/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Jung/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Book/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yxiong.org/tags/Memory/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2047,13 +2045,6 @@
   
   <url>
     <loc>https://yxiong.org/tags/Sex/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Book/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2095,27 +2086,6 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Writing/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Gemini/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/OpenAI/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yxiong.org/tags/Audio/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2137,6 +2107,34 @@
   </url>
   
   <url>
+    <loc>https://yxiong.org/tags/Gemini/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/OpenAI/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Writing/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Bilibili/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yxiong.org/tags/Statistics/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2152,27 +2150,6 @@
   
   <url>
     <loc>https://yxiong.org/tags/Course/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Bilibili/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Social/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Platform/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2214,28 +2191,14 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Declaration/</loc>
+    <loc>https://yxiong.org/tags/Social/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Constants/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Class/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Object/</loc>
+    <loc>https://yxiong.org/tags/Platform/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2249,14 +2212,14 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Concepts/</loc>
+    <loc>https://yxiong.org/tags/Lambda/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Lambda/</loc>
+    <loc>https://yxiong.org/tags/Concepts/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2270,7 +2233,14 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Programming/</loc>
+    <loc>https://yxiong.org/tags/Class/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Education/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2284,7 +2254,14 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Education/</loc>
+    <loc>https://yxiong.org/tags/Programming/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Object/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2340,6 +2317,20 @@
   </url>
   
   <url>
+    <loc>https://yxiong.org/tags/Declaration/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Constants/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yxiong.org/tags/Definition/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2361,6 +2352,27 @@
   </url>
   
   <url>
+    <loc>https://yxiong.org/tags/Visualization/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Sidehustle/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Workflow/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yxiong.org/tags/Religion/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2369,13 +2381,6 @@
   
   <url>
     <loc>https://yxiong.org/tags/Spirit/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Workflow/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2403,7 +2408,7 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Index/</loc>
+    <loc>https://yxiong.org/tags/Sqlite/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2411,6 +2416,13 @@
   
   <url>
     <loc>https://yxiong.org/tags/Query/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/tags/Index/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2438,21 +2450,14 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Sqlite/</loc>
+    <loc>https://yxiong.org/tags/Constraints/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Visualization/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Key/</loc>
+    <loc>https://yxiong.org/tags/Example/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2466,21 +2471,7 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/tags/Sidehustle/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Constraints/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/tags/Example/</loc>
+    <loc>https://yxiong.org/tags/Key/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2508,13 +2499,6 @@
   </url>
   
 
-  
-  <url>
-    <loc>https://yxiong.org/categories/00-inbox/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
   
   <url>
     <loc>https://yxiong.org/categories/10-projects/</loc>
@@ -2552,6 +2536,13 @@
   </url>
   
   <url>
+    <loc>https://yxiong.org/categories/20-areas/economics/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yxiong.org/categories/20-areas/side-hustle/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -2566,21 +2557,14 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/categories/20-areas/stock/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yxiong.org/categories/20-areas/economics/</loc>
-    <lastmod>2025-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yxiong.org/categories/20-areas/thoughts/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yxiong.org/categories/20-areas/stock/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2608,14 +2592,14 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/categories/10-projects/cplusplus/notes/</loc>
+    <loc>https://yxiong.org/categories/10-projects/cplusplus/lectures/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yxiong.org/categories/10-projects/cplusplus/lectures/</loc>
+    <loc>https://yxiong.org/categories/10-projects/cplusplus/notes/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2636,14 +2620,14 @@
   </url>
   
   <url>
-    <loc>https://yxiong.org/categories/20-areas/book/</loc>
+    <loc>https://yxiong.org/categories/30-resources/coding/sql/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yxiong.org/categories/30-resources/coding/sql/</loc>
+    <loc>https://yxiong.org/categories/20-areas/book/</loc>
     <lastmod>2025-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
