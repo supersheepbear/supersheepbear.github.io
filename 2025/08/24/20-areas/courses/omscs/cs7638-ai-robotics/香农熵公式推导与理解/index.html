@@ -1,0 +1,329 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>香农熵公式推导与理解 | Bear's dream</title><meta name="description" content="香农熵公式推导与理解"><meta name="keywords" content="ai,knowledge,learning"><meta name="author" content="supersheepbear"><meta name="copyright" content="supersheepbear"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_1.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="p43hXBn3_dLvbyxUzx0eo5eYmj9OVYOV52pdrhBa2sw"><meta name="baidu-site-verification" content="EXLlfLv2pV"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="香农熵公式推导与理解"><meta name="twitter:description" content="香农熵公式推导与理解"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta property="og:type" content="article"><meta property="og:title" content="香农熵公式推导与理解"><meta property="og:url" content="https://yxiong.org/2025/08/24/20-areas/courses/omscs/cs7638-ai-robotics/%E9%A6%99%E5%86%9C%E7%86%B5%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E4%B8%8E%E7%90%86%E8%A7%A3/"><meta property="og:site_name" content="Bear's dream"><meta property="og:description" content="香农熵公式推导与理解"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://yxiong.org/2025/08/24/20-areas/courses/omscs/cs7638-ai-robotics/%E9%A6%99%E5%86%9C%E7%86%B5%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E4%B8%8E%E7%90%86%E8%A7%A3/"><link rel="prev" title="贝叶斯定理详解" href="https://yxiong.org/2025/08/25/20-areas/courses/omscs/cs7638-ai-robotics/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86%E8%AF%A6%E8%A7%A3/"><link rel="next" title="localization multiple measurement" href="https://yxiong.org/2025/08/24/20-areas/courses/omscs/cs7638-ai-robotics/localization%20multiple%20measurement/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">162</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">59</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">34</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#香农熵公式推导与理解"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">香农熵公式推导与理解</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Kontek-设定：机器人定位中的“信念”"><span class="toc_mobile_items-number">1.2.1.</span> <span class="toc_mobile_items-text">Kontek 设定：机器人定位中的“信念”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#核心洞察：高熵-Vs-低熵的对比"><span class="toc_mobile_items-number">1.2.2.</span> <span class="toc_mobile_items-text">核心洞察：高熵 Vs. 低熵的对比</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#数学解释与计算"><span class="toc_mobile_items-number">1.2.3.</span> <span class="toc_mobile_items-text">数学解释与计算</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#案例1：最大熵（初始状态）"><span class="toc_mobile_items-number">1.2.3.1.</span> <span class="toc_mobile_items-text">案例1：最大熵（初始状态）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#案例2：较低的熵（传感后）"><span class="toc_mobile_items-number">1.2.3.2.</span> <span class="toc_mobile_items-text">案例2：较低的熵（传感后）</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#结论与关键点总结"><span class="toc_mobile_items-number">1.2.4.</span> <span class="toc_mobile_items-text">结论与关键点总结</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#拓展思考与建议"><span class="toc_mobile_items-number">1.2.5.</span> <span class="toc_mobile_items-text">拓展思考与建议</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-1"><span class="toc_mobile_items-number">1.3.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-1"><span class="toc_mobile_items-number">1.4.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-🎯-直觉先行：我们想衡量什么？"><span class="toc_mobile_items-number">1.4.1.</span> <span class="toc_mobile_items-text">1. 🎯 直觉先行：我们想衡量什么？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-🧩-公式推导：从原则到数学"><span class="toc_mobile_items-number">1.4.2.</span> <span class="toc_mobile_items-text">2. 🧩 公式推导：从原则到数学</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#第一步：定义单个事件的“信息量”（或称“自信息”、“意外度”）"><span class="toc_mobile_items-number">1.4.2.1.</span> <span class="toc_mobile_items-text">第一步：定义单个事件的“信息量”（或称“自信息”、“意外度”）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#第二步：从“单个事件”推广到“整个系统”"><span class="toc_mobile_items-number">1.4.2.2.</span> <span class="toc_mobile_items-text">第二步：从“单个事件”推广到“整个系统”</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-🧐-公式解读：拆解每一部分"><span class="toc_mobile_items-number">1.4.3.</span> <span class="toc_mobile_items-text">3. 🧐 公式解读：拆解每一部分</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#为什么对数的底是2？-log₂"><span class="toc_mobile_items-number">1.4.3.1.</span> <span class="toc_mobile_items-text">为什么对数的底是2？ (log₂)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#总结"><span class="toc_mobile_items-number">1.4.4.</span> <span class="toc_mobile_items-text">总结</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#香农熵公式推导与理解"><span class="toc-number">1.</span> <span class="toc-text">香农熵公式推导与理解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User"><span class="toc-number">1.1.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant"><span class="toc-number">1.2.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kontek-设定：机器人定位中的“信念”"><span class="toc-number">1.2.1.</span> <span class="toc-text">Kontek 设定：机器人定位中的“信念”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核心洞察：高熵-Vs-低熵的对比"><span class="toc-number">1.2.2.</span> <span class="toc-text">核心洞察：高熵 Vs. 低熵的对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数学解释与计算"><span class="toc-number">1.2.3.</span> <span class="toc-text">数学解释与计算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例1：最大熵（初始状态）"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">案例1：最大熵（初始状态）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例2：较低的熵（传感后）"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">案例2：较低的熵（传感后）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结论与关键点总结"><span class="toc-number">1.2.4.</span> <span class="toc-text">结论与关键点总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拓展思考与建议"><span class="toc-number">1.2.5.</span> <span class="toc-text">拓展思考与建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-1"><span class="toc-number">1.3.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-1"><span class="toc-number">1.4.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-🎯-直觉先行：我们想衡量什么？"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 🎯 直觉先行：我们想衡量什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-🧩-公式推导：从原则到数学"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 🧩 公式推导：从原则到数学</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一步：定义单个事件的“信息量”（或称“自信息”、“意外度”）"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">第一步：定义单个事件的“信息量”（或称“自信息”、“意外度”）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第二步：从“单个事件”推广到“整个系统”"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">第二步：从“单个事件”推广到“整个系统”</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-🧐-公式解读：拆解每一部分"><span class="toc-number">1.4.3.</span> <span class="toc-text">3. 🧐 公式解读：拆解每一部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么对数的底是2？-log₂"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">为什么对数的底是2？ (log₂)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.4.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">香农熵公式推导与理解</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2025-08-24<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2026-01-24</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/">20-areas</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/">courses</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/omscs/">omscs</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/omscs/cs7638-ai-robotics/">cs7638-ai-robotics</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2025/08/24/20-areas/courses/omscs/cs7638-ai-robotics/%E9%A6%99%E5%86%9C%E7%86%B5%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E4%B8%8E%E7%90%86%E8%A7%A3/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2025/08/24/20-areas/courses/omscs/cs7638-ai-robotics/%E9%A6%99%E5%86%9C%E7%86%B5%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E4%B8%8E%E7%90%86%E8%A7%A3/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="香农熵公式推导与理解"><a href="#香农熵公式推导与理解" class="headerlink" title="香农熵公式推导与理解"></a>香农熵公式推导与理解</h1><h2 id="🧑‍💻-User"><a href="#🧑‍💻-User" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>entropy是什么？</p>
+<hr>
+<h2 id="🤖-Assistant"><a href="#🤖-Assistant" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>您好！很高兴能为您解释“熵”(Entropy)这个概念。您提供的截图来自于一个关于机器人定位（Localization）的优秀课程，这为我们理解“熵”提供了一个绝佳的、非常具体的应用场景。</p>
+<p>简单来说，在您这个课程的语境下：</p>
+<p>💡 <strong>熵是衡量一个系统“不确定性”或“混乱程度”的数学指标。</strong></p>
+<p>对于机器人定位问题，熵衡量的是机器人对自己位置的“困惑程度”。</p>
+<ul>
+<li><strong>熵很高</strong>：意味着机器人非常困惑，它认为自己可能在很多地方，每个地方的可能性都差不多。</li>
+<li><strong>熵很低</strong>：意味着机器人非常确定，它认为自己极有可能在某个特定的位置。</li>
+</ul>
+<p>让我们深入探讨一下这个概念。</p>
+<hr>
+<h3 id="Kontek-设定：机器人定位中的“信念”"><a href="#Kontek-设定：机器人定位中的“信念”" class="headerlink" title="Kontek 设定：机器人定位中的“信念”"></a>Kontek 设定：机器人定位中的“信念”</h3><p>在您的课程中，机器人通过一个概率分布来表示它对自己位置的“信念”（Belief）。这个分布就是一个列表（或直方图），其中每个数值代表机器人在某个格子（grid cell）的概率。熵就是用来量化这个“信念”分布的不确定性的。</p>
+<h3 id="核心洞察：高熵-Vs-低熵的对比"><a href="#核心洞察：高熵-Vs-低熵的对比" class="headerlink" title="核心洞察：高熵 Vs. 低熵的对比"></a>核心洞察：高熵 Vs. 低熵的对比</h3><p>为了更清晰地理解，我们可以将高熵和低熵的状态进行一个并排比较：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特征 (Characteristic)</th>
+<th style="text-align:left">🟢 高熵 (High Entropy)</th>
+<th style="text-align:left">🔵 低熵 (Low Entropy)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>直观理解</strong></td>
+<td style="text-align:left">最大程度的混乱、不确定、困惑</td>
+<td style="text-align:left">高度的有序、确定、自信</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>概率分布</strong></td>
+<td style="text-align:left"><strong>均匀分布 (Uniform Distribution)</strong><br>每个可能位置的概率都几乎相等。</td>
+<td style="text-align:left"><strong>尖峰分布 (Peaked Distribution)</strong><br>有一个或少数几个位置的概率远高于其他位置。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>信息量</strong></td>
+<td style="text-align:left">系统包含的<strong>有用信息很少</strong>。<br>“机器人可能在任何地方”这个结论帮助不大。</td>
+<td style="text-align:left">系统包含的<strong>有用信息很多</strong>。<br>“机器人很可能就在这里”这个结论非常有用。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>机器人定位中的例子</strong></td>
+<td style="text-align:left">✅ <strong>初始状态</strong>：机器人刚启动，对位置一无所知，所以假设在每个位置的概率都一样（例如<code>p = [0.2, 0.2, 0.2, 0.2, 0.2]</code>）。</td>
+<td style="text-align:left">✅ <strong>多次传感后</strong>：机器人经过几次观察（看到红色或绿色），排除了很多可能性，信念集中在某个位置（例如<code>p = [0.05, 0.05, 0.8, 0.05, 0.05]</code>）。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>对应操作</strong></td>
+<td style="text-align:left">⚠️ <strong>移动 (Move)</strong> 操作后，由于运动存在不确定性（可能走多了或走少了），会引入新的不确定性，导致熵<strong>增加</strong>。</td>
+<td style="text-align:left">✅ <strong>传感 (Sense)</strong> 操作后，机器人获得了新的外界信息（如颜色），这会减少不确定性，导致熵<strong>降低</strong>。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="数学解释与计算"><a href="#数学解释与计算" class="headerlink" title="数学解释与计算"></a>数学解释与计算</h3><p>您的课程讲义在第22页提到了熵的计算公式，这被称为<strong>香农熵 (Shannon Entropy)</strong>：</p>
+<p>H(X) = - Σ p(xᵢ) * log(p(xᵢ))</p>
+<ul>
+<li><code>H(X)</code> 是整个概率分布 <code>X</code> 的熵。</li>
+<li><code>p(xᵢ)</code> 是机器人在第 <code>i</code> 个位置的概率。</li>
+<li><code>Σ</code> 表示对所有可能的位置（从 <code>i=1</code> 到 <code>n</code>）进行求和。</li>
+<li><code>log</code> 通常使用以2为底的对数（<code>log₂</code>），此时熵的单位是“比特”(bits)。</li>
+</ul>
+<p>让我们用课程中的例子来计算一下，直观感受熵的变化：</p>
+<h4 id="案例1：最大熵（初始状态）"><a href="#案例1：最大熵（初始状态）" class="headerlink" title="案例1：最大熵（初始状态）"></a>案例1：最大熵（初始状态）</h4><p>假设世界有5个格子，初始信念是均匀分布：<br><code>p = [0.2, 0.2, 0.2, 0.2, 0.2]</code></p>
+<p>每个位置的概率 <code>p(xᵢ)</code> 都是 0.2。<br>H = - [ (0.2 <em> log₂(0.2)) + (0.2 </em> log₂(0.2)) + (0.2 <em> log₂(0.2)) + (0.2 </em> log₂(0.2)) + (0.2 <em> log₂(0.2)) ]<br>H = - 5 </em> (0.2 <em> log₂(0.2))<br>因为 <code>log₂(0.2) ≈ -2.32</code><br>H ≈ -5 </em> (0.2 <em> -2.32) = -5 </em> (-0.464) ≈ <strong>2.32 bits</strong></p>
+<p>✅ 这是5个状态下可能达到的最大熵值。</p>
+<h4 id="案例2：较低的熵（传感后）"><a href="#案例2：较低的熵（传感后）" class="headerlink" title="案例2：较低的熵（传感后）"></a>案例2：较低的熵（传感后）</h4><p>假设经过一次传感，机器人更新了信念，分布变得更“尖锐”：<br><code>p = [0.1, 0.1, 0.6, 0.1, 0.1]</code></p>
+<p>H = - [ (0.1<em>log₂(0.1)) </em> 4 + (0.6<em>log₂(0.6)) ]<br>因为 <code>log₂(0.1) ≈ -3.32</code> 且 <code>log₂(0.6) ≈ -0.74</code><br>H ≈ - [ 4 </em> (0.1 <em> -3.32) + (0.6 </em> -0.74) ]<br>H ≈ - [ 4 <em> (-0.332) + (-0.444) ]<br>H ≈ - [ -1.328 - 0.444 ] = -(-1.772) ≈ <em>*1.772 bits</em></em></p>
+<p>通过计算可以清晰地看到，当概率分布从均匀变得尖锐时，熵的值从 <code>2.32</code> 降低到了 <code>1.772</code>，这精确地量化了“不确定性的减少”。</p>
+<hr>
+<h3 id="结论与关键点总结"><a href="#结论与关键点总结" class="headerlink" title="结论与关键点总结"></a>结论与关键点总结</h3><p>在机器人定位这个循环中，熵的变化完美地描述了信息的增减过程：</p>
+<ol>
+<li><strong>初始信念 (Initial Belief)</strong>: 熵很高，机器人很“迷茫”。</li>
+<li><strong>传感 (Sense)</strong>: 机器人通过传感器（如摄像头）观察环境。这个过程获得了信息，排除了不可能性，使得信念分布更“尖锐”。<ul>
+<li><strong>结果</strong>：✅ <strong>熵减少 (Entropy Decreases)</strong></li>
+</ul>
+</li>
+<li><strong>移动 (Move)</strong>: 机器人执行移动指令。但由于电机、轮子打滑等原因，移动总是不精确的。这会使原本集中的信念变得“模糊”。<ul>
+<li><strong>结果</strong>：⚠️ <strong>熵增加 (Entropy Increases)</strong></li>
+</ul>
+</li>
+</ol>
+<p>这个过程不断循环（<code>Sense -&gt; Move -&gt; Sense -&gt; Move ...</code>），机器人的目标就是通过不断地传感，将移动带来的不确定性抵消掉，使总的熵维持在一个很低的水平，从而实现精确定位。</p>
+<p>⚠️ <strong>特别提示</strong>：正如您课程讲义第22页的“Instructor’s Notes”所指出的，Thrun教授在视频中可能口误了。正确的结论是：<strong>移动（Motion）使熵增加（不确定性增加），而传感（Measurement）使熵降低（不确定性减少）</strong>。</p>
+<h3 id="拓展思考与建议"><a href="#拓展思考与建议" class="headerlink" title="拓展思考与建议"></a>拓展思考与建议</h3><p>熵是信息论的基石，在整个人工智能领域都有着广泛的应用：</p>
+<ul>
+<li><strong>决策树学习</strong>：通过计算“信息增益”（Information Gain）来选择最优的划分特征，而信息增益的本质就是父节点与子节点之间的熵的差值。</li>
+<li><strong>机器学习分类问题</strong>：在深度学习中，我们常用“交叉熵损失函数”（Cross-Entropy Loss）来衡量模型预测的概率分布与真实的标签分布之间的差距。</li>
+</ul>
+<p>希望这个详细的解释能帮助您彻底理解熵在机器人定位中的作用！</p>
+<p>如果您对“交叉熵”或者“KL散度”（Kullback-Leibler Divergence）这些相关的概念感兴趣，或者想了解熵在决策树中是如何具体应用的，请随时告诉我！</p>
+<hr>
+<h2 id="🧑‍💻-User-1"><a href="#🧑‍💻-User-1" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>香农熵 的公式怎么来的， 怎么理解这个公式呢？</p>
+<hr>
+<h2 id="🤖-Assistant-1"><a href="#🤖-Assistant-1" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>当然！这是一个非常深刻且重要的问题。理解香农熵公式的来源和内涵，是理解整个信息论，乃至现代机器学习和人工智能的关键。</p>
+<p>我会分三步来为您解释：</p>
+<ol>
+<li><strong>直觉先行</strong>：我们希望用什么来衡量“信息”？</li>
+<li><strong>公式推导</strong>：如何从直觉的原则，一步步构建出数学公式。</li>
+<li><strong>公式解读</strong>：拆解公式的每一部分，理解其含义。</li>
+</ol>
+<hr>
+<h3 id="1-🎯-直觉先行：我们想衡量什么？"><a href="#1-🎯-直觉先行：我们想衡量什么？" class="headerlink" title="1. 🎯 直觉先行：我们想衡量什么？"></a>1. 🎯 直觉先行：我们想衡量什么？</h3><p>想象一下，你正在听天气预报。Claude Shannon（香农）当时思考的问题，本质上可以归结为：<strong>我们如何量化“一条消息包含了多少信息”？</strong></p>
+<p>他提出了几条非常符合直觉的原则：</p>
+<ul>
+<li><p><strong>原则一：信息量与“意外程度”成正比。</strong></p>
+<ul>
+<li>预报说：“撒哈拉沙漠明天天晴。” 这条消息的“意外程度”很低，因为它几乎是必然事件，所以它包含的<strong>信息量很小</strong>。</li>
+<li>预报说：“撒哈拉沙漠明天下雪。” 这条消息的“意外程度”极高，因为它是个极小概率事件，所以它包含的<strong>信息量巨大</strong>。</li>
+</ul>
+</li>
+<li><p><strong>原则二：必然事件的信息量为零。</strong></p>
+<ul>
+<li>如果一件事的发生概率是100%（p=1），比如“太阳从东边升起”，那么关于这件事的消息不包含任何新信息，信息量应该是0。</li>
+</ul>
+</li>
+<li><p><strong>原则三：独立事件的总信息量等于各自信息量之和。</strong></p>
+<ul>
+<li>假设你抛掷两枚独立的硬币。你得知“第一枚硬币是正面”和“第二枚硬幣是反面”这两条消息。这两条消息加在一起的总信息量，应该等于第一条消息的信息量<strong>加上</strong>第二条消息的信息量。</li>
+<li>在概率论中，两个独立事件同时发生的概率是它们各自概率的<strong>乘积</strong>。<code>P(A and B) = P(A) * P(B)</code>。</li>
+<li>💡 <strong>关键点</strong>：我们需要找到一个函数 <code>f</code>，它能将概率的<strong>乘法</strong>关系，转换成信息量的<strong>加法</strong>关系。即 <code>f(P(A) * P(B)) = f(P(A)) + f(P(B))</code>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-🧩-公式推导：从原则到数学"><a href="#2-🧩-公式推导：从原则到数学" class="headerlink" title="2. 🧩 公式推导：从原则到数学"></a>2. 🧩 公式推导：从原则到数学</h3><p>现在，我们把上面的直觉翻译成数学。</p>
+<h4 id="第一步：定义单个事件的“信息量”（或称“自信息”、“意外度”）"><a href="#第一步：定义单个事件的“信息量”（或称“自信息”、“意外度”）" class="headerlink" title="第一步：定义单个事件的“信息量”（或称“自信息”、“意外度”）"></a>第一步：定义单个事件的“信息量”（或称“自信息”、“意外度”）</h4><p>我们来寻找一个函数 <code>I(p)</code>，它表示一个概率为 <code>p</code> 的事件发生时，我们所获得的信息量。</p>
+<p>根据<strong>原则三</strong>，我们知道这个函数必须满足 <code>I(p₁ * p₂) = I(p₁) + I(p₂)</code>。</p>
+<p>数学中，唯一满足这种性质的函数就是<strong>对数函数 (Logarithm)</strong>。回忆一下对数的性质：<code>log(x * y) = log(x) + log(y)</code>。</p>
+<p>所以，我们可以大胆假设 <code>I(p)</code> 的形式与 <code>log(p)</code> 有关。</p>
+<p>但是，<code>log(p)</code> 有个问题：</p>
+<ul>
+<li>概率 <code>p</code> 是在 <code>[0, 1]</code> 区间内的，所以 <code>log(p)</code> 的值是负数或零。而我们直觉上希望信息量是正数。</li>
+<li>概率 <code>p</code> 越小（越意外），<code>log(p)</code> 的绝对值越大。这符合<strong>原则一</strong>。</li>
+</ul>
+<p>为了解决符号问题，并让信息量随概率减小而增大，我们可以定义：</p>
+<p><strong>I(p) = -log(p)</strong></p>
+<p>或者等价地写成：</p>
+<p><strong>I(p) = log(1/p)</strong></p>
+<p>我们来验证一下这个定义是否满足所有原则：</p>
+<ul>
+<li>✅ <strong>原则一</strong>：<code>p</code> 越小，<code>1/p</code> 越大，<code>log(1/p)</code> 越大。符合！</li>
+<li>✅ <strong>原则二</strong>：如果 <code>p=1</code>，<code>I(1) = log(1/1) = log(1) = 0</code>。符合！</li>
+<li>✅ <strong>原则三</strong>：<code>I(p₁*p₂) = log(1/(p₁*p₂)) = log((1/p₁)*(1/p₂)) = log(1/p₁) + log(1/p₂) = I(p₁) + I(p₂)</code>。完美符合！</li>
+</ul>
+<p>所以，我们找到了衡量<strong>单个事件</strong>信息量的方法：<code>I(p) = -log(p)</code>。</p>
+<h4 id="第二步：从“单个事件”推广到“整个系统”"><a href="#第二步：从“单个事件”推广到“整个系统”" class="headerlink" title="第二步：从“单个事件”推广到“整个系统”"></a>第二步：从“单个事件”推广到“整个系统”</h4><p>熵，衡量的不是单个事件的信息量，而是<strong>整个系统（所有可能性）的平均信息量</strong>，或者说是信息量的<strong>期望值 (Expected Value)</strong>。</p>
+<p>期望值的计算方法是：将每个可能结果的“价值”乘以它发生的“概率”，然后全部加起来。</p>
+<p>在这里：</p>
+<ul>
+<li>“结果”就是事件 <code>xᵢ</code> 发生。</li>
+<li>“价值”就是这个结果带来的信息量 <code>I(p(xᵢ)) = -log(p(xᵢ))</code>。</li>
+<li>“概率”就是这个结果发生的概率 <code>p(xᵢ)</code>。</li>
+</ul>
+<p>所以，整个系统的平均信息量（熵 <code>H(X)</code>）就是：</p>
+<p>H(X) = Σ [ 概率 <em> 信息量 ]<br>H(X) = Σ [ p(xᵢ) </em> I(p(xᵢ)) ]<br>H(X) = Σ [ p(xᵢ) * (-log(p(xᵢ))) ]</p>
+<p>整理一下，就得到了我们最终的香农熵公式：</p>
+<p>H(X) = - Σ p(xᵢ) log(p(xᵢ))</p>
+<hr>
+<h3 id="3-🧐-公式解读：拆解每一部分"><a href="#3-🧐-公式解读：拆解每一部分" class="headerlink" title="3. 🧐 公式解读：拆解每一部分"></a>3. 🧐 公式解读：拆解每一部分</h3><p>让我们像庖丁解牛一样，把这个公式的每个部分都看清楚：</p>
+<p><code>H(X) = - Σ p(xᵢ) log(p(xᵢ))</code></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">组件</th>
+<th style="text-align:left">数学表示</th>
+<th style="text-align:left">角色与含义</th>
+<th style="text-align:left">直观类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>概率</strong></td>
+<td style="text-align:left"><code>p(xᵢ)</code></td>
+<td style="text-align:left"><strong>权重因子</strong>：代表事件 <code>xᵢ</code> 发生的可能性。它决定了该事件的信息量在总平均值中占多大的比重。</td>
+<td style="text-align:left">一个班级里，学霸的成绩对平均分的影响更大（如果按成绩加权的话）。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>对数</strong></td>
+<td style="text-align:left"><code>log(p(xᵢ))</code></td>
+<td style="text-align:left"><strong>信息核心</strong>：这是事件 <code>xᵢ</code> 信息量的基础。由于 <code>p(xᵢ)</code> ≤ 1，这个值本身是负数或零。</td>
+<td style="text-align:left">“意外指数”。概率越小，这个数的绝对值越大，代表越意外。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>负号</strong></td>
+<td style="text-align:left"><code>-</code></td>
+<td style="text-align:left"><strong>符号校正器</strong>：将 <code>log(p(xᵢ))</code> 的负值转为正值，使得最终的熵为一个正数，这更符合我们对“不确定性”或“信息量”的直观感受。</td>
+<td style="text-align:left">把“欠债”（负数）的概念，变成“风险大小”（正数）的概念。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>求和</strong></td>
+<td style="text-align:left"><code>Σ</code></td>
+<td style="text-align:left"><strong>期望计算器</strong>：将所有可能性（每个事件的概率 * 该事件的信息量）加权求和，计算出整个系统的“平均意外程度”。</td>
+<td style="text-align:left">计算全班同学的“加权平均分”，得到班级的整体学习水平。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="为什么对数的底是2？-log₂"><a href="#为什么对数的底是2？-log₂" class="headerlink" title="为什么对数的底是2？ (log₂)"></a>为什么对数的底是2？ (<code>log₂</code>)</h4><p>在信息论中，我们通常使用以2为底的对数。这是因为信息的基本单位是<strong>比特 (bit)</strong>，代表一个二进制的是/否选择。</p>
+<ul>
+<li><code>log₂(N)</code> 的含义可以理解为：“要从 N 个同样可能性的选项中确定一个，需要问多少个‘是/否’问题？”</li>
+<li>例如，有8匹马（N=8），哪一匹会赢？<code>log₂(8) = 3</code>。这意味着你最少需要问3个问题（比如“是在前4匹里吗？”“是在那2匹里吗？”）就能确定冠军。</li>
+<li>所以，当熵的单位是比特时，它直观地告诉我们：<strong>平均而言，要确定系统的一个随机结果，我们需要多少个二进制信息位。</strong></li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong>香农熵公式的诞生</strong>：源于为“信息”寻找一个满足直觉（与意外度成正比、独立可加）的数学定义。对数函数 <code>log(1/p)</code> 完美地满足了这些要求。</li>
+<li><strong>公式的本质</strong>：熵不是某个事件的信息量，而是整个概率分布下，<strong>信息量的数学期望</strong>。它衡量的是一个系统的<strong>平均不确定性</strong>。</li>
+<li><strong>公式的理解</strong>：<code>H(X) = - Σ p(xᵢ) log(p(xᵢ))</code> 可以读作：“对于所有可能发生的事件 <code>xᵢ</code>，将其发生的概率 <code>p(xᵢ)</code> 与其自身信息量 <code>-log(p(xᵢ))</code> 相乘，然后将所有结果相加，就得到了这个系统整体的平均信息量。”</li>
+</ul>
+<p>希望这个从直觉到推导再到解读的完整流程，能帮助您透彻地理解香农熵公式！</p>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ai/">ai    </a><a class="post-meta__tags" href="/tags/knowledge/">knowledge    </a><a class="post-meta__tags" href="/tags/learning/">learning    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2025/08/25/20-areas/courses/omscs/cs7638-ai-robotics/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86%E8%AF%A6%E8%A7%A3/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>贝叶斯定理详解</span></div></a></div><div class="next-post pull_right"><a href="/2025/08/24/20-areas/courses/omscs/cs7638-ai-robotics/localization%20multiple%20measurement/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>localization multiple measurement</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/knowledge/deepresearch/Gemini, OpenAI Deep Research Prompt Template/" title="Gemini, OpenAI Deep Research Prompt Template"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">Gemini, OpenAI Deep Research Prompt Template</div></div></a></div><div class="relatedPosts_item"><a href="/2025/09/13/20-areas/courses/omscs/cs7638-ai-robotics/a start admissible 含义/" title="a start admissible 含义"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-13</div><div class="relatedPosts_title">a start admissible 含义</div></div></a></div><div class="relatedPosts_item"><a href="/2025/09/07/20-areas/courses/omscs/cs7638-ai-robotics/卡曼滤波器调参/" title="卡曼滤波器调参"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-07</div><div class="relatedPosts_title">卡曼滤波器调参</div></div></a></div><div class="relatedPosts_item"><a href="/2025/09/07/20-areas/courses/omscs/cs7638-ai-robotics/滤波器选择与动态环境处理/" title="滤波器选择与动态环境处理"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-07</div><div class="relatedPosts_title">滤波器选择与动态环境处理</div></div></a></div><div class="relatedPosts_item"><a href="/2025/08/24/20-areas/courses/omscs/cs7638-ai-robotics/localization 卷积理解/" title="localization 卷积理解"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-08-24</div><div class="relatedPosts_title">localization 卷积理解</div></div></a></div><div class="relatedPosts_item"><a href="/2025/08/25/20-areas/courses/omscs/cs7638-ai-robotics/理解全概率定理/" title="理解全概率定理"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-08-25</div><div class="relatedPosts_title">理解全概率定理</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'xvMxbws16Erd8WUfqxkvHmb5-gzGzoHsz',
+  appKey:'4U0Vo7NQIUL0eJzHdkPzdCDr',
+  placeholder:'不说话的人会疯掉吗?',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'en',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By supersheepbear</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="external nofollow noopener noreferrer"><span>Butterfly</span></a></div><div class="footer_custom_text">外向孤独者患者</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="255,240,245" opacity="0.7" zindex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="external nofollow noopener noreferrer" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>

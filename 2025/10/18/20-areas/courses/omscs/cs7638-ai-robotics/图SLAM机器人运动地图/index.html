@@ -1,0 +1,285 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>图SLAM机器人运动地图 | Bear's dream</title><meta name="description" content="图SLAM机器人运动地图"><meta name="keywords" content="ai,knowledge,coding"><meta name="author" content="supersheepbear"><meta name="copyright" content="supersheepbear"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_1.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="p43hXBn3_dLvbyxUzx0eo5eYmj9OVYOV52pdrhBa2sw"><meta name="baidu-site-verification" content="EXLlfLv2pV"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="图SLAM机器人运动地图"><meta name="twitter:description" content="图SLAM机器人运动地图"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta property="og:type" content="article"><meta property="og:title" content="图SLAM机器人运动地图"><meta property="og:url" content="https://yxiong.org/2025/10/18/20-areas/courses/omscs/cs7638-ai-robotics/%E5%9B%BESLAM%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BF%90%E5%8A%A8%E5%9C%B0%E5%9B%BE/"><meta property="og:site_name" content="Bear's dream"><meta property="og:description" content="图SLAM机器人运动地图"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://yxiong.org/2025/10/18/20-areas/courses/omscs/cs7638-ai-robotics/%E5%9B%BESLAM%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BF%90%E5%8A%A8%E5%9C%B0%E5%9B%BE/"><link rel="prev" title="自行车模型基础回顾" href="https://yxiong.org/2025/10/19/20-areas/courses/omscs/cs7638-ai-robotics/%E8%87%AA%E8%A1%8C%E8%BD%A6%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/"><link rel="next" title="MIMO雷达角度估计原理" href="https://yxiong.org/2025/10/16/20-areas/tech/MIMO%E9%9B%B7%E8%BE%BE%E8%A7%92%E5%BA%A6%E4%BC%B0%E8%AE%A1%E5%8E%9F%E7%90%86/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">162</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">59</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">34</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#图SLAM机器人运动地图"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">图SLAM机器人运动地图</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#核心问题：机器人如何在未知世界里“摸索”？"><span class="toc_mobile_items-number">1.2.1.</span> <span class="toc_mobile_items-text">核心问题：机器人如何在未知世界里“摸索”？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#深入解析：Graph-SLAM-的世界观"><span class="toc_mobile_items-number">1.2.2.</span> <span class="toc_mobile_items-text">深入解析：Graph SLAM 的世界观</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#1-节点-Nodes-：机器人的足迹与世界的地标"><span class="toc_mobile_items-number">1.2.2.1.</span> <span class="toc_mobile_items-text">1. 节点 (Nodes)：机器人的足迹与世界的地标</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#2-边-Edges-：连接节点间的“橡皮筋”"><span class="toc_mobile_items-number">1.2.2.2.</span> <span class="toc_mobile_items-text">2. 边 (Edges)：连接节点间的“橡皮筋”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#3-求解-Optimization-：放松所有橡皮筋，找到最佳平衡"><span class="toc_mobile_items-number">1.2.2.3.</span> <span class="toc_mobile_items-text">3. 求解 (Optimization)：放松所有橡皮筋，找到最佳平衡</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#核心概念对比"><span class="toc_mobile_items-number">1.2.3.</span> <span class="toc_mobile_items-text">核心概念对比</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#帮你解开那个小测验-Quiz"><span class="toc_mobile_items-number">1.2.4.</span> <span class="toc_mobile_items-text">帮你解开那个小测验 (Quiz)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#从入门到深入：背后的数学原理"><span class="toc_mobile_items-number">1.2.5.</span> <span class="toc_mobile_items-text">从入门到深入：背后的数学原理</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#总结"><span class="toc_mobile_items-number">1.2.6.</span> <span class="toc_mobile_items-text">总结</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#🤔-想一想，加深理解"><span class="toc_mobile_items-number">1.2.7.</span> <span class="toc_mobile_items-text">🤔 想一想，加深理解</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#下一步我可以为你做什么？"><span class="toc_mobile_items-number">1.2.8.</span> <span class="toc_mobile_items-text">下一步我可以为你做什么？</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#图SLAM机器人运动地图"><span class="toc-number">1.</span> <span class="toc-text">图SLAM机器人运动地图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User"><span class="toc-number">1.1.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant"><span class="toc-number">1.2.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#核心问题：机器人如何在未知世界里“摸索”？"><span class="toc-number">1.2.1.</span> <span class="toc-text">核心问题：机器人如何在未知世界里“摸索”？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入解析：Graph-SLAM-的世界观"><span class="toc-number">1.2.2.</span> <span class="toc-text">深入解析：Graph SLAM 的世界观</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-节点-Nodes-：机器人的足迹与世界的地标"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">1. 节点 (Nodes)：机器人的足迹与世界的地标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-边-Edges-：连接节点间的“橡皮筋”"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2. 边 (Edges)：连接节点间的“橡皮筋”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-求解-Optimization-：放松所有橡皮筋，找到最佳平衡"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">3. 求解 (Optimization)：放松所有橡皮筋，找到最佳平衡</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核心概念对比"><span class="toc-number">1.2.3.</span> <span class="toc-text">核心概念对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#帮你解开那个小测验-Quiz"><span class="toc-number">1.2.4.</span> <span class="toc-text">帮你解开那个小测验 (Quiz)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从入门到深入：背后的数学原理"><span class="toc-number">1.2.5.</span> <span class="toc-text">从入门到深入：背后的数学原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.2.6.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🤔-想一想，加深理解"><span class="toc-number">1.2.7.</span> <span class="toc-text">🤔 想一想，加深理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下一步我可以为你做什么？"><span class="toc-number">1.2.8.</span> <span class="toc-text">下一步我可以为你做什么？</span></a></li></ol></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">图SLAM机器人运动地图</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2025-10-18<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2026-01-24</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/">20-areas</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/">courses</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/omscs/">omscs</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/omscs/cs7638-ai-robotics/">cs7638-ai-robotics</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2025/10/18/20-areas/courses/omscs/cs7638-ai-robotics/%E5%9B%BESLAM%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BF%90%E5%8A%A8%E5%9C%B0%E5%9B%BE/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2025/10/18/20-areas/courses/omscs/cs7638-ai-robotics/%E5%9B%BESLAM%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%BF%90%E5%8A%A8%E5%9C%B0%E5%9B%BE/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="图SLAM机器人运动地图"><a href="#图SLAM机器人运动地图" class="headerlink" title="图SLAM机器人运动地图"></a>图SLAM机器人运动地图</h1><h2 id="🧑‍💻-User"><a href="#🧑‍💻-User" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>Say we have a robot that moves in some space, and each location is now characterized by a vector x0 and a vector x1, vector x2,<br>vector x3. Often they are 3-dimensional vectors. What Graph SLAM collects is initial location, which is a (0, 0, 0) initially— although<br>here it looks a little bit different— then, really importantly, lots of relative constraints that relate each robot pose to the previous robot<br>pose. We call them relative motion constraints. You can think of those as rubber bands. In expectation, this rubber band will be<br>exactly the motion the robot sensed or commanded, but in reality, it might have to bend it a little bit to make the map more<br>consistent. Speaking about maps, let’s use landmarks as an example. Suppose there is a landmark out here, and the landmark is<br>being seen from the robot with some relative measurement—z0, z1. Perhaps I didn’t see it during time 2, but this is z3. All these are<br>also relative constraints very much like the ones before. Again, they are captured by Gaussians, and we get relative measurement<br>constraints. One such constraint is every time the robot sees a landmark. Graph SLAM collects those constraints, and as we’ll see,<br>they’re insanely easy to collect, and it just relaxes the set of rubber bands to find the most likely configuration of robot path along<br>with the location of landmarks. That is the mapping process. Let me ask you a quick quiz that’ll take thinking. Suppose we have six<br>robot poses—that is, one initial and five motions. We have eight measurements of landmarks that we’ve seen. These might be<br>multiple landmarks. Sometimes the robot saw more than one. The question now is how many total constraints do we have if we<br>count each of these constraints as exactly one constraint.</p>
+<p>这段完全没有听懂, 给我讲解一下吧.</p>
+<hr>
+<h2 id="🤖-Assistant"><a href="#🤖-Assistant" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>好的，这段关于 <strong>Graph SLAM</strong> 的讲解确实信息量很大，而且充满了形象的比喻。如果之前没有接触过相关概念，会感觉有些抽象。别担心，我们一步步把它拆解开，从最直观的理解到深入的数学原理，让你彻底搞懂它！</p>
+<h3 id="核心问题：机器人如何在未知世界里“摸索”？"><a href="#核心问题：机器人如何在未知世界里“摸索”？" class="headerlink" title="核心问题：机器人如何在未知世界里“摸索”？"></a>核心问题：机器人如何在未知世界里“摸索”？</h3><p>在深入 Graph SLAM 之前，我们先花一分钟理解它要解决的根本问题：<strong>同时定位与地图构建 (Simultaneous Localization and Mapping, SLAM)</strong>。</p>
+<p>想象一下，你被蒙上眼睛，带到一个完全陌生的房间，然后你的任务是：</p>
+<ol>
+<li><strong>画出这个房间的地图</strong> (Mapping)。</li>
+<li><strong>同时，随时知道你自己在地图上的哪个位置</strong> (Localization)。</li>
+</ol>
+<p>这是一个典型的“鸡生蛋，蛋生鸡”的问题：</p>
+<ul>
+<li>如果没有一张准确的地图，你就很难精确地知道自己的位置。</li>
+<li>如果你不知道自己的位置，你画出来的地图也可能是歪歪扭扭、充满错误的。</li>
+</ul>
+<p>SLAM 技术就是用来解决这个难题的。而 <strong>Graph SLAM</strong> 是其中一种非常主流且直观的解决方案。</p>
+<hr>
+<h3 id="深入解析：Graph-SLAM-的世界观"><a href="#深入解析：Graph-SLAM-的世界观" class="headerlink" title="深入解析：Graph SLAM 的世界观"></a>深入解析：Graph SLAM 的世界观</h3><p>现在，我们来逐句剖析你提到的那段话，我会用更通俗的语言来解释。</p>
+<h4 id="1-节点-Nodes-：机器人的足迹与世界的地标"><a href="#1-节点-Nodes-：机器人的足迹与世界的地标" class="headerlink" title="1. 节点 (Nodes)：机器人的足迹与世界的地标"></a>1. 节点 (Nodes)：机器人的足迹与世界的地标</h4><blockquote>
+<p>“Say we have a robot that moves in some space, and each location is now characterized by a vector x0 and a vector x1, vector x2, vector x3… Suppose there is a landmark out here…”</p>
+</blockquote>
+<ul>
+<li><strong>机器人位姿 (Robot Poses - x0, x1, x2…)</strong>: 这代表了机器人走过的一系列“足迹”。每一个 <code>x</code> 都是一个向量，记录了机器人在某个特定时间点的状态，通常包括它的坐标 <code>(x, y)</code> 和朝向 <code>(θ)</code>。所以 <code>x0</code> 是起点，<code>x1</code> 是下一时刻的位置，以此类推。</li>
+<li><strong>路标 (Landmarks - L1, L2…)</strong>: 这代表了环境中固定不变、可被识别的物体，比如一棵树、一盏灯或者墙角。机器人通过观察这些路标来辅助定位。</li>
+</ul>
+<p>💡 <strong>核心思想</strong>: 在 Graph SLAM 的世界里，<strong>所有的机器人位姿</strong>和<strong>所有的路标位置</strong>都是待确定的<strong>未知变量</strong>。它们就像图论中的 <strong>节点 (Nodes)</strong>。我们的最终目标，就是把所有这些节点都安置在它们最应该在的位置上。</p>
+<h4 id="2-边-Edges-：连接节点间的“橡皮筋”"><a href="#2-边-Edges-：连接节点间的“橡皮筋”" class="headerlink" title="2. 边 (Edges)：连接节点间的“橡皮筋”"></a>2. 边 (Edges)：连接节点间的“橡皮筋”</h4><blockquote>
+<p>“What Graph SLAM collects is… lots of relative constraints… You can think of those as rubber bands.”</p>
+</blockquote>
+<p>这就是 Graph SLAM 最精妙的地方。它不直接猜测每个节点的绝对坐标，而是收集节点之间的 <strong>相对关系</strong>，也叫 <strong>约束 (Constraints)</strong>。这些约束就像图中的 <strong>边 (Edges)</strong>，把节点连接起来。</p>
+<p>主要有两种“橡皮筋”：</p>
+<ul>
+<li><p><strong>运动约束 (Relative Motion Constraints)</strong></p>
+<blockquote>
+<p>“…relate each robot pose to the previous robot pose… In expectation, this rubber band will be exactly the motion the robot sensed or commanded, but in reality, it might have to bend it a little bit…”</p>
+<ul>
+<li><strong>来源</strong>: 来自机器人自身的传感器，比如轮子上的编码器（记录轮子转了多少圈）或者惯性测量单元 (IMU)。</li>
+<li><strong>含义</strong>: 它告诉我们“从 <code>x0</code> 到 <code>x1</code>，我大概向前走了1米，向右转了10度”。这是一个 <strong>相对</strong> 的运动测量。</li>
+<li><strong>橡皮筋比喻</strong>: 这根橡皮筋的“自然长度”就是机器人传感器测量的运动量。但由于机器人会打滑、测量有误差，这个测量值并不完全准确。所以，它是一根有弹性的橡-皮筋，可以被稍微拉伸或压缩。</li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>观测约束 (Relative Measurement Constraints)</strong></p>
+<blockquote>
+<p>“…the landmark is being seen from the robot with some relative measurement—z0, z1… All these are also relative constraints…”</p>
+<ul>
+<li><strong>来源</strong>: 来自机器人的外部传感器，比如激光雷达 (LiDAR) 或摄像头。</li>
+<li><strong>含义</strong>: 它告诉我们“在 <code>x3</code> 这个位置，我看到路标 <code>L1</code> 在我的正前方5米处”。这是一个连接机器人位姿和路标的 <strong>相对</strong> 观测。</li>
+<li><strong>橡皮筋比喻</strong>: 这根橡皮筋连接了一个机器人位姿节点和一个路标节点。它的“自然长度”就是传感器测量出的相对位置关系。同样，由于传感器有噪声，这也是一根有弹性的橡皮筋。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="3-求解-Optimization-：放松所有橡皮筋，找到最佳平衡"><a href="#3-求解-Optimization-：放松所有橡皮筋，找到最佳平衡" class="headerlink" title="3. 求解 (Optimization)：放松所有橡皮筋，找到最佳平衡"></a>3. 求解 (Optimization)：放松所有橡皮筋，找到最佳平衡</h4><blockquote>
+<p>“Graph SLAM collects those constraints… and it just relaxes the set of rubber bands to find the most likely configuration of robot path along with the location of landmarks.”</p>
+</blockquote>
+<p>现在，想象一下我们把所有的节点（机器人位姿和路标）都当成钉子钉在一块板上，然后根据所有的约束（运动和观测）把橡皮筋连接在对应的钉子上。</p>
+<p>由于每一次测量都有误差，这个由钉子和橡皮筋组成的系统会处于一种“紧绷”的状态。每根橡皮筋都想回到自己的自然长度，但被其他橡皮筋拉扯着。</p>
+<p><strong>“放松”的过程，就是一个全局优化的过程</strong>：<br>我们调整所有钉子（除了作为起点的第一个钉子，它被牢牢固定）的位置，目标是让整个系统中所有橡皮筋的 <strong>总能量（总拉力）最小</strong>。</p>
+<p>当系统达到最“放松”、最和谐的状态时，各个钉子所在的位置，就是我们估计出的最可信的机器人轨迹和地图。这个过程也叫做 <strong>图优化 (Graph Optimization)</strong>。</p>
+<hr>
+<h3 id="核心概念对比"><a href="#核心概念对比" class="headerlink" title="核心概念对比"></a>核心概念对比</h3><p>为了更清晰地理解，我们可以用一个表格来总结：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">概念 (Concept)</th>
+<th style="text-align:left">在 Graph SLAM 中的角色</th>
+<th style="text-align:left">橡皮筋比喻 (Rubber Band Analogy)</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>节点 (Nodes)</strong></td>
+<td style="text-align:left">机器人位姿 (Robot Poses) <br> 路标 (Landmarks)</td>
+<td style="text-align:left">板上的钉子 (Pegs on a board)</td>
+<td style="text-align:left">待优化的变量，即机器人的轨迹和地图本身</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>边 (Edges)</strong></td>
+<td style="text-align:left">运动约束 (Motion Constraints) <br> 观测约束 (Measurement Constraints)</td>
+<td style="text-align:left">连接钉子的橡皮筋 (Rubber bands)</td>
+<td style="text-align:left">提供节点之间的相对位置关系，是优化的依据</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>求解 (Solving)</strong></td>
+<td style="text-align:left">图优化 (Graph Optimization)</td>
+<td style="text-align:left">放松系统，找到总能量最小的状态 (Relaxing the system)</td>
+<td style="text-align:left">计算出所有节点最可能的位置，完成定位与建图</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="帮你解开那个小测验-Quiz"><a href="#帮你解开那个小测验-Quiz" class="headerlink" title="帮你解开那个小测验 (Quiz)"></a>帮你解开那个小测验 (Quiz)</h3><p>现在我们用刚刚学到的知识来解决那个问题。</p>
+<blockquote>
+<p><strong>问题</strong>: 我们有 <strong>6个机器人位姿</strong> (1个初始位置 + 5次运动) 和 <strong>8次对路标的观测</strong>。总共有多少个约束？</p>
+</blockquote>
+<p>我们来一个一个地数：</p>
+<ol>
+<li><p>✅ <strong>初始位置约束 (Initial Location Constraint)</strong></p>
+<ul>
+<li>为了让整个图不至于“飘”在空中，我们通常需要一个“锚点”。我们会把起始位姿 <code>x0</code> 固定在原点 <code>(0, 0, 0)</code>。这本身就是一个约束，它告诉系统：“一切都从这里开始！”</li>
+<li>数量: <strong>1</strong> 个</li>
+</ul>
+</li>
+<li><p>✅ <strong>运动约束 (Motion Constraints)</strong></p>
+<ul>
+<li>6个位姿 (<code>x0</code> 到 <code>x5</code>) 意味着机器人移动了5次：<code>x0 -&gt; x1</code>, <code>x1 -&gt; x2</code>, <code>x2 -&gt; x3</code>, <code>x3 -&gt; x4</code>, <code>x4 -&gt; x5</code>。</li>
+<li>每一次移动都对应一个运动约束（一根连接连续位姿的橡皮筋）。</li>
+<li>数量: <strong>5</strong> 个</li>
+</ul>
+</li>
+<li><p>✅ <strong>观测约束 (Measurement Constraints)</strong></p>
+<ul>
+<li>问题明确指出，机器人总共对路标进行了8次观测。</li>
+<li>每一次观测都对应一个观测约束（一根连接某个位姿和某个路标的橡皮筋）。</li>
+<li>数量: <strong>8</strong> 个</li>
+</ul>
+</li>
+</ol>
+<p>把它们加起来：</p>
+<script type="math/tex; mode=display">\text{Total Constraints} = \underbrace{1}_{\text{Initial}} + \underbrace{5}_{\text{Motion}} + \underbrace{8}_{\text{Measurement}} = 14</script><p>所以，总共有 <strong>14</strong> 个约束。这14根“橡皮筋”共同定义了整个SLAM问题的结构。</p>
+<hr>
+<h3 id="从入门到深入：背后的数学原理"><a href="#从入门到深入：背后的数学原理" class="headerlink" title="从入门到深入：背后的数学原理"></a>从入门到深入：背后的数学原理</h3><p>上面的比喻非常直观，但计算机是如何“放松”橡皮筋的呢？这里涉及到一些数学知识。</p>
+<ul>
+<li><p><strong>高斯分布 (Gaussian Distribution)</strong>: 每一个约束（无论是运动还是观测）在数学上都用一个高斯分布来表示。测量的平均值就是橡皮筋的“自然长度”，而方差（或协方差）则代表了测量的不确定性，可以理解为橡皮筋的“弹性系数”。方差越小，说明测量越准，橡皮筋就越“硬”，在最终优化中的话语权就越大。</p>
+</li>
+<li><p><strong>最大似然估计 (Maximum Likelihood Estimation)</strong>: “放松”橡皮筋的过程，本质上是在寻找一组让所有约束的联合概率最大的机器人位姿和路标位置。换句话说，我们在寻找一个“最有可能”产生我们所有观测数据的真实世界状态。</p>
+</li>
+<li><p><strong>最小二乘法 (Least Squares)</strong>: 对于高斯分布的噪声模型，最大化联合概率等价于最小化所有误差的平方和。每个约束都可以写成一个误差项 $e$ (实际值与测量值之差)。我们的目标是找到变量 $\mathbf{x}$ (包含所有位姿和路标) 来最小化下面的目标函数：</p>
+<script type="math/tex; mode=display">F(\mathbf{x}) = \sum_{k} \mathbf{e}_k(\mathbf{x})^T \mathbf{\Omega}_k \mathbf{e}_k(\mathbf{x})</script><ul>
+<li>$\mathbf{e}_k(\mathbf{x})$ 是第 $k$ 个约束的误差向量。</li>
+<li>$\mathbf{\Omega}_k$ 是 <strong>信息矩阵</strong>，它是协方差矩阵的逆，代表了这个约束的“权重”或“置信度”。测量越准，信息矩阵的数值越大。</li>
+</ul>
+</li>
+</ul>
+<p>⚠️ 这个公式看起来复杂，但它的物理意义就是我们一直在说的 <strong>加权的橡皮筋总能量</strong>。计算机通过非线性优化的算法（如高斯-牛顿法或列文伯格-马夸尔特法）来求解这个最小化问题，从而找到最佳的 $\mathbf{x}$。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>希望以上的讲解能帮助你理解 Graph SLAM 的核心思想。总结一下：</p>
+<ol>
+<li><strong>图的构建</strong>: 将机器人的历史位姿和环境中的路标作为 <strong>节点</strong>。</li>
+<li><strong>约束的建立</strong>: 将机器人自身的运动测量和对路标的观测作为连接节点的 <strong>边</strong>（或称为约束）。</li>
+<li><strong>全局优化</strong>: 将所有约束看作带有弹性的“橡皮筋”，通过数学方法找到一个让整个系统“最放松”（总误差最小）的节点布局。</li>
+<li><strong>最终结果</strong>: 优化后的节点位置，就是我们得到的 <strong>最可信的机器人轨迹和环境地图</strong>。</li>
+</ol>
+<p>Graph SLAM 的美妙之处在于它将一个复杂动态的时序问题，转化为了一个相对优雅的全局优化问题，非常直观且强大。</p>
+<h3 id="🤔-想一想，加深理解"><a href="#🤔-想一想，加深理解" class="headerlink" title="🤔 想一想，加深理解"></a>🤔 想一想，加深理解</h3><p>为了确保你真的理解了，可以思考以下几个问题：</p>
+<ol>
+<li><p><strong>如果一个机器人的轮子编码器（运动传感器）非常不准，但在一个环境中有很多清晰、易于识别的路标，那么在 Graph SLAM 中，是运动约束的橡皮筋更“硬”，还是观测约束的橡皮筋更“硬”？</strong></p>
+<ul>
+<li><strong>参考答案</strong>: 观测约束的橡皮筋会更“硬”。因为编码器不准，其测量的不确定性大（方差大），对应的信息矩阵值就小（橡皮筋软）。而路标清晰，观测准确，不确定性小，信息矩阵值就大（橡皮筋硬）。最终优化结果会更倾向于相信观测，用观测来矫正不准的运动估计。</li>
+</ul>
+</li>
+<li><p><strong>什么是“回环检测 (Loop Closure)”？它在 Graph SLAM 中为什么至关重要？</strong></p>
+<ul>
+<li><strong>参考答案</strong>: 当机器人经过一段时间的探索后，回到了一个它曾经来过的地方，并识别出了之前见过的路标，这就叫“回环”。它会在图中创建一个跨越很长时间的约束（一条长长的橡皮筋），直接连接当前位姿和很久以前的位姿。这个约束非常强大，可以极大地修正机器人在此期间累积的误差，让整个地图的质量产生质的飞跃。没有回环检测，地图误差会随着时间无限累积下去。</li>
+</ul>
+</li>
+</ol>
+<h3 id="下一步我可以为你做什么？"><a href="#下一步我可以为你做什么？" class="headerlink" title="下一步我可以为你做什么？"></a>下一步我可以为你做什么？</h3><p>如果你对这个话题还有兴趣，我可以为你：</p>
+<ul>
+<li><strong>详细解释</strong> Graph SLAM 背后的非线性优化算法，比如高斯-牛顿法。</li>
+<li><strong>介绍</strong> 一些实际应用 Graph SLAM 的开源框架，如 G2O, Ceres Solver, GTSAM。</li>
+<li><strong>比较</strong> Graph SLAM 与其他 SLAM 方法（如基于滤波的 EKF-SLAM）的优缺点。</li>
+</ul>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ai/">ai    </a><a class="post-meta__tags" href="/tags/knowledge/">knowledge    </a><a class="post-meta__tags" href="/tags/coding/">coding    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2025/10/19/20-areas/courses/omscs/cs7638-ai-robotics/%E8%87%AA%E8%A1%8C%E8%BD%A6%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>自行车模型基础回顾</span></div></a></div><div class="next-post pull_right"><a href="/2025/10/16/20-areas/tech/MIMO%E9%9B%B7%E8%BE%BE%E8%A7%92%E5%BA%A6%E4%BC%B0%E8%AE%A1%E5%8E%9F%E7%90%86/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>MIMO雷达角度估计原理</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2025/08/24/20-areas/courses/omscs/cs7638-ai-robotics/localization multiple measurement/" title="localization multiple measurement"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-08-24</div><div class="relatedPosts_title">localization multiple measurement</div></div></a></div><div class="relatedPosts_item"><a href="/2025/08/25/20-areas/courses/omscs/cs7638-ai-robotics/归一化/" title="归一化"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-08-25</div><div class="relatedPosts_title">归一化</div></div></a></div><div class="relatedPosts_item"><a href="/2025/09/28/40-archives/AI assistant prompt/" title="AI assistant prompt"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-28</div><div class="relatedPosts_title">AI assistant prompt</div></div></a></div><div class="relatedPosts_item"><a href="/2025/07/02/40-archives/cursor rule improved version/" title="cursor rule improved version"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-07-02</div><div class="relatedPosts_title">cursor rule improved version</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/27/40-archives/cursor rule complete version/" title="cursor rule complete version"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-27</div><div class="relatedPosts_title">cursor rule complete version</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/money/side_hustle/scira_ai_sidehustle_research/" title="scira_ai_sidehustle_research"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">scira_ai_sidehustle_research</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'xvMxbws16Erd8WUfqxkvHmb5-gzGzoHsz',
+  appKey:'4U0Vo7NQIUL0eJzHdkPzdCDr',
+  placeholder:'不说话的人会疯掉吗?',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'en',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By supersheepbear</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="external nofollow noopener noreferrer"><span>Butterfly</span></a></div><div class="footer_custom_text">外向孤独者患者</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="255,240,245" opacity="0.7" zindex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="external nofollow noopener noreferrer" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>

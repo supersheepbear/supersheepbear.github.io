@@ -1,0 +1,420 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>localization 卷积理解 | Bear's dream</title><meta name="description" content="localization 卷积理解"><meta name="keywords" content="ai,knowledge,learning"><meta name="author" content="supersheepbear"><meta name="copyright" content="supersheepbear"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_1.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="p43hXBn3_dLvbyxUzx0eo5eYmj9OVYOV52pdrhBa2sw"><meta name="baidu-site-verification" content="EXLlfLv2pV"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="localization 卷积理解"><meta name="twitter:description" content="localization 卷积理解"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta property="og:type" content="article"><meta property="og:title" content="localization 卷积理解"><meta property="og:url" content="https://yxiong.org/2025/08/24/20-areas/courses/omscs/cs7638-ai-robotics/localization%20%E5%8D%B7%E7%A7%AF%E7%90%86%E8%A7%A3/"><meta property="og:site_name" content="Bear's dream"><meta property="og:description" content="localization 卷积理解"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://yxiong.org/2025/08/24/20-areas/courses/omscs/cs7638-ai-robotics/localization%20%E5%8D%B7%E7%A7%AF%E7%90%86%E8%A7%A3/"><link rel="prev" title="localization multiple measurement" href="https://yxiong.org/2025/08/24/20-areas/courses/omscs/cs7638-ai-robotics/localization%20multiple%20measurement/"><link rel="next" title="人工智能与机器人技术课程要点总结" href="https://yxiong.org/2025/08/21/20-areas/courses/omscs/cs7638-ai-robotics/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E4%B8%8E%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF%E8%AF%BE%E7%A8%8B%E8%A6%81%E7%82%B9%E6%80%BB%E7%BB%93/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">162</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">59</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">34</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#Localization-卷积：效应如何蔓延"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">Localization 卷积：效应如何蔓延</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#💡-核心情景：一个“效应”如何在系统中“蔓延”"><span class="toc_mobile_items-number">1.2.1.</span> <span class="toc_mobile_items-text">💡 核心情景：一个“效应”如何在系统中“蔓延”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#核心概念的并排比较"><span class="toc_mobile_items-number">1.2.2.</span> <span class="toc_mobile_items-text">核心概念的并排比较</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#卷积的三个核心步骤（以离散信号为例）"><span class="toc_mobile_items-number">1.2.3.</span> <span class="toc_mobile_items-text">卷积的三个核心步骤（以离散信号为例）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#第1步：翻转-Flip-↩️"><span class="toc_mobile_items-number">1.2.3.1.</span> <span class="toc_mobile_items-text">第1步：翻转 (Flip) ↩️</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#第2步：平移-Shift-➡️"><span class="toc_mobile_items-number">1.2.3.2.</span> <span class="toc_mobile_items-text">第2步：平移 (Shift) ➡️</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#第3步：乘积求和-Multiply-And-Sum-➕✖️"><span class="toc_mobile_items-number">1.2.3.3.</span> <span class="toc_mobile_items-text">第3步：乘积求和 (Multiply And Sum) ➕✖️</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#一个简单的数值示例"><span class="toc_mobile_items-number">1.2.4.</span> <span class="toc_mobile_items-text">一个简单的数值示例</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#数学公式的联系"><span class="toc_mobile_items-number">1.2.4.1.</span> <span class="toc_mobile_items-text">数学公式的联系</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#真实世界的强大应用"><span class="toc_mobile_items-number">1.2.5.</span> <span class="toc_mobile_items-text">真实世界的强大应用</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#1-📷-图像处理：模糊、锐化、边缘检测"><span class="toc_mobile_items-number">1.2.5.1.</span> <span class="toc_mobile_items-text">1. 📷 图像处理：模糊、锐化、边缘检测</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#2-🎤-音频处理：混响与回声"><span class="toc_mobile_items-number">1.2.5.2.</span> <span class="toc_mobile_items-text">2. 🎤 音频处理：混响与回声</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#3-🧠-深度学习：卷积神经网络-CNN"><span class="toc_mobile_items-number">1.2.5.3.</span> <span class="toc_mobile_items-text">3. 🧠 深度学习：卷积神经网络 (CNN)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#结论与建议"><span class="toc_mobile_items-number">1.2.6.</span> <span class="toc_mobile_items-text">结论与建议</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#🤔-想要更进一步？"><span class="toc_mobile_items-number">1.2.7.</span> <span class="toc_mobile_items-text">🤔 想要更进一步？</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-1"><span class="toc_mobile_items-number">1.3.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-1"><span class="toc_mobile_items-number">1.4.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#💡-核心情景：机器人在移动，但它的动作“不完美”"><span class="toc_mobile_items-number">1.4.1.</span> <span class="toc_mobile_items-text">💡 核心情景：机器人在移动，但它的动作“不完美”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#将机器人定位问题与卷积概念进行并排比较"><span class="toc_mobile_items-number">1.4.2.</span> <span class="toc_mobile_items-text">将机器人定位问题与卷积概念进行并排比较</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#数值推理：全概率定理-Theorem-Of-Total-Probability"><span class="toc_mobile_items-number">1.4.3.</span> <span class="toc_mobile_items-text">数值推理：全概率定理 (Theorem Of Total Probability)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#结论：为什么这个过程被称为卷积"><span class="toc_mobile_items-number">1.4.4.</span> <span class="toc_mobile_items-text">结论：为什么这个过程被称为卷积</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#🤔-想要更进一步？-1"><span class="toc_mobile_items-number">1.4.5.</span> <span class="toc_mobile_items-text">🤔 想要更进一步？</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-2"><span class="toc_mobile_items-number">1.5.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-2"><span class="toc_mobile_items-number">1.6.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#💡-核心直觉：从“模糊刷”到“精细笔”"><span class="toc_mobile_items-number">1.6.1.</span> <span class="toc_mobile_items-text">💡 核心直觉：从“模糊刷”到“精细笔”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#高确定性-vs-低确定性移动的并排比较"><span class="toc_mobile_items-number">1.6.2.</span> <span class="toc_mobile_items-text">高确定性 vs. 低确定性移动的并排比较</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#数值推理：让我们亲手算一遍"><span class="toc_mobile_items-number">1.6.3.</span> <span class="toc_mobile_items-text">数值推理：让我们亲手算一遍</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#案例1：高确定性移动-卷积核-g-high-0-05-0-9-0-05"><span class="toc_mobile_items-number">1.6.3.1.</span> <span class="toc_mobile_items-text">案例1：高确定性移动 (卷积核 g_high &#x3D; [0.05, 0.9, 0.05])</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#案例2：低确定性移动-卷积核-g-low-0-1-0-8-0-1"><span class="toc_mobile_items-number">1.6.3.2.</span> <span class="toc_mobile_items-text">案例2：低确定性移动 (卷积核 g_low &#x3D; [0.1, 0.8, 0.1])</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#⚠️-极端情况：100-确定的移动"><span class="toc_mobile_items-number">1.6.3.3.</span> <span class="toc_mobile_items-text">⚠️ 极端情况：100%确定的移动</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#结论与引申"><span class="toc_mobile_items-number">1.6.4.</span> <span class="toc_mobile_items-text">结论与引申</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#🤔-想要更进一步？-2"><span class="toc_mobile_items-number">1.6.5.</span> <span class="toc_mobile_items-text">🤔 想要更进一步？</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Localization-卷积：效应如何蔓延"><span class="toc-number">1.</span> <span class="toc-text">Localization 卷积：效应如何蔓延</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User"><span class="toc-number">1.1.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant"><span class="toc-number">1.2.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#💡-核心情景：一个“效应”如何在系统中“蔓延”"><span class="toc-number">1.2.1.</span> <span class="toc-text">💡 核心情景：一个“效应”如何在系统中“蔓延”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核心概念的并排比较"><span class="toc-number">1.2.2.</span> <span class="toc-text">核心概念的并排比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卷积的三个核心步骤（以离散信号为例）"><span class="toc-number">1.2.3.</span> <span class="toc-text">卷积的三个核心步骤（以离散信号为例）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第1步：翻转-Flip-↩️"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">第1步：翻转 (Flip) ↩️</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第2步：平移-Shift-➡️"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">第2步：平移 (Shift) ➡️</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第3步：乘积求和-Multiply-And-Sum-➕✖️"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">第3步：乘积求和 (Multiply And Sum) ➕✖️</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一个简单的数值示例"><span class="toc-number">1.2.4.</span> <span class="toc-text">一个简单的数值示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数学公式的联系"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">数学公式的联系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#真实世界的强大应用"><span class="toc-number">1.2.5.</span> <span class="toc-text">真实世界的强大应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-📷-图像处理：模糊、锐化、边缘检测"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">1. 📷 图像处理：模糊、锐化、边缘检测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-🎤-音频处理：混响与回声"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">2. 🎤 音频处理：混响与回声</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-🧠-深度学习：卷积神经网络-CNN"><span class="toc-number">1.2.5.3.</span> <span class="toc-text">3. 🧠 深度学习：卷积神经网络 (CNN)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结论与建议"><span class="toc-number">1.2.6.</span> <span class="toc-text">结论与建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🤔-想要更进一步？"><span class="toc-number">1.2.7.</span> <span class="toc-text">🤔 想要更进一步？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-1"><span class="toc-number">1.3.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-1"><span class="toc-number">1.4.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#💡-核心情景：机器人在移动，但它的动作“不完美”"><span class="toc-number">1.4.1.</span> <span class="toc-text">💡 核心情景：机器人在移动，但它的动作“不完美”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将机器人定位问题与卷积概念进行并排比较"><span class="toc-number">1.4.2.</span> <span class="toc-text">将机器人定位问题与卷积概念进行并排比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数值推理：全概率定理-Theorem-Of-Total-Probability"><span class="toc-number">1.4.3.</span> <span class="toc-text">数值推理：全概率定理 (Theorem Of Total Probability)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结论：为什么这个过程被称为卷积"><span class="toc-number">1.4.4.</span> <span class="toc-text">结论：为什么这个过程被称为卷积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🤔-想要更进一步？-1"><span class="toc-number">1.4.5.</span> <span class="toc-text">🤔 想要更进一步？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-2"><span class="toc-number">1.5.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-2"><span class="toc-number">1.6.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#💡-核心直觉：从“模糊刷”到“精细笔”"><span class="toc-number">1.6.1.</span> <span class="toc-text">💡 核心直觉：从“模糊刷”到“精细笔”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高确定性-vs-低确定性移动的并排比较"><span class="toc-number">1.6.2.</span> <span class="toc-text">高确定性 vs. 低确定性移动的并排比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数值推理：让我们亲手算一遍"><span class="toc-number">1.6.3.</span> <span class="toc-text">数值推理：让我们亲手算一遍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#案例1：高确定性移动-卷积核-g-high-0-05-0-9-0-05"><span class="toc-number">1.6.3.1.</span> <span class="toc-text">案例1：高确定性移动 (卷积核 g_high &#x3D; [0.05, 0.9, 0.05])</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#案例2：低确定性移动-卷积核-g-low-0-1-0-8-0-1"><span class="toc-number">1.6.3.2.</span> <span class="toc-text">案例2：低确定性移动 (卷积核 g_low &#x3D; [0.1, 0.8, 0.1])</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#⚠️-极端情况：100-确定的移动"><span class="toc-number">1.6.3.3.</span> <span class="toc-text">⚠️ 极端情况：100%确定的移动</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结论与引申"><span class="toc-number">1.6.4.</span> <span class="toc-text">结论与引申</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🤔-想要更进一步？-2"><span class="toc-number">1.6.5.</span> <span class="toc-text">🤔 想要更进一步？</span></a></li></ol></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">localization 卷积理解</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2025-08-24<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2026-01-24</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/">20-areas</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/">courses</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/omscs/">omscs</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/omscs/cs7638-ai-robotics/">cs7638-ai-robotics</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2025/08/24/20-areas/courses/omscs/cs7638-ai-robotics/localization%20%E5%8D%B7%E7%A7%AF%E7%90%86%E8%A7%A3/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2025/08/24/20-areas/courses/omscs/cs7638-ai-robotics/localization%20%E5%8D%B7%E7%A7%AF%E7%90%86%E8%A7%A3/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="Localization-卷积：效应如何蔓延"><a href="#Localization-卷积：效应如何蔓延" class="headerlink" title="Localization 卷积：效应如何蔓延"></a>Localization 卷积：效应如何蔓延</h1><ul>
+<li>[ ] # 卷积：效应如何蔓延</li>
+</ul>
+<h2 id="🧑‍💻-User"><a href="#🧑‍💻-User" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>怎么形象地理解convolution</p>
+<hr>
+<h2 id="🤖-Assistant"><a href="#🤖-Assistant" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>你好！问得非常好。卷积（Convolution）绝对是数学和工程领域里最强大的工具之一，但它的数学定义（一个带积分或求和的复杂公式）确实会让很多人望而生畏。</p>
+<p>别担心，我们可以完全抛开复杂的数学，从一个非常形象的直觉开始，然后一步步带你深入理解它的核心思想、应用和背后的原理。</p>
+<hr>
+<h3 id="💡-核心情景：一个“效应”如何在系统中“蔓延”"><a href="#💡-核心情景：一个“效应”如何在系统中“蔓延”" class="headerlink" title="💡 核心情景：一个“效应”如何在系统中“蔓延”"></a>💡 核心情景：一个“效应”如何在系统中“蔓延”</h3><p>想象一下，你正在一条很长的面包上涂抹果酱。</p>
+<ul>
+<li><strong>你的面包</strong>：这就是<strong>输入信号 (Input Signal)</strong>，它本身有自己的特点（比如哪里厚哪里薄）。</li>
+<li><strong>你的果酱刷</strong>：这就是<strong>核 (Kernel) 或滤波器 (Filter)</strong>，它决定了你涂抹果酱的方式（比如刷子是宽是窄，中间的毛多还是两边的毛多）。</li>
+<li><strong>涂完果酱的面包</strong>：这就是<strong>输出信号 (Output Signal)</strong>，是果酱刷（核）在面包（输入）上操作后的最终结果。</li>
+</ul>
+<p><strong>卷积的过程，就是拿着你的“果酱刷”（核），从面包的一头“刷”到另一头。</strong></p>
+<p>在任何一个点，最终涂上的果酱量，都不仅仅取决于面包上这一个点的状态，而是<strong>受到了“果酱刷”覆盖范围内所有点</strong>的共同影响。刷子中间的毛对这个点的影响最大，两边的毛影响稍小。</p>
+<p>✅ <strong>一句话总结卷积的直觉：</strong> 卷积描述了一个“局部效应”（由核定义）如何在一个信号的每个位置上，通过<strong>加权叠加</strong>的方式，产生最终的输出信号。它本质上是一种<strong>信息混合</strong>或<strong>特征提取</strong>的过程。</p>
+<hr>
+<h3 id="核心概念的并排比较"><a href="#核心概念的并排比较" class="headerlink" title="核心概念的并排比较"></a>核心概念的并排比较</h3><p>为了更清晰地理解，我们把这些概念放在一个表格里，看看它们在不同领域里的“化身”。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">概念 (Concept)</th>
+<th style="text-align:left">角色 (Role)</th>
+<th style="text-align:left">生活中的类比 (Analogy)</th>
+<th style="text-align:left">在不同领域的体现 (Examples)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>输入信号 (f)</strong></td>
+<td style="text-align:left">原始数据、待处理的对象</td>
+<td style="text-align:left">一张白纸、一段原始录音、一块生面团</td>
+<td style="text-align:left">📷 一张待处理的图片<br>🎤 一段有噪音的音频<br>📈 一组股价数据</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>核 / 滤波器 (g)</strong></td>
+<td style="text-align:left"><strong>效应</strong>的定义者、特征提取器、系统的“响应模式”</td>
+<td style="text-align:left">一个特殊图案的印章、一个调味包、一个面团模具</td>
+<td style="text-align:left">📷 <strong>模糊核</strong> (让每个像素和周围像素取平均)<br>🎤 <strong>回声/混响效果</strong> (把声音延迟并叠加)<br>📈 <strong>移动平均窗口</strong> (计算最近N天的平均值)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>输出信号 (f * g)</strong></td>
+<td style="text-align:left">处理后的结果、混合了效应的数据</td>
+<td style="text-align:left">盖满印章的纸、一锅调好味的汤、成型的饼干</td>
+<td style="text-align:left">📷 一张模糊的图片<br>🎤 一段带有混响的音乐<br>📈 一条平滑的股价曲线</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="卷积的三个核心步骤（以离散信号为例）"><a href="#卷积的三个核心步骤（以离散信号为例）" class="headerlink" title="卷积的三个核心步骤（以离散信号为例）"></a>卷积的三个核心步骤（以离散信号为例）</h3><p>现在，我们把“刷果酱”的过程，拆解成三个数学上可以执行的动作。假设我们有两个简单的序列：</p>
+<ul>
+<li>输入信号 <code>f = [1, 2, 3, 4, 5]</code></li>
+<li>核 <code>g = [0.5, 1]</code></li>
+</ul>
+<p>我们要计算 <code>f</code> 和 <code>g</code> 的卷积，记为 <code>h = f * g</code>。</p>
+<h4 id="第1步：翻转-Flip-↩️"><a href="#第1步：翻转-Flip-↩️" class="headerlink" title="第1步：翻转 (Flip) ↩️"></a>第1步：翻转 (Flip) ↩️</h4><p>这是最反直觉但至关重要的一步。我们把核 <code>g</code> 的顺序颠倒过来。</p>
+<ul>
+<li><code>g = [0.5, 1]</code> 变成了 <code>g_flipped = [1, 0.5]</code>。</li>
+</ul>
+<p><strong>💡 为什么需要翻转？</strong><br>这纯粹是为了数学表达上的方便。想象一下，当“果酱刷”移动到面包的某个点 <code>t</code> 时，刷子“过去”的部分（<code>t-τ</code>）影响着当前的点。在数学上，<code>g(t-τ)</code> 这个表达式天然就包含了翻转。现在你只需要记住这个操作，它的意义在于<strong>让核的“过去”对准信号的“现在”</strong>。</p>
+<h4 id="第2步：平移-Shift-➡️"><a href="#第2步：平移-Shift-➡️" class="headerlink" title="第2步：平移 (Shift) ➡️"></a>第2步：平移 (Shift) ➡️</h4><p>把翻转后的核 <code>g_flipped</code> 像一个滑动窗口一样，从输入信号 <code>f</code> 的最左边开始，一步一步向右移动。</p>
+<h4 id="第3步：乘积求和-Multiply-And-Sum-➕✖️"><a href="#第3步：乘积求和-Multiply-And-Sum-➕✖️" class="headerlink" title="第3步：乘积求和 (Multiply And Sum) ➕✖️"></a>第3步：乘积求和 (Multiply And Sum) ➕✖️</h4><p>在每一个平移的位置，将核与它所覆盖的输入信号的相应元素相乘，然后把所有乘积加起来，得到输出信号在该位置的值。</p>
+<hr>
+<h3 id="一个简单的数值示例"><a href="#一个简单的数值示例" class="headerlink" title="一个简单的数值示例"></a>一个简单的数值示例</h3><p>让我们用上面的 <code>f</code> 和 <code>g_flipped</code> 来实际计算一下。</p>
+<p><strong>位置 1:</strong><br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f:   [1, 2, 3, 4, 5]</span><br><span class="line">g_f: [1, 0.5]</span><br></pre></td></tr></table></figure></div><br><code>h[^0] = 1 * 0.5 = 0.5</code> (假设信号左边都是0，只有 <code>g_f</code> 的 <code>0.5</code> 与 <code>f</code> 的 <code>1</code> 重叠)</p>
+<p><strong>位置 2:</strong><br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f:   [1, 2, 3, 4, 5]</span><br><span class="line">g_f:   [1, 0.5]</span><br></pre></td></tr></table></figure></div><br><code>h[^1] = (1 * 1) + (2 * 0.5) = 1 + 1 = 2</code></p>
+<p><strong>位置 3:</strong><br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f:   [1, 2, 3, 4, 5]</span><br><span class="line">g_f:     [1, 0.5]</span><br></pre></td></tr></table></figure></div><br><code>h[^2] = (2 * 1) + (3 * 0.5) = 2 + 1.5 = 3.5</code></p>
+<p><strong>位置 4:</strong><br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f:   [1, 2, 3, 4, 5]</span><br><span class="line">g_f:       [1, 0.5]</span><br></pre></td></tr></table></figure></div><br><code>h[^3] = (3 * 1) + (4 * 0.5) = 3 + 2 = 5</code></p>
+<p>…以此类推。</p>
+<p>最终的输出信号 <code>h</code> 就是 <code>[0.5, 2, 3.5, 5, 6.5, ...]</code>。你会发现，输出信号的每个点都是其<strong>邻近输入点的加权平均</strong>，而这个“权重”就是由核 <code>g</code> 定义的。在这个例子里，核 <code>g=[0.5, 1]</code> 给予了当前点（权重1）比前一个点（权重0.5）更大的影响力，从而产生了一种平滑且略微滞后的效果。</p>
+<h4 id="数学公式的联系"><a href="#数学公式的联系" class="headerlink" title="数学公式的联系"></a>数学公式的联系</h4><p>现在再看数学公式，你就会豁然开朗：</p>
+<ul>
+<li><strong>离散卷积:</strong> $h[n] = (f * g)[n] = \sum_{k=-\infty}^{\infty} f[k] \cdot g[n-k]$<ul>
+<li><code>g[n-k]</code>：这里的 <code>-k</code> 体现了<strong>翻转</strong>，<code>n</code> 体现了<strong>平移</strong>。</li>
+<li><code>f[k] \cdot g[n-k]</code>：这就是<strong>乘积</strong>。</li>
+<li>$\sum$：这就是<strong>求和</strong>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="真实世界的强大应用"><a href="#真实世界的强大应用" class="headerlink" title="真实世界的强大应用"></a>真实世界的强大应用</h3><h4 id="1-📷-图像处理：模糊、锐化、边缘检测"><a href="#1-📷-图像处理：模糊、锐化、边缘检测" class="headerlink" title="1. 📷 图像处理：模糊、锐化、边缘检测"></a>1. 📷 图像处理：模糊、锐化、边缘检测</h4><p>在图像中，卷积是2D的。输入信号是一张图片的像素矩阵，核是一个小的权重矩阵（比如3x3）。</p>
+<ul>
+<li><p><strong>高斯模糊 (Gaussian Blur):</strong><br>核是一个中心值最大、向外衰减的矩阵。它让每个像素都变成其邻域像素的加权平均值，离得越近的像素权重越高。结果就是平滑过渡，实现模糊效果。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">模糊核 (Kernel)</span><br><span class="line">[[1, 2, 1],</span><br><span class="line">[2, 4, 2],</span><br><span class="line">[1, 2, 1]] * (1&#x2F;16) &lt;-- 这是一个典型的模糊核</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>边缘检测 (Edge Detection):</strong><br>核被设计成可以检测亮度急剧变化的地方。例如，一个索贝尔（Sobel）算子核，可以检测水平或垂直边缘。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">垂直边缘检测核</span><br><span class="line">[[-1, 0, 1],</span><br><span class="line">[-2, 0, 2],</span><br><span class="line">[-1, 0, 1]] &lt;-- 当它滑过一个垂直边缘时，乘积求和的结果会很大</span><br></pre></td></tr></table></figure></div>
+</li>
+</ul>
+<h4 id="2-🎤-音频处理：混响与回声"><a href="#2-🎤-音频处理：混响与回声" class="headerlink" title="2. 🎤 音频处理：混响与回声"></a>2. 🎤 音频处理：混响与回声</h4><ul>
+<li><strong>输入信号 <code>f</code></strong>: 一段干净的原始人声“Hello!”。</li>
+<li><strong>核 <code>g</code></strong>: 房间的<strong>脉冲响应 (Impulse Response)</strong>。你可以把它想象成，如果你在房间里拍一下手（一个脉冲），录下来的声音就是这个房间的“回声模式”，即核。它可能包含一个大的初始声音，和几个逐渐减弱的延迟回声。</li>
+<li><strong>输出信号 <code>h = f * g</code></strong>: 将人声和这个“回声模式”进行卷积，得到的就是带有混响效果的“Hello!”，听起来就像是在那个特定房间里说的一样。</li>
+</ul>
+<h4 id="3-🧠-深度学习：卷积神经网络-CNN"><a href="#3-🧠-深度学习：卷积神经网络-CNN" class="headerlink" title="3. 🧠 深度学习：卷积神经网络 (CNN)"></a>3. 🧠 深度学习：卷积神经网络 (CNN)</h4><p>在CNN中，卷积是核心。这里的“核”被称为<strong>滤波器 (Filter)</strong>，它的权重是通过学习得到的。CNN通过不同的滤波器自动学习提取图像的有用特征。</p>
+<ul>
+<li>浅层的滤波器可能学会检测简单的边缘、颜色块。</li>
+<li>深层的滤波器将浅层特征组合，学会检测更复杂的模式，如眼睛、鼻子，甚至是人脸或猫的形状。</li>
+</ul>
+<hr>
+<h3 id="结论与建议"><a href="#结论与建议" class="headerlink" title="结论与建议"></a>结论与建议</h3><p>✅ <strong>核心 takeaway:</strong><br>卷积不是一个孤立的数学运算，它是一种描述“系统响应”如何与“输入信号”相互作用的通用语言。它的本质是<strong>翻转、平移、加权求和</strong>，用于实现信号的平滑、锐化、特征提取或模拟某种效应的叠加。</p>
+<p>💡 <strong>把复杂变简单：</strong><br>下次看到“卷积”，不要去想那个积分公式。请直接在脑海里播放这个动画：<strong>一个定义了“局部影响模式”的小模板（核），在一个大的数据（信号）上滑过，每到一处，就计算一次加权平均，从而生成一个新的、被“改造”过的数据。</strong></p>
+<hr>
+<h3 id="🤔-想要更进一步？"><a href="#🤔-想要更进一步？" class="headerlink" title="🤔 想要更进一步？"></a>🤔 想要更进一步？</h3><p>理解了基本概念后，你可能会对以下问题感兴趣，我们可以继续深入探讨：</p>
+<ol>
+<li><strong>傅里叶变换与卷积定理</strong>：为什么说“时域的卷积等于频域的乘积”？这是一个极其强大的性质，极大地简化了卷积的计算。</li>
+<li><strong>反卷积 (Deconvolution)</strong>：既然卷积可以模糊图像，那么有没有办法“逆转”这个过程，让模糊的图像变清晰？</li>
+<li><strong>卷积神经网络 (CNN) 中的填充 (Padding) 和步长 (Stride) 是什么意思？</strong> 它们是如何影响输出尺寸的？</li>
+</ol>
+<p>请随时告诉我你对哪个方向更感兴趣，我很乐意为你提供更详细的解释！</p>
+<hr>
+<h2 id="🧑‍💻-User-1"><a href="#🧑‍💻-User-1" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>那这个pdf里4. Total Probability怎么理解？ 那个卷积是干嘛的</p>
+<hr>
+<h2 id="🤖-Assistant-1"><a href="#🤖-Assistant-1" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>当然！这是一个非常棒的后续问题，直接命中了机器人技术中一个极其核心且经典的应用。你提供的这份斯坦福大学的课程讲义，正是由无人驾驶领域的先驱 Sebastian Thrun 亲自讲解的，他用非常直观的方式解释了“定位 (Localization)”问题。</p>
+<p>这里的卷积，正是用来模拟一个<strong>带有不确定性的物理过程</strong>——也就是机器人的移动。</p>
+<p>让我为你一步步拆解。</p>
+<hr>
+<h3 id="💡-核心情景：机器人在移动，但它的动作“不完美”"><a href="#💡-核心情景：机器人在移动，但它的动作“不完美”" class="headerlink" title="💡 核心情景：机器人在移动，但它的动作“不完美”"></a>💡 核心情景：机器人在移动，但它的动作“不完美”</h3><p>想象一个机器人在一条长长的走廊里移动，这条走廊被分成了很多格子。</p>
+<ul>
+<li><p><strong>机器人的信念 (Belief)</strong>：机器人并不100%确定自己在哪个格子里。它对每个格子都有一个“确信度”，也就是概率。比如，它可能认为自己有80%的概率在第5格，10%在第4格，10%在第6格。这整个概率分布，就是讲义里画的那个有“驼峰”的曲线，我们称之为<strong>信念分布 (Belief Distribution)</strong>。</p>
+</li>
+<li><p><strong>机器人的动作 (Action)</strong>：机器人收到了一个指令：“向右移动2格”。</p>
+</li>
+<li><p><strong>动作的不确定性 (Motion Uncertainty)</strong>：这是最关键的一点！现实世界中的机器人是不完美的。轮子可能会打滑，地面可能不平。所以，当它尝试移动2格时，实际结果可能是：</p>
+<ul>
+<li>有80%的概率，它<strong>正好</strong>移动了2格。</li>
+<li>有10%的概率，它<strong>少移动了</strong>1格（只移动了1格）。</li>
+<li>有10%的概率，它<strong>多移动了</strong>1格（移动了3格）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>问题来了：</strong> 在移动<strong>之后</strong>，机器人新的信念分布应该是什么样的？</p>
+<p>✅ <strong>卷积在这里的作用：</strong> 卷积是一种数学工具，它精确地计算了在考虑到“动作不确定性”后，机器人<strong>移动前</strong>的旧信念分布是如何“演变”成<strong>移动后</strong>的新信念分布的。它将旧信念的每一个“可能性”都按照“动作的不确定性”给“播撒”出去，然后把所有播撒到同一个新位置的概率加起来。</p>
+<hr>
+<h3 id="将机器人定位问题与卷积概念进行并排比较"><a href="#将机器人定位问题与卷积概念进行并排比较" class="headerlink" title="将机器人定位问题与卷积概念进行并排比较"></a>将机器人定位问题与卷积概念进行并排比较</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">通用卷积概念</th>
+<th style="text-align:left">角色</th>
+<th style="text-align:left">机器人定位中的具体体现 (Localization Example)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>输入信号 (f)</strong></td>
+<td style="text-align:left">原始数据</td>
+<td style="text-align:left">🤖 <strong>移动前</strong>的机器人信念分布 (Prior Belief)。也就是那条代表“我在哪里”的概率曲线。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>核 / 滤波器 (g)</strong></td>
+<td style="text-align:left"><strong>效应</strong>的定义者</td>
+<td style="text-align:left">⚙️ <strong>机器人的移动模型 (Motion Model)</strong>。它描述了单次移动的<strong>不确定性</strong>。例如，<code>[0.1, 0.8, 0.1]</code> 这个概率列表就代表了“少走一格、正好、多走一格”的概率分布。<strong>这个移动模型就是卷积核！</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>输出信号 (f * g)</strong></td>
+<td style="text-align:left">处理后的结果</td>
+<td style="text-align:left">🗺️ <strong>移动后</strong>的机器人信念分布 (Posterior Belief)。这是一条新的、通常更“平坦”和“宽”的概率曲线，因为它混合了移动的不确定性。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="数值推理：全概率定理-Theorem-Of-Total-Probability"><a href="#数值推理：全概率定理-Theorem-Of-Total-Probability" class="headerlink" title="数值推理：全概率定理 (Theorem Of Total Probability)"></a>数值推理：全概率定理 (Theorem Of Total Probability)</h3><p>讲义中提到了“全概率定理”，这正是卷积在概率论中的理论基础。让我们用一个具体的例子来计算，你就会发现它和卷积的“乘积求和”步骤一模一样。</p>
+<p>假设移动前的信念分布 <code>P_prior</code> 如下 (为了简单，我们只关注几个格子)：<br><code>... [0, 0, 0.8, 0.2, 0, 0] ...</code><br>这意味着机器人认为自己有80%的概率在位置 <code>x=2</code>，20%的概率在位置 <code>x=3</code>。</p>
+<p>机器人的移动模型（<strong>卷积核</strong>）是：尝试向右移动1格，但有80%概率成功，10%概率不动，10%概率移动2格。</p>
+<p>现在我们来计算移动后，机器人在<strong>位置 <code>x=3</code></strong> 的新概率 <code>P_posterior[^3]</code> 是多少。</p>
+<p><strong>思考方式（全概率定理）：</strong> 机器人最终会到达 <code>x=3</code>，有多少种可能的方式？</p>
+<ol>
+<li><p><strong>它本来在 <code>x=2</code>，然后成功地向右移动了1格。</strong></p>
+<ul>
+<li>发生的概率 = (它本来在 <code>x=2</code> 的概率) × (移动1格的概率)</li>
+<li><code>P(来自x=2) = P_prior[^2] * P(移动1格) = 0.8 * 0.8 = 0.64</code></li>
+</ul>
+</li>
+<li><p><strong>它本来在 <code>x=3</code>，然后原地没动。</strong></p>
+<ul>
+<li>发生的概率 = (它本来在 <code>x=3</code> 的概率) × (移动0格的概率)</li>
+<li><code>P(来自x=3) = P_prior[^3] * P(移动0格) = 0.2 * 0.1 = 0.02</code></li>
+</ul>
+</li>
+<li><p><strong>它本来在 <code>x=1</code>，然后意外地移动了2格。</strong></p>
+<ul>
+<li>发生的概率 = (它本来在 <code>x=1</code> 的概率) × (移动2格的概率)</li>
+<li><code>P(来自x=1) = P_prior[^1] * P(移动2格) = 0 * 0.1 = 0</code></li>
+</ul>
+</li>
+</ol>
+<p>根据全概率定理，机器人移动后在 <code>x=3</code> 的总概率，是所有这些可能来源的概率之和：<br>$P<em>{posterior}<sup><a href="#fn_3" id="reffn_3">3</a></sup> = P(\text{来自}x=2) + P(\text{来自}x=3) + P(\text{来自}x=1) + …$<br>$P</em>{posterior}<sup><a href="#fn_3" id="reffn_3">3</a></sup> = 0.64 + 0.02 + 0 = 0.66$</p>
+<p><strong>⚠️ 这就是卷积！</strong></p>
+<p>你仔细看这个计算过程：为了得到输出 <code>P_posterior[^3]</code>，我们把输入 <code>P_prior</code> 的不同位置 <code>[...1, 2, 3...]</code> 与一个描述移动效应的<strong>核</strong>（这里是 <code>[P(移动2格), P(移动1格), P(移动0格)]</code>，即 <code>[0.1, 0.8, 0.1]</code>）进行了<strong>加权求和</strong>。</p>
+<p>这个过程会对每一个可能的新位置都计算一遍，最终得到一条全新的概率分布曲线。</p>
+<hr>
+<h3 id="结论：为什么这个过程被称为卷积"><a href="#结论：为什么这个过程被称为卷积" class="headerlink" title="结论：为什么这个过程被称为卷积"></a>结论：为什么这个过程被称为卷积</h3><p>✅ <strong>信念的“模糊化”</strong><br>如果机器人移动前的信念是一个尖锐的“高峰”（非常确定自己的位置），那么由于移动带有不确定性，这个高峰的概率会被“分散”给周围的位置。结果就是，移动后的信念分布曲线会变得更<strong>矮</strong>、更<strong>胖</strong>。这个过程在视觉上非常像图像处理中的“高斯模糊”，而模糊操作正是一个经典的卷积应用。在这里，<strong>移动的不确定性，起到了“模糊核”的作用</strong>。</p>
+<p>💡 <strong>一句话总结：</strong><br>在机器人定位的背景下，卷积是用来<strong>更新信念分布以反映带有不certainty的物理运动</strong>的数学方法。它通过全概率定理，将“移动前的信念”（输入信号）和“移动模型”（核）结合起来，计算出“移动后的信念”（输出信号）。</p>
+<hr>
+<h3 id="🤔-想要更进一步？-1"><a href="#🤔-想要更进一步？-1" class="headerlink" title="🤔 想要更进一步？"></a>🤔 想要更进一步？</h3><p>这份讲义完美地展示了概率机器人中的两大核心步骤：</p>
+<ol>
+<li><strong>预测 (Prediction) / 移动 (Move):</strong> 当机器人移动时，它的不确定性<strong>增加</strong>了。我们用<strong>卷积</strong>来计算这个过程。</li>
+<li><strong>更新 (Update) / 感知 (Sense):</strong> 当机器人通过传感器（比如摄像头看到一扇门）获得外界信息时，它的不确定性<strong>减少</strong>了。我们用<strong>贝叶斯法则 (Bayes’ Rule)</strong> 来计算这个过程（通常是逐点相乘然后归一化）。</li>
+</ol>
+<p>讲义中的<code>Sense</code>和<code>Move</code>循环，正是机器人进行持续定位的核心算法，被称为<strong>直方图滤波 (Histogram Filter)</strong> 或离散贝叶斯滤波 (Discrete Bayes Filter)。</p>
+<p>如果你感兴趣，我们可以继续探讨：</p>
+<ul>
+<li><strong>“感知 (Sense)”步骤中的贝叶斯法则是如何工作的？</strong> 它和卷积有什么不同？</li>
+<li><strong>为什么在讲义的最后，经过无数次移动后，概率分布会趋向于均匀分布？</strong> 这和信息论中的“熵”有什么关系？</li>
+<li><strong>如果地图是连续的（而不是离散的格子），我们该怎么办？</strong> (提示：这就引出了卡尔曼滤波器 Kalman Filter)。</li>
+</ul>
+<p>希望这个结合了具体例子的解释能让你对卷积在机器人领域的应用有一个透彻的理解！</p>
+<hr>
+<h2 id="🧑‍💻-User-2"><a href="#🧑‍💻-User-2" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>那如果移动的确定性高， 那么得到的belief probability distribution是不是会更突出peak？</p>
+<hr>
+<h2 id="🤖-Assistant-2"><a href="#🤖-Assistant-2" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>你说得完全正确！这是一个非常深刻的洞察，完全抓住了问题的核心。</p>
+<p><strong>是的，如果机器人移动的确定性非常高，那么经过移动更新后的信念分布（Belief Distribution）将会保持，甚至可以说“传递”一个更突出的峰值 (Peak)。</strong></p>
+<p>让我们从直觉、对比和数学三个层面来彻底理解这一点。</p>
+<hr>
+<h3 id="💡-核心直觉：从“模糊刷”到“精细笔”"><a href="#💡-核心直觉：从“模糊刷”到“精细笔”" class="headerlink" title="💡 核心直觉：从“模糊刷”到“精细笔”"></a>💡 核心直觉：从“模糊刷”到“精细笔”</h3><p>我们继续用之前的类比。之前我们说，不确定的移动就像用一个宽大的“模糊刷”来涂抹概率。</p>
+<ul>
+<li><strong>低确定性移动 (Low Certainty Motion)</strong>：就像用一把又宽又软的刷子。即使你只蘸了一点颜料（原始的信念峰值），刷下去之后，颜料会散布到一大片区域。峰值会变得矮胖。</li>
+<li><strong>高确定性移动 (High Certainty Motion)</strong>：这就像用一支<strong>非常细、笔尖很硬的笔</strong>来转移颜料。你从哪里蘸起颜料，就能几乎一模一样地把这个点印到新的位置。原来的峰值能被非常完好地“平移”过去，几乎不会扩散。</li>
+</ul>
+<p>✅ <strong>一句话总结：</strong> 移动的确定性越高，卷积核（移动模型）就越“尖锐”，它在“混合”信息时就越能保持原始信念分布的形状，从而让峰值更加突出。</p>
+<hr>
+<h3 id="高确定性-vs-低确定性移动的并排比较"><a href="#高确定性-vs-低确定性移动的并排比较" class="headerlink" title="高确定性 vs. 低确定性移动的并排比较"></a>高确定性 vs. 低确定性移动的并排比较</h3><p>为了让对比更鲜明，我们把两种情况放在一起看。假设机器人的指令都是“向右移动1格”。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特征 (Feature)</th>
+<th style="text-align:left">⚙️ 高确定性移动 (High Certainty)</th>
+<th style="text-align:left">🌪️ 低确定性移动 (Low Certainty)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>物理描述</strong></td>
+<td style="text-align:left">机器人动作精准，轮子从不打滑，每次移动的距离都几乎完全符合指令。</td>
+<td style="text-align:left">机器人动作粗糙，轮子经常打滑，实际移动距离与指令有明显偏差。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>移动模型 (卷积核)</strong></td>
+<td style="text-align:left">概率分布非常<strong>集中</strong>和<strong>尖锐</strong>。例如：<br><code>P(不动) = 0.05</code><br><code>P(移动1格) = 0.9</code><br><code>P(移动2格) = 0.05</code></td>
+<td style="text-align:left">概率分布非常<strong>分散</strong>和<strong>平坦</strong>。例如（讲义中的例子）：<br><code>P(不动) = 0.1</code><br><code>P(移动1格) = 0.8</code><br><code>P(移动2格) = 0.1</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>卷积效应</strong></td>
+<td style="text-align:left">像一个<strong>“锐化”滤波器</strong>。它主要将原始概率值乘以一个大数（0.9），只有很少一部分概率“泄露”到邻近位置。</td>
+<td style="text-align:left">像一个<strong>“模糊”滤波器</strong>。它将原始概率乘以一个相对较小的数（0.8），有相当一部分概率（总共20%）被分散到邻近位置。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>对信念峰值的影响</strong></td>
+<td style="text-align:left"><strong>保持峰值</strong>。如果移动前有一个很高的峰值，移动后这个峰值会被平移，并且高度只会略微降低。</td>
+<td style="text-align:left"><strong>削平峰值</strong>。移动后，峰值的高度会明显降低，而其两侧的概率会显著升高，导致分布曲线变得更“平坦”。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>信息论角度</strong></td>
+<td style="text-align:left"><strong>信息损失小</strong>。因为不确定性引入得少，机器人对自己位置的“信息”保留得更多。</td>
+<td style="text-align:left"><strong>信息损失大</strong>。引入了大量的不确定性，机器人对自己位置的“信息”变得更模糊，熵（Entropy）增加得更多。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="数值推理：让我们亲手算一遍"><a href="#数值推理：让我们亲手算一遍" class="headerlink" title="数值推理：让我们亲手算一遍"></a>数值推理：让我们亲手算一遍</h3><p>假设机器人<strong>移动前</strong>的信念分布 <code>P_prior</code> 是它100%确定自己在位置 <code>x=2</code>：<br><code>P_prior = [0, 0, 1, 0, 0]</code></p>
+<p>现在我们用上面表格里的两种移动模型（卷积核）来计算移动后的新信念 <code>P_posterior</code>。</p>
+<h4 id="案例1：高确定性移动-卷积核-g-high-0-05-0-9-0-05"><a href="#案例1：高确定性移动-卷积核-g-high-0-05-0-9-0-05" class="headerlink" title="案例1：高确定性移动 (卷积核 g_high = [0.05, 0.9, 0.05])"></a>案例1：高确定性移动 (卷积核 g_high = [0.05, 0.9, 0.05])</h4><p>我们要计算移动后各个位置的概率。我们只计算峰值附近的位置 <code>x=3</code> 和 <code>x=4</code>。</p>
+<ul>
+<li><p><strong>计算 P_posterior<sup><a href="#fn_3" id="reffn_3">3</a></sup> (新峰值位置):</strong><br>机器人要想到达 <code>x=3</code>，唯一的可能是它从 <code>x=2</code> 移动了1格。<br>$P<em>{posterior}<sup><a href="#fn_3" id="reffn_3">3</a></sup> = P</em>{prior}<sup><a href="#fn_2" id="reffn_2">2</a></sup> \times P(\text{移动1格}) = 1 \times 0.9 = 0.9$</p>
+</li>
+<li><p><strong>计算 P_posterior<sup><a href="#fn_2" id="reffn_2">2</a></sup> (新峰值左侧):</strong><br>机器人要想到达 <code>x=2</code>，唯一的可能是它从 <code>x=2</code> 并且原地不动。<br>$P<em>{posterior}<sup><a href="#fn_2" id="reffn_2">2</a></sup> = P</em>{prior}<sup><a href="#fn_2" id="reffn_2">2</a></sup> \times P(\text{不动}) = 1 \times 0.05 = 0.05$</p>
+</li>
+<li><p><strong>计算 P_posterior<sup><a href="#fn_4" id="reffn_4">4</a></sup> (新峰值右侧):</strong><br>机器人要想到达 <code>x=4</code>，唯一的可能是它从 <code>x=2</code> 并且移动了2格。<br>$P<em>{posterior}<sup><a href="#fn_4" id="reffn_4">4</a></sup> = P</em>{prior}<sup><a href="#fn_2" id="reffn_2">2</a></sup> \times P(\text{移动2格}) = 1 \times 0.05 = 0.05$</p>
+</li>
+</ul>
+<p>➡️ <strong>结果 (高确定性):</strong> <code>P_posterior_high = [0, 0.05, 0.9, 0.05, 0]</code><br>新的信念分布有一个<strong>非常尖锐的峰值在0.9</strong>。</p>
+<h4 id="案例2：低确定性移动-卷积核-g-low-0-1-0-8-0-1"><a href="#案例2：低确定性移动-卷积核-g-low-0-1-0-8-0-1" class="headerlink" title="案例2：低确定性移动 (卷积核 g_low = [0.1, 0.8, 0.1])"></a>案例2：低确定性移动 (卷积核 g_low = [0.1, 0.8, 0.1])</h4><p>用同样的方法计算：</p>
+<ul>
+<li><p><strong>计算 P_posterior:<sup><a href="#fn_3" id="reffn_3">3</a></sup></strong><br>$P<em>{posterior}<sup><a href="#fn_3" id="reffn_3">3</a></sup> = P</em>{prior}<sup><a href="#fn_2" id="reffn_2">2</a></sup> \times P(\text{移动1格}) = 1 \times 0.8 = 0.8$</p>
+</li>
+<li><p><strong>计算 P_posterior:<sup><a href="#fn_2" id="reffn_2">2</a></sup></strong><br>$P<em>{posterior}<sup><a href="#fn_2" id="reffn_2">2</a></sup> = P</em>{prior}<sup><a href="#fn_2" id="reffn_2">2</a></sup> \times P(\text{不动}) = 1 \times 0.1 = 0.1$</p>
+</li>
+<li><p><strong>计算 P_posterior:<sup><a href="#fn_4" id="reffn_4">4</a></sup></strong><br>$P<em>{posterior}<sup><a href="#fn_4" id="reffn_4">4</a></sup> = P</em>{prior}<sup><a href="#fn_2" id="reffn_2">2</a></sup> \times P(\text{移动2格}) = 1 \times 0.1 = 0.1$</p>
+</li>
+</ul>
+<p>➡️ <strong>结果 (低确定性):</strong> <code>P_posterior_low = [0, 0.1, 0.8, 0.1, 0]</code><br>新的信念分布有一个<strong>相对较矮的峰值在0.8</strong>，并且两侧的概率更高。</p>
+<h4 id="⚠️-极端情况：100-确定的移动"><a href="#⚠️-极端情况：100-确定的移动" class="headerlink" title="⚠️ 极端情况：100%确定的移动"></a>⚠️ 极端情况：100%确定的移动</h4><p>如果移动是<strong>绝对精确</strong>的，那么移动模型（卷积核）就是：<br><code>g_perfect = [0, 1, 0]</code> (即100%概率移动1格)<br>在这种情况下，卷积操作就退化成了一个简单的<strong>平移 (Shift)</strong> 操作。<br><code>P_posterior_perfect = [0, 0, 0, 1, 0]</code><br>原始的信念分布被<strong>完美地、无损地</strong>平移到了新的位置，峰值高度完全不变。</p>
+<hr>
+<h3 id="结论与引申"><a href="#结论与引申" class="headerlink" title="结论与引申"></a>结论与引申</h3><p>✅ <strong>你的直觉是完全正确的。</strong> 移动模型的确定性（即卷积核的“尖锐”程度）直接决定了信念分布在移动更新后峰值的保持程度。</p>
+<ul>
+<li><strong>高确定性</strong> ⇒ <strong>尖锐的卷积核</strong> ⇒ <strong>小的概率扩散</strong> ⇒ <strong>更突出的峰值</strong></li>
+<li><strong>低确定性</strong> ⇒ <strong>平坦的卷积核</strong> ⇒ <strong>大的概率扩散</strong> ⇒ <strong>更平缓的峰值</strong></li>
+</ul>
+<p>这个概念对于理解机器人定位至关重要。机器人在<code>Move</code>（移动）阶段，由于现实世界的不完美，总是在<strong>损失信息</strong>（增加熵，削平峰值）。而它必须依靠<code>Sense</code>（感知）阶段，通过传感器数据来<strong>获取信息</strong>（降低熵，重新锐化峰值）。正是在这一“失”一“得”的循环中，机器人才能维持对自己位置的准确估计。</p>
+<h3 id="🤔-想要更进一步？-2"><a href="#🤔-想要更进一步？-2" class="headerlink" title="🤔 想要更进一步？"></a>🤔 想要更进一步？</h3><p>基于这个理解，一个自然而然的问题是：</p>
+<ul>
+<li>我们刚刚看到 <code>Move</code> 步骤是如何让信念分布变得更“平”的。那么，<code>Sense</code> 步骤（比如机器人看到了红色的门）又是如何通过数学运算，让一个平坦的分布重新产生一个<strong>尖锐的峰值</strong>的呢？</li>
+</ul>
+<p>如果你对这个“逆过程”感兴趣，我们可以深入探讨贝叶斯更新是如何实现这一点的！</p>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ai/">ai    </a><a class="post-meta__tags" href="/tags/knowledge/">knowledge    </a><a class="post-meta__tags" href="/tags/learning/">learning    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2025/08/24/20-areas/courses/omscs/cs7638-ai-robotics/localization%20multiple%20measurement/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>localization multiple measurement</span></div></a></div><div class="next-post pull_right"><a href="/2025/08/21/20-areas/courses/omscs/cs7638-ai-robotics/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E4%B8%8E%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF%E8%AF%BE%E7%A8%8B%E8%A6%81%E7%82%B9%E6%80%BB%E7%BB%93/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>人工智能与机器人技术课程要点总结</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/knowledge/deepresearch/Gemini, OpenAI Deep Research Prompt Template/" title="Gemini, OpenAI Deep Research Prompt Template"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">Gemini, OpenAI Deep Research Prompt Template</div></div></a></div><div class="relatedPosts_item"><a href="/2025/09/13/20-areas/courses/omscs/cs7638-ai-robotics/a start admissible 含义/" title="a start admissible 含义"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-13</div><div class="relatedPosts_title">a start admissible 含义</div></div></a></div><div class="relatedPosts_item"><a href="/2025/09/07/20-areas/courses/omscs/cs7638-ai-robotics/卡曼滤波器调参/" title="卡曼滤波器调参"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-07</div><div class="relatedPosts_title">卡曼滤波器调参</div></div></a></div><div class="relatedPosts_item"><a href="/2025/09/07/20-areas/courses/omscs/cs7638-ai-robotics/滤波器选择与动态环境处理/" title="滤波器选择与动态环境处理"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-07</div><div class="relatedPosts_title">滤波器选择与动态环境处理</div></div></a></div><div class="relatedPosts_item"><a href="/2025/08/25/20-areas/courses/omscs/cs7638-ai-robotics/理解全概率定理/" title="理解全概率定理"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-08-25</div><div class="relatedPosts_title">理解全概率定理</div></div></a></div><div class="relatedPosts_item"><a href="/2025/08/25/20-areas/courses/omscs/cs7638-ai-robotics/贝叶斯定理详解/" title="贝叶斯定理详解"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-08-25</div><div class="relatedPosts_title">贝叶斯定理详解</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'xvMxbws16Erd8WUfqxkvHmb5-gzGzoHsz',
+  appKey:'4U0Vo7NQIUL0eJzHdkPzdCDr',
+  placeholder:'不说话的人会疯掉吗?',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'en',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By supersheepbear</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="external nofollow noopener noreferrer"><span>Butterfly</span></a></div><div class="footer_custom_text">外向孤独者患者</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="255,240,245" opacity="0.7" zindex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="external nofollow noopener noreferrer" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>

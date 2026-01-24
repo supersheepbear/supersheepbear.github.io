@@ -1,0 +1,515 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>意识与量子现实的本质 | Bear's dream</title><meta name="description" content="意识与量子现实的本质"><meta name="keywords" content="knowledge,philosophy,psychology"><meta name="author" content="supersheepbear"><meta name="copyright" content="supersheepbear"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_1.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="p43hXBn3_dLvbyxUzx0eo5eYmj9OVYOV52pdrhBa2sw"><meta name="baidu-site-verification" content="EXLlfLv2pV"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="意识与量子现实的本质"><meta name="twitter:description" content="意识与量子现实的本质"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta property="og:type" content="article"><meta property="og:title" content="意识与量子现实的本质"><meta property="og:url" content="https://yxiong.org/2026/01/20/20-areas/thoughts/%E6%84%8F%E8%AF%86%E4%B8%8E%E9%87%8F%E5%AD%90%E7%8E%B0%E5%AE%9E%E7%9A%84%E6%9C%AC%E8%B4%A8/"><meta property="og:site_name" content="Bear's dream"><meta property="og:description" content="意识与量子现实的本质"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://yxiong.org/2026/01/20/20-areas/thoughts/%E6%84%8F%E8%AF%86%E4%B8%8E%E9%87%8F%E5%AD%90%E7%8E%B0%E5%AE%9E%E7%9A%84%E6%9C%AC%E8%B4%A8/"><link rel="prev" title="cs6200-p2-操作系统核心概念总结" href="https://yxiong.org/2026/01/20/10-projects/cs6200_intro_to_OS/cs6200-p2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/"><link rel="next" title="learncpp_16_vector" href="https://yxiong.org/2026/01/15/10-projects/learncpp/learncpp_16_vector/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">162</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">59</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">34</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#意识与量子现实的本质"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">意识与量子现实的本质</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#意识与现实的本质：当你开始审视意识时，诡异的事情发生了"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">意识与现实的本质：当你开始审视意识时，诡异的事情发生了</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#课程目录"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">课程目录</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第一部分：萨德勒体验与意识的引入"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">第一部分：萨德勒体验与意识的引入</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-1-什么是萨德勒（Sonder）"><span class="toc_mobile_items-number">2.2.1.</span> <span class="toc_mobile_items-text">1.1 什么是萨德勒（Sonder）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-2-存在的剧场隐喻（Theater-Of-Existence）"><span class="toc_mobile_items-number">2.2.2.</span> <span class="toc_mobile_items-text">1.2 存在的剧场隐喻（Theater Of Existence）</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第二部分：观察者效应与哲学基础"><span class="toc_mobile_items-number">2.3.</span> <span class="toc_mobile_items-text">第二部分：观察者效应与哲学基础</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-1-常识性的现实观（Common-Sense-View-of-Reality）"><span class="toc_mobile_items-number">2.3.1.</span> <span class="toc_mobile_items-text">2.1 常识性的现实观（Common Sense View of Reality）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-2-乔治·伯克利的主观唯心主义（Subjective-Idealism）"><span class="toc_mobile_items-number">2.3.2.</span> <span class="toc_mobile_items-text">2.2 乔治·伯克利的主观唯心主义（Subjective Idealism）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-3-唯心主义面临的挑战（Challenges-To-Idealism）"><span class="toc_mobile_items-number">2.3.3.</span> <span class="toc_mobile_items-text">2.3 唯心主义面临的挑战（Challenges To Idealism）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-4-伯克利的解决方案：上帝（God-As-the-Solution）"><span class="toc_mobile_items-number">2.3.4.</span> <span class="toc_mobile_items-text">2.4 伯克利的解决方案：上帝（God As the Solution）</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第三部分：量子力学中的实在论之争"><span class="toc_mobile_items-number">2.4.</span> <span class="toc_mobile_items-text">第三部分：量子力学中的实在论之争</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-1-实在论与反实在论的对立（Realism-Vs-Anti-Realism）"><span class="toc_mobile_items-number">2.4.1.</span> <span class="toc_mobile_items-text">3.1 实在论与反实在论的对立（Realism Vs. Anti-Realism）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#实在论（Realism）"><span class="toc_mobile_items-number">2.4.1.1.</span> <span class="toc_mobile_items-text">实在论（Realism）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#反实在论（Anti-Realism）"><span class="toc_mobile_items-number">2.4.1.2.</span> <span class="toc_mobile_items-text">反实在论（Anti-Realism）</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-2-双缝实验的启示（Double-Slit-Experiment）"><span class="toc_mobile_items-number">2.4.2.</span> <span class="toc_mobile_items-text">3.2 双缝实验的启示（Double-Slit Experiment）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-3-非局域性与量子纠缠（Non-locality-And-Quantum-Entanglement）"><span class="toc_mobile_items-number">2.4.3.</span> <span class="toc_mobile_items-text">3.3 非局域性与量子纠缠（Non-locality And Quantum Entanglement）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#克劳泽的实验（Clauser’s-Experiment）"><span class="toc_mobile_items-number">2.4.3.1.</span> <span class="toc_mobile_items-text">克劳泽的实验（Clauser’s Experiment）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#局域性原则（Principle-Of-Locality）"><span class="toc_mobile_items-number">2.4.3.2.</span> <span class="toc_mobile_items-text">局域性原则（Principle Of Locality）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#诺贝尔奖的认可"><span class="toc_mobile_items-number">2.4.3.3.</span> <span class="toc_mobile_items-text">诺贝尔奖的认可</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#实验结论的惊人发现"><span class="toc_mobile_items-number">2.4.3.4.</span> <span class="toc_mobile_items-text">实验结论的惊人发现</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第四部分：信息、意识与参与性宇宙"><span class="toc_mobile_items-number">2.5.</span> <span class="toc_mobile_items-text">第四部分：信息、意识与参与性宇宙</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-1-惠勒的”从比特中来”理论（It-From-Bit）"><span class="toc_mobile_items-number">2.5.1.</span> <span class="toc_mobile_items-text">4.1 惠勒的”从比特中来”理论（It From Bit）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#核心问题"><span class="toc_mobile_items-number">2.5.1.1.</span> <span class="toc_mobile_items-text">核心问题</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#信息作为答案"><span class="toc_mobile_items-number">2.5.1.2.</span> <span class="toc_mobile_items-text">信息作为答案</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#参与性宇宙（Participatory-Universe）"><span class="toc_mobile_items-number">2.5.1.3.</span> <span class="toc_mobile_items-text">参与性宇宙（Participatory Universe）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#惠勒延迟选择实验（Wheeler’s-Delayed-Choice-Experiment）"><span class="toc_mobile_items-number">2.5.1.4.</span> <span class="toc_mobile_items-text">惠勒延迟选择实验（Wheeler’s Delayed Choice Experiment）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#二十问游戏的隐喻"><span class="toc_mobile_items-number">2.5.1.5.</span> <span class="toc_mobile_items-text">二十问游戏的隐喻</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#“从比特中来”（It-From-Bit）"><span class="toc_mobile_items-number">2.5.1.6.</span> <span class="toc_mobile_items-text">“从比特中来”（It From Bit）</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-2-泛心论的观点（Panpsychism）"><span class="toc_mobile_items-number">2.5.2.</span> <span class="toc_mobile_items-text">4.2 泛心论的观点（Panpsychism）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#观察者问题的回归"><span class="toc_mobile_items-number">2.5.2.1.</span> <span class="toc_mobile_items-text">观察者问题的回归</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#重新定义”观察”"><span class="toc_mobile_items-number">2.5.2.2.</span> <span class="toc_mobile_items-text">重新定义”观察”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#泛心论（Panpsychism）"><span class="toc_mobile_items-number">2.5.2.3.</span> <span class="toc_mobile_items-text">泛心论（Panpsychism）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#泛心论的论证逻辑"><span class="toc_mobile_items-number">2.5.2.4.</span> <span class="toc_mobile_items-text">泛心论的论证逻辑</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-3-宇宙作为巨大的大脑（The-Universe-as-a-Giant-Brain）"><span class="toc_mobile_items-number">2.5.3.</span> <span class="toc_mobile_items-text">4.3 宇宙作为巨大的大脑（The Universe as a Giant Brain）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#意识作为现实的基本特征"><span class="toc_mobile_items-number">2.5.3.1.</span> <span class="toc_mobile_items-text">意识作为现实的基本特征</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#永恒的观察与信息处理"><span class="toc_mobile_items-number">2.5.3.2.</span> <span class="toc_mobile_items-text">永恒的观察与信息处理</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#这能解释什么？"><span class="toc_mobile_items-number">2.5.3.3.</span> <span class="toc_mobile_items-text">这能解释什么？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#镜子的隐喻"><span class="toc_mobile_items-number">2.5.3.4.</span> <span class="toc_mobile_items-text">镜子的隐喻</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第五部分：总结与哲学反思"><span class="toc_mobile_items-number">2.6.</span> <span class="toc_mobile_items-text">第五部分：总结与哲学反思</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-1-理论的局限性"><span class="toc_mobile_items-number">2.6.1.</span> <span class="toc_mobile_items-text">5.1 理论的局限性</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-2-认识论的谦逊"><span class="toc_mobile_items-number">2.6.2.</span> <span class="toc_mobile_items-text">5.2 认识论的谦逊</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-3-回到萨德勒：一切的统一"><span class="toc_mobile_items-number">2.6.3.</span> <span class="toc_mobile_items-text">5.3 回到萨德勒：一切的统一</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-4-主观与客观的统一"><span class="toc_mobile_items-number">2.6.4.</span> <span class="toc_mobile_items-text">5.4 主观与客观的统一</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#关键术语汇总表"><span class="toc_mobile_items-number">2.7.</span> <span class="toc_mobile_items-text">关键术语汇总表</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#意识与量子现实的本质"><span class="toc-number">1.</span> <span class="toc-text">意识与量子现实的本质</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User"><span class="toc-number">1.1.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant"><span class="toc-number">1.2.</span> <span class="toc-text">🤖 Assistant</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#意识与现实的本质：当你开始审视意识时，诡异的事情发生了"><span class="toc-number">2.</span> <span class="toc-text">意识与现实的本质：当你开始审视意识时，诡异的事情发生了</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目录"><span class="toc-number">2.1.</span> <span class="toc-text">课程目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一部分：萨德勒体验与意识的引入"><span class="toc-number">2.2.</span> <span class="toc-text">第一部分：萨德勒体验与意识的引入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-什么是萨德勒（Sonder）"><span class="toc-number">2.2.1.</span> <span class="toc-text">1.1 什么是萨德勒（Sonder）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-存在的剧场隐喻（Theater-Of-Existence）"><span class="toc-number">2.2.2.</span> <span class="toc-text">1.2 存在的剧场隐喻（Theater Of Existence）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二部分：观察者效应与哲学基础"><span class="toc-number">2.3.</span> <span class="toc-text">第二部分：观察者效应与哲学基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-常识性的现实观（Common-Sense-View-of-Reality）"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.1 常识性的现实观（Common Sense View of Reality）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-乔治·伯克利的主观唯心主义（Subjective-Idealism）"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.2 乔治·伯克利的主观唯心主义（Subjective Idealism）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-唯心主义面临的挑战（Challenges-To-Idealism）"><span class="toc-number">2.3.3.</span> <span class="toc-text">2.3 唯心主义面临的挑战（Challenges To Idealism）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-伯克利的解决方案：上帝（God-As-the-Solution）"><span class="toc-number">2.3.4.</span> <span class="toc-text">2.4 伯克利的解决方案：上帝（God As the Solution）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三部分：量子力学中的实在论之争"><span class="toc-number">2.4.</span> <span class="toc-text">第三部分：量子力学中的实在论之争</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-实在论与反实在论的对立（Realism-Vs-Anti-Realism）"><span class="toc-number">2.4.1.</span> <span class="toc-text">3.1 实在论与反实在论的对立（Realism Vs. Anti-Realism）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实在论（Realism）"><span class="toc-number">2.4.1.1.</span> <span class="toc-text">实在论（Realism）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#反实在论（Anti-Realism）"><span class="toc-number">2.4.1.2.</span> <span class="toc-text">反实在论（Anti-Realism）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-双缝实验的启示（Double-Slit-Experiment）"><span class="toc-number">2.4.2.</span> <span class="toc-text">3.2 双缝实验的启示（Double-Slit Experiment）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-非局域性与量子纠缠（Non-locality-And-Quantum-Entanglement）"><span class="toc-number">2.4.3.</span> <span class="toc-text">3.3 非局域性与量子纠缠（Non-locality And Quantum Entanglement）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#克劳泽的实验（Clauser’s-Experiment）"><span class="toc-number">2.4.3.1.</span> <span class="toc-text">克劳泽的实验（Clauser’s Experiment）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#局域性原则（Principle-Of-Locality）"><span class="toc-number">2.4.3.2.</span> <span class="toc-text">局域性原则（Principle Of Locality）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#诺贝尔奖的认可"><span class="toc-number">2.4.3.3.</span> <span class="toc-text">诺贝尔奖的认可</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验结论的惊人发现"><span class="toc-number">2.4.3.4.</span> <span class="toc-text">实验结论的惊人发现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四部分：信息、意识与参与性宇宙"><span class="toc-number">2.5.</span> <span class="toc-text">第四部分：信息、意识与参与性宇宙</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-惠勒的”从比特中来”理论（It-From-Bit）"><span class="toc-number">2.5.1.</span> <span class="toc-text">4.1 惠勒的”从比特中来”理论（It From Bit）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#核心问题"><span class="toc-number">2.5.1.1.</span> <span class="toc-text">核心问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#信息作为答案"><span class="toc-number">2.5.1.2.</span> <span class="toc-text">信息作为答案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参与性宇宙（Participatory-Universe）"><span class="toc-number">2.5.1.3.</span> <span class="toc-text">参与性宇宙（Participatory Universe）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#惠勒延迟选择实验（Wheeler’s-Delayed-Choice-Experiment）"><span class="toc-number">2.5.1.4.</span> <span class="toc-text">惠勒延迟选择实验（Wheeler’s Delayed Choice Experiment）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二十问游戏的隐喻"><span class="toc-number">2.5.1.5.</span> <span class="toc-text">二十问游戏的隐喻</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#“从比特中来”（It-From-Bit）"><span class="toc-number">2.5.1.6.</span> <span class="toc-text">“从比特中来”（It From Bit）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-泛心论的观点（Panpsychism）"><span class="toc-number">2.5.2.</span> <span class="toc-text">4.2 泛心论的观点（Panpsychism）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#观察者问题的回归"><span class="toc-number">2.5.2.1.</span> <span class="toc-text">观察者问题的回归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重新定义”观察”"><span class="toc-number">2.5.2.2.</span> <span class="toc-text">重新定义”观察”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#泛心论（Panpsychism）"><span class="toc-number">2.5.2.3.</span> <span class="toc-text">泛心论（Panpsychism）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#泛心论的论证逻辑"><span class="toc-number">2.5.2.4.</span> <span class="toc-text">泛心论的论证逻辑</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-宇宙作为巨大的大脑（The-Universe-as-a-Giant-Brain）"><span class="toc-number">2.5.3.</span> <span class="toc-text">4.3 宇宙作为巨大的大脑（The Universe as a Giant Brain）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#意识作为现实的基本特征"><span class="toc-number">2.5.3.1.</span> <span class="toc-text">意识作为现实的基本特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#永恒的观察与信息处理"><span class="toc-number">2.5.3.2.</span> <span class="toc-text">永恒的观察与信息处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#这能解释什么？"><span class="toc-number">2.5.3.3.</span> <span class="toc-text">这能解释什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#镜子的隐喻"><span class="toc-number">2.5.3.4.</span> <span class="toc-text">镜子的隐喻</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五部分：总结与哲学反思"><span class="toc-number">2.6.</span> <span class="toc-text">第五部分：总结与哲学反思</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-理论的局限性"><span class="toc-number">2.6.1.</span> <span class="toc-text">5.1 理论的局限性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-认识论的谦逊"><span class="toc-number">2.6.2.</span> <span class="toc-text">5.2 认识论的谦逊</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-回到萨德勒：一切的统一"><span class="toc-number">2.6.3.</span> <span class="toc-text">5.3 回到萨德勒：一切的统一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-主观与客观的统一"><span class="toc-number">2.6.4.</span> <span class="toc-text">5.4 主观与客观的统一</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关键术语汇总表"><span class="toc-number">2.7.</span> <span class="toc-text">关键术语汇总表</span></a></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">意识与量子现实的本质</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2026-01-20<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2026-01-24</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/">20-areas</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/thoughts/">thoughts</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2026/01/20/20-areas/thoughts/%E6%84%8F%E8%AF%86%E4%B8%8E%E9%87%8F%E5%AD%90%E7%8E%B0%E5%AE%9E%E7%9A%84%E6%9C%AC%E8%B4%A8/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2026/01/20/20-areas/thoughts/%E6%84%8F%E8%AF%86%E4%B8%8E%E9%87%8F%E5%AD%90%E7%8E%B0%E5%AE%9E%E7%9A%84%E6%9C%AC%E8%B4%A8/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="意识与量子现实的本质"><a href="#意识与量子现实的本质" class="headerlink" title="意识与量子现实的本质"></a>意识与量子现实的本质</h1><h2 id="🧑‍💻-User"><a href="#🧑‍💻-User" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>【中英+文稿】当你开始审视意识时，诡异的事情发生了<br><a href="https://www.bilibili.com/list/watchlater/?bvid=BV1tfj7z9Euj&amp;oid=114556223364845&amp;watchlater_cfg=%7B%22viewed%22%3A0,%22key%22%3A%22%22,%22asc%22%3Afalse%7D&amp;spm_id_from=333.881.0.0&amp;vd_source=be3cdcd75d88c33815c418be455cba45" target="_blank" rel="external nofollow noopener noreferrer">https://www.bilibili.com/list/watchlater/?bvid=BV1tfj7z9Euj&amp;oid=114556223364845&amp;watchlater_cfg=%7B%22viewed%22%3A0,%22key%22%3A%22%22,%22asc%22%3Afalse%7D&amp;spm_id_from=333.881.0.0&amp;vd_source=be3cdcd75d88c33815c418be455cba45</a><br>无限进化思维 2025-05-23 04:39:13</p>
+<p>这个视频由个人信息删除服务赞助 Incogni保护您的在线数据和个人信息，防止数据经纪人和搜索引擎获取 使用描述中的链接获取Cockney年度计划的60%折扣 我们都有过这样的经历 也许我们在街上走着 也许我们在公园的长椅上坐着 也许我们在家里看视频 突然，我们意识到，一个短暂的但清晰的瞬间，我们脱离了正常的感知 我们正常的焦点集中在似乎处于中心舞台的东西上 我们环顾四周，意识到没有人在看我们所看的东西 没有人看到我们看到的 其他人看的都是不同的东西 他们自己在剧院中的位置上观看的自己的节目 我们意识到根本就没有真正的中心舞台或节目 只有一个大观众群体 每个人在自己的区域中表演 为他们自己打上聚光灯 偶尔一些表演会相互碰撞 他们的聚光灯短暂重叠 这种认识有一个术语叫做萨德勒 被定义为突然意识到每个人都过着完全独特的生活 就像你自己的一样复杂 生动而真实 你身体或数字上经过的数百万人 你所见过的飞驰而过的车辆的模糊轮廓 你在排队等候时所等待的后背轮廓 你无意中看到的公寓窗户的灯光 这些在你生活中闪烁的每一个都属于一个深不可测的完整生活 就像你的过往车辆 模糊的轮廓和暗淡的窗户光线属于你的 这个世界散发出意识的光谱体验 没有中心性 数十亿人在每个瞬间体验</p>
+<p>在意识的奇怪且几乎超现实的领域 但这个领域是什么 每个生命 每个故事和每个观察所暗示的我们整体所经历的性质是什么 我们在存在的剧场中分享了什么 这个存在的剧场是什么 我们观看的表演有多真实 我们所讲述的故事 观察者效应 我们中的大多数人倾向于认为有一个真实的现实 它是固定不变的，不受观察和主观性的影响 尽管这听起来显而易见且直观 但有充分的理由质疑这一点，考虑现实的可能性 正如我们所定义的 它可能因我们的观察而有意义地改变 不仅仅是它看起来的样子 但现实本身 纵观历史以及现在 既有哲学家也有物理学家相信 在很大程度上现实与观察紧密相关，远超我们通常认为的 18世纪爱尔兰哲学家乔治·伯克利认为 观察不仅改变现实，而且创造现实 换句话说 现实并不存在独立于我们的意识之外 而是意识的结果 万物的本质不是物质 而是意识 但心理构建或思维中的想法 这种观点最终形成了一种形而上学哲学，即主观唯心主义 不过 当时贝克莱将其称为非物质主义 当然 这个论点似乎存在许多问题 认为现实完全由心理构建创造的想法似乎意味着 在没有有意识的存在的情况下 在某个地方，什么也不会发生 因为没有任何东西被创造 经典的树倒下，周围没有人听到，就不会发出声音 但是，根据这一理论，树似乎也无法倒下</p>
+<p>当然，看起来事情在世界上似乎会发生 无论有没有人或动物在场 一个空无一人的房间 无论有没有人或动物或植物，离开后再回来，都不会有明显的变化 一切似乎都如预期般继续 蜡烛在离开前点燃 例如 例如 假设没有风或变化 房间里的氧气水平将继续燃烧 蜡烛将继续融化 以人们预期的速度 那么观察 如何创造现实 如果事物在无人的情况下似乎不会停止发生 也许我们的大脑创造了连续性 但与其他大脑所需的协调量来看，这似乎对伯克利来说更不可能 答案是上帝 自从一切总是被上帝观察 事情总是到处发生 即使对我们中的一些人来说，没有直接的人类或动物在附近 这可能听起来像一个有趣的结论 但对于我们中许多人来说 这可能听起来我们在某个地方走错了方向 但如果这种无处不在的观察的想法指向一些深刻的东西 一个我们可以探索的地方，而不需要带上上帝 量子反实在论 量子力学是处理现实本质的物理学领域 在原子和亚原子水平上 像电子这样的粒子 光子 中子和等等 在1930年代左右 关于量子力学的现实性形成了两种对立的观点 第一种观点被称为实在论 由阿尔伯特·爱因斯坦等多人支持 实在论者认为宇宙是真实的，并且独立于观察和测量之外 实在论者认为宇宙是真实的，并且独立于观察和测量之外 物理世界一切</p>
+<p>包括量子层面的微小粒子都是确定性和固定的 如前所述，具有明确的属性 这是我们都倾向于直觉的 但问题是，量子力学似乎对这个观点构成了严重的威胁 另一种对立的观点被称为反实在论 由物理学家尼尔斯·玻尔和其他许多人提出 反实在论者认为粒子具有未定义的属性 在他们被观察或测量时，这些属性才会被定义 在这个理论中，现实 至少在量子层面上，直到被观察或测量时，它都不是在明确的固定意义上真实的 这已经在几个实验中展示出来 包括著名的双缝实验 在那里，一个否则作为波而没有明确状态的粒子 突然在通过缝被观察时以具有明确状态的粒子形式行动 没有现象被发送通过现象是一个现象，直到它是一个被观察的现象 美国物理学家约翰·阿奇博尔德·惠勒在1972年说非局域性 美国物理学家约翰·克劳泽进行了一项实验 他用从钙原子发出的光子进行实验 以探索它们相互之间相互作用的关联 在亚原子水平上 这种相互作用过程导致被称为纠缠粒子的现象，它们的量子状态相互关联 克劳塞的实验结论证明了一些极其怪异的事情 违反了所谓的局部性 在物理学中，局部性原则指的是一个物体只能由其直接环境直接影响 2022年，克劳塞 与安东 齐格勒和阿兰·阿斯佩一起获得了诺贝尔奖 他们的工作集体证明了量子现象中最令人困惑的方面之一</p>
+<p>量子纠缠 他们的工作表明，不仅被测量的粒子决定了其状态，而且测量一个粒子的行为也决定了其他粒子的状态。 这些粒子是纠缠的，即使它们被巨大的距离分开，潜在地相隔光年之遥。 即使据说信息不能以光速以上的速度传播，一个粒子状态的确定会瞬时地决定其他粒子的集体状态。 这些发现表明，局部性似乎不是现实的基本属性。 换句话说，宇宙不是局部真实的。 这些发现表明，局部性似乎不是现实的基本属性。 换句话说，宇宙不是局部真实的。 这些发现表明，局部性似乎不是现实的基本属性。 换句话说，宇宙不是局部真实的。 换句话说，宇宙不是局部真实的。 量子现象并不按照确定性固定的方式运作 反实在论者是对的，爱因斯坦是错的 宇宙中的所有事物似乎比人们想象的更为奇异且相互联系 我们可以用我们最傲慢的巫术来召唤 巫术来自比特 这一切相互联系的根源是什么 是什么导致粒子做某事或不做某事 是否有比物质和能量更为基础的东西 它能够连接物质世界和观察到的现实 一些人认为答案是信息 也许现实并不完全是精神层面的 就像贝克莱所想的那样 它也并不完全是确定的和独立的 就像爱因斯坦所想的那样 而是现实是由两者之间的相互作用创造的 换句话说 现实是通过物质和测量之间交换的信息形成的</p>
+<p>约翰·阿奇博尔德·惠勒提出了这个想法，他称之为参与宇宙 这个想法让一些人包括惠勒相信，现实本质上是信息处理 本质上与计算机或大脑的信息处理没有区别 因此，现实的基础本质上是二进制的信息比特 或者一系列是或否的答案 现实通过处理这些信息比特而成为现实 通过进行测量实验提出的是或否的问题 基于所谓的惠勒延迟选择实验 实际上难以置信地 但明确地证明了粒子的行为 不仅在进行测量时被定义 而且在选择何种类型的测量时被定义，换句话说 向现实提出的问题影响了它给出的答案 在这个现实中，似乎几乎像一个巨大的二十问游戏在运作 但它还没有为我们猜测选择一个对象 相反，通过提出某些是或否的问题 现实被定义来描述这个过程 惠勒创造了短语它来自比特 他写道它来自比特 象征着一个想法，即物理世界中的每一个项目在根本上 在最深层次上 在大多数情况下 一个非物质的来源和解释，我们称之为现实在最终分析中产生 从’是’的姿势 没有疑问和设备登记引发了反应 简而言之 所有物理事物都源于信息论 这是一个参与性宇宙 意识的本质与观察者中心的现实和物理学理论 我们似乎面临着巴克利的理想主义哲学所面临的同样问题 我们无法解释宇宙中事件连续性的观察者 落下的树木 燃烧的蜡烛 深空中旋转的尘埃</p>
+<p>是什么使得宇宙中的事件成为可能 当没有明显的测量在进行时 信息正在处理的地方 著名地 爱因斯坦曾经问过那些主张观察者中心的理论的人 你真的相信当你不看月亮时，月亮就不存在了吗 但如果我们对“看”的含义有误解呢 并且什么可以被视为测量或观察 有一种关于现实和意识的本质理论，它同样具有争议性。 正如众所周知的泛心论 泛心论声称，意识不是一个复杂生物系统的涌现现象 而是宇宙中的一个基本和普遍特征 从单个粒子到一切事物都具备某种意识的注解 一种心智质量 考虑一下我们人类如何获得我们的意识 它似乎通过我们大脑的物质和能量产生 但物质和能量如何产生主观的第一人经验 如果它本身不具备意识的成分 泛心论者通过论证物质确实具备意识的质量来解决这种二分法 当物质结合并变得更加复杂时，系统会变得更加有意识 但在复杂性的各个层面上 意识的质量是持续的 当它们看起来像人类思维时，事物似乎只对人类思维显现为有意识的 因为 也许人类思维在将自身的思维标准投射到世界上 一个巨大的大脑 如果意识是现实的一个基本特征 这会暗示信息是如何传播的 粒子是如何行动和相互作用的 现实如何通过观察展开和改变 在某种意义上 是否有可能总是有观察和信息处理 如果宇宙像一个巨大的大脑一样运作</p>
+<p>总是与自己交换和处理信息 谁能说宇宙不能思考，并且正在思考 这会解释观察的效果吗 量子事件的展开和明显的不确定的可塑性 以及纠缠的相互关联的粒子在遥远的距离 人类有一种习惯，就是从过程和方程中抽离自己 仿佛我们在观察宇宙 而我们是分开的 但我们当然不是 我们与宇宙紧密相连 或许在我们试图观察和定义宇宙的过程中 我们就像一面镜子 面对着另一面镜子 我们反射自己，感觉好像缺少了什么 而那缺失的或许就在我们心中 或者就是我们自身的一部分 我们中的一切就像大脑中的神经元 在大宇宙的大脑中 试图理解整个脑在做什么 当然，重要的是说明所有这些中的多少 几乎我们所提到的一切都是极其理论化和抽象的 一些想法比其他想法更抽象 当我们深入理论的深处 我们发现像泛心论这样的想法 和一个能思考的宇宙 当我们褪去大部分科学外衣，变成一种更神秘、哲学化的形式 实际上 我们还没有定义我们自己中的意识是什么或如何工作 因此将其应用于一切是一大步 同样 在宇宙不是局部真实的情况下，现实由观察和测量的选择定义 也许这只是我们对知识的限制 或者是我们感知和形成知识的能力 也许这些看似不一致的地方是可以克服的 也许不行 或者我们的现实像它看起来的那样奇怪和参与 最终，我们的思维方式很弱</p>
+<p>而宇宙的奥秘是无限沉重的 无论现实是什么或不是 我们几乎永远不会知道 但如果我们回到萨顿的经验 认识到每个人都在经历他们自己独特的生活 就像自己的一样生动和真实 生动和真实的含义变得难以捉摸，几乎令人毛骨悚然 在这个深深相互连接，也许观察者中心的现实中 我们所观察的事件和我们讲述的故事似乎被赋予了 一些宇宙基质，这影响了 或表明了我们无法理解的每一个个体 每一个大脑 每一棵树 每一片叶子 每一团泥土 每一块石头 每一颗行星 每一颗星星和每一个粒子 都参与了讲述一切的故事 每个主观现实的总和编织在一起 单一的客观现实 没有分离 它们都是一体的 我们的不确定性 我们的问题 我们的答案和我们的虚假信念是现实与真理相互作用的一部分 就像我们的想法塑造我们自己的生活一样 宇宙现实塑造我们的想法 然后也许只是也许，我们的想法反过来帮助塑造现实 无论宇宙是否在与自身交换信息，观察是一切的基础 一个领域 我们不希望我们的信息在被交换时被观察 是我们的个人信息和数据被恶意第三方在线获取 但事实是，这几乎是肯定的 被称为数据经纪人和搜索网站的公司一直在在线观察我们 并获取和出售我们的个人信息 这就是为什么这个视频赞助商incognia 个人信息删除服务在今天的世界是如此重要和强大的工具</p>
+<p>特别是在这些问题只会变得更糟的情况下，incognia 迅速而有效地阻止这些数据经纪人网站，并确保你的私人现实保持 你的私人现实 本质上，数据经纪人通过提取你在线购买或填写信息的方式获取你的个人信息，如你的名字 社会保障号 登录 凭据 家庭地址等等 然后他们将这些信息卖给第三方以获利 这可能导致无休止的垃圾邮件或更糟的身份盗窃 黑客 欺诈 跟踪或骚扰 法律上 这些公司必须在你请求时删除你的信息 但这将是一个全职工作来尝试这样做 这就是incogni发挥作用的地方 incogni为你做这一切 你所要做的就是完成一个简短的 容易的注册过程并提供一个快速的授权给incognito代表你工作 然后他们立即定位并联系这些数据经纪人和搜索网站 迅速而有效地删除你的信息 更好的是，incognia的年度订阅中 他们将继续自动跟进，确保你的信息被删除 你可以在incogni仪表板上跟踪进度 今天开始这个过程，点击描述中的链接 或去incogni.com/pursuitofwonder 你将获得incognia年度计划的60%折扣 当然 当然 当然 非常感谢您的观看，再见</p>
+<p>—- 由 vCaptions 生成 —-</p>
+<hr>
+<h2 id="🤖-Assistant"><a href="#🤖-Assistant" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><h1 id="意识与现实的本质：当你开始审视意识时，诡异的事情发生了"><a href="#意识与现实的本质：当你开始审视意识时，诡异的事情发生了" class="headerlink" title="意识与现实的本质：当你开始审视意识时，诡异的事情发生了"></a>意识与现实的本质：当你开始审视意识时，诡异的事情发生了</h1><h2 id="课程目录"><a href="#课程目录" class="headerlink" title="课程目录"></a>课程目录</h2><p>由于本文稿内容丰富，涉及哲学、量子物理学和意识科学等多个领域，我将分为以下几个部分进行讲解：</p>
+<p><strong>第一部分：萨德勒体验与意识的引入</strong></p>
+<ul>
+<li>1.1 什么是萨德勒（Sonder）</li>
+<li>1.2 存在的剧场隐喻</li>
+</ul>
+<p><strong>第二部分：观察者效应与哲学基础</strong></p>
+<ul>
+<li>2.1 常识性的现实观</li>
+<li>2.2 乔治·伯克利的主观唯心主义</li>
+<li>2.3 唯心主义面临的挑战</li>
+</ul>
+<p><strong>第三部分：量子力学中的实在论之争</strong></p>
+<ul>
+<li>3.1 实在论与反实在论的对立</li>
+<li>3.2 双缝实验的启示</li>
+<li>3.3 非局域性与量子纠缠</li>
+</ul>
+<p><strong>第四部分：信息、意识与参与性宇宙</strong></p>
+<ul>
+<li>4.1 惠勒的”从比特中来”理论</li>
+<li>4.2 泛心论的观点</li>
+<li>4.3 宇宙作为巨大的大脑</li>
+</ul>
+<p><strong>第五部分：总结与哲学反思</strong></p>
+<hr>
+<h2 id="第一部分：萨德勒体验与意识的引入"><a href="#第一部分：萨德勒体验与意识的引入" class="headerlink" title="第一部分：萨德勒体验与意识的引入"></a>第一部分：萨德勒体验与意识的引入</h2><h3 id="1-1-什么是萨德勒（Sonder）"><a href="#1-1-什么是萨德勒（Sonder）" class="headerlink" title="1.1 什么是萨德勒（Sonder）"></a>1.1 什么是萨德勒（Sonder）</h3><p>我们每个人都曾有过这样的经历：也许是在街上行走，也许是坐在公园的长椅上，也许是在家中观看视频——突然间，我们经历了一个短暂但异常清晰的瞬间。在这个瞬间里，我们仿佛脱离了正常的感知模式，从我们习惯性聚焦的”中心舞台”中抽离出来。</p>
+<p>当我们环顾四周时，一个深刻的认识涌上心头：<strong>没有人在看我们所看的东西，没有人看到我们所看到的景象</strong>。每个人都在观看着完全不同的东西——他们各自在自己的”剧院座位”上，观看着属于自己的”节目”。</p>
+<p>这种认识让我们意识到：<strong>根本就不存在真正的”中心舞台”或统一的”节目”</strong>。存在的只是一个庞大的观众群体，每个人都在自己的区域中表演，为自己打上聚光灯。偶尔，一些表演会相互碰撞，聚光灯短暂重叠。</p>
+<p><strong>这种体验有一个专门的术语，叫做”萨德勒”（Sonder）。</strong></p>
+<p><strong>萨德勒（Sonder）的定义</strong>：突然意识到每一个路人都过着与你一样复杂、生动、真实的独特生活。</p>
+<p>让我们具体理解这个概念的深度：</p>
+<ul>
+<li>你在身体上或数字世界中经过的<strong>数百万人</strong></li>
+<li>你见过的<strong>飞驰而过的车辆中模糊的轮廓</strong></li>
+<li>你在排队时看到的<strong>前面人的背影</strong></li>
+<li>你无意中瞥见的<strong>公寓窗户中的灯光</strong></li>
+</ul>
+<p>这些在你生活中一闪而过的每一个存在，都属于一个<strong>深不可测的完整生命</strong>。就像你自己的生活对于那些路过的车辆、模糊的轮廓和暗淡的窗户灯光来说，也同样是一个完整而深邃的存在。</p>
+<h3 id="1-2-存在的剧场隐喻（Theater-Of-Existence）"><a href="#1-2-存在的剧场隐喻（Theater-Of-Existence）" class="headerlink" title="1.2 存在的剧场隐喻（Theater Of Existence）"></a>1.2 存在的剧场隐喻（Theater Of Existence）</h3><p>这个世界散发出<strong>意识的光谱体验（Spectrum of Conscious Experience）</strong>，没有任何中心性可言。在每一个瞬间，都有数十亿人在意识的奇异且近乎超现实的领域中体验着存在。</p>
+<p>这引发了一系列深刻的问题：</p>
+<ol>
+<li><strong>这个领域究竟是什么？</strong></li>
+<li><strong>每个生命、每个故事、每个观察所暗示的我们整体经历的本质是什么？</strong></li>
+<li><strong>我们在存在的剧场中共享了什么？</strong></li>
+<li><strong>这个存在的剧场本身又是什么？</strong></li>
+<li><strong>我们观看的表演有多真实？</strong></li>
+<li><strong>我们所讲述的故事又意味着什么？</strong></li>
+</ol>
+<hr>
+<h2 id="第二部分：观察者效应与哲学基础"><a href="#第二部分：观察者效应与哲学基础" class="headerlink" title="第二部分：观察者效应与哲学基础"></a>第二部分：观察者效应与哲学基础</h2><h3 id="2-1-常识性的现实观（Common-Sense-View-of-Reality）"><a href="#2-1-常识性的现实观（Common-Sense-View-of-Reality）" class="headerlink" title="2.1 常识性的现实观（Common Sense View of Reality）"></a>2.1 常识性的现实观（Common Sense View of Reality）</h3><p>我们大多数人倾向于认为存在一个<strong>真实的现实（Real Reality）</strong>，它是：</p>
+<ul>
+<li><strong>固定不变的（Fixed）</strong></li>
+<li><strong>不受观察影响的（Independent of Observation）</strong></li>
+<li><strong>不受主观性影响的（Independent of Subjectivity）</strong></li>
+</ul>
+<p>这种观点听起来显而易见且符合直觉。然而，有充分的理由让我们质疑这一假设。</p>
+<p><strong>核心问题</strong>：现实是否可能因我们的观察而发生有意义的改变？不仅仅是它”看起来的样子”改变，而是<strong>现实本身</strong>发生改变？</p>
+<p>纵观历史直至今天，无论是哲学家还是物理学家，都有人相信：<strong>现实与观察的关联程度，远超我们通常所认为的</strong>。</p>
+<h3 id="2-2-乔治·伯克利的主观唯心主义（Subjective-Idealism）"><a href="#2-2-乔治·伯克利的主观唯心主义（Subjective-Idealism）" class="headerlink" title="2.2 乔治·伯克利的主观唯心主义（Subjective Idealism）"></a>2.2 乔治·伯克利的主观唯心主义（Subjective Idealism）</h3><p><strong>乔治·伯克利（George Berkeley）</strong>是18世纪的爱尔兰哲学家，他提出了一个激进的观点：</p>
+<p><strong>核心主张</strong>：观察不仅改变现实，而且<strong>创造现实</strong>。</p>
+<p>换句话说：</p>
+<ul>
+<li>现实并不独立于我们的意识之外存在</li>
+<li>现实是意识的<strong>结果（Product）</strong></li>
+<li>万物的本质不是<strong>物质（Matter）</strong>，而是<strong>意识（Consciousness）</strong></li>
+<li>一切都是<strong>心理构建（Mental Constructs）</strong>或<strong>思维中的想法（Ideas in the Mind）</strong></li>
+</ul>
+<p>这种观点最终形成了一种形而上学哲学，被称为<strong>主观唯心主义（Subjective Idealism）</strong>。不过，伯克利当时将其称为<strong>非物质主义（Immaterialism）</strong>。</p>
+<h3 id="2-3-唯心主义面临的挑战（Challenges-To-Idealism）"><a href="#2-3-唯心主义面临的挑战（Challenges-To-Idealism）" class="headerlink" title="2.3 唯心主义面临的挑战（Challenges To Idealism）"></a>2.3 唯心主义面临的挑战（Challenges To Idealism）</h3><p>伯克利的理论面临着一些明显的问题：</p>
+<p><strong>问题一：无人观察时的事件</strong></p>
+<p>如果现实完全由心理构建创造，那么在没有有意识存在的地方，是否什么也不会发生？因为没有任何东西被”创造”出来。</p>
+<p>这就是经典的哲学问题：<strong>“如果一棵树在森林中倒下，周围没有人听到，它会发出声音吗？”（If a tree falls in a forest and no one is around to hear it, does it make a sound?）</strong></p>
+<p>根据伯克利的理论，不仅声音不会产生，<strong>树似乎也无法倒下</strong>。</p>
+<p><strong>问题二：经验证据的反驳</strong></p>
+<p>然而，现实中的事情似乎确实会发生，无论有没有人或动物在场：</p>
+<ul>
+<li>一个空无一人的房间，离开后再回来，不会有明显的变化</li>
+<li>一切似乎都如预期般继续运行</li>
+<li>例如：离开前点燃的蜡烛（假设没有风或氧气变化），会继续燃烧和融化，速度与预期一致</li>
+</ul>
+<p><strong>关键疑问</strong>：如果事物在无人观察的情况下似乎不会停止发生，那么观察如何能够”创造”现实？</p>
+<p><strong>问题三：协调性问题</strong></p>
+<p>也许有人会说，我们的大脑创造了这种连续性的假象。但考虑到不同大脑之间需要的<strong>协调量（Coordination）</strong>，这种解释似乎更加不可能。</p>
+<h3 id="2-4-伯克利的解决方案：上帝（God-As-the-Solution）"><a href="#2-4-伯克利的解决方案：上帝（God-As-the-Solution）" class="headerlink" title="2.4 伯克利的解决方案：上帝（God As the Solution）"></a>2.4 伯克利的解决方案：上帝（God As the Solution）</h3><p>伯克利对上述问题的回答是：<strong>上帝（God）</strong>。</p>
+<p><strong>论证逻辑</strong>：</p>
+<ul>
+<li>既然一切总是被上帝观察</li>
+<li>那么事情就总是在到处发生</li>
+<li>即使没有直接的人类或动物在附近</li>
+</ul>
+<p>对于我们中的一些人来说，这可能听起来是一个有趣的结论。但对于许多人来说，这可能意味着我们在某个地方走错了方向。</p>
+<p><strong>然而</strong>，如果这种”无处不在的观察”的想法指向某些深刻的东西呢？是否存在一个我们可以探索的方向，而不需要引入上帝的概念？</p>
+<hr>
+<h2 id="第三部分：量子力学中的实在论之争"><a href="#第三部分：量子力学中的实在论之争" class="headerlink" title="第三部分：量子力学中的实在论之争"></a>第三部分：量子力学中的实在论之争</h2><h3 id="3-1-实在论与反实在论的对立（Realism-Vs-Anti-Realism）"><a href="#3-1-实在论与反实在论的对立（Realism-Vs-Anti-Realism）" class="headerlink" title="3.1 实在论与反实在论的对立（Realism Vs. Anti-Realism）"></a>3.1 实在论与反实在论的对立（Realism Vs. Anti-Realism）</h3><p><strong>量子力学（Quantum Mechanics）</strong>是处理现实本质的物理学领域，研究对象是原子和亚原子水平上的粒子，如<strong>电子（Electrons）</strong>、<strong>光子（Photons）</strong>、<strong>中子（Neutrons）</strong>等。</p>
+<p>在1930年代左右，关于量子力学的现实性形成了两种对立的观点：</p>
+<h4 id="实在论（Realism）"><a href="#实在论（Realism）" class="headerlink" title="实在论（Realism）"></a>实在论（Realism）</h4><p><strong>代表人物</strong>：阿尔伯特·爱因斯坦（Albert Einstein）等</p>
+<p><strong>核心主张</strong>：</p>
+<ul>
+<li>宇宙是真实的</li>
+<li>宇宙独立于观察和测量之外存在</li>
+<li>物理世界的一切，包括量子层面的微小粒子，都是<strong>确定性的（Deterministic）</strong>和<strong>固定的（Fixed）</strong></li>
+<li>粒子具有<strong>明确的属性（Definite Properties）</strong></li>
+</ul>
+<p>这是我们大多数人直觉上倾向于接受的观点。</p>
+<h4 id="反实在论（Anti-Realism）"><a href="#反实在论（Anti-Realism）" class="headerlink" title="反实在论（Anti-Realism）"></a>反实在论（Anti-Realism）</h4><p><strong>代表人物</strong>：尼尔斯·玻尔（Niels Bohr）等</p>
+<p><strong>核心主张</strong>：</p>
+<ul>
+<li>粒子具有<strong>未定义的属性（Undefined Properties）</strong></li>
+<li>这些属性只有在被观察或测量时才会被定义</li>
+<li>现实（至少在量子层面上）在被观察或测量之前，并不是在明确的、固定的意义上”真实”的</li>
+</ul>
+<p><strong>关键问题</strong>：量子力学的实验结果似乎对实在论构成了严重威胁。</p>
+<h3 id="3-2-双缝实验的启示（Double-Slit-Experiment）"><a href="#3-2-双缝实验的启示（Double-Slit-Experiment）" class="headerlink" title="3.2 双缝实验的启示（Double-Slit Experiment）"></a>3.2 双缝实验的启示（Double-Slit Experiment）</h3><p>反实在论的观点已经在多个实验中得到展示，其中最著名的是<strong>双缝实验（Double-Slit Experiment）</strong>。</p>
+<p><strong>实验现象</strong>：</p>
+<ul>
+<li>一个粒子在没有被观察时，表现为<strong>波（Wave）</strong>，没有明确的状态</li>
+<li>当粒子通过缝隙时被观察，它突然以具有<strong>明确状态的粒子（Particle with Definite State）</strong>形式行动</li>
+</ul>
+<p><strong>惠勒的名言</strong>：</p>
+<blockquote>
+<p>“没有现象是一个现象，直到它是一个被观察的现象。”<br>（No phenomenon is a phenomenon until it is an observed phenomenon.）<br>—— 约翰·阿奇博尔德·惠勒（John Archibald Wheeler），1972年</p>
+</blockquote>
+<h3 id="3-3-非局域性与量子纠缠（Non-locality-And-Quantum-Entanglement）"><a href="#3-3-非局域性与量子纠缠（Non-locality-And-Quantum-Entanglement）" class="headerlink" title="3.3 非局域性与量子纠缠（Non-locality And Quantum Entanglement）"></a>3.3 非局域性与量子纠缠（Non-locality And Quantum Entanglement）</h3><h4 id="克劳泽的实验（Clauser’s-Experiment）"><a href="#克劳泽的实验（Clauser’s-Experiment）" class="headerlink" title="克劳泽的实验（Clauser’s Experiment）"></a>克劳泽的实验（Clauser’s Experiment）</h4><p>1972年，美国物理学家<strong>约翰·克劳泽（John Clauser）</strong>进行了一项重要实验：</p>
+<p><strong>实验内容</strong>：</p>
+<ul>
+<li>使用从钙原子发出的光子</li>
+<li>探索光子之间相互作用的关联</li>
+</ul>
+<p><strong>关键概念——纠缠粒子（Entangled Particles）</strong>：</p>
+<ul>
+<li>在亚原子水平上，粒子相互作用的过程会导致一种被称为”纠缠”的现象</li>
+<li>纠缠粒子的<strong>量子状态（Quantum States）</strong>相互关联</li>
+</ul>
+<h4 id="局域性原则（Principle-Of-Locality）"><a href="#局域性原则（Principle-Of-Locality）" class="headerlink" title="局域性原则（Principle Of Locality）"></a>局域性原则（Principle Of Locality）</h4><p>在物理学中，<strong>局域性原则</strong>指的是：一个物体只能由其<strong>直接环境（Immediate Surroundings）</strong>直接影响。</p>
+<h4 id="诺贝尔奖的认可"><a href="#诺贝尔奖的认可" class="headerlink" title="诺贝尔奖的认可"></a>诺贝尔奖的认可</h4><p>2022年，克劳泽与<strong>阿兰·阿斯佩（Alain Aspect）</strong>和<strong>安东·蔡林格（Anton Zeilinger）</strong>一起获得了诺贝尔物理学奖。</p>
+<p><strong>他们的工作集体证明了量子现象中最令人困惑的方面之一——量子纠缠（Quantum Entanglement）</strong>。</p>
+<h4 id="实验结论的惊人发现"><a href="#实验结论的惊人发现" class="headerlink" title="实验结论的惊人发现"></a>实验结论的惊人发现</h4><p>他们的工作表明：</p>
+<ol>
+<li><p><strong>测量决定状态</strong>：不仅被测量的粒子会确定其状态，而且测量一个粒子的行为也会决定其他纠缠粒子的状态</p>
+</li>
+<li><p><strong>超越距离的关联</strong>：这些粒子即使被巨大的距离分开（潜在地相隔<strong>光年</strong>之遥），仍然保持关联</p>
+</li>
+<li><p><strong>瞬时影响</strong>：即使据说信息不能以超过光速的速度传播，一个粒子状态的确定会<strong>瞬时地</strong>决定其他粒子的集体状态</p>
+</li>
+<li><p><strong>违反局域性</strong>：这些发现表明，局域性似乎不是现实的基本属性</p>
+</li>
+</ol>
+<p><strong>核心结论</strong>：</p>
+<blockquote>
+<p><strong>宇宙不是局部真实的（The universe is not locally real）。</strong></p>
+</blockquote>
+<p>这意味着：</p>
+<ul>
+<li>量子现象并不按照确定性、固定的方式运作</li>
+<li><strong>反实在论者是对的，爱因斯坦是错的</strong></li>
+<li>宇宙中的所有事物似乎比人们想象的更为奇异且相互联系</li>
+</ul>
+<hr>
+<h2 id="第四部分：信息、意识与参与性宇宙"><a href="#第四部分：信息、意识与参与性宇宙" class="headerlink" title="第四部分：信息、意识与参与性宇宙"></a>第四部分：信息、意识与参与性宇宙</h2><h3 id="4-1-惠勒的”从比特中来”理论（It-From-Bit）"><a href="#4-1-惠勒的”从比特中来”理论（It-From-Bit）" class="headerlink" title="4.1 惠勒的”从比特中来”理论（It From Bit）"></a>4.1 惠勒的”从比特中来”理论（It From Bit）</h3><h4 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h4><p>这一切相互联系的根源是什么？是什么导致粒子做某事或不做某事？是否有比物质和能量更为基础的东西，能够连接物质世界和观察到的现实？</p>
+<h4 id="信息作为答案"><a href="#信息作为答案" class="headerlink" title="信息作为答案"></a>信息作为答案</h4><p>一些人认为答案是<strong>信息（Information）</strong>。</p>
+<p><strong>综合观点</strong>：</p>
+<ul>
+<li>现实并不完全是精神层面的（如伯克利所想）</li>
+<li>现实也并不完全是确定的和独立的（如爱因斯坦所想）</li>
+<li><strong>现实是由两者之间的相互作用创造的</strong></li>
+</ul>
+<p>换句话说：<strong>现实是通过物质和测量之间交换的信息形成的</strong>。</p>
+<h4 id="参与性宇宙（Participatory-Universe）"><a href="#参与性宇宙（Participatory-Universe）" class="headerlink" title="参与性宇宙（Participatory Universe）"></a>参与性宇宙（Participatory Universe）</h4><p><strong>约翰·阿奇博尔德·惠勒（John Archibald Wheeler）</strong>提出了这个想法，他称之为<strong>参与性宇宙（Participatory Universe）</strong>。</p>
+<p>这个想法让一些人（包括惠勒本人）相信：</p>
+<ul>
+<li>现实本质上是<strong>信息处理（Information Processing）</strong></li>
+<li>这与计算机或大脑的信息处理本质上没有区别</li>
+<li>现实的基础本质上是<strong>二进制的信息比特（Binary Bits of Information）</strong></li>
+<li>或者说是一系列<strong>是或否的答案（Yes or No Answers）</strong></li>
+<li>现实通过处理这些信息比特而成为现实</li>
+<li>这种处理是通过进行测量实验、提出是或否的问题来完成的</li>
+</ul>
+<h4 id="惠勒延迟选择实验（Wheeler’s-Delayed-Choice-Experiment）"><a href="#惠勒延迟选择实验（Wheeler’s-Delayed-Choice-Experiment）" class="headerlink" title="惠勒延迟选择实验（Wheeler’s Delayed Choice Experiment）"></a>惠勒延迟选择实验（Wheeler’s Delayed Choice Experiment）</h4><p>这个实验实际上难以置信地、但明确地证明了：</p>
+<ul>
+<li>粒子的行为不仅在<strong>进行测量时</strong>被定义</li>
+<li>而且在<strong>选择何种类型的测量时</strong>被定义</li>
+</ul>
+<p>换句话说：<strong>向现实提出的问题影响了它给出的答案</strong>。</p>
+<h4 id="二十问游戏的隐喻"><a href="#二十问游戏的隐喻" class="headerlink" title="二十问游戏的隐喻"></a>二十问游戏的隐喻</h4><p>在这个现实中，似乎几乎像一个巨大的<strong>二十问游戏（Twenty Questions Game）</strong>在运作。但它还没有为我们猜测选择一个对象。相反，通过提出某些是或否的问题，现实被定义。</p>
+<h4 id="“从比特中来”（It-From-Bit）"><a href="#“从比特中来”（It-From-Bit）" class="headerlink" title="“从比特中来”（It From Bit）"></a>“从比特中来”（It From Bit）</h4><p>为了描述这个过程，惠勒创造了短语<strong>“从比特中来”（It from Bit）</strong>。</p>
+<p><strong>惠勒的原话</strong>：</p>
+<blockquote>
+<p>“从比特中来，象征着一个想法，即物理世界中的每一个项目，在根本上、在最深层次上、在大多数情况下，都有一个非物质的来源和解释。我们称之为现实的东西，在最终分析中，产生于是或否问题的提出，以及设备引发的反应的记录。简而言之，所有物理事物都源于信息论。这是一个参与性宇宙。”</p>
+</blockquote>
+<h3 id="4-2-泛心论的观点（Panpsychism）"><a href="#4-2-泛心论的观点（Panpsychism）" class="headerlink" title="4.2 泛心论的观点（Panpsychism）"></a>4.2 泛心论的观点（Panpsychism）</h3><h4 id="观察者问题的回归"><a href="#观察者问题的回归" class="headerlink" title="观察者问题的回归"></a>观察者问题的回归</h4><p>与观察者中心的现实和物理学理论一样，我们似乎面临着伯克利唯心主义哲学所面临的同样问题：</p>
+<p><strong>我们无法解释宇宙中事件连续性的观察者是谁</strong>——落下的树木、燃烧的蜡烛、深空中旋转的尘埃。</p>
+<p>当没有明显的测量在进行时，是什么使得宇宙中的事件成为可能？信息在哪里被处理？</p>
+<p><strong>爱因斯坦的著名质疑</strong>：</p>
+<blockquote>
+<p>“你真的相信当你不看月亮时，月亮就不存在了吗？”</p>
+</blockquote>
+<h4 id="重新定义”观察”"><a href="#重新定义”观察”" class="headerlink" title="重新定义”观察”"></a>重新定义”观察”</h4><p>但如果我们对”看”的含义有误解呢？什么可以被视为测量或观察？</p>
+<h4 id="泛心论（Panpsychism）"><a href="#泛心论（Panpsychism）" class="headerlink" title="泛心论（Panpsychism）"></a>泛心论（Panpsychism）</h4><p>有一种关于现实和意识本质的理论，同样具有争议性，被称为<strong>泛心论（Panpsychism）</strong>。</p>
+<p><strong>泛心论的核心主张</strong>：</p>
+<ul>
+<li>意识不是复杂生物系统的<strong>涌现现象（Emergent Phenomenon）</strong></li>
+<li>意识是宇宙中的一个<strong>基本和普遍特征（Fundamental and Universal Feature）</strong></li>
+<li>从单个粒子到一切事物都具备某种意识的注解——一种<strong>心智质量（Mental Quality）</strong></li>
+</ul>
+<h4 id="泛心论的论证逻辑"><a href="#泛心论的论证逻辑" class="headerlink" title="泛心论的论证逻辑"></a>泛心论的论证逻辑</h4><p>考虑一下我们人类如何获得我们的意识：</p>
+<ul>
+<li>它似乎通过我们大脑的物质和能量产生</li>
+<li>但<strong>物质和能量如何产生主观的第一人称经验（Subjective First-Person Experience）</strong>，如果它本身不具备意识的成分？</li>
+</ul>
+<p><strong>泛心论者的解答</strong>：</p>
+<ul>
+<li>物质确实具备意识的质量</li>
+<li>当物质结合并变得更加复杂时，系统会变得更加有意识</li>
+<li>但在复杂性的各个层面上，意识的质量是<strong>持续的（Continuous）</strong></li>
+</ul>
+<p><strong>为什么我们只认为人类有意识？</strong></p>
+<ul>
+<li>当事物看起来像人类思维时，它们才对人类思维显现为有意识的</li>
+<li>也许人类思维在将自身的思维标准投射到世界上</li>
+</ul>
+<h3 id="4-3-宇宙作为巨大的大脑（The-Universe-as-a-Giant-Brain）"><a href="#4-3-宇宙作为巨大的大脑（The-Universe-as-a-Giant-Brain）" class="headerlink" title="4.3 宇宙作为巨大的大脑（The Universe as a Giant Brain）"></a>4.3 宇宙作为巨大的大脑（The Universe as a Giant Brain）</h3><h4 id="意识作为现实的基本特征"><a href="#意识作为现实的基本特征" class="headerlink" title="意识作为现实的基本特征"></a>意识作为现实的基本特征</h4><p>如果意识是现实的一个基本特征，这会暗示：</p>
+<ul>
+<li>信息是如何传播的</li>
+<li>粒子是如何行动和相互作用的</li>
+<li>现实如何通过观察展开和改变</li>
+</ul>
+<h4 id="永恒的观察与信息处理"><a href="#永恒的观察与信息处理" class="headerlink" title="永恒的观察与信息处理"></a>永恒的观察与信息处理</h4><p>在某种意义上，是否有可能<strong>总是有观察和信息处理</strong>？</p>
+<p>如果宇宙像一个<strong>巨大的大脑（Giant Brain）</strong>一样运作，总是与自己交换和处理信息——谁能说宇宙不能思考，并且正在思考？</p>
+<h4 id="这能解释什么？"><a href="#这能解释什么？" class="headerlink" title="这能解释什么？"></a>这能解释什么？</h4><p>这种观点可能解释：</p>
+<ul>
+<li><strong>观察的效果</strong></li>
+<li><strong>量子事件的展开和明显的不确定的可塑性</strong></li>
+<li><strong>纠缠的相互关联的粒子在遥远距离上的行为</strong></li>
+</ul>
+<h4 id="镜子的隐喻"><a href="#镜子的隐喻" class="headerlink" title="镜子的隐喻"></a>镜子的隐喻</h4><p>人类有一种习惯，就是从过程和方程中抽离自己，仿佛我们在观察宇宙，而我们是分开的。</p>
+<p><strong>但我们当然不是分开的。我们与宇宙紧密相连。</strong></p>
+<p>或许在我们试图观察和定义宇宙的过程中，我们就像<strong>一面镜子面对着另一面镜子</strong>——我们反射自己，感觉好像缺少了什么。而那缺失的或许就在我们心中，或者就是我们自身的一部分。</p>
+<p><strong>神经元的隐喻</strong>：</p>
+<ul>
+<li>我们中的一切就像大脑中的神经元</li>
+<li>在大宇宙的大脑中</li>
+<li>试图理解整个大脑在做什么</li>
+</ul>
+<hr>
+<h2 id="第五部分：总结与哲学反思"><a href="#第五部分：总结与哲学反思" class="headerlink" title="第五部分：总结与哲学反思"></a>第五部分：总结与哲学反思</h2><h3 id="5-1-理论的局限性"><a href="#5-1-理论的局限性" class="headerlink" title="5.1 理论的局限性"></a>5.1 理论的局限性</h3><p>重要的是要说明：我们所提到的几乎一切都是<strong>极其理论化和抽象的（Highly Theoretical and Abstract）</strong>。一些想法比其他想法更抽象。</p>
+<p>当我们深入理论的深处，我们发现像泛心论这样的想法和一个能思考的宇宙，当我们褪去大部分科学外衣时，它们变成了一种更<strong>神秘、哲学化的形式（Mystical, Philosophical Form）</strong>。</p>
+<p><strong>关键事实</strong>：我们还没有定义我们自己中的意识是什么或如何工作。因此，将其应用于一切是一大步。</p>
+<h3 id="5-2-认识论的谦逊"><a href="#5-2-认识论的谦逊" class="headerlink" title="5.2 认识论的谦逊"></a>5.2 认识论的谦逊</h3><p>同样，在”宇宙不是局部真实的”这一发现中，现实由观察和测量的选择定义——也许这只是我们对知识的限制，或者是我们感知和形成知识的能力的限制。</p>
+<p><strong>两种可能性</strong>：</p>
+<ol>
+<li>也许这些看似不一致的地方是可以克服的</li>
+<li>也许不行，我们的现实就像它看起来的那样奇怪和参与性</li>
+</ol>
+<p><strong>最终的谦逊</strong>：</p>
+<blockquote>
+<p>我们的思维方式很弱，而宇宙的奥秘是无限沉重的。无论现实是什么或不是，我们几乎永远不会知道。</p>
+</blockquote>
+<h3 id="5-3-回到萨德勒：一切的统一"><a href="#5-3-回到萨德勒：一切的统一" class="headerlink" title="5.3 回到萨德勒：一切的统一"></a>5.3 回到萨德勒：一切的统一</h3><p>如果我们回到萨德勒的经验——认识到每个人都在经历他们自己独特的生活，就像自己的一样生动和真实——<strong>“生动和真实”的含义变得难以捉摸，几乎令人毛骨悚然</strong>。</p>
+<p>在这个深深相互连接、也许是观察者中心的现实中：</p>
+<ul>
+<li>我们所观察的事件和我们讲述的故事似乎被赋予了某种<strong>宇宙基质（Cosmic Substrate）</strong></li>
+<li>这影响了或表明了我们无法理解的东西</li>
+</ul>
+<p><strong>万物的参与</strong>：</p>
+<ul>
+<li>每一个个体</li>
+<li>每一个大脑</li>
+<li>每一棵树</li>
+<li>每一片叶子</li>
+<li>每一团泥土</li>
+<li>每一块石头</li>
+<li>每一颗行星</li>
+<li>每一颗星星</li>
+<li>每一个粒子</li>
+</ul>
+<p><strong>都参与了讲述一切的故事。</strong></p>
+<h3 id="5-4-主观与客观的统一"><a href="#5-4-主观与客观的统一" class="headerlink" title="5.4 主观与客观的统一"></a>5.4 主观与客观的统一</h3><p><strong>每个主观现实的总和编织在一起，形成单一的客观现实。没有分离，它们都是一体的。</strong></p>
+<p>我们的不确定性、我们的问题、我们的答案和我们的虚假信念，都是现实与真理相互作用的一部分。</p>
+<p>就像我们的想法塑造我们自己的生活一样，宇宙现实塑造我们的想法。然后，也许只是也许，<strong>我们的想法反过来帮助塑造现实</strong>。</p>
+<hr>
+<h2 id="关键术语汇总表"><a href="#关键术语汇总表" class="headerlink" title="关键术语汇总表"></a>关键术语汇总表</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>中文术语</th>
+<th>英文术语</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>萨德勒</td>
+<td>Sonder</td>
+</tr>
+<tr>
+<td>观察者效应</td>
+<td>Observer Effect</td>
+</tr>
+<tr>
+<td>主观唯心主义</td>
+<td>Subjective Idealism</td>
+</tr>
+<tr>
+<td>非物质主义</td>
+<td>Immaterialism</td>
+</tr>
+<tr>
+<td>心理构建</td>
+<td>Mental Constructs</td>
+</tr>
+<tr>
+<td>量子力学</td>
+<td>Quantum Mechanics</td>
+</tr>
+<tr>
+<td>实在论</td>
+<td>Realism</td>
+</tr>
+<tr>
+<td>反实在论</td>
+<td>Anti-Realism</td>
+</tr>
+<tr>
+<td>确定性</td>
+<td>Deterministic</td>
+</tr>
+<tr>
+<td>双缝实验</td>
+<td>Double-Slit Experiment</td>
+</tr>
+<tr>
+<td>量子纠缠</td>
+<td>Quantum Entanglement</td>
+</tr>
+<tr>
+<td>纠缠粒子</td>
+<td>Entangled Particles</td>
+</tr>
+<tr>
+<td>局域性原则</td>
+<td>Principle of Locality</td>
+</tr>
+<tr>
+<td>非局域性</td>
+<td>Non-locality</td>
+</tr>
+<tr>
+<td>参与性宇宙</td>
+<td>Participatory Universe</td>
+</tr>
+<tr>
+<td>从比特中来</td>
+<td>It from Bit</td>
+</tr>
+<tr>
+<td>信息处理</td>
+<td>Information Processing</td>
+</tr>
+<tr>
+<td>延迟选择实验</td>
+<td>Delayed Choice Experiment</td>
+</tr>
+<tr>
+<td>泛心论</td>
+<td>Panpsychism</td>
+</tr>
+<tr>
+<td>涌现现象</td>
+<td>Emergent Phenomenon</td>
+</tr>
+<tr>
+<td>心智质量</td>
+<td>Mental Quality</td>
+</tr>
+<tr>
+<td>第一人称经验</td>
+<td>First-Person Experience</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<p>希望通过这次讲解，你对意识、观察与现实本质之间的深刻关联有了全面的理解。这些问题跨越了哲学与物理学的边界，至今仍是人类探索的前沿领域。</p>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/knowledge/">knowledge    </a><a class="post-meta__tags" href="/tags/philosophy/">philosophy    </a><a class="post-meta__tags" href="/tags/psychology/">psychology    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2026/01/20/10-projects/cs6200_intro_to_OS/cs6200-p2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>cs6200-p2-操作系统核心概念总结</span></div></a></div><div class="next-post pull_right"><a href="/2026/01/15/10-projects/learncpp/learncpp_16_vector/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>learncpp_16_vector</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/thoughts/输出型爱好/" title="输出型爱好"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">输出型爱好</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/thoughts/黑格尔理论解读/" title="黑格尔理论解读"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">黑格尔理论解读</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/thoughts/黑格尔精神辩证法/" title="黑格尔精神辩证法"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">黑格尔精神辩证法</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/thoughts/黑格尔自由意志/" title="黑格尔自由意志"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">黑格尔自由意志</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/thoughts/牧羊少年的奇幻之旅读后感/" title="牧羊少年的奇幻之旅读后感"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">牧羊少年的奇幻之旅读后感</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/thoughts/荣格心理学解读/" title="荣格心理学解读"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">荣格心理学解读</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'xvMxbws16Erd8WUfqxkvHmb5-gzGzoHsz',
+  appKey:'4U0Vo7NQIUL0eJzHdkPzdCDr',
+  placeholder:'不说话的人会疯掉吗?',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'en',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By supersheepbear</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="external nofollow noopener noreferrer"><span>Butterfly</span></a></div><div class="footer_custom_text">外向孤独者患者</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="255,240,245" opacity="0.7" zindex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="external nofollow noopener noreferrer" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>

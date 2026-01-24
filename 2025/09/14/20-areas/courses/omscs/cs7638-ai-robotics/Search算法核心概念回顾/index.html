@@ -1,0 +1,645 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Search算法核心概念回顾 | Bear's dream</title><meta name="description" content="Search算法核心概念回顾"><meta name="keywords" content="ai,coding,learning"><meta name="author" content="supersheepbear"><meta name="copyright" content="supersheepbear"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_1.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="p43hXBn3_dLvbyxUzx0eo5eYmj9OVYOV52pdrhBa2sw"><meta name="baidu-site-verification" content="EXLlfLv2pV"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Search算法核心概念回顾"><meta name="twitter:description" content="Search算法核心概念回顾"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta property="og:type" content="article"><meta property="og:title" content="Search算法核心概念回顾"><meta property="og:url" content="https://yxiong.org/2025/09/14/20-areas/courses/omscs/cs7638-ai-robotics/Search%E7%AE%97%E6%B3%95%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%9B%9E%E9%A1%BE/"><meta property="og:site_name" content="Bear's dream"><meta property="og:description" content="Search算法核心概念回顾"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://yxiong.org/2025/09/14/20-areas/courses/omscs/cs7638-ai-robotics/Search%E7%AE%97%E6%B3%95%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%9B%9E%E9%A1%BE/"><link rel="prev" title="方差协方差矩阵通俗解释" href="https://yxiong.org/2025/09/14/20-areas/courses/omscs/cs7638-ai-robotics/%E6%96%B9%E5%B7%AE%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9F%A9%E9%98%B5%E9%80%9A%E4%BF%97%E8%A7%A3%E9%87%8A/"><link rel="next" title="a start admissible 含义" href="https://yxiong.org/2025/09/13/20-areas/courses/omscs/cs7638-ai-robotics/a%20start%20admissible%20%E5%90%AB%E4%B9%89/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">162</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">59</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">34</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#Search算法核心概念回顾"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">Search算法核心概念回顾</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#人工智能规划与搜索：从入门到精通学习目录"><span class="toc_mobile_items-number">1.2.1.</span> <span class="toc_mobile_items-text">人工智能规划与搜索：从入门到精通学习目录</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-1"><span class="toc_mobile_items-number">1.3.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-1"><span class="toc_mobile_items-number">1.4.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#第一章：导论——什么是运动规划-Motion-Planning"><span class="toc_mobile_items-number">1.4.1.</span> <span class="toc_mobile_items-text">第一章：导论——什么是运动规划 (Motion Planning)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-2"><span class="toc_mobile_items-number">1.5.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-2"><span class="toc_mobile_items-number">1.6.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#第二章：基础搜索算法——广度优先搜索-Breadth-First-Search-BFS"><span class="toc_mobile_items-number">1.6.1.</span> <span class="toc_mobile_items-text">第二章：基础搜索算法——广度优先搜索 (Breadth-First Search, BFS)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-3"><span class="toc_mobile_items-number">1.7.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-3"><span class="toc_mobile_items-number">1.8.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#第三章：带权搜索算法——一致成本搜索-Uniform-Cost-Search-UCS"><span class="toc_mobile_items-number">1.8.1.</span> <span class="toc_mobile_items-text">第三章：带权搜索算法——一致成本搜索 (Uniform-Cost Search, UCS)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-4"><span class="toc_mobile_items-number">1.9.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-4"><span class="toc_mobile_items-number">1.10.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#第四章：启发式搜索——A-A-Star-算法"><span class="toc_mobile_items-number">1.10.1.</span> <span class="toc_mobile_items-text">第四章：启发式搜索——A* (A-Star) 算法</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-5"><span class="toc_mobile_items-number">1.11.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-5"><span class="toc_mobile_items-number">1.12.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#第五章：全局最优策略——动态规划与价值迭代-Dynamic-Programming-amp-Value-Iteration"><span class="toc_mobile_items-number">1.12.1.</span> <span class="toc_mobile_items-text">第五章：全局最优策略——动态规划与价值迭代 (Dynamic Programming &amp; Value Iteration)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-6"><span class="toc_mobile_items-number">1.13.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-6"><span class="toc_mobile_items-number">1.14.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#第六章：应对不确定性——随机世界中的价值迭代"><span class="toc_mobile_items-number">1.14.1.</span> <span class="toc_mobile_items-text">第六章：应对不确定性——随机世界中的价值迭代</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Search算法核心概念回顾"><span class="toc-number">1.</span> <span class="toc-text">Search算法核心概念回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User"><span class="toc-number">1.1.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant"><span class="toc-number">1.2.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#人工智能规划与搜索：从入门到精通学习目录"><span class="toc-number">1.2.1.</span> <span class="toc-text">人工智能规划与搜索：从入门到精通学习目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-1"><span class="toc-number">1.3.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-1"><span class="toc-number">1.4.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一章：导论——什么是运动规划-Motion-Planning"><span class="toc-number">1.4.1.</span> <span class="toc-text">第一章：导论——什么是运动规划 (Motion Planning)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-2"><span class="toc-number">1.5.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-2"><span class="toc-number">1.6.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第二章：基础搜索算法——广度优先搜索-Breadth-First-Search-BFS"><span class="toc-number">1.6.1.</span> <span class="toc-text">第二章：基础搜索算法——广度优先搜索 (Breadth-First Search, BFS)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-3"><span class="toc-number">1.7.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-3"><span class="toc-number">1.8.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第三章：带权搜索算法——一致成本搜索-Uniform-Cost-Search-UCS"><span class="toc-number">1.8.1.</span> <span class="toc-text">第三章：带权搜索算法——一致成本搜索 (Uniform-Cost Search, UCS)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-4"><span class="toc-number">1.9.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-4"><span class="toc-number">1.10.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第四章：启发式搜索——A-A-Star-算法"><span class="toc-number">1.10.1.</span> <span class="toc-text">第四章：启发式搜索——A* (A-Star) 算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-5"><span class="toc-number">1.11.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-5"><span class="toc-number">1.12.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第五章：全局最优策略——动态规划与价值迭代-Dynamic-Programming-amp-Value-Iteration"><span class="toc-number">1.12.1.</span> <span class="toc-text">第五章：全局最优策略——动态规划与价值迭代 (Dynamic Programming &amp; Value Iteration)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-6"><span class="toc-number">1.13.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-6"><span class="toc-number">1.14.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第六章：应对不确定性——随机世界中的价值迭代"><span class="toc-number">1.14.1.</span> <span class="toc-text">第六章：应对不确定性——随机世界中的价值迭代</span></a></li></ol></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">Search算法核心概念回顾</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2025-09-14<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2026-01-24</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/">20-areas</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/">courses</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/omscs/">omscs</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/omscs/cs7638-ai-robotics/">cs7638-ai-robotics</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2025/09/14/20-areas/courses/omscs/cs7638-ai-robotics/Search%E7%AE%97%E6%B3%95%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%9B%9E%E9%A1%BE/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2025/09/14/20-areas/courses/omscs/cs7638-ai-robotics/Search%E7%AE%97%E6%B3%95%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%9B%9E%E9%A1%BE/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="Search算法核心概念回顾"><a href="#Search算法核心概念回顾" class="headerlink" title="Search算法核心概念回顾"></a>Search算法核心概念回顾</h1><h2 id="🧑‍💻-User"><a href="#🧑‍💻-User" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>请你给我完整地复习并讲解一遍所有的概念, 包括 BFS, A*, value iteration, 以及ps4_answers.py这个作业中的概念.<br>我没提到但是教材里讲了的你也要给我讲解并且复习.<br>目标是完整的掌握概念, 让我考试无忧.</p>
+<hr>
+<h2 id="🤖-Assistant"><a href="#🤖-Assistant" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>好的，老师明白了。我们的目标是全面、系统地复习搜索与规划的所有核心概念，确保你不仅能完成作业，更能胸有成竹地应对考试。</p>
+<p>根据你的学习内容和要求，我为你设计了以下这份学习目录。它将引导我们从最基础的概念开始，一步步深入到更复杂的算法和实际应用。</p>
+<p>现在，我们先来看一下总的学习蓝图，请过目：</p>
+<hr>
+<h3 id="人工智能规划与搜索：从入门到精通学习目录"><a href="#人工智能规划与搜索：从入门到精通学习目录" class="headerlink" title="人工智能规划与搜索：从入门到精通学习目录"></a><strong>人工智能规划与搜索：从入门到精通学习目录</strong></h3><ol>
+<li><strong>导论：什么是运动规划 (Motion Planning)</strong></li>
+<li><strong>基础搜索算法：广度优先搜索 (Breadth-First Search, BFS)</strong></li>
+<li><strong>带权搜索算法：一致成本搜索 (Uniform-Cost Search, UCS)</strong></li>
+<li><strong>启发式搜索：A* 算法 (A* Algorithm)</strong></li>
+<li><strong>全局最优策略：动态规划与价值迭代 (Dynamic Programming &amp; Value Iteration)</strong></li>
+<li><strong>综合应用与实践：<code>ps4_answers.py</code> 作业解析</strong></li>
+</ol>
+<hr>
+<p>这个目录结构从宏观问题出发，逐步深入到每种核心算法的原理与实现，最后通过一个综合性的编程作业来巩固所有知识。</p>
+<p>如果你对这个目录没有异议，我将从第一个标题开始，为你进行详细的讲解。请确认，我们随时可以开始第一节课。</p>
+<hr>
+<h2 id="🧑‍💻-User-1"><a href="#🧑‍💻-User-1" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>可以 开始吧</p>
+<hr>
+<h2 id="🤖-Assistant-1"><a href="#🤖-Assistant-1" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>好的，我们正式开始第一节课！</p>
+<hr>
+<h3 id="第一章：导论——什么是运动规划-Motion-Planning"><a href="#第一章：导论——什么是运动规划-Motion-Planning" class="headerlink" title="第一章：导论——什么是运动规划 (Motion Planning)"></a><strong>第一章：导论——什么是运动规划 (Motion Planning)</strong></h3><p><strong>标题与摘要 (Title &amp; Summary):</strong><br>本章将为你揭开人工智能中“规划”领域的神秘面纱。我们将学习运动规划的核心思想：如何让一个智能体（如机器人或自动驾驶汽车）在一个充满障碍和规则的世界里，自主地找到一条从起点到终点的最佳路径。这不仅仅是走过去，更是“思考”出一条最安全、最经济或最快速的路线。</p>
+<hr>
+<p><strong>系统性讲解 (Systematic Explanation):</strong></p>
+<p><strong>1. 核心概念：运动规划 (Motion Planning)</strong></p>
+<p>想象一下，你早上起床，想从卧室走到厨房倒杯水。你的大脑会瞬间完成一个复杂的计算：避开床脚、绕过椅子、穿过门廊，最后到达厨房的水槽。你甚至不会意识到这个过程有多复杂。</p>
+<p>对于机器人或者自动驾驶汽车来说，完成这个看似简单的任务，就需要一个明确的指令和计划。<strong>运动规划 (Motion Planning)</strong> 的根本问题就是：<strong>一个身处特定环境中的智能体，如何规划出一条可行的、通常是最优的行动序列，以从当前位置到达目标位置。</strong></p>
+<p>我们来看课程中的第一个例子：</p>
+<p>这是一个非常简单的世界。图中的小车是我们的<strong>智能体 (Agent)</strong>，美元符号 ($) 是它的<strong>目标 (Goal)</strong>。中间黑色的“L”型物体是一个<strong>障碍物 (Obstacle)</strong>。红色的箭头曲线，就是通过运动规划计算出的“计划”或<strong>路径 (Path)</strong>。它告诉机器人应该如何移动，才能既不撞到障碍物，又能成功抵达目标。</p>
+<p><strong>2. 真实世界的复杂性：从室内到城市</strong></p>
+<p>现在，我们把场景放大到更复杂的真实世界。想象一辆自动驾驶汽车，它接到的任务是从城市的一个角落，通过公路网，开到另一个指定的地点。</p>
+<p>这同样是一个运动规划问题，但规模和复杂度都大大增加了。地图不再是一个简单的房间，而是一个由无数街道、高速公路、交叉路口组成的复杂网络。</p>
+<p>让我们再把镜头拉近，聚焦到一个具体的十字路口，看看规划需要考虑哪些细节：</p>
+<p>假设我们的车（位于<code>START</code>）想要到达马路对面的<code>COAL</code>（这里原文写的是GOAL，我们就理解为目标）。一条看似直接的路径是在这个路口左转。但是，请仔细看，要完成这个左转，车辆可能需要先向右变道，进入左转车道，然后再执行左转。</p>
+<p>这里就引出了一个至关重要的概念：<strong>代价 (Cost)</strong>。</p>
+<ul>
+<li><strong>风险作为代价</strong>：图中的“变道”行为是有风险的。讲师提到，如果旁边车道停着一辆大卡车，可能就没有足够的空间安全变道。那么，这次变道的“风险代价”就很高。</li>
+<li><strong>时间作为代价</strong>：一个备选方案是，车辆可以继续直行，绕过这个街区，然后从另一条路到达目标。这个方案可能更安全（风险代价低），但会花费更多的时间（时间代价高）。</li>
+</ul>
+<p>所以，运动规划不仅仅是找到一条能走通的路，而是在所有能走通的路中，找到一条<strong>综合代价最低</strong>的路。这个“代价”可以是时间、距离、风险、燃油消耗，甚至是乘客的舒适度。</p>
+<p><strong>3. 将复杂问题形式化：定义规划问题 (Defining the Planning Problem)</strong></p>
+<p>为了让计算机能够理解并解决这个问题，我们需要用一种形式化的、数学的语言来描述它。一个经典的规划问题通常包含以下几个要素：</p>
+<ul>
+<li><p><strong>已知条件 (Given):</strong></p>
+<ol>
+<li><strong>地图 (Map):</strong> 对环境的描述。这可以是一个城市的街道图，一个建筑的内部结构图，或我们稍后会看到的、简化后的网格。</li>
+<li><strong>起始位置 (Starting Location):</strong> 智能体当前所在的位置。</li>
+<li><strong>目标位置 (Goal Location):</strong> 智能体需要到达的位置。</li>
+<li><strong>代价函数 (Cost Function):</strong> 一个评估标准，用来衡量一条路径的“好坏”。最简单的代价函数就是路径的长度或者走完它所需的时间。在上面的例子中，直行一步代价为1，而一次有风险的左转代价可能为10。</li>
+</ol>
+</li>
+<li><p><strong>求解目标 (Goal):</strong></p>
+<ul>
+<li><strong>找到最低代价路径 (Find Minimum Cost Path):</strong> 在所有可能的路径中，找出那条使得总代价最小的路径。</li>
+</ul>
+</li>
+</ul>
+<p><strong>4. 解决问题的第一步：离散化 (Discretization)</strong></p>
+<p>真实世界是连续的，汽车可以转向任意角度，停在任意位置。但对于计算机来说，处理无限的可能性（连续空间）是非常困难的。因此，在入门学习中，我们采用一种强大的简化思想：<strong>离散化</strong>。</p>
+<p>我们把世界想象成一个巨大的棋盘，由许多小方格组成，这就是所谓的 <strong>网格世界 (Grid World)</strong>。</p>
+<p>在这个简化的世界里：</p>
+<ul>
+<li>智能体只能位于某个格子的中心。</li>
+<li>它的移动也只能是从一个格子到相邻的另一个格子（比如上、下、左、右）。</li>
+<li>障碍物就是被“涂黑”的、无法进入的格子。</li>
+</ul>
+<p>通过这种方式，我们把一个无限复杂的现实问题，转化成了一个有限的、结构化的、计算机可以一步步进行搜索和计算的问题。这为我们接下来学习具体的搜索算法，比如广度优先搜索（BFS），奠定了坚实的基础。</p>
+<hr>
+<p><strong>拓展思考 (Further Investigation):</strong></p>
+<ol>
+<li>除了课程中提到的时间和风险，在真实的自动驾驶场景中，“代价”还可以代表什么？（提示：思考燃油消耗、乘客舒适度、违反交通规则的可能性等）</li>
+<li>将真实世界的地图（如城市街道）简化为计算机可以处理的“地图”模型（如图或网格），我们可能会丢失哪些重要信息？这种简化对最终的规划结果可能有什么样的影响？</li>
+<li>运动规划不仅仅用于机器人和自动驾驶。你能想到生活中还有哪些问题，其本质也是一个“从起点到终点寻找最优路径”的规划问题吗？（提示：想想手机导航软件、游戏里怪物的移动、物流公司的配送路线规划等）</li>
+</ol>
+<hr>
+<h2 id="🧑‍💻-User-2"><a href="#🧑‍💻-User-2" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>下一章, 记得给我具体的逻辑和pseudo 代码</p>
+<hr>
+<h2 id="🤖-Assistant-2"><a href="#🤖-Assistant-2" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>好的，我们进入第二章的学习。这一章我们将深入研究第一个具体的搜索算法，它也是所有路径规划算法的基石。</p>
+<hr>
+<h3 id="第二章：基础搜索算法——广度优先搜索-Breadth-First-Search-BFS"><a href="#第二章：基础搜索算法——广度优先搜索-Breadth-First-Search-BFS" class="headerlink" title="第二章：基础搜索算法——广度优先搜索 (Breadth-First Search, BFS)"></a><strong>第二章：基础搜索算法——广度优先搜索 (Breadth-First Search, BFS)</strong></h3><p><strong>标题与摘要 (Title &amp; Summary):</strong><br>本章我们将学习广度优先搜索 (Breadth-First Search, BFS)，这是一种基础且强大的图搜索算法。它的核心思想是“层层推进”，像水波纹一样从起点开始，逐层向外扩展搜索范围。当每一步的“代价”都相同时，BFS能够保证找到从起点到终点的最短路径（即步数最少的路径）。</p>
+<hr>
+<p><strong>系统性讲解 (Systematic Explanation):</strong></p>
+<p><strong>1. BFS的核心思想：层层推进</strong></p>
+<p>想象一下，你在一个平静的湖面上投下一颗石子，水波会从中心点开始，形成一个圈，然后这个圈会均匀地、一圈一圈地向外扩散。BFS的搜索方式与此非常相似。</p>
+<ul>
+<li><strong>第0层:</strong> 起点。</li>
+<li><strong>第1层:</strong> 所有与起点直接相邻的、可以到达的点。</li>
+<li><strong>第2层:</strong> 所有与第1层点相邻的、尚未访问过的点。</li>
+<li><strong>第…N层:</strong> …</li>
+</ul>
+<p>BFS会系统性地探索完<strong>整个第N层</strong>的所有节点，然后才会开始探索<strong>第N+1层</strong>的任何一个节点。正是因为这种“不偏心”、公平探索的特性，当每一步的成本都一样时，它第一次找到终点时，所经过的路径必然是层数最少的，也就是步数最少的。</p>
+<p><strong>2. 何时使用BFS？——“等价行动”的场景</strong></p>
+<p>这是应用BFS最关键的前提：<strong>只有当每一步行动的代价都完全相同时，BFS才能保证找到最优路径。</strong> 在我们的课程案例中，这个“代价”被设定为1。</p>
+<p>让我们回顾课程中的例子来理解这一点：</p>
+<ul>
+<li><p><strong>案例一：分离的“前进”与“转向” (Page 3)</strong></p>
+<ul>
+<li><strong>行动模型 (Action Model):</strong> 你有两个基本动作：<code>MOVE</code> (前进一格) 和 <code>TURN</code> (原地转向)。</li>
+<li><strong>代价模型 (Cost Model):</strong> 每次<code>MOVE</code>的代价是1，每次<code>TURN</code>的代价也是1。</li>
+<li><strong>分析:</strong> 课程中给出的最短路径需要前进6步和左转1次，总共有7个<strong>等价的</strong>基本行动。因此，总代价是 <code>6 * 1 (move) + 1 * 1 (turn) = 7</code>。因为所有行动代价都是1，所以BFS是解决这个问题的理想算法。</li>
+</ul>
+</li>
+<li><p><strong>案例二：复合行动 (Page 3)</strong></p>
+<ul>
+<li><strong>行动模型:</strong> 动作变成了三个：<code>前进</code>、<code>左转后前进</code>、<code>右转后前进</code>。</li>
+<li><strong>代价模型:</strong> 执行这三个复合动作中的<strong>任何一个</strong>，代价都是1。</li>
+<li><strong>分析:</strong> 在这个新的规则下，最短路径变成了6步。比如，连续三次<code>前进</code>，然后一次<code>左转后前进</code>，再两次<code>前进</code>。总共执行了6个复合动作，每个代价为1，总代价为6。虽然行动的定义变了，但“每次行动代价为1”这个核心前提没变，所以BFS依然适用。</li>
+</ul>
+</li>
+<li><p><strong>案例三与四：迷宫问题 (Pages 5-6)</strong></p>
+<ul>
+<li><strong>行动模型:</strong> 简化为 <code>UP</code>, <code>DOWN</code>, <code>LEFT</code>, <code>RIGHT</code> 四个方向。</li>
+<li><strong>代价模型:</strong> 每走一步（无论哪个方向），代价都是1。</li>
+<li><strong>分析:</strong> 这是最经典的BFS应用场景。算法会从起点开始，探索所有1步能到的格子，然后是所有2步能到的格子，以此类推，直到找到终点。课程中计算出的7步和11步，就是BFS找到的步数最少的路径。</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. BFS的算法逻辑与实现</strong></p>
+<p>那么，计算机是如何实现这种“层层推进”的搜索呢？它需要借助两个核心的数据结构。</p>
+<ul>
+<li><strong>核心数据结构:</strong><ol>
+<li><strong>队列 (Queue):</strong> 这是一个“先进先出” (First-In, First-Out, FIFO) 的列表。你可以把它想象成排队买票，最早来排队的人最先买到票。在BFS中，我们把即将要探索的节点放入队列的末尾，而下一次要探索的节点则从队列的开头取出。这完美地实现了“先探索完同一层，再进入下一层”的逻辑。在课程中，这个数据结构被称为 <strong>开放列表 (Open List)</strong>。</li>
+<li><strong>已访问集合 (Visited Set):</strong> 用来记录所有已经访问过（或者已经加入队列等待访问）的节点。这至关重要，它可以防止我们走回头路或者在一个循环里无限打转（比如 A-&gt;B, B-&gt;A, A-&gt;B…），避免了大量的重复计算。在课程的图示中，这表现为在格子上打一个“红勾”。它也被称为 <strong>封闭列表 (Closed List)</strong>。</li>
+</ol>
+</li>
+</ul>
+<p><strong>算法执行步骤 (Step-by-Step Logic):</strong></p>
+<p>让我们用课程中的迷宫例子 (Page 7) 来走一遍流程：</p>
+<ol>
+<li><p><strong>初始化:</strong></p>
+<ul>
+<li>创建一个空的 <strong>队列 (Queue)</strong>。</li>
+<li>创建一个空的 <strong>已访问集合 (Visited Set)</strong>。</li>
+<li><strong>起始节点</strong> <code>[0,0]</code> 的代价 <code>g</code> 为 0。</li>
+</ul>
+</li>
+<li><p><strong>开始搜索:</strong></p>
+<ul>
+<li>将起始节点 <code>[0,0]</code> 放入队列。<code>Queue: [[0,0]]</code></li>
+<li>将起始节点 <code>[0,0]</code> 加入已访问集合。<code>Visited: {[0,0]}</code></li>
+</ul>
+</li>
+<li><p><strong>进入主循环 (只要队列不为空就继续):</strong></p>
+<ul>
+<li><strong>迭代 1:</strong></li>
+<li>从队列头部取出节点 <code>[0,0]</code> 进行 <strong>扩展 (Expand)</strong>。</li>
+<li>检查 <code>[0,0]</code> 是否为目标点？否。</li>
+<li>寻找它的所有合法邻居（非障碍、未访问过）。我们找到了 <code>[1,0]</code> 和 <code>[0,1]</code>。</li>
+<li>将 <code>[1,0]</code> 和 <code>[0,1]</code> 加入队列末尾和已访问集合。</li>
+<li><code>Queue: [[1,0], [0,1]]</code></li>
+<li><code>Visited: {[0,0], [1,0], [0,1]}</code></li>
+<li><p>这些新节点的代价 <code>g</code> 都是 <code>g([0,0]) + 1 = 1</code>。</p>
+</li>
+<li><p><strong>迭代 2:</strong></p>
+</li>
+<li>从队列头部取出节点 <code>[1,0]</code> 进行扩展。</li>
+<li>检查 <code>[1,0]</code> 是否为目标点？否。</li>
+<li>寻找它的合法邻居。我们找到了 <code>[2,0]</code> 和 <code>[1,1]</code>。（注意：<code>[0,0]</code> 也是邻居，但已在<code>Visited</code>集合中，所以忽略）。</li>
+<li>将 <code>[2,0]</code> 和 <code>[1,1]</code> 加入队列和已访问集合。</li>
+<li><code>Queue: [[0,1], [2,0], [1,1]]</code></li>
+<li><code>Visited: {[0,0], [1,0], [0,1], [2,0], [1,1]}</code></li>
+<li><p>新节点的代价 <code>g</code> 都是 <code>g([1,0]) + 1 = 2</code>。</p>
+</li>
+<li><p><strong>迭代 3:</strong></p>
+</li>
+<li>从队列头部取出节点 <code>[0,1]</code> 进行扩展。</li>
+<li>检查 <code>[0,1]</code> 是否为目标点？否。</li>
+<li>它的邻居 <code>[0,0]</code> 和 <code>[1,1]</code> 都已在<code>Visited</code>集合中，所以无新节点加入。</li>
+<li><p><code>Queue: [[2,0], [1,1]]</code></p>
+</li>
+<li><p><strong>…后续迭代…</strong></p>
+</li>
+<li>算法会继续这样逐一取出队列头的节点，扩展其未被访问的邻居，直到队列为空或者找到目标。</li>
+</ul>
+</li>
+<li><p><strong>结束条件:</strong></p>
+<ul>
+<li><strong>成功:</strong> 当从队列中取出的节点是<strong>目标节点 (Goal Node)</strong> 时，搜索成功。因为是层层推进，所以此时的路径就是最短的。</li>
+<li><strong>失败:</strong> 如果队列变空，但仍未找到目标节点，说明从起点到终点根本没有路径。</li>
+</ul>
+</li>
+</ol>
+<p><strong>4. 伪代码 (Pseudocode)</strong></p>
+<p>为了让你更清晰地理解整个逻辑，这里有一份BFS的伪代码。这份代码不仅找到了路径，还记录了如何回到起点，以便最终输出完整路径。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">function BFS(start_node, goal_node, grid):</span><br><span class="line">  &#x2F;&#x2F; 1. 初始化</span><br><span class="line">  queue &#x3D; a new Queue()           &#x2F;&#x2F; 存放待访问的节点</span><br><span class="line">  visited &#x3D; a new Set()           &#x2F;&#x2F; 存放已访问过的节点，避免重复</span><br><span class="line">  &#x2F;&#x2F; parent_map 用来存储每个节点是如何被发现的，用于最后回溯路径</span><br><span class="line">  &#x2F;&#x2F; 格式：parent_map[子节点] &#x3D; 父节点</span><br><span class="line">  parent_map &#x3D; a new Map()</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 2. 将起点加入队列和已访问集合</span><br><span class="line">  queue.enqueue(start_node)</span><br><span class="line">  visited.add(start_node)</span><br><span class="line">  parent_map[start_node] &#x3D; null   &#x2F;&#x2F; 起点没有父节点</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 3. 主循环，直到队列为空</span><br><span class="line">  while queue is not empty:</span><br><span class="line">    current_node &#x3D; queue.dequeue()  &#x2F;&#x2F; 取出队列中最老的元素</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 4. 检查是否到达终点</span><br><span class="line">    if current_node is goal_node:</span><br><span class="line">      &#x2F;&#x2F; 成功！通过 parent_map 从终点回溯到起点，构建路径</span><br><span class="line">      return reconstruct_path(parent_map, goal_node)</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 5. 扩展当前节点，寻找邻居</span><br><span class="line">    for each neighbor in get_valid_neighbors(current_node, grid):</span><br><span class="line">      &#x2F;&#x2F; 如果邻居没有被访问过</span><br><span class="line">      if neighbor is not in visited:</span><br><span class="line">        visited.add(neighbor)             &#x2F;&#x2F; 标记为已访问</span><br><span class="line">        parent_map[neighbor] &#x3D; current_node &#x2F;&#x2F; 记录父节点</span><br><span class="line">        queue.enqueue(neighbor)           &#x2F;&#x2F; 将其加入队列，等待后续访问</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 6. 如果队列为空还没找到终点，则路径不存在</span><br><span class="line">  return &quot;Path not found&quot;</span><br><span class="line"></span><br><span class="line">function reconstruct_path(parent_map, goal_node):</span><br><span class="line">  path &#x3D; []</span><br><span class="line">  current &#x3D; goal_node</span><br><span class="line">  while current is not null:</span><br><span class="line">    path.append(current)</span><br><span class="line">    current &#x3D; parent_map[current]</span><br><span class="line">  return path.reverse() &#x2F;&#x2F; 将路径反转，得到从起点到终点的顺序</span><br></pre></td></tr></table></figure></div>
+<hr>
+<p><strong>拓展思考 (Further Investigation):</strong></p>
+<ol>
+<li><strong>效率问题:</strong> BFS的“地毯式搜索”非常彻底，但如果地图非常巨大，或者终点就在起点旁边，它可能还是会探索很多不必要的遥远区域。你认为BFS在什么情况下效率较高，什么情况下效率较低？</li>
+<li><strong>非唯一最短路径:</strong> 在一个网格迷宫中，从起点到终点的最短路径可能不止一条。BFS算法找到的是哪一条？它能同时找到所有最短路径吗？</li>
+<li><strong>数据结构的重要性:</strong> 如果我们把核心数据结构“队列 (Queue)”换成“栈 (Stack)”（后进先出, Last-In, First-Out），搜索的顺序会变成什么样？这种新的搜索方式叫什么名字？（提示: 它会倾向于“一条路走到黑”，这被称为深度优先搜索, Depth-First Search）。</li>
+</ol>
+<hr>
+<h2 id="🧑‍💻-User-3"><a href="#🧑‍💻-User-3" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>下一章, 同样方式讲解</p>
+<hr>
+<h2 id="🤖-Assistant-3"><a href="#🤖-Assistant-3" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>好的，我们继续第三章的学习。在掌握了处理等价代价的BFS之后，我们将进入一个更普遍、更强大的场景：当每一步行动的代价<strong>不相同</strong>时，我们该如何寻找最优路径。</p>
+<hr>
+<h3 id="第三章：带权搜索算法——一致成本搜索-Uniform-Cost-Search-UCS"><a href="#第三章：带权搜索算法——一致成本搜索-Uniform-Cost-Search-UCS" class="headerlink" title="第三章：带权搜索算法——一致成本搜索 (Uniform-Cost Search, UCS)"></a><strong>第三章：带权搜索算法——一致成本搜索 (Uniform-Cost Search, UCS)</strong></h3><p><strong>标题与摘要 (Title &amp; Summary):</strong><br>本章将介绍一致成本搜索 (Uniform-Cost Search, UCS)。UCS是广度优先搜索(BFS)的升级版，专门用于解决每一步行动“代价”不相等的问题。它的核心策略是始终优先扩展<strong>从起点到当前位置总代价最低</strong>的路径。通过这种方式，UCS能够保证找到全局总成本最低的路径，而不仅仅是步数最少的路径。</p>
+<hr>
+<p><strong>系统性讲解 (Systematic Explanation):</strong></p>
+<p><strong>1. 为什么BFS不够用了？——代价不等的世界</strong></p>
+<p>在上一章，我们学习的BFS非常适合“每走一步都算一步”的简单情况。但现实世界远比这复杂。让我们回顾课程中的关键例子 (Page 4)：</p>
+<ul>
+<li><strong>场景设定:</strong> 假设在一个真实的交通网络中，左转因为需要等待对向来车，所以比直行和右转花费更多的时间和精力。</li>
+<li><strong>行动与代价模型:</strong><ul>
+<li><code>前进 (Straight)</code>: 代价为 1</li>
+<li><code>右转后前进 (Right Turn)</code>: 代价为 1</li>
+<li><code>左转后前进 (Left Turn)</code>: 代价为 <strong>10</strong> (被“惩罚”了)</li>
+</ul>
+</li>
+</ul>
+<p>现在，我们面临一个抉择：是选择一条包含昂贵左转的、步数较少的“近路”，还是一条只包含廉价直行和右转的、步数更多的“远路”？</p>
+<p>BFS在这种情况下会失效。因为它只关心“层数”（步数），会错误地认为那条包含左转的“近路”更好，因为它步数少。但实际上，它的总代价可能非常高。我们需要一种新的算法，它必须足够“聪明”，能够理解并计算累积的代价。</p>
+<p><strong>2. UCS的核心思想：代价优先</strong></p>
+<p>UCS的智慧在于，它不再像BFS那样盲目地“层层推进”，而是<strong>永远选择当前已知的所有路径中，总代价（g值）最低的那条路径进行下一步扩展</strong>。</p>
+<ul>
+<li><strong>关键概念：g值 (g-value) / 路径代价 (Path Cost)</strong><ul>
+<li><code>g(n)</code> 被定义为从<strong>起点</strong>出发，沿着某条路径到达节点 <code>n</code> 所<strong>累积的总代价</strong>。</li>
+<li>在搜索的每一步，UCS都会关注这个 <code>g</code> 值。</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. UCS的关键数据结构：优先队列 (Priority Queue)</strong></p>
+<p>为了实现“代价优先”的策略，我们必须替换掉BFS中的普通队列。UCS使用的核心数据结构是 <strong>优先队列 (Priority Queue)</strong>。</p>
+<ul>
+<li><strong>什么是优先队列？</strong> 它和普通队列类似，都可以存入和取出元素。但它的特殊之处在于，当你从中取出一个元素时，它<strong>永远返回队列中优先级最高（在UCS中，即g值最低）的那个元素</strong>，无论这个元素是什么时候被放进去的。</li>
+<li><strong>它如何工作？</strong> 想象一个急诊室的候诊队伍。病人不是按先来后到的顺序看病（普通队列），而是由护士根据病情的紧急程度（优先级）来决定谁先被医生接诊。优先队列就是数据结构中的“急诊室分诊台”。</li>
+<li><strong>在课程代码中的实现：</strong> 讲师在讲解代码时 (Page 12)，提到他通过 <code>open_list.sort()</code> 然后 <code>open_list.pop()</code> 的方式来获取 <code>g</code> 值最小的节点。这在功能上模拟了一个优先队列（先排序，再取出最小/最大的），虽然效率不高，但其核心逻辑是完全一致的。</li>
+</ul>
+<p><strong>4. UCS的算法逻辑与实现 (以课程Page 4为例)</strong></p>
+<p>让我们用<code>左转代价=10</code>的例子，来走一遍UCS的流程。</p>
+<ol>
+<li><p><strong>初始化:</strong></p>
+<ul>
+<li>创建一个空的 <strong>优先队列 (Priority Queue)</strong>，用于存放待访问的节点，并根据<code>g</code>值排序。我们称之为<code>open_list</code>。</li>
+<li>创建一个空的 <strong>已访问集合 (Closed List/Visited Set)</strong>，用于存放已完成扩展的节点。</li>
+<li><strong>起始节点</strong> <code>Start</code> 入队，其 <code>g</code> 值为 0。<code>open_list: [(g=0, Start)]</code>。</li>
+</ul>
+</li>
+<li><p><strong>主循环 (只要优先队列不为空):</strong></p>
+<ul>
+<li><strong>迭代 1, 2, 3…</strong></li>
+<li>算法会不断从<code>open_list</code>中取出<code>g</code>值最小的节点进行扩展。最初，这些都是由<code>前进</code>和<code>右转</code>产生的节点，它们的<code>g</code>值会是1, 2, 3…</li>
+<li><p>假设当<code>g=3</code>时，我们到达了左转路口前的那个格子，称之为<code>Node_A</code>。</p>
+</li>
+<li><p><strong>关键抉择点 (扩展 Node_A):</strong></p>
+</li>
+<li>从<code>Node_A</code>出发，我们有两个选择：</li>
+</ul>
+<ol>
+<li><strong>走“近路”:</strong> 执行<code>左转后前进</code>。到达新节点 <code>Node_B</code>。它的代价是 <code>g(Node_B) = g(Node_A) + cost(left_turn) = 3 + 10 = 13</code>。我们将 <code>(g=13, Node_B)</code> 放入<code>open_list</code>。</li>
+<li><strong>走“远路”:</strong> 继续<code>前进</code>，开始绕圈。到达新节点 <code>Node_C</code>。它的代价是 <code>g(Node_C) = g(Node_A) + cost(straight) = 3 + 1 = 4</code>。我们将 <code>(g=4, Node_C)</code> 放入<code>open_list</code>。</li>
+</ol>
+<ul>
+<li><strong>下一轮扩展:</strong></li>
+<li>此时，<code>open_list</code>中可能包含了 <code>(g=13, Node_B)</code>、<code>(g=4, Node_C)</code> 以及其他一些节点。</li>
+<li>根据优先队列的规则，下一个被取出来扩展的<strong>必然是 <code>Node_C</code></strong>，因为它的<code>g</code>值是4，远小于13。</li>
+<li><p>算法会继续沿着“远路”探索，因为在早期阶段，这条路的累积代价一直比较低 (<code>g</code>值依次为 5, 6, 7…)。</p>
+</li>
+<li><p><strong>最终发现最优解:</strong></p>
+</li>
+<li>“远路”最终到达目标区域的总代价是16。当这条路径的总代价累积到16时，它对应的节点<code>(g=16, Goal_via_detour)</code>才会被放入<code>open_list</code>。</li>
+<li>在此过程中，<code>open_list</code>中可能一直“躺着”那个<code>(g=13, Node_B)</code>。</li>
+<li>当所有路径的<code>g</code>值都大于13时，优先队列最终会选择<code>(g=13, Node_B)</code>进行扩展。</li>
+<li>从<code>Node_B</code>继续前进，到达目标的总代价是15。</li>
+<li>当算法第一次从<code>open_list</code>中取出<strong>目标节点</strong>时，搜索结束。因为UCS总是扩展代价最低的路径，所以它第一次找到的，必然是全局代价最低的路径。在这个例子中，它会正确地找到代价为15的路径，而不是16。</li>
+</ul>
+</li>
+</ol>
+<p><strong>5. 伪代码 (Pseudocode)</strong></p>
+<p>UCS的伪代码和BFS非常相似，主要区别在于使用了优先队列和处理代价更新。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">function UCS(start_node, goal_node, grid):</span><br><span class="line">  &#x2F;&#x2F; 1. 初始化</span><br><span class="line">  &#x2F;&#x2F; PriorityQueue 按 g_value 从小到大排序</span><br><span class="line">  open_list &#x3D; a new PriorityQueue()</span><br><span class="line">  closed_list &#x3D; a new Set()</span><br><span class="line">  &#x2F;&#x2F; g_values 存储从起点到每个节点的已知最低代价</span><br><span class="line">  g_values &#x3D; a new Map() initializing all to infinity</span><br><span class="line">  parent_map &#x3D; a new Map() &#x2F;&#x2F; 用于回溯路径</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 2. 设置起点</span><br><span class="line">  g_values[start_node] &#x3D; 0</span><br><span class="line">  open_list.add_with_priority(start_node, priority&#x3D;0)</span><br><span class="line">  parent_map[start_node] &#x3D; null</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 3. 主循环</span><br><span class="line">  while open_list is not empty:</span><br><span class="line">    current_node &#x3D; open_list.pop_highest_priority() &#x2F;&#x2F; 取出 g 值最小的节点</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 如果一个节点已经被扩展过，就跳过（找到了到它的最优路径）</span><br><span class="line">    if current_node in closed_list:</span><br><span class="line">      continue</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 4. 检查是否到达终点</span><br><span class="line">    if current_node is goal_node:</span><br><span class="line">      return reconstruct_path(parent_map, goal_node)</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 5. 将当前节点加入 closed_list，表示已扩展</span><br><span class="line">    closed_list.add(current_node)</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 6. 扩展当前节点，寻找邻居</span><br><span class="line">    for each neighbor, cost_to_neighbor in get_valid_neighbors_with_cost(current_node, grid):</span><br><span class="line">        &#x2F;&#x2F; 计算经由 current_node 到达 neighbor 的新路径代价</span><br><span class="line">        new_g_value &#x3D; g_values[current_node] + cost_to_neighbor</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 如果找到了更优的路径</span><br><span class="line">        if new_g_value &lt; g_values[neighbor]:</span><br><span class="line">          g_values[neighbor] &#x3D; new_g_value         &#x2F;&#x2F; 更新代价</span><br><span class="line">          parent_map[neighbor] &#x3D; current_node      &#x2F;&#x2F; 更新父节点</span><br><span class="line">          &#x2F;&#x2F; 将邻居加入开放列表，优先级为其新的、更优的 g 值</span><br><span class="line">          open_list.add_with_priority(neighbor, priority&#x3D;new_g_value)</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 7. 如果开放列表为空还没找到终点，则路径不存在</span><br><span class="line">  return &quot;Path not found&quot;</span><br></pre></td></tr></table></figure></div>
+<p>这个伪代码中的第6步非常关键。它体现了UCS的一个重要特性：<strong>如果找到了到达某个邻居节点的更短路径，就需要更新这个节点的信息并重新考虑它。</strong></p>
+<hr>
+<p><strong>拓展思考 (Further Investigation):</strong></p>
+<ol>
+<li>UCS与一个非常著名的图论算法——<strong>迪杰斯特拉算法 (Dijkstra’s Algorithm)</strong> 几乎是等价的。你能去了解一下Dijkstra算法是做什么的吗？它和UCS在思想上有什么共通之处？</li>
+<li><strong>BFS与UCS的统一：</strong> 如果在一个路径规划问题中，所有行动的代价都恰好为1，那么UCS的搜索行为和BFS会有什么区别或联系？为什么？</li>
+<li><strong>负权重问题：</strong> 想象一下，如果某个行动的代价是<strong>负数</strong>（比如走某条路不仅不花钱，反而能“赚钱”），UCS算法还能正常工作吗？如果不能，可能会出现什么问题？（提示：想一想包含负代价的环路）</li>
+</ol>
+<hr>
+<h2 id="🧑‍💻-User-4"><a href="#🧑‍💻-User-4" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>下一章</p>
+<hr>
+<h2 id="🤖-Assistant-4"><a href="#🤖-Assistant-4" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>好的，我们进入第四章。这一章是运动规划中里程碑式的一章，我们将学习鼎鼎大名的 A<em> (A-Star) 算法。A</em> 在UCS的基础上，引入了“前瞻性”的引导，使得搜索不再盲目，而是更智能地朝着目标方向前进。</p>
+<hr>
+<h3 id="第四章：启发式搜索——A-A-Star-算法"><a href="#第四章：启发式搜索——A-A-Star-算法" class="headerlink" title="第四章：启发式搜索——A* (A-Star) 算法"></a><strong>第四章：启发式搜索——A* (A-Star) 算法</strong></h3><p><strong>标题与摘要 (Title &amp; Summary):</strong><br>本章将深入讲解 A* (A-Star) 算法，这是一种在路径规划中极为高效且应用广泛的启发式搜索算法。A* 的核心思想是在UCS（一致成本搜索）的基础上，引入了一个<strong>启发函数 (Heuristic Function)</strong> 来估计当前位置到终点的“未来代价”。通过结合“已付出的实际代价 <code>g(n)</code>”和“预估的未来代价 <code>h(n)</code>”，A* 能够优先探索那些看起来最有希望通向终点的路径，从而极大地提高了搜索效率，避免了UCS中常见的、向错误方向的盲目扩展。</p>
+<hr>
+<p><strong>系统性讲解 (Systematic Explanation):</strong></p>
+<p><strong>1. UCS的局限性：缺乏方向感</strong></p>
+<p>我们先回顾UCS的特点。它总是扩展从起点开始总代价 <code>g(n)</code> 最低的节点。这保证了它能找到最优路径，但问题在于它非常“固执”和“盲目”。</p>
+<p>看课程中的例子 (Page 15-16)：</p>
+<ul>
+<li><strong>场景:</strong> 一个大型开放迷宫，起点在左上角，终点在右下角。</li>
+<li><strong>UCS的行为:</strong> UCS就像BFS一样，以起点为中心，像水波纹一样向四面八方均匀地扩展。它会花费大量的计算资源去探索那些明显偏离目标方向的区域（比如地图的左下角和右上角），仅仅因为这些区域离起点近，<code>g</code>值较低。</li>
+<li><strong>问题:</strong> 这种“地毯式搜索”在地图很大时效率极低。我们明明知道目标在右下方，为什么还要去左上方探索呢？</li>
+</ul>
+<p><strong>2. A* 的革命性创新：引入启发 (Heuristic)</strong></p>
+<p>A* 算法的绝妙之处就在于它为搜索赋予了“方向感”。它在评估一个节点 <code>n</code> 的“优秀程度”时，不再只看已经付出的代价 <code>g(n)</code>，而是引入了一个综合性的评估函数 <code>f(n)</code>：</p>
+<p><strong><code>f(n) = g(n) + h(n)</code></strong></p>
+<p>这里：</p>
+<ul>
+<li><strong><code>g(n)</code>:</strong> 与UCS中一样，这是从<strong>起点</strong>到节点 <code>n</code> 的<strong>已知实际最小代价</strong>。这是对<strong>过去</strong>的总结。</li>
+<li><strong><code>h(n)</code> (Heuristic Value):</strong> 这是A*的核心，即<strong>启发函数</strong>。它用于<strong>估计</strong>从节点 <code>n</code> 到<strong>终点</strong>的<strong>未来最小代价</strong>。这是对<strong>未来</strong>的预测。</li>
+<li><strong><code>f(n)</code>:</strong> 这是对经过节点 <code>n</code> 的<strong>整条路径（从起点到终点）的总代价的估计值</strong>。A* 算法正是根据这个 <code>f(n)</code> 值来决定下一步优先扩展哪个节点。它会优先扩展 <code>f(n)</code> 值最小的节点，即那条“过去代价 + 未来预估代价”总和最低的路径。</li>
+</ul>
+<p><strong>3. 什么是好的启发函数 <code>h(n)</code>？</strong></p>
+<p>启发函数是A*算法的灵魂，它的好坏直接决定了算法的效率和正确性。一个好的启发函数 <code>h(n)</code> 必须满足两个关键条件：</p>
+<ul>
+<li><p><strong>可采纳性 (Admissible):</strong> 这是<strong>必须</strong>满足的条件。一个启发函数是可采纳的，意味着对于任何节点 <code>n</code>，<code>h(n)</code> 的估计值<strong>永远不会超过</strong>从 <code>n</code> 到终点的<strong>实际最小代价</strong>。换句话说，启发函数必须是<strong>乐观的</strong>，它不能高估未来的困难。</p>
+<ul>
+<li><strong>为什么必须乐观？</strong> 如果启发函数高估了代价（过于悲观），A* 可能会被误导，错过真正的最优路径，因为它觉得那条路“看起来太贵了”。只有当启发函数是可采纳的，A* 才能保证找到最优解。</li>
+<li><strong>例子:</strong> 课程中提到的 <strong>欧几里得距离 (Euclidean Distance)</strong> 和 <strong>曼哈顿距离 (Manhattan Distance)</strong> 都是经典的可采-纳启发函数。</li>
+<li><strong>欧几里得距离:</strong> <code>sqrt((x1-x2)^2 + (y1-y2)^2)</code>，即两点间的直线距离。在任何情况下，实际路径长度都不可能比直线距离更短，所以它是可采纳的。</li>
+<li><strong>曼哈顿距离:</strong> <code>|x1-x2| + |y1-y2|</code>，即在网格中只能上下左右移动时，从一点到另一点需要走的总步数。这也叫“城市街区距离”，同样，实际要走的步数（考虑障碍物）必然大于或等于这个值。</li>
+</ul>
+</li>
+<li><p><strong>一致性 (Consistent) / 单调性 (Monotonicity):</strong> 这是一个更强的条件，通常也期望满足。它指的是对于任意节点 <code>n</code> 和它的后继节点 <code>n&#39;</code>，从 <code>n</code> 到 <code>n&#39;</code> 的实际代价加上 <code>n&#39;</code> 的启发值，不应该小于 <code>n</code> 的启发值。即 <code>cost(n, n&#39;) + h(n&#39;) &gt;= h(n)</code>。</p>
+<ul>
+<li><strong>意义:</strong> 这保证了沿着任何路径，<code>f</code> 值是单调非递减的。满足一致性的启发函数一定是可采纳的。在实践中，我们常用的曼哈顿距离和欧几里得距离都是一致的。</li>
+</ul>
+</li>
+</ul>
+<p><strong>4. A* 的算法逻辑与具体表现</strong></p>
+<p>A* 的算法流程和UCS几乎完全一样，唯一的区别在于：</p>
+<ul>
+<li>UCS的优先队列是根据 <code>g(n)</code> 排序的。</li>
+<li>A* 的优先队列是根据 <code>f(n) = g(n) + h(n)</code> 排序的。</li>
+</ul>
+<p>让我们看看在同样的迷宫场景下 (Page 16)，A* 的表现：</p>
+<ul>
+<li><strong>A* 的行为:</strong><ol>
+<li>从起点开始，计算周围节点的 <code>f</code> 值。那些更靠近终点（右下方）的节点，它们的 <code>h</code> 值会更小，因此 <code>f</code> 值也相对较小。</li>
+<li>优先队列会选择 <code>f</code> 值最小的节点进行扩展。这自然使得搜索的“波纹”不再是圆形，而是变成了一个被拉向目标方向的“椭圆形”。</li>
+<li>算法会智能地忽略那些远离目标的方向（比如左下角），因为那些节点的 <code>h</code> 值很大，导致它们的 <code>f</code> 值也很大，在优先队列中排在很后面，很难被选中。</li>
+<li>最终，A* 探索的区域（图中灰色部分）远小于UCS，它更专注、更高效地找到了通往终点的最优路径。</li>
+</ol>
+</li>
+</ul>
+<p><strong>5. 伪代码 (Pseudocode)</strong></p>
+<p>A* 的伪代码是在UCS的基础上稍作修改，增加了 <code>h</code> 值的计算和使用 <code>f</code> 值作为优先级。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">function A_Star(start_node, goal_node, grid):</span><br><span class="line">  &#x2F;&#x2F; 1. 初始化</span><br><span class="line">  &#x2F;&#x2F; PriorityQueue 按 f_value (g+h) 从小到大排序</span><br><span class="line">  open_list &#x3D; a new PriorityQueue()</span><br><span class="line">  closed_list &#x3D; a new Set()</span><br><span class="line">  g_values &#x3D; a new Map() initializing all to infinity</span><br><span class="line">  parent_map &#x3D; a new Map()</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 2. 设置起点</span><br><span class="line">  g_values[start_node] &#x3D; 0</span><br><span class="line">  h_value &#x3D; calculate_heuristic(start_node, goal_node)</span><br><span class="line">  f_value &#x3D; g_values[start_node] + h_value</span><br><span class="line">  open_list.add_with_priority(start_node, priority&#x3D;f_value)</span><br><span class="line">  parent_map[start_node] &#x3D; null</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 3. 主循环</span><br><span class="line">  while open_list is not empty:</span><br><span class="line">    current_node &#x3D; open_list.pop_highest_priority() &#x2F;&#x2F; 取出 f 值最小的节点</span><br><span class="line"></span><br><span class="line">    if current_node in closed_list:</span><br><span class="line">      continue</span><br><span class="line"></span><br><span class="line">    if current_node is goal_node:</span><br><span class="line">      return reconstruct_path(parent_map, goal_node)</span><br><span class="line"></span><br><span class="line">    closed_list.add(current_node)</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 4. 扩展当前节点</span><br><span class="line">    for each neighbor, cost_to_neighbor in get_valid_neighbors_with_cost(current_node, grid):</span><br><span class="line">      new_g_value &#x3D; g_values[current_node] + cost_to_neighbor</span><br><span class="line"></span><br><span class="line">      if new_g_value &lt; g_values[neighbor]:</span><br><span class="line">        g_values[neighbor] &#x3D; new_g_value</span><br><span class="line">        parent_map[neighbor] &#x3D; current_node</span><br><span class="line">        &#x2F;&#x2F; 计算新的 f 值并加入开放列表</span><br><span class="line">        h_value &#x3D; calculate_heuristic(neighbor, goal_node)</span><br><span class="line">        f_value &#x3D; new_g_value + h_value</span><br><span class="line">        open_list.add_with_priority(neighbor, priority&#x3D;f_value)</span><br><span class="line"></span><br><span class="line">  return &quot;Path not found&quot;</span><br><span class="line"></span><br><span class="line">function calculate_heuristic(node1, node2):</span><br><span class="line">  &#x2F;&#x2F; 使用曼哈顿距离或欧几里得距离作为启发函数</span><br><span class="line">  &#x2F;&#x2F; return manhattan_distance(node1, node2)</span><br><span class="line">  return euclidean_distance(node1, node2)</span><br></pre></td></tr></table></figure></div>
+<p><strong>6. BFS, UCS, 和 A* 的关系</strong></p>
+<p>现在我们可以总结这三者之间的关系了：</p>
+<ul>
+<li><strong>BFS</strong> 是一个特例，可以看作是所有行动代价 <code>cost=1</code> 的 <strong>UCS</strong>。</li>
+<li><strong>UCS</strong> 也是一个特例，可以看作是启发函数 <code>h(n)=0</code> 的 <strong>A*</strong>。当 <code>h(n)</code> 恒为0时，<code>f(n) = g(n) + 0 = g(n)</code>，此时A*就退化成了UCS。</li>
+</ul>
+<p>所以，A* 是一个更通用、更强大的框架。通过调整代价和启发函数，它可以适应各种不同的场景。</p>
+<hr>
+<p><strong>拓展思考 (Further Investigation):</strong></p>
+<ol>
+<li><strong>启发函数的影响:</strong> 如果我们选择一个“很差”但仍然是可采纳的启发函数，比如 <code>h(n) = 0</code>（即UCS），A* 仍然能找到最优解，但效率很低。如果我们选择一个非常接近真实代价的、完美的启发函数，A* 的搜索行为会是怎样的？（提示：它几乎不会走任何弯路）。</li>
+<li><strong>非可采纳启发函数:</strong> 如果我们故意使用一个非可采纳的（高估代价的）启发函数，会发生什么？A* 找到的路径还是最优的吗？为什么？这种算法有时被称为“贪婪最佳优先搜索 (Greedy Best-First Search)”，你能思考一下它的优缺点吗？</li>
+<li><strong>动态环境:</strong> A*, UCS, BFS 都假设地图是静态不变的。如果在一个已经规划好的路径上，突然出现了一个新的障碍物（比如路上发生了交通事故），算法应该如何应对？是完全重新规划，还是有更智能的方法？</li>
+</ol>
+<hr>
+<h2 id="🧑‍💻-User-5"><a href="#🧑‍💻-User-5" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>下一章 全局最优策略：动态规划与价值迭代 (Dynamic Programming &amp; Value Iteration), 记得和老师pdf内容联系袭来</p>
+<hr>
+<h2 id="🤖-Assistant-5"><a href="#🤖-Assistant-5" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>好的，我们进入第五章。在这一章，我们将学习一种与之前 A* 等搜索算法截然不同的路径规划方法。前面的算法都是从一个起点出发，寻找一条路径；而现在我们要学习的方法，则是要计算出从<strong>地图上任何一个点</strong>出发，到达终点的最优策略。</p>
+<hr>
+<h3 id="第五章：全局最优策略——动态规划与价值迭代-Dynamic-Programming-amp-Value-Iteration"><a href="#第五章：全局最优策略——动态规划与价值迭代-Dynamic-Programming-amp-Value-Iteration" class="headerlink" title="第五章：全局最优策略——动态规划与价值迭代 (Dynamic Programming &amp; Value Iteration)"></a><strong>第五章：全局最优策略——动态规划与价值迭代 (Dynamic Programming &amp; Value Iteration)</strong></h3><p><strong>标题与摘要 (Title &amp; Summary):</strong><br>本章将介绍动态规划 (Dynamic Programming, DP) 的思想，以及它在路径规划中的具体应用——价值迭代 (Value Iteration)。与 A* 算法为“单个起点”寻找“一条路径”不同，价值迭代的目标是为地图中的<strong>每一个格子</strong>都计算出到达终点的<strong>最优成本（即“价值”）</strong>，并最终生成一张完整的<strong>“全局最优策略地图”</strong>。这张地图会像一张导航图，无论你身处何处，它都能告诉你下一步应该往哪走才是最佳选择。</p>
+<hr>
+<p><strong>系统性讲解 (Systematic Explanation):</strong></p>
+<p><strong>1. 思维的转变：从“单一路径”到“全局策略”</strong></p>
+<p>想象一下 A* 算法。它就像一个GPS导航，你输入起点和终点，它为你计算出一条最优路线。但如果你偏离了这条路线，或者换了一个起点，就必须重新计算。</p>
+<p>动态规划的思想则完全不同。它不像GPS，更像是在项目开始前就绘制好一幅<strong>完整的、无死角的城市逃生地图</strong>。这幅地图包含两个核心产物，正如课程讲义 (Page 18) 所展示的：</p>
+<ul>
+<li><strong>价值函数 (Value Function):</strong> 一张数值网格。每个格子里面的数字 <code>V(s)</code> 代表从这个格子 <code>s</code> 出发，到达终点所需的<strong>最小总代价</strong>。这个数字就是这个格子的“价值”。价值越低，代表离终点“越近”（成本意义上的近）。</li>
+<li><strong>策略 (Policy):</strong> 一张箭头网格。每个格子里面的箭头 <code>π(s)</code> 指出了从这个格子 <code>s</code> 出发，<strong>下一步应该走向哪个邻居</strong>，才能最终以最小代价到达终点。</li>
+</ul>
+<p>一旦我们拥有了这两张图，路径规划就变得极其简单：无论把机器人放在地图的哪个位置，只需按照该位置的箭头走，就能走出一条最优路径。</p>
+<p><strong>2. 核心原理：从终点反向推导</strong></p>
+<p>A* 是从起点向终点“前进式”搜索，而价值迭代的核心是一种“后退式”的逻辑。这非常直观：</p>
+<ul>
+<li>最容易确定价值的地方是哪里？是<strong>终点本身</strong>。从终点到终点，代价显然是 <strong>0</strong>。这是我们唯一的、确定的初始信息。</li>
+<li>有了终点的价值，我们就能确定它<strong>紧邻的邻居</strong>的价值。比如，终点旁的格子A，如果它走一步（代价为1）就能到终点，那么格子A的价值就是 <code>1 + V(终点) = 1 + 0 = 1</code>。</li>
+<li>再然后，我们又能根据格子A的价值，确定<strong>与A相邻的、离终点更远</strong>的格子B的价值。格子B走一步到A，再从A到终点，总代价就是 <code>1 + V(A) = 1 + 1 = 2</code>。</li>
+</ul>
+<p>价值迭代，就是将这个过程系统化、自动化，像一圈圈涟漪一样，从终点开始，将正确的价值“传播”到整个地图。</p>
+<p><strong>3. 价值迭代 (Value Iteration) 算法详解</strong></p>
+<p>价值迭代通过不断重复更新，让每个格子的价值估计值逐渐从“未知”收敛到“精确”。</p>
+<p><strong>A. 初始化 (Initialization - Page 19):</strong></p>
+<ol>
+<li><strong>目标格子 (Goal):</strong> <code>Value(goal) = 0</code>。这是我们唯一的“真理”。</li>
+<li><strong>所有其他格子:</strong> <code>Value(cell) = infinity</code> (无穷大)。这表示我们暂时还不知道从这些格子到终点的代价是多少。</li>
+<li><strong>障碍物 (Obstacles):</strong> 它们的价值永远是无穷大，因为我们永远无法从一个障碍物格子到达终点。</li>
+</ol>
+<p><strong>B. 核心更新规则 (The Update Rule - Page 20):</strong></p>
+<p>这是算法的心脏，也被称为<strong>贝尔曼更新 (Bellman Update)</strong>。对于地图上任何一个非障碍、非目标的格子 <code>s</code>，它的价值更新公式如下：</p>
+<p><code>V(s) = min { cost(s, s&#39;) + V(s&#39;) }</code></p>
+<p>让我们把这个公式翻译成大白话：</p>
+<blockquote>
+<p>“我 (格子 <code>s</code>) 的新价值，等于我考察我所有的邻居 (<code>s&#39;</code>)，计算 ‘走到那个邻居的单步代价’ (<code>cost(s, s&#39;)</code>) 加上 ‘那个邻居已知的到达终点的价值’ (<code>V(s&#39;)</code>)，然后从这些结果中，选出那个<strong>最小的值</strong>。”</p>
+</blockquote>
+<p><strong>C. 迭代过程 (The Iteration Process - Pages 21-22):</strong></p>
+<p>算法会一遍又一遍地对地图上<strong>所有</strong>的格子应用上述更新规则，直到整个地图的价值不再发生变化为止。</p>
+<ul>
+<li><p><strong>第一次迭代:</strong></p>
+<ul>
+<li>只有终点周围的邻居，它们的价值会从无穷大被更新为 1 (假设单步代价为1)，因为 <code>min { cost(neighbor, goal) + V(goal) } = 1 + 0 = 1</code>。</li>
+<li>其他所有离终点更远的格子，因为它们的邻居价值都还是无穷大，所以它们自己算出来的值也还是无穷大，保持不变。</li>
+</ul>
+</li>
+<li><p><strong>第二次迭代:</strong></p>
+<ul>
+<li>现在，那些在第一次迭代中价值变为1的格子的邻居们，它们的价值也可以被更新了。它们的价值会变成 <code>min { cost(...) + V(neighbor_with_value_1) } = 1 + 1 = 2</code>。</li>
+<li>价值的“波浪”又向外扩散了一圈。</li>
+</ul>
+</li>
+<li><p><strong>…第N次迭代…</strong></p>
+<ul>
+<li>这个过程不断重复。每一次完整的迭代（遍历所有格子并更新），都会让价值信息从终点向外更精确地传播一格。</li>
+</ul>
+</li>
+<li><p><strong>收敛 (Convergence - Page 23):</strong></p>
+<ul>
+<li>当算法执行了一次完整的迭代，却发现<strong>没有任何一个格子的价值发生了改变</strong>，我们就说算法<strong>收敛</strong>了。</li>
+<li>此时，价值地图 <code>V</code> 就包含了所有格子的最终最优成本。</li>
+</ul>
+</li>
+</ul>
+<p><strong>D. 提取策略 (Policy Extraction - Page 24):</strong></p>
+<p>当我们拥有了最终的价值地图后，提取最优策略（那些箭头）就非常简单了。对于任何一个格子 <code>s</code>：</p>
+<ol>
+<li>再次考察它的所有邻居 <code>s&#39;</code>。</li>
+<li>计算 <code>cost(s, s&#39;) + V(s&#39;)</code> 这个值。</li>
+<li>找到使这个值最小的那个邻居 <code>s&#39;_best</code>。</li>
+<li>那么，从格子 <code>s</code> 出发的最优策略，就是朝 <code>s&#39;_best</code> 方向移动。在策略地图上画一个指向 <code>s&#39;_best</code> 的箭头。</li>
+</ol>
+<p>这个过程本质上是在做一个“目光短浅”的贪心选择，但因为我们依据的是一个全局最优的价值地图，所以这个“短视”的选择恰恰是全局最优的一部分。</p>
+<p><strong>4. 伪代码 (Pseudocode)</strong></p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">function Value_Iteration(grid, goal):</span><br><span class="line">  &#x2F;&#x2F; 1. 初始化</span><br><span class="line">  Value &#x3D; a new grid of the same size</span><br><span class="line">  for each cell s in grid:</span><br><span class="line">    if s is obstacle:</span><br><span class="line">      Value[s] &#x3D; infinity</span><br><span class="line">    else if s is goal:</span><br><span class="line">      Value[s] &#x3D; 0</span><br><span class="line">    else:</span><br><span class="line">      Value[s] &#x3D; infinity</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 2. 主循环，直到价值收敛</span><br><span class="line">  repeat:</span><br><span class="line">    has_changed &#x3D; false</span><br><span class="line">    &#x2F;&#x2F; 遍历地图中每一个可以移动的格子</span><br><span class="line">    for each cell s in grid (where s is not obstacle and not goal):</span><br><span class="line">      original_value &#x3D; Value[s]</span><br><span class="line">      &#x2F;&#x2F; 应用贝尔曼更新规则</span><br><span class="line">      min_value &#x3D; infinity</span><br><span class="line">      for each neighbor s_prime of s:</span><br><span class="line">         &#x2F;&#x2F; cost(s, s_prime) 通常是 1</span><br><span class="line">         min_value &#x3D; min(min_value, cost(s, s_prime) + Value[s_prime])</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 如果价值发生了变化，更新它</span><br><span class="line">      if min_value &lt; original_value:</span><br><span class="line">        Value[s] &#x3D; min_value</span><br><span class="line">        has_changed &#x3D; true</span><br><span class="line"></span><br><span class="line">  until has_changed is false &#x2F;&#x2F; 如果一整轮都没有任何更新，则收敛</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 3. 提取策略</span><br><span class="line">  Policy &#x3D; a new grid of the same size</span><br><span class="line">  for each cell s in grid (where s is not obstacle):</span><br><span class="line">    find best_neighbor s_prime that minimizes (cost(s, s_prime) + Value[s_prime])</span><br><span class="line">    Policy[s] &#x3D; direction_to(s_prime)</span><br><span class="line"></span><br><span class="line">  return Value, Policy</span><br></pre></td></tr></table></figure></div>
+<hr>
+<p><strong>拓展思考 (Further Investigation):</strong></p>
+<ol>
+<li><strong>计算成本:</strong> A* 算法通常只需要探索地图的一部分，而价值迭代需要反复计算地图上的每一个格子直到收敛。在什么情况下，你愿意付出价值迭代更高的“前期计算成本”？（提示：想一想如果起点频繁变化，或者有多个机器人需要同时规划路径的场景）。</li>
+<li><strong>维度的诅咒 (Curse of Dimensionality):</strong> 我们这里的“状态”仅仅是二维的 <code>(x, y)</code> 坐标。如果一个机器人的状态还包括它的朝向、速度、电量等，那么状态空间会急剧膨胀。你认为价值迭代算法在处理这种高维状态空间时会遇到什么挑战？</li>
+<li><strong>与强化学习的联系:</strong> 价值迭代是强化学习 (Reinforcement Learning) 中的一个基础概念。在强化学习中，机器人不知道地图和行动的准确“代价”，需要通过不断“试错”来学习价值函数。你能否思考一下，在未知环境中，这里的贝尔曼更新规则可能需要做出怎样的调整？</li>
+</ol>
+<hr>
+<h2 id="🧑‍💻-User-6"><a href="#🧑‍💻-User-6" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>谢谢, 请讲解最后一章: ps4_answer里的特例,</p>
+<hr>
+<h2 id="🤖-Assistant-6"><a href="#🤖-Assistant-6" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>好的，我们来到最后一章，这是一个非常关键的进阶内容。我们将从之前理想化的“确定性世界”进入一个更接近现实的“随机性世界”。在现实中，当机器人执行一个指令时，结果可能并不完全如预期。本章将通过分析一个具体的代码实例，来讲解如何在充满不确定性的世界里，依然能制定出最优的全局策略。</p>
+<hr>
+<h3 id="第六章：应对不确定性——随机世界中的价值迭代"><a href="#第六章：应对不确定性——随机世界中的价值迭代" class="headerlink" title="第六章：应对不确定性——随机世界中的价值迭代"></a><strong>第六章：应对不确定性——随机世界中的价值迭代</strong></h3><p><strong>(Value Iteration in a Stochastic World)</strong></p>
+<p><strong>标题与摘要 (Title &amp; Summary):</strong><br>本章将深入分析在<strong>随机运动模型 (Stochastic Motion Model)</strong> 下，如何运用价值迭代找到最优策略。我们将从一个“指令百分百被执行”的确定性世界，进入一个“指令可能出错”的概率世界。这要求我们对价值迭代的核心——贝尔曼更新方程——进行升级。更新的原则不再是简单地选择成本最低的邻居，而是要计算并选择能带来<strong>最低期望总成本 (Minimum Expected Total Cost)</strong> 的行动。通过这种方式，算法生成的策略会更加鲁棒和安全，它会主动规避那些即使理论上路径更短、但失败风险更高的区域。</p>
+<hr>
+<p><strong>系统性讲解 (Systematic Explanation):</strong></p>
+<p><strong>1. 为什么世界是随机的？——从确定性到概率</strong></p>
+<p>在前面几章，我们有一个完美的假设：如果我命令机器人“向上”，它就一定会“向上”移动一格。这被称为<strong>确定性系统 (Deterministic System)</strong>。</p>
+<p>但现实世界并非如此。轮子可能会打滑，地面可能不平，传感器可能会有误差。我们发出的指令和实际执行的结果之间存在<strong>不确定性 (Uncertainty)</strong>。<code>ps4_answer</code>中的 <code>q5_stochastic_motion</code> 函数正是为了解决这个问题而设计的。</p>
+<p>代码引入了一个新的关键参数：</p>
+<ul>
+<li><strong><code>success_prob</code> (Success Probability):</strong> 这是一个介于0和1之间的概率值，代表你<strong>预期的行动</strong>成功执行的概率。</li>
+</ul>
+<p>这个函数描述了一个这样的世界：</p>
+<ul>
+<li>当你意图向上移动时：<ul>
+<li>有 <code>success_prob</code> 的概率，你确实向上移动了。</li>
+<li>有 <code>1 - success_prob</code> 的概率，你的行动失败了。失败的结果是，你会以均等的机会向预定方向的<strong>两侧</strong>移动。也就是说，有 <code>(1 - success_prob) / 2</code> 的概率向左，有 <code>(1 - success_prob) / 2</code> 的概率向右。</li>
+</ul>
+</li>
+</ul>
+<p>这种带有概率转移的模型，在学术上被称为<strong>马尔可夫决策过程 (Markov Decision Process, MDP)</strong>，它是现代机器人和人工智能规划领域的基础。</p>
+<p><strong>2. 核心思想的转变：从“最小成本”到“最低期望成本”</strong></p>
+<p>既然行动的结果是随机的，我们就不能再像以前那样，简单地用 <code>cost + Value(neighbor)</code> 来计算一个行动的好坏了。因为一个行动可能导致多个不同的“邻居”状态，每个状态都有其发生的概率。</p>
+<p>我们需要引入一个更强大的工具：<strong>期望值 (Expected Value)</strong>。</p>
+<p>一个行动的<strong>期望成本</strong>被定义为：</p>
+<blockquote>
+<p><strong>期望成本 = Σ [ P(结果) × Cost(结果) ]</strong><br>(即：所有可能结果的概率与其对应成本的加权平均值)</p>
+</blockquote>
+<p>因此，我们的<strong>贝尔曼更新规则</strong>也必须升级。</p>
+<ul>
+<li><strong>旧规则 (确定性):</strong> 格子 <code>s</code> 的价值，是选择一个最好的<strong>邻居</strong> <code>s&#39;</code>，使得 <code>cost(s, s&#39;) + V(s&#39;)</code> 最小。</li>
+<li><strong>新规则 (随机性):</strong> 格子 <code>s</code> 的价值，是选择一个最好的<strong>行动</strong> <code>a</code>，使得这个行动的<strong>期望总成本</strong>最小。<ul>
+<li>一个行动 <code>a</code> 的期望总成本 = <code>cost_step + Σ_{s&#39;} [ P(s&#39; | s, a) × V(s&#39;) ]</code></li>
+<li><code>cost_step</code>: 执行这个行动本身的固定成本。</li>
+<li><code>P(s&#39; | s, a)</code>: 在状态 <code>s</code> 执行行动 <code>a</code> 后，转移到状态 <code>s&#39;</code> 的概率。</li>
+<li><code>V(s&#39;)</code>: 结果状态 <code>s&#39;</code> 的已知价值。</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. 代码逻辑深度解析 (<code>q5_stochastic_motion</code>)</strong></p>
+<p>让我们逐行分析代码，看看它是如何实现这个新规则的。</p>
+<p><strong>A. 初始化:</strong><br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value = [[collision_cost ...]]</span><br></pre></td></tr></table></figure></div></p>
+<ul>
+<li>这里的价值不再初始化为无穷大，而是 <code>collision_cost</code> (碰撞成本)。这是一个很高的惩罚值。其含义是：“在找到一条通往终点的有效路径之前，我假设从任何地方出发的最终结果都是撞墙。”</li>
+</ul>
+<p><strong>B. 主循环与外部结构:</strong><br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> change:</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> range(len(grid)):</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> range(len(grid[<span class="number">0</span>])):</span><br><span class="line">            <span class="comment"># ...</span></span><br></pre></td></tr></table></figure></div></p>
+<ul>
+<li>这部分结构和确定性价值迭代完全一样：不断循环，遍历所有格子，直到价值函数收敛（<code>change</code> 变为 <code>False</code>）。</li>
+</ul>
+<p><strong>C. 核心计算 (内层循环):</strong><br>这是算法最关键的部分，它发生在对每一个格子 <code>(r, c)</code> 的计算中。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 遍历所有四种可能的“意图”行动 (上/下/左/右)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(delta)):</span><br><span class="line">    v2 = cost_step <span class="comment"># 1. 无论如何，先付出行动的固定成本</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>这里的循环不再是“遍历邻居”，而是“遍历<strong>行动</strong>”。<code>i</code> 代表一个意图，比如 <code>i=0</code> 代表“意图向上”。我们的目标是为当前格子 <code>(r, c)</code> 找到最好的行动 <code>i</code>。</li>
+<li><code>v2</code> 用来计算当前这个行动 <code>i</code> 的<strong>总期望成本</strong>。</li>
+</ul>
+<p><strong>D. 计算一个行动的期望成本:</strong><br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 行动结果1：成功的情况</span></span><br><span class="line"><span class="comment"># ... 计算成功转移后的位置 (r2, c2)</span></span><br><span class="line"><span class="keyword">if</span> is_valid(r2, c2):</span><br><span class="line">    v2 += success_prob * value_copy[r2][c2]</span><br><span class="line"><span class="keyword">else</span>: <span class="comment"># 如果撞墙或出界</span></span><br><span class="line">    v2 += success_prob * collision_cost</span><br><span class="line"></span><br><span class="line"><span class="comment"># 行动结果2 &amp; 3：失败并转向两侧的情况</span></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> [(i + <span class="number">1</span>) % <span class="number">4</span>, (i - <span class="number">1</span> + <span class="number">4</span>) % <span class="number">4</span>]:</span><br><span class="line">    <span class="comment"># ... 计算失败转向后的位置 (r2_fail, c2_fail)</span></span><br><span class="line">    prob_fail = (<span class="number">1</span> - success_prob) / <span class="number">2.0</span></span><br><span class="line">    <span class="keyword">if</span> is_valid(r2_fail, c2_fail):</span><br><span class="line">        v2 += prob_fail * value_copy[r2_fail][c2_fail]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        v2 += prob_fail * collision_cost</span><br></pre></td></tr></table></figure></div></p>
+<ul>
+<li>这一大段代码，就是在实践我们上面讲的期望值公式！</li>
+<li><strong>成功部分:</strong> <code>v2</code> 加上 <code>成功概率 × 成功后到达格子的价值</code>。</li>
+<li><strong>失败部分:</strong> <code>v2</code> 加上 <code>失败概率 × 失败后到达格子的价值</code>。这个过程对两个可能的失败方向都做了一遍。</li>
+<li><strong>碰撞处理:</strong> 注意，无论成功还是失败，如果导致的结果是撞墙或出界，那么该结果的“价值”就是 <code>collision_cost</code>。</li>
+</ul>
+<p><strong>E. 寻找最优行动并更新:</strong><br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> v2 &lt; min_v2:</span><br><span class="line">        min_v2 = v2</span><br><span class="line">        best_action_index = i</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在比较完所有4个行动后</span></span><br><span class="line"><span class="keyword">if</span> min_v2 &lt; value[r][c]:</span><br><span class="line">    value[r][c] = min_v2</span><br><span class="line">    policy[r][c] = delta_name[best_action_index]</span><br><span class="line">    change = <span class="literal">True</span></span><br></pre></td></tr></table></figure></div></p>
+<ul>
+<li>在 <code>for i ...</code> 循环结束后，<code>min_v2</code> 就存储了从当前格子 <code>(r,c)</code> 出发，所能采取的4个行动中，那个具有<strong>最低期望总成本</strong>的值。</li>
+<li><code>best_action_index</code> 记录下了是哪个行动（上/下/左/右）实现了这个最低期望成本。</li>
+<li>最后，用这个找到的 <code>min_v2</code> 来更新当前格子的价值 <code>value[r][c]</code>，并把最佳行动记录在策略 <code>policy</code> 中。</li>
+</ul>
+<p><strong>4. 策略的智慧：不仅仅是“最短”，更是“最稳”</strong></p>
+<p>这个算法产生的策略会非常有趣。假设有一条紧贴着墙的近路，和一条远离墙壁的远路。</p>
+<ul>
+<li><strong>确定性算法</strong>会毫不犹豫地选择近路。</li>
+<li><strong>随机性算法</strong>可能会选择远路！为什么？因为它在计算近路上的行动时，会把“失败后撞墙”的可能性和其高昂的<code>collision_cost</code>考虑进去。即使撞墙概率很小，但乘以一个巨大的成本后，也会显著拉高这条近路的期望成本。相比之下，走远路虽然步数多，但几乎没有意外撞墙的风险，其期望成本可能反而更低。</li>
+</ul>
+<p>所以，随机模型下的最优策略，是一种在“效率”和“风险”之间做出权衡的、更智能的策略。</p>
+<hr>
+<p><strong>拓展思考 (Further Investigation):</strong></p>
+<ol>
+<li><strong>参数的影响:</strong> <code>success_prob</code> 和 <code>collision_cost</code> 这两个参数会如何剧烈地影响最终的策略？如果 <code>success_prob</code> 非常低（比如0.5），或者 <code>collision_cost</code> 是一个天文数字，你预测最终生成的策略地图会是什么样子？</li>
+<li><strong>策略的差异:</strong> 在同一个地图上，分别用确定性价值迭代和这个随机性价值迭代算法生成两份策略地图。在哪些区域，你认为它们的策略（箭头方向）最有可能出现不同？为什么？</li>
+<li><strong>更复杂的随机模型:</strong> 我们这里的失败模型是“走向两侧”。如果失败模型是“原地不动”或者“随机走向任何一个方向”，你需要修改代码的哪个部分来适应这个新模型？这会如何改变期望值的计算？</li>
+</ol>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ai/">ai    </a><a class="post-meta__tags" href="/tags/coding/">coding    </a><a class="post-meta__tags" href="/tags/learning/">learning    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2025/09/14/20-areas/courses/omscs/cs7638-ai-robotics/%E6%96%B9%E5%B7%AE%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9F%A9%E9%98%B5%E9%80%9A%E4%BF%97%E8%A7%A3%E9%87%8A/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>方差协方差矩阵通俗解释</span></div></a></div><div class="next-post pull_right"><a href="/2025/09/13/20-areas/courses/omscs/cs7638-ai-robotics/a%20start%20admissible%20%E5%90%AB%E4%B9%89/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>a start admissible 含义</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2025/09/28/20-areas/courses/omscs/cs7638-ai-robotics/PID Twiddle原理/" title="PID Twiddle原理"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-28</div><div class="relatedPosts_title">PID Twiddle原理</div></div></a></div><div class="relatedPosts_item"><a href="/2025/09/28/20-areas/courses/omscs/cs7638-ai-robotics/PID控制器详解/" title="PID控制器详解"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-28</div><div class="relatedPosts_title">PID控制器详解</div></div></a></div><div class="relatedPosts_item"><a href="/2025/09/13/20-areas/courses/omscs/cs7638-ai-robotics/value iteration代码解释/" title="value iteration代码解释"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-13</div><div class="relatedPosts_title">value iteration代码解释</div></div></a></div><div class="relatedPosts_item"><a href="/2025/08/21/20-areas/courses/omscs/cs7638-ai-robotics/人工智能与机器人技术课程要点总结/" title="人工智能与机器人技术课程要点总结"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-08-21</div><div class="relatedPosts_title">人工智能与机器人技术课程要点总结</div></div></a></div><div class="relatedPosts_item"><a href="/2025/09/06/20-areas/courses/omscs/cs7638-ai-robotics/粒子滤波器核心概念与工作流程/" title="粒子滤波器核心概念与工作流程"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-06</div><div class="relatedPosts_title">粒子滤波器核心概念与工作流程</div></div></a></div><div class="relatedPosts_item"><a href="/2025/10/04/20-areas/courses/omscs/cs7638-ai-robotics/粒子滤波器项目指导/" title="粒子滤波器项目指导"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-10-04</div><div class="relatedPosts_title">粒子滤波器项目指导</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'xvMxbws16Erd8WUfqxkvHmb5-gzGzoHsz',
+  appKey:'4U0Vo7NQIUL0eJzHdkPzdCDr',
+  placeholder:'不说话的人会疯掉吗?',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'en',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By supersheepbear</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="external nofollow noopener noreferrer"><span>Butterfly</span></a></div><div class="footer_custom_text">外向孤独者患者</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="255,240,245" opacity="0.7" zindex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="external nofollow noopener noreferrer" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>

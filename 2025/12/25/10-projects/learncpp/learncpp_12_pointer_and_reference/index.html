@@ -1,0 +1,727 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>learncpp_12_pointer_and_reference | Bear's dream</title><meta name="description" content="learncpp_12_pointer_and_reference"><meta name="keywords" content="knowledge,coding,learning"><meta name="author" content="supersheepbear"><meta name="copyright" content="supersheepbear"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_1.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="p43hXBn3_dLvbyxUzx0eo5eYmj9OVYOV52pdrhBa2sw"><meta name="baidu-site-verification" content="EXLlfLv2pV"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="learncpp_12_pointer_and_reference"><meta name="twitter:description" content="learncpp_12_pointer_and_reference"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta property="og:type" content="article"><meta property="og:title" content="learncpp_12_pointer_and_reference"><meta property="og:url" content="https://yxiong.org/2025/12/25/10-projects/learncpp/learncpp_12_pointer_and_reference/"><meta property="og:site_name" content="Bear's dream"><meta property="og:description" content="learncpp_12_pointer_and_reference"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://yxiong.org/2025/12/25/10-projects/learncpp/learncpp_12_pointer_and_reference/"><link rel="prev" title="learncpp_13_compound_types" href="https://yxiong.org/2025/12/26/10-projects/learncpp/learncpp_13_compound_types/"><link rel="next" title="深度研究要求" href="https://yxiong.org/2025/12/13/40-archives/dad_projects/%E5%88%B6%E6%B0%A7%E6%9C%BA%E9%85%92%E5%BA%97app%E9%A1%B9%E7%9B%AE/%E6%B7%B1%E5%BA%A6%E7%A0%94%E7%A9%B6%E8%A6%81%E6%B1%82/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">162</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">59</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">34</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#12-5"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">12.5</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#C-常量左值引用传递总结"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">C++ 常量左值引用传递总结</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#核心优势"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">核心优势</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#参数传递规则"><span class="toc_mobile_items-number">1.3.</span> <span class="toc_mobile_items-text">参数传递规则</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#字符串参数最佳实践"><span class="toc_mobile_items-number">1.4.</span> <span class="toc_mobile_items-text">字符串参数最佳实践</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#注意事项"><span class="toc_mobile_items-number">1.5.</span> <span class="toc_mobile_items-text">注意事项</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#12-6"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">12.6</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#常量左值引用传参-Pass-by-Const-Lvalue-reference-复盘总结"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">常量左值引用传参 (Pass by Const Lvalue reference) 复盘总结</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-核心定义与功能"><span class="toc_mobile_items-number">2.1.1.</span> <span class="toc_mobile_items-text">1. 核心定义与功能</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-类型转换与临时对象"><span class="toc_mobile_items-number">2.1.2.</span> <span class="toc_mobile_items-text">2. 类型转换与临时对象</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-传参方式的选择准则"><span class="toc_mobile_items-number">2.1.3.</span> <span class="toc_mobile_items-text">3. 传参方式的选择准则</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-性能考量与底层开销"><span class="toc_mobile_items-number">2.1.4.</span> <span class="toc_mobile_items-text">4. 性能考量与底层开销</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-字符串传参专项建议"><span class="toc_mobile_items-number">2.1.5.</span> <span class="toc_mobile_items-text">5. 字符串传参专项建议</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#12-7"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">12.7</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#基础操作符：取地址与解引用"><span class="toc_mobile_items-number">3.1.</span> <span class="toc_mobile_items-text">基础操作符：取地址与解引用</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#指针的概念与定义"><span class="toc_mobile_items-number">3.2.</span> <span class="toc_mobile_items-text">指针的概念与定义</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#指针的初始化与赋值"><span class="toc_mobile_items-number">3.3.</span> <span class="toc_mobile_items-text">指针的初始化与赋值</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#指针与-Lvalue-引用"><span class="toc_mobile_items-number">3.4.</span> <span class="toc_mobile_items-text">指针与 Lvalue 引用</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#内存属性与安全性"><span class="toc_mobile_items-number">3.5.</span> <span class="toc_mobile_items-text">内存属性与安全性</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#12-8"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">12.8</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-什么是空指针-Null-Pointer-？"><span class="toc_mobile_items-number">4.1.</span> <span class="toc_mobile_items-text">1. 什么是空指针 (Null Pointer)？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-如何创建空指针？"><span class="toc_mobile_items-number">4.2.</span> <span class="toc_mobile_items-text">2. 如何创建空指针？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#3-致命禁忌：解引用空指针"><span class="toc_mobile_items-number">4.3.</span> <span class="toc_mobile_items-text">3. 致命禁忌：解引用空指针</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#4-如何安全地检查指针？"><span class="toc_mobile_items-number">4.4.</span> <span class="toc_mobile_items-text">4. 如何安全地检查指针？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#5-悬空指针-Dangling-Pointers-Vs-空指针"><span class="toc_mobile_items-number">4.5.</span> <span class="toc_mobile_items-text">5. 悬空指针 (Dangling Pointers) Vs 空指针</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#6-历史遗留问题：0-和-NULL"><span class="toc_mobile_items-number">4.6.</span> <span class="toc_mobile_items-text">6. 历史遗留问题：0 和 NULL</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#7-终极建议：优先使用引用-References"><span class="toc_mobile_items-number">4.7.</span> <span class="toc_mobile_items-text">7. 终极建议：优先使用引用 (References)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#12-9"><span class="toc_mobile_items-number">5.</span> <span class="toc_mobile_items-text">12.9</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-指向常量的指针-Pointer-to-const"><span class="toc_mobile_items-number">5.1.</span> <span class="toc_mobile_items-text">1. 指向常量的指针 (Pointer to const)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-常量指针-Const-pointer"><span class="toc_mobile_items-number">5.2.</span> <span class="toc_mobile_items-text">2. 常量指针 (Const pointer)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#3-指向常量的常量指针-Const-Pointer-to-const"><span class="toc_mobile_items-number">5.3.</span> <span class="toc_mobile_items-text">3. 指向常量的常量指针 (Const Pointer to const)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#核心知识点补充"><span class="toc_mobile_items-number">5.4.</span> <span class="toc_mobile_items-text">核心知识点补充</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#为什么-int-ptr-amp-const-var-会报错？"><span class="toc_mobile_items-number">5.4.1.</span> <span class="toc_mobile_items-text">为什么 int* ptr &#x3D; &amp;const_var; 会报错？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#指向常量的指针-Vs-引用"><span class="toc_mobile_items-number">5.4.2.</span> <span class="toc_mobile_items-text">指向常量的指针 Vs 引用</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#总结表（背诵口诀）"><span class="toc_mobile_items-number">5.5.</span> <span class="toc_mobile_items-text">总结表（背诵口诀）</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#12-10"><span class="toc_mobile_items-number">6.</span> <span class="toc_mobile_items-text">12.10</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-什么是地址传递？"><span class="toc_mobile_items-number">6.1.</span> <span class="toc_mobile_items-text">1. 什么是地址传递？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-语法实现"><span class="toc_mobile_items-number">6.2.</span> <span class="toc_mobile_items-text">2. 语法实现</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#3-三大关键知识点"><span class="toc_mobile_items-number">6.3.</span> <span class="toc_mobile_items-text">3. 三大关键知识点</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#①-修改原值"><span class="toc_mobile_items-number">6.3.1.</span> <span class="toc_mobile_items-text">① 修改原值</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#②-Const-的正确用法-最佳实践"><span class="toc_mobile_items-number">6.3.2.</span> <span class="toc_mobile_items-text">② Const 的正确用法 (最佳实践)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#③-空指针检查-Null-Checking-——-最重要！"><span class="toc_mobile_items-number">6.3.3.</span> <span class="toc_mobile_items-text">③ 空指针检查 (Null Checking) —— 最重要！</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#4-地址传递-Vs-引用传递-该选哪个？"><span class="toc_mobile_items-number">6.4.</span> <span class="toc_mobile_items-text">4. 地址传递 Vs 引用传递 (该选哪个？)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#5-总结建议：黄金法则"><span class="toc_mobile_items-number">6.5.</span> <span class="toc_mobile_items-text">5. 总结建议：黄金法则</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#12-11"><span class="toc_mobile_items-number">7.</span> <span class="toc_mobile_items-text">12.11</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-实现“可选参数”-Optional-Arguments"><span class="toc_mobile_items-number">7.0.1.</span> <span class="toc_mobile_items-text">1. 实现“可选参数” (Optional Arguments)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-修改指针的指向-Changing-what-a-pointer-points-at"><span class="toc_mobile_items-number">7.0.2.</span> <span class="toc_mobile_items-text">2. 修改指针的指向 (Changing what a pointer points at)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-为什么必须用-nullptr？-0-vs-NULL-vs-nullptr"><span class="toc_mobile_items-number">7.0.3.</span> <span class="toc_mobile_items-text">3. 为什么必须用 nullptr？(0 vs NULL vs nullptr)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-哲学总结：万物皆“按值传递”"><span class="toc_mobile_items-number">7.0.4.</span> <span class="toc_mobile_items-text">4. 哲学总结：万物皆“按值传递”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#💡-老师给你的复习口诀："><span class="toc_mobile_items-number">7.0.5.</span> <span class="toc_mobile_items-text">💡 老师给你的复习口诀：</span></a></li></ol></li></ol><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#12-12"><span class="toc_mobile_items-number">8.</span> <span class="toc_mobile_items-text">12.12</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-核心动机：为什么要“按引用返回”？"><span class="toc_mobile_items-number">8.0.1.</span> <span class="toc_mobile_items-text">1. 核心动机：为什么要“按引用返回”？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-致命陷阱：千万不要返回局部变量的引用！"><span class="toc_mobile_items-number">8.0.2.</span> <span class="toc_mobile_items-text">2. 致命陷阱：千万不要返回局部变量的引用！</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-那么，哪些情况是安全的？"><span class="toc_mobile_items-number">8.0.3.</span> <span class="toc_mobile_items-text">3. 那么，哪些情况是安全的？</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#情况-A：返回传入的引用参数"><span class="toc_mobile_items-number">8.0.3.1.</span> <span class="toc_mobile_items-text">情况 A：返回传入的引用参数</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#情况-B：返回静态变量-Static-Variable"><span class="toc_mobile_items-number">8.0.3.2.</span> <span class="toc_mobile_items-text">情况 B：返回静态变量 (Static Variable)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-常见误区与细节"><span class="toc_mobile_items-number">8.0.4.</span> <span class="toc_mobile_items-text">4. 常见误区与细节</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#误区-1：滥用非-const-静态变量"><span class="toc_mobile_items-number">8.0.4.1.</span> <span class="toc_mobile_items-text">误区 1：滥用非 const 静态变量</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#误区-2：接收返回值时发生了“意外复制”"><span class="toc_mobile_items-number">8.0.4.2.</span> <span class="toc_mobile_items-text">误区 2：接收返回值时发生了“意外复制”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#特性：可以通过返回值修改对象"><span class="toc_mobile_items-number">8.0.4.3.</span> <span class="toc_mobile_items-text">特性：可以通过返回值修改对象</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-按地址返回-Return-by-Address"><span class="toc_mobile_items-number">8.0.5.</span> <span class="toc_mobile_items-text">5. 按地址返回 (Return by Address)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#总结（精炼版）"><span class="toc_mobile_items-number">8.0.6.</span> <span class="toc_mobile_items-text">总结（精炼版）</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#12-13"><span class="toc_mobile_items-number">9.</span> <span class="toc_mobile_items-text">12.13</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-In-Parameters-输入参数"><span class="toc_mobile_items-number">9.1.</span> <span class="toc_mobile_items-text">1. In Parameters (输入参数)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-Out-Parameters-输出参数"><span class="toc_mobile_items-number">9.2.</span> <span class="toc_mobile_items-text">2. Out Parameters (输出参数)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#3-Out-Parameters-的缺点"><span class="toc_mobile_items-number">9.3.</span> <span class="toc_mobile_items-text">3. Out Parameters 的缺点</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#4-In-Out-Parameters-输入输出参数"><span class="toc_mobile_items-number">9.4.</span> <span class="toc_mobile_items-text">4. In-Out Parameters (输入输出参数)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#5-Best-Practice-最佳实践"><span class="toc_mobile_items-number">9.5.</span> <span class="toc_mobile_items-text">5. Best Practice (最佳实践)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#12-14"><span class="toc_mobile_items-number">10.</span> <span class="toc_mobile_items-text">12.14</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#C-类型推导复盘总结（指针、引用与-const）"><span class="toc_mobile_items-number">10.0.1.</span> <span class="toc_mobile_items-text">C++ 类型推导复盘总结（指针、引用与 const）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#1-引用推导的核心规则"><span class="toc_mobile_items-number">10.0.1.1.</span> <span class="toc_mobile_items-text">1. 引用推导的核心规则</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#2-顶层-Const-与-底层-Const-的区分"><span class="toc_mobile_items-number">10.0.1.2.</span> <span class="toc_mobile_items-text">2. 顶层 Const 与 底层 Const 的区分</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#3-Const-限定符的推导行为"><span class="toc_mobile_items-number">10.0.1.3.</span> <span class="toc_mobile_items-text">3. Const 限定符的推导行为</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#4-指针推导与-auto-的使用"><span class="toc_mobile_items-number">10.0.1.4.</span> <span class="toc_mobile_items-text">4. 指针推导与 auto* 的使用</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#5-Constexpr-的特殊性"><span class="toc_mobile_items-number">10.0.1.5.</span> <span class="toc_mobile_items-text">5. Constexpr 的特殊性</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#6-最佳实践建议"><span class="toc_mobile_items-number">10.0.1.6.</span> <span class="toc_mobile_items-text">6. 最佳实践建议</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#老师总结（Summary）"><span class="toc_mobile_items-number">10.0.2.</span> <span class="toc_mobile_items-text">老师总结（Summary）</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#12-15"><span class="toc_mobile_items-number">11.</span> <span class="toc_mobile_items-text">12.15</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-现状：传统的“尴尬”解决方案"><span class="toc_mobile_items-number">11.0.1.</span> <span class="toc_mobile_items-text">1. 现状：传统的“尴尬”解决方案</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#方法-A：使用“哨兵值”（Sentinel-Values）"><span class="toc_mobile_items-number">11.0.1.1.</span> <span class="toc_mobile_items-text">方法 A：使用“哨兵值”（Sentinel Values）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#方法-B：返回-bool，结果用引用传出"><span class="toc_mobile_items-number">11.0.1.2.</span> <span class="toc_mobile_items-text">方法 B：返回 bool，结果用引用传出</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-新的选择：std-optional"><span class="toc_mobile_items-number">11.0.2.</span> <span class="toc_mobile_items-text">2. 新的选择：std::optional</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#示例：用-std-optional-重写除法"><span class="toc_mobile_items-number">11.0.2.1.</span> <span class="toc_mobile_items-text">示例：用 std::optional 重写除法</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-std-optional-的基本操作指南"><span class="toc_mobile_items-number">11.0.3.</span> <span class="toc_mobile_items-text">3. std::optional 的基本操作指南</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-深度思考：它和指针有什么区别？"><span class="toc_mobile_items-number">11.0.4.</span> <span class="toc_mobile_items-text">4. 深度思考：它和指针有什么区别？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-进阶应用：作为可选的函数参数"><span class="toc_mobile_items-number">11.0.5.</span> <span class="toc_mobile_items-text">5. 进阶应用：作为可选的函数参数</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#老师的特别提醒（性能注意）："><span class="toc_mobile_items-number">11.0.5.1.</span> <span class="toc_mobile_items-text">老师的特别提醒（性能注意）：</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#6-总结与最佳实践"><span class="toc_mobile_items-number">11.0.6.</span> <span class="toc_mobile_items-text">6. 总结与最佳实践</span></a></li></ol></li></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#12-5"><span class="toc-number">1.</span> <span class="toc-text">12.5</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-常量左值引用传递总结"><span class="toc-number">1.1.</span> <span class="toc-text">C++ 常量左值引用传递总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心优势"><span class="toc-number">1.2.</span> <span class="toc-text">核心优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数传递规则"><span class="toc-number">1.3.</span> <span class="toc-text">参数传递规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串参数最佳实践"><span class="toc-number">1.4.</span> <span class="toc-text">字符串参数最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">1.5.</span> <span class="toc-text">注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-6"><span class="toc-number">2.</span> <span class="toc-text">12.6</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常量左值引用传参-Pass-by-Const-Lvalue-reference-复盘总结"><span class="toc-number">2.1.</span> <span class="toc-text">常量左值引用传参 (Pass by Const Lvalue reference) 复盘总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-核心定义与功能"><span class="toc-number">2.1.1.</span> <span class="toc-text">1. 核心定义与功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-类型转换与临时对象"><span class="toc-number">2.1.2.</span> <span class="toc-text">2. 类型转换与临时对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-传参方式的选择准则"><span class="toc-number">2.1.3.</span> <span class="toc-text">3. 传参方式的选择准则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-性能考量与底层开销"><span class="toc-number">2.1.4.</span> <span class="toc-text">4. 性能考量与底层开销</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-字符串传参专项建议"><span class="toc-number">2.1.5.</span> <span class="toc-text">5. 字符串传参专项建议</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-7"><span class="toc-number">3.</span> <span class="toc-text">12.7</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础操作符：取地址与解引用"><span class="toc-number">3.1.</span> <span class="toc-text">基础操作符：取地址与解引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指针的概念与定义"><span class="toc-number">3.2.</span> <span class="toc-text">指针的概念与定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指针的初始化与赋值"><span class="toc-number">3.3.</span> <span class="toc-text">指针的初始化与赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指针与-Lvalue-引用"><span class="toc-number">3.4.</span> <span class="toc-text">指针与 Lvalue 引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存属性与安全性"><span class="toc-number">3.5.</span> <span class="toc-text">内存属性与安全性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-8"><span class="toc-number">4.</span> <span class="toc-text">12.8</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-什么是空指针-Null-Pointer-？"><span class="toc-number">4.1.</span> <span class="toc-text">1. 什么是空指针 (Null Pointer)？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-如何创建空指针？"><span class="toc-number">4.2.</span> <span class="toc-text">2. 如何创建空指针？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-致命禁忌：解引用空指针"><span class="toc-number">4.3.</span> <span class="toc-text">3. 致命禁忌：解引用空指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-如何安全地检查指针？"><span class="toc-number">4.4.</span> <span class="toc-text">4. 如何安全地检查指针？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-悬空指针-Dangling-Pointers-Vs-空指针"><span class="toc-number">4.5.</span> <span class="toc-text">5. 悬空指针 (Dangling Pointers) Vs 空指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-历史遗留问题：0-和-NULL"><span class="toc-number">4.6.</span> <span class="toc-text">6. 历史遗留问题：0 和 NULL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-终极建议：优先使用引用-References"><span class="toc-number">4.7.</span> <span class="toc-text">7. 终极建议：优先使用引用 (References)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-9"><span class="toc-number">5.</span> <span class="toc-text">12.9</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-指向常量的指针-Pointer-to-const"><span class="toc-number">5.1.</span> <span class="toc-text">1. 指向常量的指针 (Pointer to const)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-常量指针-Const-pointer"><span class="toc-number">5.2.</span> <span class="toc-text">2. 常量指针 (Const pointer)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-指向常量的常量指针-Const-Pointer-to-const"><span class="toc-number">5.3.</span> <span class="toc-text">3. 指向常量的常量指针 (Const Pointer to const)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心知识点补充"><span class="toc-number">5.4.</span> <span class="toc-text">核心知识点补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么-int-ptr-amp-const-var-会报错？"><span class="toc-number">5.4.1.</span> <span class="toc-text">为什么 int* ptr &#x3D; &amp;const_var; 会报错？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指向常量的指针-Vs-引用"><span class="toc-number">5.4.2.</span> <span class="toc-text">指向常量的指针 Vs 引用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结表（背诵口诀）"><span class="toc-number">5.5.</span> <span class="toc-text">总结表（背诵口诀）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-10"><span class="toc-number">6.</span> <span class="toc-text">12.10</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-什么是地址传递？"><span class="toc-number">6.1.</span> <span class="toc-text">1. 什么是地址传递？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-语法实现"><span class="toc-number">6.2.</span> <span class="toc-text">2. 语法实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-三大关键知识点"><span class="toc-number">6.3.</span> <span class="toc-text">3. 三大关键知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#①-修改原值"><span class="toc-number">6.3.1.</span> <span class="toc-text">① 修改原值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#②-Const-的正确用法-最佳实践"><span class="toc-number">6.3.2.</span> <span class="toc-text">② Const 的正确用法 (最佳实践)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#③-空指针检查-Null-Checking-——-最重要！"><span class="toc-number">6.3.3.</span> <span class="toc-text">③ 空指针检查 (Null Checking) —— 最重要！</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-地址传递-Vs-引用传递-该选哪个？"><span class="toc-number">6.4.</span> <span class="toc-text">4. 地址传递 Vs 引用传递 (该选哪个？)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-总结建议：黄金法则"><span class="toc-number">6.5.</span> <span class="toc-text">5. 总结建议：黄金法则</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-11"><span class="toc-number">7.</span> <span class="toc-text">12.11</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-实现“可选参数”-Optional-Arguments"><span class="toc-number">7.0.1.</span> <span class="toc-text">1. 实现“可选参数” (Optional Arguments)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改指针的指向-Changing-what-a-pointer-points-at"><span class="toc-number">7.0.2.</span> <span class="toc-text">2. 修改指针的指向 (Changing what a pointer points at)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-为什么必须用-nullptr？-0-vs-NULL-vs-nullptr"><span class="toc-number">7.0.3.</span> <span class="toc-text">3. 为什么必须用 nullptr？(0 vs NULL vs nullptr)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-哲学总结：万物皆“按值传递”"><span class="toc-number">7.0.4.</span> <span class="toc-text">4. 哲学总结：万物皆“按值传递”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#💡-老师给你的复习口诀："><span class="toc-number">7.0.5.</span> <span class="toc-text">💡 老师给你的复习口诀：</span></a></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#12-12"><span class="toc-number">8.</span> <span class="toc-text">12.12</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-核心动机：为什么要“按引用返回”？"><span class="toc-number">8.0.1.</span> <span class="toc-text">1. 核心动机：为什么要“按引用返回”？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-致命陷阱：千万不要返回局部变量的引用！"><span class="toc-number">8.0.2.</span> <span class="toc-text">2. 致命陷阱：千万不要返回局部变量的引用！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-那么，哪些情况是安全的？"><span class="toc-number">8.0.3.</span> <span class="toc-text">3. 那么，哪些情况是安全的？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#情况-A：返回传入的引用参数"><span class="toc-number">8.0.3.1.</span> <span class="toc-text">情况 A：返回传入的引用参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#情况-B：返回静态变量-Static-Variable"><span class="toc-number">8.0.3.2.</span> <span class="toc-text">情况 B：返回静态变量 (Static Variable)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-常见误区与细节"><span class="toc-number">8.0.4.</span> <span class="toc-text">4. 常见误区与细节</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#误区-1：滥用非-const-静态变量"><span class="toc-number">8.0.4.1.</span> <span class="toc-text">误区 1：滥用非 const 静态变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#误区-2：接收返回值时发生了“意外复制”"><span class="toc-number">8.0.4.2.</span> <span class="toc-text">误区 2：接收返回值时发生了“意外复制”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特性：可以通过返回值修改对象"><span class="toc-number">8.0.4.3.</span> <span class="toc-text">特性：可以通过返回值修改对象</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-按地址返回-Return-by-Address"><span class="toc-number">8.0.5.</span> <span class="toc-text">5. 按地址返回 (Return by Address)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结（精炼版）"><span class="toc-number">8.0.6.</span> <span class="toc-text">总结（精炼版）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-13"><span class="toc-number">9.</span> <span class="toc-text">12.13</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-In-Parameters-输入参数"><span class="toc-number">9.1.</span> <span class="toc-text">1. In Parameters (输入参数)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Out-Parameters-输出参数"><span class="toc-number">9.2.</span> <span class="toc-text">2. Out Parameters (输出参数)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Out-Parameters-的缺点"><span class="toc-number">9.3.</span> <span class="toc-text">3. Out Parameters 的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-In-Out-Parameters-输入输出参数"><span class="toc-number">9.4.</span> <span class="toc-text">4. In-Out Parameters (输入输出参数)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Best-Practice-最佳实践"><span class="toc-number">9.5.</span> <span class="toc-text">5. Best Practice (最佳实践)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-14"><span class="toc-number">10.</span> <span class="toc-text">12.14</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C-类型推导复盘总结（指针、引用与-const）"><span class="toc-number">10.0.1.</span> <span class="toc-text">C++ 类型推导复盘总结（指针、引用与 const）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-引用推导的核心规则"><span class="toc-number">10.0.1.1.</span> <span class="toc-text">1. 引用推导的核心规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-顶层-Const-与-底层-Const-的区分"><span class="toc-number">10.0.1.2.</span> <span class="toc-text">2. 顶层 Const 与 底层 Const 的区分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Const-限定符的推导行为"><span class="toc-number">10.0.1.3.</span> <span class="toc-text">3. Const 限定符的推导行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-指针推导与-auto-的使用"><span class="toc-number">10.0.1.4.</span> <span class="toc-text">4. 指针推导与 auto* 的使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-Constexpr-的特殊性"><span class="toc-number">10.0.1.5.</span> <span class="toc-text">5. Constexpr 的特殊性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-最佳实践建议"><span class="toc-number">10.0.1.6.</span> <span class="toc-text">6. 最佳实践建议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#老师总结（Summary）"><span class="toc-number">10.0.2.</span> <span class="toc-text">老师总结（Summary）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-15"><span class="toc-number">11.</span> <span class="toc-text">12.15</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-现状：传统的“尴尬”解决方案"><span class="toc-number">11.0.1.</span> <span class="toc-text">1. 现状：传统的“尴尬”解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法-A：使用“哨兵值”（Sentinel-Values）"><span class="toc-number">11.0.1.1.</span> <span class="toc-text">方法 A：使用“哨兵值”（Sentinel Values）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法-B：返回-bool，结果用引用传出"><span class="toc-number">11.0.1.2.</span> <span class="toc-text">方法 B：返回 bool，结果用引用传出</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-新的选择：std-optional"><span class="toc-number">11.0.2.</span> <span class="toc-text">2. 新的选择：std::optional</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例：用-std-optional-重写除法"><span class="toc-number">11.0.2.1.</span> <span class="toc-text">示例：用 std::optional 重写除法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-std-optional-的基本操作指南"><span class="toc-number">11.0.3.</span> <span class="toc-text">3. std::optional 的基本操作指南</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-深度思考：它和指针有什么区别？"><span class="toc-number">11.0.4.</span> <span class="toc-text">4. 深度思考：它和指针有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-进阶应用：作为可选的函数参数"><span class="toc-number">11.0.5.</span> <span class="toc-text">5. 进阶应用：作为可选的函数参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#老师的特别提醒（性能注意）："><span class="toc-number">11.0.5.1.</span> <span class="toc-text">老师的特别提醒（性能注意）：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-总结与最佳实践"><span class="toc-number">11.0.6.</span> <span class="toc-text">6. 总结与最佳实践</span></a></li></ol></li></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">learncpp_12_pointer_and_reference</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2025-12-25<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2026-01-24</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/">10-projects</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/learncpp/">learncpp</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2025/12/25/10-projects/learncpp/learncpp_12_pointer_and_reference/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2025/12/25/10-projects/learncpp/learncpp_12_pointer_and_reference/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="12-5"><a href="#12-5" class="headerlink" title="12.5"></a>12.5</h1><h2 id="C-常量左值引用传递总结"><a href="#C-常量左值引用传递总结" class="headerlink" title="C++ 常量左值引用传递总结"></a>C++ 常量左值引用传递总结</h2><p>常量左值引用（<code>const</code> lvalue reference）可以绑定到可修改左值、不可修改左值和右值，比非常量引用更灵活 。它既避免了参数拷贝的开销，又保证函数不会修改被引用的值 。<a href="https://www.learncpp.com/cpp-tutorial/pass-by-const-lvalue-reference/" target="_blank" rel="external nofollow noopener noreferrer">learncpp</a>​</p>
+<h2 id="核心优势"><a href="#核心优势" class="headerlink" title="核心优势"></a>核心优势</h2><ul>
+<li><p><strong>通用性强</strong>：可以接受任何类型的实参（左值、右值、字面量）<a href="https://www.learncpp.com/cpp-tutorial/pass-by-const-lvalue-reference/" target="_blank" rel="external nofollow noopener noreferrer">learncpp</a>​</p>
+</li>
+<li><p><strong>性能优化</strong>：避免拷贝参数，特别是对于大型对象<a href="https://www.learncpp.com/cpp-tutorial/pass-by-const-lvalue-reference/" target="_blank" rel="external nofollow noopener noreferrer">learncpp</a>​</p>
+</li>
+<li><p><strong>安全性</strong>：保证函数内部无法修改参数值<a href="https://www.learncpp.com/cpp-tutorial/pass-by-const-lvalue-reference/" target="_blank" rel="external nofollow noopener noreferrer">learncpp</a>​</p>
+</li>
+</ul>
+<h2 id="参数传递规则"><a href="#参数传递规则" class="headerlink" title="参数传递规则"></a>参数传递规则</h2><p><strong>基本类型</strong>采用值传递，因为拷贝成本低；<strong>类类型</strong>采用常量引用传递，因为拷贝可能很昂贵 。判断标准：如果对象大小 ≤ 2个指针大小且无额外初始化成本，则视为”廉价拷贝” 。<a href="https://www.learncpp.com/cpp-tutorial/pass-by-const-lvalue-reference/" target="_blank" rel="external nofollow noopener noreferrer">learncpp</a>​</p>
+<p><strong>特殊情况</strong> ：<a href="https://www.learncpp.com/cpp-tutorial/pass-by-const-lvalue-reference/" target="_blank" rel="external nofollow noopener noreferrer">learncpp</a>​</p>
+<ul>
+<li><p>值传递：枚举类型、<code>std::string_view</code>、<code>std::span</code>、迭代器</p>
+</li>
+<li><p>引用传递：需要修改的参数、不可拷贝类型（如<code>std::ostream</code>）、智能指针、有虚函数的类型</p>
+</li>
+</ul>
+<h2 id="字符串参数最佳实践"><a href="#字符串参数最佳实践" class="headerlink" title="字符串参数最佳实践"></a>字符串参数最佳实践</h2><p>优先使用 <code>std::string_view</code> 而非 <code>const std::string&amp;</code> 。<code>std::string_view</code> 参数能高效处理所有三种字符串类型（<code>std::string</code>、<code>std::string_view</code>、C风格字符串），而 <code>const std::string&amp;</code> 只对 <code>std::string</code> 参数高效，传递其他类型会导致昂贵的临时对象创建 。<a href="https://www.learncpp.com/cpp-tutorial/pass-by-const-lvalue-reference/" target="_blank" rel="external nofollow noopener noreferrer">learncpp</a>​</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>使用引用传递时，确保实参类型与引用类型匹配，否则会发生类型转换并创建临时对象，失去引用传递的性能优势 。<a href="https://www.learncpp.com/cpp-tutorial/pass-by-const-lvalue-reference/" target="_blank" rel="external nofollow noopener noreferrer">learncpp</a>​</p>
+<ol>
+<li><a href="https://www.learncpp.com/cpp-tutorial/pass-by-const-lvalue-reference/" target="_blank" rel="external nofollow noopener noreferrer">https://www.learncpp.com/cpp-tutorial/pass-by-const-lvalue-reference/</a></li>
+</ol>
+<h1 id="12-6"><a href="#12-6" class="headerlink" title="12.6"></a>12.6</h1><h2 id="常量左值引用传参-Pass-by-Const-Lvalue-reference-复盘总结"><a href="#常量左值引用传参-Pass-by-Const-Lvalue-reference-复盘总结" class="headerlink" title="常量左值引用传参 (Pass by Const Lvalue reference) 复盘总结"></a>常量左值引用传参 (Pass by Const Lvalue reference) 复盘总结</h2><h3 id="1-核心定义与功能"><a href="#1-核心定义与功能" class="headerlink" title="1. 核心定义与功能"></a>1. 核心定义与功能</h3><ul>
+<li><strong>绑定范围</strong>：常量左值引用可绑定至可变左值、不可变左值及右值（如字面量）。</li>
+<li><strong>核心优势</strong>：在避免对象拷贝的同时，保证函数内部无法修改实参值。</li>
+<li><strong>右值支持意义</strong>：允许字面量或临时对象通过引用方式传递，增强了函数接口的通用性。</li>
+</ul>
+<h3 id="2-类型转换与临时对象"><a href="#2-类型转换与临时对象" class="headerlink" title="2. 类型转换与临时对象"></a>2. 类型转换与临时对象</h3><ul>
+<li><strong>转换机制</strong>：实参与形参类型不匹配但可转换时，编译器会创建临时对象供引用绑定。</li>
+<li><strong>性能隐患</strong>：引用传参中的隐式转换会导致预料之外的临时对象构造，产生额外的内存与计算开销。</li>
+<li><strong>类型匹配原则</strong>：使用引用传递时应确保实参类型与形参完全一致，以维持性能优势。</li>
+</ul>
+<h3 id="3-传参方式的选择准则"><a href="#3-传参方式的选择准则" class="headerlink" title="3. 传参方式的选择准则"></a>3. 传参方式的选择准则</h3><ul>
+<li><strong>按值传递 (Pass by value)</strong>：适用于基础类型（int, double等）、枚举类型、视图类（std::string_view, std::span）及迭代器。</li>
+<li><strong>按常量引用传递 (Pass by const reference)</strong>：适用于大多数类类型（Class types）及拷贝开销大的对象。</li>
+<li><strong>按引用传递 (Pass by reference)</strong>：仅用于需要修改实参值、处理不可拷贝类型（如std::ostream）或需避免对象切片（Object slicing）的情况。</li>
+</ul>
+<h3 id="4-性能考量与底层开销"><a href="#4-性能考量与底层开销" class="headerlink" title="4. 性能考量与底层开销"></a>4. 性能考量与底层开销</h3><ul>
+<li><strong>拷贝成本</strong>：取决于对象大小（内存占用）及初始化设置成本（如分配动态内存、打开文件）。</li>
+<li><strong>访问成本</strong>：引用参数需二次寻址（先查引用地址，再访目标内存），值参数可直接访问寄存器或内存。</li>
+<li><strong>编译器优化</strong>：按值传递由于不存在别名风险（Aliasing），更利于编译器进行激进优化。</li>
+<li><strong>“廉价拷贝”标准</strong>：对象大小不超过两个内存地址长度（2 words）且无额外初始化成本。</li>
+</ul>
+<h3 id="5-字符串传参专项建议"><a href="#5-字符串传参专项建议" class="headerlink" title="5. 字符串传参专项建议"></a>5. 字符串传参专项建议</h3><ul>
+<li><strong>首选标准</strong>：优先通过值传递 <code>std::string_view</code>，而非常量引用传递 <code>std::string</code>。</li>
+<li><strong>std::string_view 优势</strong>：能以极低成本处理 <code>std::string</code>、C 风格字符串及子串，无需触发昂贵的转换构造。</li>
+<li><strong>const std::string&amp; 适用场景</strong>：需调用旧版 C++ 接口、必须处理以空字符结尾的字符串，或需调用仅接受 <code>std::string</code> 的第三方库。</li>
+</ul>
+<h1 id="12-7"><a href="#12-7" class="headerlink" title="12.7"></a>12.7</h1><h2 id="基础操作符：取地址与解引用"><a href="#基础操作符：取地址与解引用" class="headerlink" title="基础操作符：取地址与解引用"></a>基础操作符：取地址与解引用</h2><ul>
+<li><strong>取地址操作符 (&amp;)</strong>：返回其操作数在内存中的地址（通常为十六进制）。<ul>
+<li>示例：<code>std::cout &lt;&lt; &amp;x;</code></li>
+<li>注意：对于多字节对象，返回其第一个字节的地址。</li>
+</ul>
+</li>
+<li><strong>解引用操作符 (*)</strong>：返回指定内存地址处的值，且该值为左值。<ul>
+<li>示例：<code>std::cout &lt;&lt; *(&amp;x); // 输出变量 x 的值</code></li>
+<li>逻辑关系：<code>&amp;</code> 与 <code>*</code> 互为逆运算。</li>
+</ul>
+</li>
+</ul>
+<h2 id="指针的概念与定义"><a href="#指针的概念与定义" class="headerlink" title="指针的概念与定义"></a>指针的概念与定义</h2><ul>
+<li><strong>指针定义</strong>：指针是一个存储内存地址的变量。</li>
+<li><strong>指针类型</strong>：在基本类型后加 <code>*</code> 表示该类型的指针。<ul>
+<li>示例：<code>int* ptr; // 指向 int 类型的指针</code></li>
+</ul>
+</li>
+<li><strong>声明规则</strong>：<code>*</code> 符号在声明多个变量时必须逐一重复。<ul>
+<li>示例：<code>int* ptr1, * ptr2; // 正确定义两个指针</code></li>
+</ul>
+</li>
+<li><strong>最佳实践</strong>：声明时将 <code>*</code> 紧贴类型名（如 <code>int* ptr</code>），且避免在同一行定义多个变量。</li>
+</ul>
+<h2 id="指针的初始化与赋值"><a href="#指针的初始化与赋值" class="headerlink" title="指针的初始化与赋值"></a>指针的初始化与赋值</h2><ul>
+<li><strong>野指针 (Wild Pointer)</strong>：未初始化的指针包含随机垃圾地址，解引用会导致未定义行为。</li>
+<li><strong>初始化</strong>：应始终初始化指针，通常赋予某个变量的地址。<ul>
+<li>示例：<code>int* ptr{ &amp;x };</code></li>
+</ul>
+</li>
+<li><strong>指针赋值的两种方式</strong>：<ul>
+<li>改变指向：<code>ptr = &amp;y;</code>（修改指针存储的地址）</li>
+<li>修改值：<code>*ptr = 6;</code>（通过指针修改目标对象的值）</li>
+</ul>
+</li>
+</ul>
+<h2 id="指针与-Lvalue-引用"><a href="#指针与-Lvalue-引用" class="headerlink" title="指针与 Lvalue 引用"></a>指针与 Lvalue 引用</h2><ul>
+<li><strong>相同点</strong>：都提供了间接访问另一个对象的能力。</li>
+<li><strong>差异点</strong>：<ul>
+<li><strong>显式性</strong>：指针需要显式使用 <code>&amp;</code> 和 <code>*</code>；引用是隐式的。</li>
+<li><strong>对象性质</strong>：指针是对象（占用内存），引用不是对象。</li>
+<li><strong>重新绑定</strong>：指针可以随时改变指向；引用一旦绑定不可更改。</li>
+<li><strong>有效性</strong>：引用必须初始化且不能为空；指针可以不初始化（不建议）或指向空。</li>
+</ul>
+</li>
+</ul>
+<h2 id="内存属性与安全性"><a href="#内存属性与安全性" class="headerlink" title="内存属性与安全性"></a>内存属性与安全性</h2><ul>
+<li><strong>指针大小</strong>：取决于执行架构，与指向的数据类型无关。<ul>
+<li>32位架构：指针占用 4 字节。</li>
+<li>64位架构：指针占用 8 字节。</li>
+</ul>
+</li>
+<li><strong>悬挂指针 (Dangling Pointer)</strong>：指向已被销毁对象的指针。<ul>
+<li>后果：解引用悬挂指针会导致未定义行为（程序崩溃或数据损坏）。</li>
+<li>示例：在内部作用域内将变量地址赋给外部指针，作用域结束后该指针变为悬挂状态。</li>
+</ul>
+</li>
+</ul>
+<h1 id="12-8"><a href="#12-8" class="headerlink" title="12.8"></a>12.8</h1><p>你好！这篇关于 <strong>空指针 (Null pointers)</strong> 的课件确实比较详尽。为了让你更高效地掌握，我将其核心知识点提炼如下。</p>
+<p>简单来说，<strong>空指针</strong>就是一个“不指向任何东西”的特殊状态。</p>
+<h2 id="1-什么是空指针-Null-Pointer-？"><a href="#1-什么是空指针-Null-Pointer-？" class="headerlink" title="1. 什么是空指针 (Null Pointer)？"></a>1. 什么是空指针 (Null Pointer)？</h2><p>普通指针存储的是内存地址，而<strong>空指针</strong>持有一个特殊的“空值”，表示它<strong>目前没有指向任何对象</strong>。</p>
+<h2 id="2-如何创建空指针？"><a href="#2-如何创建空指针？" class="headerlink" title="2. 如何创建空指针？"></a>2. 如何创建空指针？</h2><p>现代 C++ 有两种推荐方式，<strong>最佳实践是使用 <code>nullptr</code> 关键字</strong>。</p>
+<ul>
+<li><strong>方法 A：值初始化 (Value Initialization)</strong><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* ptr &#123;&#125;; <span class="comment">// ptr 现在是空指针，不持有任何地址</span></span><br></pre></td></tr></table></figure></div></li>
+<li><strong>方法 B：使用 <code>nullptr</code> 关键字 (推荐)</strong><br>就像 <code>true</code> 和 <code>false</code> 是布尔字面量，<code>nullptr</code> 是专门表示空指针的字面量。<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* ptr &#123; <span class="literal">nullptr</span> &#125;; <span class="comment">// 初始化为空</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> value &#123; <span class="number">5</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>* ptr2 &#123; &amp;value &#125;;</span><br><span class="line">ptr2 = <span class="literal">nullptr</span>;       <span class="comment">// 也可以通过赋值，让原本有效的指针变为空指针</span></span><br></pre></td></tr></table></figure></div>
+</li>
+</ul>
+<h2 id="3-致命禁忌：解引用空指针"><a href="#3-致命禁忌：解引用空指针" class="headerlink" title="3. 致命禁忌：解引用空指针"></a>3. 致命禁忌：解引用空指针</h2><p><strong>切记：</strong> 永远不要对空指针进行解引用 (<code>*ptr</code>) 操作。</p>
+<ul>
+<li><strong>后果：</strong> 导致 <strong>未定义行为 (Undefined Behavior)</strong>，通常会直接导致程序崩溃。</li>
+<li><strong>原因：</strong> 空指针不指向任何地址，去一个不存在的地址取值是不合逻辑的。</li>
+</ul>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* ptr &#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line"><span class="comment">// std::cout &lt;&lt; *ptr; // 错误！程序会崩溃。</span></span><br></pre></td></tr></table></figure></div>
+<h2 id="4-如何安全地检查指针？"><a href="#4-如何安全地检查指针？" class="headerlink" title="4. 如何安全地检查指针？"></a>4. 如何安全地检查指针？</h2><p>在使用指针前，必须检查它是否为空。指针可以<strong>隐式转换</strong>为布尔值：</p>
+<ul>
+<li><strong>空指针</strong> 转为 <code>false</code></li>
+<li><strong>非空指针</strong> 转为 <code>true</code></li>
+</ul>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (ptr) &#123;</span><br><span class="line">    <span class="comment">// 指针非空，可以安全解引用</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *ptr;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 指针为空，处理错误逻辑</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"ptr is null"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h2 id="5-悬空指针-Dangling-Pointers-Vs-空指针"><a href="#5-悬空指针-Dangling-Pointers-Vs-空指针" class="headerlink" title="5. 悬空指针 (Dangling Pointers) Vs 空指针"></a>5. 悬空指针 (Dangling Pointers) Vs 空指针</h2><p>这是一个非常重要的概念区别：</p>
+<ul>
+<li><strong>空指针 (Null Pointer)：</strong> 明确知道它不指向任何东西 (值为 nullptr)。</li>
+<li><strong>悬空指针 (Dangling Pointer)：</strong> 指向的内存已经被释放了，但指针里还留着旧地址。</li>
+</ul>
+<p><strong>警告：</strong> <code>if (ptr)</code> 只能检测指针是否为 <code>nullptr</code>，<strong>无法检测指针是否悬空</strong>。</p>
+<p><strong>最佳策略：</strong></p>
+<ol>
+<li>如果一个指针不指向有效对象，必须将其设为 <code>nullptr</code>。</li>
+<li>当指针指向的对象被销毁后，<strong>程序员必须手动</strong>将该指针置为 <code>nullptr</code>（C++ 不会自动帮你做）。<br>这样，你只需要检查 <code>if (ptr)</code> 就能确信指针是安全的。</li>
+</ol>
+<h2 id="6-历史遗留问题：0-和-NULL"><a href="#6-历史遗留问题：0-和-NULL" class="headerlink" title="6. 历史遗留问题：0 和 NULL"></a>6. 历史遗留问题：0 和 NULL</h2><p>在老旧代码中，你可能会看到用 <code>0</code> 或 <code>NULL</code> 来表示空指针。</p>
+<ul>
+<li><strong>建议：</strong> 在现代 C++ 中<strong>避免</strong>使用它们，一律使用 <code>nullptr</code>。<code>nullptr</code> 类型更安全，语义更清晰。</li>
+</ul>
+<h2 id="7-终极建议：优先使用引用-References"><a href="#7-终极建议：优先使用引用-References" class="headerlink" title="7. 终极建议：优先使用引用 (References)"></a>7. 终极建议：优先使用引用 (References)</h2><p>引用 (Reference) 必须在创建时初始化，且不能为“空”，也不能重置指向。这规避了空指针和大部分悬空指针的问题。</p>
+<p><strong>总结：</strong> 除非你需要指针的特殊能力（如改变指向、指向空值），否则<strong>优先使用引用</strong>。</p>
+<hr>
+<p><strong>一句话总结全篇：</strong><br>用 <code>nullptr</code> 初始化指针；解引用前用 <code>if (ptr)</code> 检查；对象销毁后把指针置空；能用引用就别用指针。</p>
+<h1 id="12-9"><a href="#12-9" class="headerlink" title="12.9"></a>12.9</h1><p>这一课的核心在于区分<strong>指针本身（地址）</strong>和<strong>指针指向的数据（值）</strong>谁是不可变的。</p>
+<p>我们可以通过一个<strong>“星星（*）分界法”</strong>来精炼记忆：</p>
+<ul>
+<li><strong><code>const</code> 在 <code>*</code> 左边</strong>：指向的内容是常量（指向常量的指针）。</li>
+<li><strong><code>const</code> 在 <code>*</code> 右边</strong>：指针本身是常量（常量指针）。</li>
+</ul>
+<hr>
+<h2 id="1-指向常量的指针-Pointer-to-const"><a href="#1-指向常量的指针-Pointer-to-const" class="headerlink" title="1. 指向常量的指针 (Pointer to const)"></a>1. 指向常量的指针 (Pointer to const)</h2><p><strong>写法：</strong> <code>const int* ptr</code> 或 <code>int const* ptr</code></p>
+<ul>
+<li><strong>特点：</strong> 你不能通过这个指针去修改它指向的值。</li>
+<li><strong>逻辑：</strong> 它认为自己指向的是“常量”，即使原变量不是常量，通过它也改不了。</li>
+<li><strong>能做什么：</strong> 可以改变 <code>ptr</code> 指向的地址（换个地方指）。</li>
+</ul>
+<p><strong>举例：</strong><br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> y = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>* ptr = &amp;x; <span class="comment">// 允许：指向一个普通变量，但ptr视其为常量</span></span><br><span class="line"></span><br><span class="line">*ptr = <span class="number">7</span>;   <span class="comment">// 报错！不能通过ptr修改值</span></span><br><span class="line">ptr = &amp;y;   <span class="comment">// 允许！ptr可以改指向y的地址</span></span><br></pre></td></tr></table></figure></div></p>
+<hr>
+<h2 id="2-常量指针-Const-pointer"><a href="#2-常量指针-Const-pointer" class="headerlink" title="2. 常量指针 (Const pointer)"></a>2. 常量指针 (Const pointer)</h2><p><strong>写法：</strong> <code>int* const ptr</code></p>
+<ul>
+<li><strong>特点：</strong> 指针持有的<strong>地址</strong>一旦初始化就不能再变。</li>
+<li><strong>注意：</strong> 必须在定义时初始化。</li>
+<li><strong>能做什么：</strong> 虽然地址不能变，但如果指向的是普通变量，你可以修改那个变量的值。</li>
+</ul>
+<p><strong>举例：</strong><br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> y = <span class="number">6</span>;</span><br><span class="line"><span class="keyword">int</span>* <span class="keyword">const</span> ptr = &amp;x; <span class="comment">// ptr从此锁死在x的地址上</span></span><br><span class="line"></span><br><span class="line">ptr = &amp;y;   <span class="comment">// 报错！指针本身是const，不能换地址</span></span><br><span class="line">*ptr = <span class="number">7</span>;   <span class="comment">// 允许！x的值变成了7</span></span><br></pre></td></tr></table></figure></div></p>
+<hr>
+<h2 id="3-指向常量的常量指针-Const-Pointer-to-const"><a href="#3-指向常量的常量指针-Const-Pointer-to-const" class="headerlink" title="3. 指向常量的常量指针 (Const Pointer to const)"></a>3. 指向常量的常量指针 (Const Pointer to const)</h2><p><strong>写法：</strong> <code>const int* const ptr</code></p>
+<ul>
+<li><strong>特点：</strong> 全面锁死。地址不能改，指向的值也不能通过它改。</li>
+</ul>
+<p><strong>举例：</strong><br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>* <span class="keyword">const</span> ptr = &amp;x;</span><br><span class="line"></span><br><span class="line">ptr = &amp;y;   <span class="comment">// 报错！</span></span><br><span class="line">*ptr = <span class="number">7</span>;   <span class="comment">// 报错！</span></span><br></pre></td></tr></table></figure></div></p>
+<hr>
+<h2 id="核心知识点补充"><a href="#核心知识点补充" class="headerlink" title="核心知识点补充"></a>核心知识点补充</h2><h3 id="为什么-int-ptr-amp-const-var-会报错？"><a href="#为什么-int-ptr-amp-const-var-会报错？" class="headerlink" title="为什么 int* ptr = &amp;const_var; 会报错？"></a>为什么 <code>int* ptr = &amp;const_var;</code> 会报错？</h3><p>如果你有一个 <code>const int x = 5;</code>，你不能用普通的 <code>int* ptr</code> 去指向它。</p>
+<ul>
+<li><strong>原因：</strong> <code>x</code> 本身承诺不改变，但 <code>int* ptr</code> 拥有修改权限。C++ 为了防止你“绕过限制”去修改 <code>x</code>，直接在编译阶段禁止这种赋值。</li>
+</ul>
+<h3 id="指向常量的指针-Vs-引用"><a href="#指向常量的指针-Vs-引用" class="headerlink" title="指向常量的指针 Vs 引用"></a>指向常量的指针 Vs 引用</h3><p><code>const int* ptr</code> 和 <code>const int&amp; ref</code> 非常相似：它们都允许指向（或引用）一个非 <code>const</code> 的变量，并将其视为 <code>const</code>。</p>
+<hr>
+<h2 id="总结表（背诵口诀）"><a href="#总结表（背诵口诀）" class="headerlink" title="总结表（背诵口诀）"></a>总结表（背诵口诀）</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">声明方式</th>
+<th style="text-align:left">谁是 Const？</th>
+<th style="text-align:center">改变地址 (<code>ptr = &amp;y</code>)</th>
+<th style="text-align:center">改变值 (<code>*ptr = 7</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>int* ptr</code></td>
+<td style="text-align:left">无</td>
+<td style="text-align:center">OK</td>
+<td style="text-align:center">OK</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>const int* ptr</code></td>
+<td style="text-align:left">指向的值</td>
+<td style="text-align:center"><strong>OK</strong></td>
+<td style="text-align:center">❌ 报错</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>int* const ptr</code></td>
+<td style="text-align:left">指针本身</td>
+<td style="text-align:center">❌ 报错</td>
+<td style="text-align:center"><strong>OK</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>const int* const ptr</code></td>
+<td style="text-align:left">都是</td>
+<td style="text-align:center">❌ 报错</td>
+<td style="text-align:center">❌ 报错</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>一句话总结：</strong> <code>const</code> 在 <code>*</code> 左边保护“值”，<code>const</code> 在 <code>*</code> 右边保护“地址”。</p>
+<h1 id="12-10"><a href="#12-10" class="headerlink" title="12.10"></a>12.10</h1><p>这一课的核心是讲解 <strong>地址传递 (Pass by Address)</strong>。为了让你快速掌握，我将其精炼为四个维度：<strong>是什么、怎么用、安全隐患、以及与引用的对比</strong>。</p>
+<hr>
+<h2 id="1-什么是地址传递？"><a href="#1-什么是地址传递？" class="headerlink" title="1. 什么是地址传递？"></a>1. 什么是地址传递？</h2><p><strong>核心定义</strong>：函数参数不再是对象本身，而是对象的<strong>指针（地址）</strong>。</p>
+<ul>
+<li><strong>本质</strong>：函数内部创建了一个指针副本，指向外部的同一个变量。</li>
+<li><strong>优点</strong>：和引用传递一样，<strong>快</strong>！因为它只拷贝 4 或 8 字节的地址，不拷贝大对象。</li>
+</ul>
+<hr>
+<h2 id="2-语法实现"><a href="#2-语法实现" class="headerlink" title="2. 语法实现"></a>2. 语法实现</h2><p>对比三种传递方式：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">byValue</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> s)</span></span>;      <span class="comment">// 拷贝一份，慢</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">byRef</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; s)</span></span>; <span class="comment">// 直接用原件，快</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">byAddr</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>* s)</span></span>;<span class="comment">// 拿到原件的地址，快</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> str = <span class="string">"Hello"</span>;</span><br><span class="line">    byValue(str);</span><br><span class="line">    byRef(str);</span><br><span class="line">    byAddr(&amp;str); <span class="comment">// 注意：必须用 &amp; 取地址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="3-三大关键知识点"><a href="#3-三大关键知识点" class="headerlink" title="3. 三大关键知识点"></a>3. 三大关键知识点</h2><h3 id="①-修改原值"><a href="#①-修改原值" class="headerlink" title="① 修改原值"></a>① 修改原值</h3><p>如果参数是 <code>int* ptr</code>（非 const 指针），函数内部可以通过<strong>解引用</strong>修改外部变量：<br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span>* ptr)</span> </span>&#123;</span><br><span class="line">    *ptr = <span class="number">100</span>; <span class="comment">// 修改了外部 main 函数里的变量</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
+<h3 id="②-Const-的正确用法-最佳实践"><a href="#②-Const-的正确用法-最佳实践" class="headerlink" title="② Const 的正确用法 (最佳实践)"></a>② Const 的正确用法 (最佳实践)</h3><ul>
+<li><strong>指针指向的内容不可变</strong>：<code>const int* ptr</code>（最常用，保护数据不被意外修改）。</li>
+<li><strong>指针本身不可变</strong>：<code>int* const ptr</code>（几乎不用，因为参数本来就是副本）。</li>
+<li><strong>准则</strong>：除非需要修改原值，否则一律用 <code>const T*</code>。</li>
+</ul>
+<h3 id="③-空指针检查-Null-Checking-——-最重要！"><a href="#③-空指针检查-Null-Checking-——-最重要！" class="headerlink" title="③ 空指针检查 (Null Checking) —— 最重要！"></a>③ 空指针检查 (Null Checking) —— <strong>最重要！</strong></h3><p>与引用不同，<strong>指针可以是空的 (<code>nullptr</code>)</strong>。直接解引用空指针会导致程序崩溃。</p>
+<ul>
+<li><strong>防御式编程</strong>：在函数开始处检查指针是否有效。<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>* ptr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!ptr) <span class="keyword">return</span>; <span class="comment">// “早返回”模式，防止崩溃</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *ptr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+</ul>
+<hr>
+<h2 id="4-地址传递-Vs-引用传递-该选哪个？"><a href="#4-地址传递-Vs-引用传递-该选哪个？" class="headerlink" title="4. 地址传递 Vs 引用传递 (该选哪个？)"></a>4. 地址传递 Vs 引用传递 (该选哪个？)</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">引用传递 (Pass by Reference)</th>
+<th style="text-align:left">地址传递 (Pass by Address)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>安全性</strong></td>
+<td style="text-align:left">高（引用不能为空）</td>
+<td style="text-align:left">低（必须检查 <code>nullptr</code>）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>语法</strong></td>
+<td style="text-align:left">简洁（像用普通变量）</td>
+<td style="text-align:left">繁琐（满屏 <code>*</code> 和 <code>&amp;</code>）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>灵活性</strong></td>
+<td style="text-align:left">较低</td>
+<td style="text-align:left">较高（可以重新指向别处，或表示“无值”）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>字面量</strong></td>
+<td style="text-align:left"><code>const &amp;</code> 支持传递 5, “Hi” 等</td>
+<td style="text-align:left">不支持直接取地址 <code>&amp;5</code> (报错)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="5-总结建议：黄金法则"><a href="#5-总结建议：黄金法则" class="headerlink" title="5. 总结建议：黄金法则"></a>5. 总结建议：黄金法则</h2><ol>
+<li><strong>首选引用传递</strong>：它更安全、语法更干净。</li>
+<li><strong>次选地址传递</strong>：只有当你明确需要处理“空值”（即参数可以不传，传入 <code>nullptr</code>）或者为了兼容 C 语言接口时，才使用它。</li>
+</ol>
+<p><strong>一句话口诀：</strong></p>
+<blockquote>
+<p><strong>能用引用就用引用，必须用地址才用地址。</strong> (Pass by reference when you can, pass by address when you must.)</p>
+</blockquote>
+<h1 id="12-11"><a href="#12-11" class="headerlink" title="12.11"></a>12.11</h1><p>你好！这篇课件是关于“按地址传递”（Pass by address）的进阶内容。为了让你高效掌握，我将复杂的表述精炼为四个核心知识点，并配上直观的对比。</p>
+<hr>
+<h3 id="1-实现“可选参数”-Optional-Arguments"><a href="#1-实现“可选参数”-Optional-Arguments" class="headerlink" title="1. 实现“可选参数” (Optional Arguments)"></a>1. 实现“可选参数” (Optional Arguments)</h3><p>指针与引用最大的区别是：<strong>指针可以为 <code>nullptr</code></strong>。利用这个特性，我们可以让函数参数变成“可选的”。</p>
+<ul>
+<li><strong>做法</strong>：给指针参数一个默认值 <code>nullptr</code>。</li>
+<li><strong>举例</strong>：<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printID</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>* id = <span class="literal">nullptr</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (id) <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"ID: "</span> &lt;&lt; *id;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"未知用户"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用：</span></span><br><span class="line">printID(&amp;myID); <span class="comment">// 传地址</span></span><br><span class="line">printID();      <span class="comment">// 不传，默认走 nullptr 分支</span></span><br></pre></td></tr></table></figure></div></li>
+<li><strong>老师提醒</strong>：虽然好用，但<strong>函数重载</strong>通常是更好的方案。因为重载更安全（不用担心空指针），且支持字面量（如 <code>printID(10)</code>）。</li>
+</ul>
+<hr>
+<h3 id="2-修改指针的指向-Changing-what-a-pointer-points-at"><a href="#2-修改指针的指向-Changing-what-a-pointer-points-at" class="headerlink" title="2. 修改指针的指向 (Changing what a pointer points at)"></a>2. 修改指针的指向 (Changing what a pointer points at)</h3><p>这是一个大坑！很多人以为传了指针就能修改指针本身。</p>
+<ul>
+<li><strong>现象</strong>：如果你直接把指针传进函数，系统会<strong>复制一份地址</strong>给形参。你在函数里改形参的指向，函数外的原指针<strong>完全没变</strong>。</li>
+<li><strong>需求</strong>：如果你想在函数内部，让函数外的那个指针“改行”指向别处，你需要<strong>按引用传递指针</strong>。</li>
+<li><strong>语法</strong>：<code>int*&amp; refptr</code>（从右往左读：是一个引用，引用的是一个 <code>int*</code> 指针）。</li>
+<li><strong>对比举例</strong>：<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误改法：ptr2 只是原指针的副本</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nullify</span><span class="params">(<span class="keyword">int</span>* ptr2)</span> </span>&#123; ptr2 = <span class="literal">nullptr</span>; &#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确改法：refptr 是原指针的别名</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nullify</span><span class="params">(<span class="keyword">int</span>*&amp; refptr)</span> </span>&#123; refptr = <span class="literal">nullptr</span>; &#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+</ul>
+<hr>
+<h3 id="3-为什么必须用-nullptr？-0-vs-NULL-vs-nullptr"><a href="#3-为什么必须用-nullptr？-0-vs-NULL-vs-nullptr" class="headerlink" title="3. 为什么必须用 nullptr？(0 vs NULL vs nullptr)"></a>3. 为什么必须用 <code>nullptr</code>？(0 vs NULL vs nullptr)</h3><p>这是为了解决<strong>函数重载的歧义</strong>。</p>
+<ul>
+<li><strong>问题</strong>：<code>0</code> 是整数，<code>NULL</code> 在某些编译器下也是整数 <code>0</code>。</li>
+<li><strong>冲突</strong>：如果你有两个重载函数 <code>func(int)</code> 和 <code>func(int*)</code>：<ul>
+<li>调用 <code>func(0)</code>：会进 <code>int</code> 版本。</li>
+<li>调用 <code>func(NULL)</code>：可能进 <code>int</code> 版本，也可能报错。</li>
+<li>调用 <code>func(nullptr)</code>：<strong>永远只会</strong>进 <code>int*</code> 指针版本。</li>
+</ul>
+</li>
+<li><strong>知识点</strong>：<code>nullptr</code> 有自己的类型 <code>std::nullptr_t</code>，它只能表示空指针。</li>
+</ul>
+<hr>
+<h3 id="4-哲学总结：万物皆“按值传递”"><a href="#4-哲学总结：万物皆“按值传递”" class="headerlink" title="4. 哲学总结：万物皆“按值传递”"></a>4. 哲学总结：万物皆“按值传递”</h3><p>课件最后提到了一个深刻的底层逻辑：</p>
+<ul>
+<li><strong>按地址传递</strong>：其实是把“地址”这个数值<strong>按值传递</strong>（Copy一份地址）。</li>
+<li><strong>按引用传递</strong>：底层通常也是编译器通过指针实现的。</li>
+<li><strong>结论</strong>：之所以起这么多名字，是为了区分我们的<strong>意图</strong>——你是想改那个“值”本身，还是想通过“地址”去改它背后的“对象”。</li>
+</ul>
+<hr>
+<h3 id="💡-老师给你的复习口诀："><a href="#💡-老师给你的复习口诀：" class="headerlink" title="💡 老师给你的复习口诀："></a>💡 老师给你的复习口诀：</h3><ol>
+<li><strong>想传可选参数？</strong> 用指针并给默认 <code>nullptr</code>。</li>
+<li><strong>想在函数里改指针指向？</strong> 记得写成 <code>int*&amp;</code>。</li>
+<li><strong>永远不要用 <code>0</code> 或 <code>NULL</code> 代替空指针</strong>，始终用 <code>nullptr</code>。</li>
+<li><strong>语法记不住？</strong> 记住 <code>int*&amp;</code> 是合法的，而 <code>int&amp;*</code> (指针指向引用) 是非法的（报错了反过来写就行）。</li>
+</ol>
+<p>有没有哪一部分需要我再深入举例的？</p>
+<h1 id="12-12"><a href="#12-12" class="headerlink" title="12.12"></a>12.12</h1><p>你好！这一节的内容非常核心，同时也容易踩坑。为了让你能够轻松掌握，我把原版课件的内容提炼为<strong>核心动机</strong>、<strong>语法与机制</strong>、<strong>致命陷阱（必看）</strong>、<strong>常见误区</strong>以及<strong>指针版本</strong>这几个模块来讲解。</p>
+<hr>
+<h3 id="1-核心动机：为什么要“按引用返回”？"><a href="#1-核心动机：为什么要“按引用返回”？" class="headerlink" title="1. 核心动机：为什么要“按引用返回”？"></a>1. 核心动机：为什么要“按引用返回”？</h3><p><strong>一句话总结：为了省钱（性能）。</strong></p>
+<ul>
+<li><strong>按值返回 (Return by value)</strong>：函数返回时，会把结果<strong>复制</strong>一份给调用者。如果是 <code>int</code> 这种小类型还好，但如果是 <code>std::string</code> 或大对象，复制非常昂贵。</li>
+<li><strong>按引用返回 (Return by reference)</strong>：返回的是对象本身的“别名”，<strong>不发生复制</strong>，速度极快。</li>
+</ul>
+<p><strong>写法：</strong> 在返回类型后加 <code>&amp;</code>（引用）或 <code>const &amp;</code>（常量引用）。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">string</span>&amp;       <span class="title">func1</span><span class="params">()</span></span>; <span class="comment">// 返回引用，可读可写</span></span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; <span class="title">func2</span><span class="params">()</span></span>; <span class="comment">// 返回常量引用，只读（最常用）</span></span><br></pre></td></tr></table></figure></div>
+<hr>
+<h3 id="2-致命陷阱：千万不要返回局部变量的引用！"><a href="#2-致命陷阱：千万不要返回局部变量的引用！" class="headerlink" title="2. 致命陷阱：千万不要返回局部变量的引用！"></a>2. 致命陷阱：千万不要返回局部变量的引用！</h3><p>这是本节课<strong>最重要</strong>的知识点。</p>
+<p><strong>规则：</strong> 按引用返回的对象，必须在函数结束后<strong>依然存活</strong>。</p>
+<ul>
+<li><p><strong>错误示范（Dangling Reference 悬垂引用）：</strong><br>你试图返回一个在函数内部创建的局部变量。函数一结束，局部变量被销毁（内存释放），你返回的引用指向了一块“废弃内存”。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; <span class="title">badFunction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> localName = <span class="string">"Test"</span>; </span><br><span class="line">    <span class="keyword">return</span> localName; <span class="comment">// ❌ 危险！函数结束 localName 就销毁了</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// undefined behavior (未定义行为)，程序可能崩溃或乱码</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; badFunction(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>关于“生命周期延长”的误解：</strong><br>虽然 C++ 有时会延长临时对象的生命周期，但这<strong>跨越不了函数边界</strong>。一旦出了函数，临时对象必死无疑，引用也就失效了。</p>
+</li>
+</ul>
+<hr>
+<h3 id="3-那么，哪些情况是安全的？"><a href="#3-那么，哪些情况是安全的？" class="headerlink" title="3. 那么，哪些情况是安全的？"></a>3. 那么，哪些情况是安全的？</h3><p>只有当<strong>返回对象的生命周期长于函数本身</strong>时，按引用返回才是安全的。主要有以下两种情况：</p>
+<h4 id="情况-A：返回传入的引用参数"><a href="#情况-A：返回传入的引用参数" class="headerlink" title="情况 A：返回传入的引用参数"></a>情况 A：返回传入的引用参数</h4><p>如果你把一个对象按引用传进函数，函数再把它按引用传出来，这是安全的。因为该对象在调用者那边本来就存在。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 比较两个字符串，返回较小的那个（由调用者传入，肯定存在）</span></span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; <span class="title">minStr</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; a, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (a &lt; b) ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> s1 = <span class="string">"Apple"</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> s2 = <span class="string">"Banana"</span>;</span><br><span class="line">    <span class="comment">// s1 和 s2 在 main 中都活着，所以安全</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; minStr(s1, s2); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="情况-B：返回静态变量-Static-Variable"><a href="#情况-B：返回静态变量-Static-Variable" class="headerlink" title="情况 B：返回静态变量 (Static Variable)"></a>情况 B：返回静态变量 (Static Variable)</h4><p>静态变量在程序结束前一直存在，所以返回它的引用是技术上安全的，但有“副作用”（见下文）。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">int</span>&amp; <span class="title">getStatic</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> x = <span class="number">10</span>; <span class="comment">// static 变量生命周期贯穿整个程序</span></span><br><span class="line">    <span class="keyword">return</span> x;          <span class="comment">// ✅ 安全，x 不会被销毁</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h3 id="4-常见误区与细节"><a href="#4-常见误区与细节" class="headerlink" title="4. 常见误区与细节"></a>4. 常见误区与细节</h3><h4 id="误区-1：滥用非-const-静态变量"><a href="#误区-1：滥用非-const-静态变量" class="headerlink" title="误区 1：滥用非 const 静态变量"></a>误区 1：滥用非 const 静态变量</h4><p>虽然返回静态变量安全，但如果返回的是<strong>非 const</strong> 引用，会导致所有调用者共享同一个状态，容易产生莫名其妙的 Bug。</p>
+<ul>
+<li><strong>建议：</strong> 除非为了特定的设计（如单例模式），否则尽量避免返回非 const 的局部静态变量。</li>
+</ul>
+<h4 id="误区-2：接收返回值时发生了“意外复制”"><a href="#误区-2：接收返回值时发生了“意外复制”" class="headerlink" title="误区 2：接收返回值时发生了“意外复制”"></a>误区 2：接收返回值时发生了“意外复制”</h4><p>即使函数返回的是引用，如果你用<strong>普通变量</strong>去接收，还是会发生复制。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">int</span>&amp; <span class="title">getRef</span><span class="params">()</span></span>; <span class="comment">// 假设返回一个引用</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = getRef();       <span class="comment">// ⚠️ 发生复制！a 只是值的拷贝</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span>&amp; b = getRef(); <span class="comment">// ✅ 没有复制，b 是真正的引用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="特性：可以通过返回值修改对象"><a href="#特性：可以通过返回值修改对象" class="headerlink" title="特性：可以通过返回值修改对象"></a>特性：可以通过返回值修改对象</h4><p>如果函数返回的是<strong>非 const 引用</strong>，你可以把它放在等号左边赋值！</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span>&amp; <span class="title">max</span><span class="params">(<span class="keyword">int</span>&amp; x, <span class="keyword">int</span>&amp; y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (x &gt; y) ? x : y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">5</span>, b = <span class="number">6</span>;</span><br><span class="line">    max(a, b) = <span class="number">10</span>; <span class="comment">// max 返回了 b 的引用，这行代码相当于 b = 10;</span></span><br><span class="line">    <span class="comment">// 此时 a=5, b=10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h3 id="5-按地址返回-Return-by-Address"><a href="#5-按地址返回-Return-by-Address" class="headerlink" title="5. 按地址返回 (Return by Address)"></a>5. 按地址返回 (Return by Address)</h3><p>这与按引用返回几乎一样，只是返回的是指针（<code>Type*</code>）。</p>
+<ul>
+<li><strong>优点：</strong> 可以返回 <code>nullptr</code>（空指针），表示“没找到”或“无对象”。</li>
+<li><strong>缺点：</strong> 调用者必须记得检查是否为 <code>nullptr</code>，否则程序会崩溃。</li>
+<li><strong>规则：</strong> 同样不能返回局部变量的地址。</li>
+</ul>
+<p><strong>最佳实践：</strong><br>除非你需要返回“空”的概念（比如查找失败返回 nullptr），否则<strong>优先使用按引用返回</strong>，因为它更安全、更符合 C++ 习惯。</p>
+<hr>
+<h3 id="总结（精炼版）"><a href="#总结（精炼版）" class="headerlink" title="总结（精炼版）"></a>总结（精炼版）</h3><ol>
+<li><strong>为了性能</strong>：对象较大时，优先考虑 <code>const &amp;</code> 返回。</li>
+<li><strong>铁律</strong>：<strong>绝对不要</strong>返回函数内部局部变量的引用（或指针）。</li>
+<li><strong>安全场景</strong>：返回通过参数传进来的引用，或者类的成员变量（在类的方法中）。</li>
+<li><strong>接收方式</strong>：想避免复制，接收变量也要声明为引用类型（如 <code>const Type&amp; obj = func();</code>）。</li>
+<li><strong>引用 vs 地址</strong>：默认用引用；只有需要表示“无/空”时，才用指针。</li>
+</ol>
+<h1 id="12-13"><a href="#12-13" class="headerlink" title="12.13"></a>12.13</h1><p>这是一份关于 C++ 中 <strong>In parameters</strong>（输入参数）和 <strong>Out parameters</strong>（输出参数）的精炼讲解。</p>
+<p>通常情况下，函数通过 <strong>Return values</strong>（返回值）向调用者（Caller）传递数据。但在某些特定场景下，我们需要通过参数本身来“返回”数据。</p>
+<p>以下是核心概念的详细解析：</p>
+<h2 id="1-In-Parameters-输入参数"><a href="#1-In-Parameters-输入参数" class="headerlink" title="1. In Parameters (输入参数)"></a>1. In Parameters (输入参数)</h2><p>这是最常见的参数类型。主要用于将数据传入函数供其使用，函数<strong>不会</strong>修改这些参数的值 。<a href="https://www.learncpp.com/cpp-tutorial/in-and-out-parameters/" target="_blank" rel="external nofollow noopener noreferrer">learncpp</a>​</p>
+<ul>
+<li><p><strong>传递方式</strong>：通常按 <strong>Value</strong>（值传递）或 <strong>Const Reference</strong>（常量引用传递）。</p>
+</li>
+<li><p><strong>特点</strong>：调用者传入数据，函数读取数据。</p>
+</li>
+</ul>
+<p>cpp</p>
+<p><code>void print(int x) { // x 是 In parameter     std::cout &lt;&lt; x; }</code></p>
+<h2 id="2-Out-Parameters-输出参数"><a href="#2-Out-Parameters-输出参数" class="headerlink" title="2. Out Parameters (输出参数)"></a>2. Out Parameters (输出参数)</h2><p>当一个函数需要返回多个值，或者无法使用返回值时（例如返回值已被占用），可以使用 <strong>Out parameters</strong>。</p>
+<ul>
+<li><p><strong>定义</strong>：主要用于将信息从函数内部“带回”给调用者 。<a href="https://www.learncpp.com/cpp-tutorial/in-and-out-parameters/" target="_blank" rel="external nofollow noopener noreferrer">learncpp</a>​</p>
+</li>
+<li><p><strong>传递方式</strong>：必须按 <strong>Non-const Reference</strong>（非 const 引用）或指针传递。</p>
+</li>
+<li><p><strong>工作原理</strong>：函数通过引用直接修改调用者作用域内的变量，从而实现数据的“返回”。</p>
+</li>
+</ul>
+<p><strong>示例：同时获取正弦和余弦值</strong></p>
+<p>cpp</p>
+<p><code>void getSinCos(double degrees, double&amp; sinOut, double&amp; cosOut) {     // sinOut 和 cosOut 是 Out parameters    // 函数内部直接修改这两个变量，也就是修改了 main 函数中的 sin 和 cos    double radians = degrees * 3.14159 / 180.0;    sinOut = std::sin(radians);    cosOut = std::cos(radians); } int main() {     double sin = 0.0;    double cos = 0.0;         // 调用者必须先定义变量来接收结果    getSinCos(30.0, sin, cos);         // 此时 sin 和 cos 的值已经被 getSinCos 修改了    return 0; }</code></p>
+<h2 id="3-Out-Parameters-的缺点"><a href="#3-Out-Parameters-的缺点" class="headerlink" title="3. Out Parameters 的缺点"></a>3. Out Parameters 的缺点</h2><p>虽然功能强大，但 <strong>Out parameters</strong> 这种写法并不自然，存在以下缺陷 ：<a href="https://www.learncpp.com/cpp-tutorial/in-and-out-parameters/" target="_blank" rel="external nofollow noopener noreferrer">learncpp</a>​</p>
+<ol>
+<li><p><strong>语法繁琐</strong>：调用者必须先定义（并初始化）变量，哪怕只是为了接收一个值。无法像返回值那样直接用于临时表达式（如 <code>std::cout &lt;&lt; func()</code>）。</p>
+</li>
+<li><p><strong>语义不明确</strong>：</p>
+<ul>
+<li><p>代码 <code>getSinCos(degrees, sin, cos)</code> 看起来像是在传入三个值。</p>
+</li>
+<li><p>如果读者不看函数声明，很难分辨哪些是输入，哪些会被修改。</p>
+</li>
+<li><p><em>注：</em> 虽然使用 <strong>Pass by Address</strong>（传地址，如 <code>func(&amp;x)</code>）能显式看出 <code>x</code> 可能被修改，但会引入空指针检查的复杂性，因此不推荐仅为了可读性而改用指针。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="4-In-Out-Parameters-输入输出参数"><a href="#4-In-Out-Parameters-输入输出参数" class="headerlink" title="4. In-Out Parameters (输入输出参数)"></a>4. In-Out Parameters (输入输出参数)</h2><p>这是一种特殊情况。参数既包含输入数据供函数使用，又在函数结束时承载修改后的结果返回 。<a href="https://www.learncpp.com/cpp-tutorial/in-and-out-parameters/" target="_blank" rel="external nofollow noopener noreferrer">learncpp</a>​</p>
+<ul>
+<li><p><strong>场景</strong>：你需要修改一个现有的对象，而不是创建一个新的。</p>
+</li>
+<li><p><strong>传递方式</strong>：同样使用 <strong>Non-const Reference</strong>。</p>
+</li>
+</ul>
+<p>cpp</p>
+<p><code>void modifyFoo(Foo&amp; inout) {     // 读取 inout 的当前状态，并进行修改 }</code></p>
+<h2 id="5-Best-Practice-最佳实践"><a href="#5-Best-Practice-最佳实践" class="headerlink" title="5. Best Practice (最佳实践)"></a>5. Best Practice (最佳实践)</h2><p>根据现代 C++ 的规范：</p>
+<ol>
+<li><p><strong>尽量避免使用 Out parameters</strong> 。如果需要返回一个值，直接使用返回值。如果需要返回多个值，考虑使用 <code>struct</code> 或 <code>std::pair</code>/<code>std::tuple</code>。<a href="https://www.learncpp.com/cpp-tutorial/in-and-out-parameters/" target="_blank" rel="external nofollow noopener noreferrer">learncpp</a>​</p>
+</li>
+<li><p><strong>如果必须使用</strong>（例如需要原地修改对象以提升性能）：</p>
+<ul>
+<li><p>对于 <strong>Non-optional</strong>（非可选）的输出参数，优先使用 <strong>Pass by Reference</strong>（引用传递），而不是指针。</p>
+</li>
+<li><p>可以通过命名约定（如后缀 <code>_out</code>）来提示这是一个输出参数。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>性能考量</strong>：只有当对象 <strong>Copying</strong>（拷贝）的代价极其昂贵时，才考虑使用 <strong>Out parameters</strong> 来避免返回值的拷贝开销 。<a href="https://www.learncpp.com/cpp-tutorial/in-and-out-parameters/" target="_blank" rel="external nofollow noopener noreferrer">learncpp</a>​</p>
+</li>
+</ol>
+<ol>
+<li><a href="https://www.learncpp.com/cpp-tutorial/in-and-out-parameters/" target="_blank" rel="external nofollow noopener noreferrer">https://www.learncpp.com/cpp-tutorial/in-and-out-parameters/</a></li>
+</ol>
+<h1 id="12-14"><a href="#12-14" class="headerlink" title="12.14"></a>12.14</h1><h3 id="C-类型推导复盘总结（指针、引用与-const）"><a href="#C-类型推导复盘总结（指针、引用与-const）" class="headerlink" title="C++ 类型推导复盘总结（指针、引用与 const）"></a>C++ 类型推导复盘总结（指针、引用与 const）</h3><h4 id="1-引用推导的核心规则"><a href="#1-引用推导的核心规则" class="headerlink" title="1. 引用推导的核心规则"></a>1. 引用推导的核心规则</h4><ul>
+<li><strong>引用剥离原则</strong>：使用 <code>auto</code> 推导时，初始值设定项中的引用限定符（&amp;）会被默认丢弃。<ul>
+<li><code>auto ref { getRef() }; // 结果为 std::string 而非 std::string&amp;</code></li>
+</ul>
+</li>
+<li><strong>显式重加引用</strong>：若需推导结果为引用，必须显式使用 <code>auto&amp;</code>。<ul>
+<li><code>auto&amp; ref { getRef() }; // 结果为 std::string&amp;</code></li>
+</ul>
+</li>
+<li><strong>推导差异成因</strong>：引用在语义上代表其指向的对象，而指针代表地址本身，故推导时保留指针而丢弃引用。</li>
+</ul>
+<h4 id="2-顶层-Const-与-底层-Const-的区分"><a href="#2-顶层-Const-与-底层-Const-的区分" class="headerlink" title="2. 顶层 Const 与 底层 Const 的区分"></a>2. 顶层 Const 与 底层 Const 的区分</h4><ul>
+<li><strong>顶层 Const (Top-level)</strong>：限定对象本身不可变。<ul>
+<li><code>const int x;</code> 或 <code>int* const ptr;</code>（指针本身是常量）</li>
+</ul>
+</li>
+<li><strong>底层 Const (Low-level)</strong>：限定所指向或引用的对象不可变。<ul>
+<li><code>const int&amp; ref;</code> 或 <code>const int* ptr;</code>（指向的内容是常量）</li>
+</ul>
+</li>
+<li><strong>复合情况</strong>：指针可以同时拥有顶层和底层 const。<ul>
+<li><code>const int* const ptr; // 左侧为底层，右侧为顶层</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="3-Const-限定符的推导行为"><a href="#3-Const-限定符的推导行为" class="headerlink" title="3. Const 限定符的推导行为"></a>3. Const 限定符的推导行为</h4><ul>
+<li><strong>顶层 Const 丢弃规则</strong>：<code>auto</code> 会自动丢弃初始值中的顶层 const，但会保留底层 const。</li>
+<li><strong>引用转 Const 逻辑</strong>：推导 <code>const T&amp;</code> 时，先丢弃引用得到 <code>const T</code>（此时变为顶层 const），随后顶层 const 也被丢弃，最终剩 <code>T</code>。</li>
+<li><strong>显式重加 Const</strong>：若需保留常量属性，建议显式添加 <code>const auto</code>。<ul>
+<li><code>const auto&amp; ref { getConstRef() }; // 显式声明为常引用，增强可读性</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="4-指针推导与-auto-的使用"><a href="#4-指针推导与-auto-的使用" class="headerlink" title="4. 指针推导与 auto* 的使用"></a>4. 指针推导与 auto* 的使用</h4><ul>
+<li><strong>指针保留原则</strong>：<code>auto</code> 推导不会丢弃指针限定符（*）。<ul>
+<li><code>auto ptr { getPtr() }; // 推导为 T*</code></li>
+</ul>
+</li>
+<li><strong>auto 与 auto* 的区别</strong>：<code>auto*</code> 强制要求初始值必须是指针类型，否则编译报错。<ul>
+<li><code>auto* ptr { &amp;x }; // 明确意图，确保推导结果为指针</code></li>
+</ul>
+</li>
+<li><strong>Const 指针推导细则</strong>：<ul>
+<li><code>const auto ptr</code> 或 <code>auto const ptr</code>：推导为常指针（<code>T* const</code>）。</li>
+<li><code>const auto* ptr</code>：推导为指向常量的指针（<code>const T*</code>）。</li>
+<li><code>auto* const ptr</code>：推导为常指针（<code>T* const</code>）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-Constexpr-的特殊性"><a href="#5-Constexpr-的特殊性" class="headerlink" title="5. Constexpr 的特殊性"></a>5. Constexpr 的特殊性</h4><ul>
+<li><strong>非类型属性</strong>：<code>constexpr</code> 不是类型系统的一部分，<code>auto</code> 永远不会自动推导为 <code>constexpr</code>。</li>
+<li><strong>显式声明</strong>：必须手动为变量添加 <code>constexpr</code> 关键字。<ul>
+<li><code>constexpr auto ref { getConstRef() };</code></li>
+</ul>
+</li>
+<li><strong>常量引用组合</strong>：定义指向常量的 <code>constexpr</code> 引用时，需同时使用两者。<ul>
+<li><code>constexpr const auto&amp; ref { hello };</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="6-最佳实践建议"><a href="#6-最佳实践建议" class="headerlink" title="6. 最佳实践建议"></a>6. 最佳实践建议</h4><ul>
+<li><strong>显式原则</strong>：即使编译器可以隐式推导，也应显式添加 <code>const</code>、<code>&amp;</code> 或 <code>*</code> 以明确编程意图。</li>
+<li><strong>安全性建议</strong>：优先使用 <code>auto*</code> 代替 <code>auto</code> 来推导指针，利用编译器检查确保类型匹配。</li>
+<li><strong>可读性标准</strong>：当推导结果为常引用时，坚持写 <code>const auto&amp;</code> 即使 <code>auto&amp;</code> 有时也能保留底层 const。</li>
+</ul>
+<h3 id="老师总结（Summary）"><a href="#老师总结（Summary）" class="headerlink" title="老师总结（Summary）"></a>老师总结（Summary）</h3><ol>
+<li><strong>想要引用？</strong> 永远显式写 <code>auto&amp;</code>。</li>
+<li><strong>想要 Const 引用？</strong> 永远显式写 <code>const auto&amp;</code>。<ul>
+<li>虽然 <code>auto&amp;</code> 对 <code>const</code> 对象会自动推导为 const 引用，但写全了能防止你误修改，意图也更清晰。</li>
+</ul>
+</li>
+<li><strong>想要指针？</strong> 推荐写 <code>auto*</code>。<ul>
+<li>这能防止你误把对象当指针，也能更清晰地控制 <code>const</code>（例如 <code>const auto*</code> 就是指向常量的指针）。</li>
+</ul>
+</li>
+<li><strong><code>auto</code> 默认不仅丢 <code>const</code> (顶层)，还丢引用 <code>&amp;</code>。</strong> 只有底层 <code>const</code> (比如指针指向的内容) 会被保留。</li>
+</ol>
+<h1 id="12-15"><a href="#12-15" class="headerlink" title="12.15"></a>12.15</h1><p>同学们好，欢迎来到 C++ 课堂。今天我们要讨论一个在编写鲁棒（Robust）程序时经常遇到的难题：<strong>如何优雅地处理那些“可能失败”的函数？</strong></p>
+<p>在 C++17 之前，我们处理这类问题的方法通常不太理想。今天我们将学习一个现代化的利器：<code>std::optional</code>。</p>
+<hr>
+<h3 id="1-现状：传统的“尴尬”解决方案"><a href="#1-现状：传统的“尴尬”解决方案" class="headerlink" title="1. 现状：传统的“尴尬”解决方案"></a>1. 现状：传统的“尴尬”解决方案</h3><p>假设我们要写一个整数除法函数。如果用户输入除数是 <code>0</code>，函数显然无法计算出结果。这时候该返回什么？</p>
+<h4 id="方法-A：使用“哨兵值”（Sentinel-Values）"><a href="#方法-A：使用“哨兵值”（Sentinel-Values）" class="headerlink" title="方法 A：使用“哨兵值”（Sentinel Values）"></a>方法 A：使用“哨兵值”（Sentinel Values）</h4><p>这是一种很古老的方法：返回一个不可能出现的特殊值。例如，如果计算失败就返回 <code>0</code> 或者 <code>INT_MIN</code>。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">reciprocal</span><span class="params">(<span class="keyword">double</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">0.0</span>) <span class="keyword">return</span> <span class="number">0.0</span>; <span class="comment">// 这里的 0.0 就是“哨兵值”，表示出错了</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.0</span> / x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p><strong>这种方法的弊端：</strong></p>
+<ol>
+<li><strong>歧义性（半谓词问题）：</strong> 如果函数合法的计算结果恰好也是这个哨兵值呢？比如 <code>0/5</code> 的结果也是 <code>0</code>。你无法分辨这是“成功算出了 0”还是“出错了”。</li>
+<li><strong>缺乏标准：</strong> 有的函数返回 <code>-1</code> 表示错误，有的返回 <code>0</code>，有的返回 <code>nullptr</code>。程序员必须查阅手册才能记住每个函数用哪个值。</li>
+</ol>
+<h4 id="方法-B：返回-bool，结果用引用传出"><a href="#方法-B：返回-bool，结果用引用传出" class="headerlink" title="方法 B：返回 bool，结果用引用传出"></a>方法 B：返回 bool，结果用引用传出</h4><p>这也是常见的做法，但它强迫你先定义一个变量，而且代码逻辑会变得支离破碎。</p>
+<hr>
+<h3 id="2-新的选择：std-optional"><a href="#2-新的选择：std-optional" class="headerlink" title="2. 新的选择：std::optional"></a>2. 新的选择：<code>std::optional</code></h3><p>C++17 引入了 <code>std::optional&lt;T&gt;</code>。你可以把它想象成一个<strong>“特殊的盒子”</strong>：</p>
+<ul>
+<li>这个盒子里面<strong>可能</strong>装着一个类型为 <code>T</code> 的值；</li>
+<li>这个盒子也<strong>可能是空</strong>的。</li>
+</ul>
+<h4 id="示例：用-std-optional-重写除法"><a href="#示例：用-std-optional-重写除法" class="headerlink" title="示例：用 std::optional 重写除法"></a>示例：用 <code>std::optional</code> 重写除法</h4><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;optional&gt; // 必须包含这个头文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 现在函数返回的是“一个可能包含 int 的盒子”</span></span><br><span class="line"><span class="function"><span class="built_in">std</span>::optional&lt;<span class="keyword">int</span>&gt; <span class="title">doIntDivision</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (y == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">std</span>::nullopt; <span class="comment">// 返回一个代表“空”的特殊符号</span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> x / y; <span class="comment">// 正常返回结果，编译器会自动把它包装进盒子</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> result = doIntDivision(<span class="number">10</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (result) &#123; <span class="comment">// 1. 直接判断盒子是否有值（隐式转为 bool）</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"结果是: "</span> &lt;&lt; *result &lt;&lt; <span class="string">'\n'</span>; <span class="comment">// 2. 像指针一样用 * 提取值</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"错误：除数不能为 0\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h3 id="3-std-optional-的基本操作指南"><a href="#3-std-optional-的基本操作指南" class="headerlink" title="3. std::optional 的基本操作指南"></a>3. <code>std::optional</code> 的基本操作指南</h3><p>作为一名开发者，你需要掌握以下四种基本用法：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">需求</th>
+<th style="text-align:left">代码示例</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>初始化为空</strong></td>
+<td style="text-align:left"><code>std::optional&lt;int&gt; o{};</code> 或 <code>std::nullopt</code></td>
+<td style="text-align:left">明确表示目前没值</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>检查是否有值</strong></td>
+<td style="text-align:left"><code>if (o)</code> 或 <code>o.has_value()</code></td>
+<td style="text-align:left">推荐直接用 <code>if(o)</code>，更简洁</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>获取值（不安全）</strong></td>
+<td style="text-align:left"><code>*o</code></td>
+<td style="text-align:left">如果盒子是空的，这样做会导致<strong>未定义行为</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>获取值（带异常）</strong></td>
+<td style="text-align:left"><code>o.value()</code></td>
+<td style="text-align:left">如果为空，会抛出 <code>std::bad_optional_access</code> 异常</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>获取值（兜底法）</strong></td>
+<td style="text-align:left"><code>o.value_or(42)</code></td>
+<td style="text-align:left">如果有值就取值，<strong>如果为空就返回 42</strong>（非常实用！）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="4-深度思考：它和指针有什么区别？"><a href="#4-深度思考：它和指针有什么区别？" class="headerlink" title="4. 深度思考：它和指针有什么区别？"></a>4. 深度思考：它和指针有什么区别？</h3><p>很多同学会问：“老师，这看起来和返回指针（成功返回地址，失败返回 <code>nullptr</code>）很像啊？”</p>
+<p>虽然语法相似，但它们的<strong>内存模型</strong>完全不同：</p>
+<ol>
+<li><strong>指针是“引用语义”：</strong> 指针指向的是内存里的另一个地方。你不能返回一个局部变量的地址，否则函数结束变量销毁，指针就失效了。</li>
+<li><strong><code>std::optional</code> 是“值语义”：</strong> 盒子和里面的数据是连在一起的。当你返回 <code>std::optional</code> 时，里面的值会被<strong>复制或移动</strong>给调用者。所以它可以安全地返回函数内部计算出的结果。</li>
+</ol>
+<hr>
+<h3 id="5-进阶应用：作为可选的函数参数"><a href="#5-进阶应用：作为可选的函数参数" class="headerlink" title="5. 进阶应用：作为可选的函数参数"></a>5. 进阶应用：作为可选的函数参数</h3><p>除了作为返回值，<code>std::optional</code> 也可以作为函数参数，表示这个参数是“可选的”。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">cpp</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printID</span><span class="params">(<span class="built_in">std</span>::optional&lt;<span class="keyword">int</span>&gt; id = <span class="built_in">std</span>::nullopt)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (id) <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"ID: "</span> &lt;&lt; *id &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"匿名用户\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    printID(<span class="number">123</span>); <span class="comment">// 传入 int，自动包装</span></span><br><span class="line">    printID();    <span class="comment">// 使用默认值 nullopt</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="老师的特别提醒（性能注意）："><a href="#老师的特别提醒（性能注意）：" class="headerlink" title="老师的特别提醒（性能注意）："></a><strong>老师的特别提醒（性能注意）：</strong></h4><p>虽然这很方便，但 <code>std::optional&lt;T&gt;</code> 会创建 <code>T</code> 的副本。</p>
+<ul>
+<li>如果 <code>T</code> 是简单类型（如 <code>int</code>, <code>double</code>），放心使用。</li>
+<li>如果 <code>T</code> 是复杂的类型（如大字符串 <code>std::string</code> 或大的 <code>vector</code>），<strong>不要</strong>直接传 <code>std::optional&lt;T&gt;</code>。<ul>
+<li><strong>建议：</strong> 在这种情况下，传统的 <code>const T*</code>（指针）或者函数重载通常是更好的选择，因为它们不会产生多余的内存拷贝。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="6-总结与最佳实践"><a href="#6-总结与最佳实践" class="headerlink" title="6. 总结与最佳实践"></a>6. 总结与最佳实践</h3><p>在现代 C++ 编程中，请遵循以下原则：</p>
+<ol>
+<li><strong>优先使用 <code>std::optional</code> 返回可能失败的结果</strong>，而不是使用特定的数字（哨兵值）。它能让你的代码“自解释”——别人一看函数签名就知道这个函数可能拿不到结果。</li>
+<li><strong>获取值之前务必检查</strong>。永远不要在没有 <code>if</code> 判断的情况下直接使用 <code>*result</code>，除非你 100% 确定它一定有值。</li>
+<li><strong>善用 <code>value_or()</code></strong>。它可以极大地简化你的逻辑代码，减少 <code>if-else</code> 的层数。</li>
+</ol>
+<p><strong>课后思考：</strong> 如果一个函数不仅需要表达“失败”，还需要告诉你“为什么失败”（比如是因为权限不足还是因为找不到文件），<code>std::optional</code> 还够用吗？<br><em>（提示：可以去了解一下 C++23 的新特性 <code>std::expected</code>，那是我们进阶课程的内容。）</em></p>
+<p>今天的课就讲到这里，下课！</p>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/knowledge/">knowledge    </a><a class="post-meta__tags" href="/tags/coding/">coding    </a><a class="post-meta__tags" href="/tags/learning/">learning    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2025/12/26/10-projects/learncpp/learncpp_13_compound_types/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>learncpp_13_compound_types</span></div></a></div><div class="next-post pull_right"><a href="/2025/12/13/40-archives/dad_projects/%E5%88%B6%E6%B0%A7%E6%9C%BA%E9%85%92%E5%BA%97app%E9%A1%B9%E7%9B%AE/%E6%B7%B1%E5%BA%A6%E7%A0%94%E7%A9%B6%E8%A6%81%E6%B1%82/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>深度研究要求</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2025/10/26/20-areas/courses/omscs/cs7638-ai-robotics/SLAM 学习大纲规划/" title="SLAM 学习大纲规划"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-10-26</div><div class="relatedPosts_title">SLAM 学习大纲规划</div></div></a></div><div class="relatedPosts_item"><a href="/2025/09/07/20-areas/courses/omscs/cs7638-ai-robotics/bicycle model/" title="bicycle model"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-07</div><div class="relatedPosts_title">bicycle model</div></div></a></div><div class="relatedPosts_item"><a href="/2025/10/19/20-areas/courses/omscs/cs7638-ai-robotics/自行车模型基础回顾/" title="自行车模型基础回顾"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-10-19</div><div class="relatedPosts_title">自行车模型基础回顾</div></div></a></div><div class="relatedPosts_item"><a href="/2025/08/27/20-areas/courses/omscs/cs7638-ai-robotics/课程公告卡尔曼滤波器定位地图/" title="课程公告卡尔曼滤波器定位地图"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-08-27</div><div class="relatedPosts_title">课程公告卡尔曼滤波器定位地图</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/tech/coding/cplusplus/Cpp 默认构造函数创建对象/" title="Cpp 默认构造函数创建对象"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">Cpp 默认构造函数创建对象</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/tech/coding/cplusplus/左值右值移动语义/" title="左值右值移动语义"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">左值右值移动语义</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'xvMxbws16Erd8WUfqxkvHmb5-gzGzoHsz',
+  appKey:'4U0Vo7NQIUL0eJzHdkPzdCDr',
+  placeholder:'不说话的人会疯掉吗?',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'en',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By supersheepbear</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="external nofollow noopener noreferrer"><span>Butterfly</span></a></div><div class="footer_custom_text">外向孤独者患者</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="255,240,245" opacity="0.7" zindex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="external nofollow noopener noreferrer" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>

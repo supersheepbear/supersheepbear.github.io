@@ -1,0 +1,408 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>PID控制器详解 | Bear's dream</title><meta name="description" content="PID控制器详解"><meta name="keywords" content="ai,coding,learning"><meta name="author" content="supersheepbear"><meta name="copyright" content="supersheepbear"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_1.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="p43hXBn3_dLvbyxUzx0eo5eYmj9OVYOV52pdrhBa2sw"><meta name="baidu-site-verification" content="EXLlfLv2pV"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="PID控制器详解"><meta name="twitter:description" content="PID控制器详解"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta property="og:type" content="article"><meta property="og:title" content="PID控制器详解"><meta property="og:url" content="https://yxiong.org/2025/09/28/20-areas/courses/omscs/cs7638-ai-robotics/PID%E6%8E%A7%E5%88%B6%E5%99%A8%E8%AF%A6%E8%A7%A3/"><meta property="og:site_name" content="Bear's dream"><meta property="og:description" content="PID控制器详解"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://yxiong.org/2025/09/28/20-areas/courses/omscs/cs7638-ai-robotics/PID%E6%8E%A7%E5%88%B6%E5%99%A8%E8%AF%A6%E8%A7%A3/"><link rel="prev" title="AI assistant prompt" href="https://yxiong.org/2025/09/28/40-archives/AI%20assistant%20prompt/"><link rel="next" title="方差协方差矩阵通俗解释" href="https://yxiong.org/2025/09/14/20-areas/courses/omscs/cs7638-ai-robotics/%E6%96%B9%E5%B7%AE%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9F%A9%E9%98%B5%E9%80%9A%E4%BF%97%E8%A7%A3%E9%87%8A/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">162</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">59</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">34</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#PID控制器详解"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">PID控制器详解</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#🎯-1-核心背景：我们想解决什么问题？-The-Context"><span class="toc_mobile_items-number">1.2.1.</span> <span class="toc_mobile_items-text">🎯 1. 核心背景：我们想解决什么问题？ (The Context)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#🧐-2-什么是CTE？-Cross-Track-Error"><span class="toc_mobile_items-number">1.2.2.</span> <span class="toc_mobile_items-text">🧐 2. 什么是CTE？ (Cross-Track Error)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#🧠-3-P-I-D-三个核心部件详解"><span class="toc_mobile_items-number">1.2.3.</span> <span class="toc_mobile_items-text">🧠 3. P, I, D 三个核心部件详解</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#P-Proportional-比例-控制"><span class="toc_mobile_items-number">1.2.3.1.</span> <span class="toc_mobile_items-text">P - Proportional (比例) 控制</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#D-Derivative-微分-控制"><span class="toc_mobile_items-number">1.2.3.2.</span> <span class="toc_mobile_items-text">D - Derivative (微分) 控制</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#I-Integral-积分-控制"><span class="toc_mobile_items-number">1.2.3.3.</span> <span class="toc_mobile_items-text">I - Integral (积分) 控制</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#📊-4-横向对比表格-Side-by-Side-Table"><span class="toc_mobile_items-number">1.2.4.</span> <span class="toc_mobile_items-text">📊 4. 横向对比表格 (Side-by-Side Table)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#🔢-5-数学与代码逻辑-Numerical-Reasoning"><span class="toc_mobile_items-number">1.2.5.</span> <span class="toc_mobile_items-text">🔢 5. 数学与代码逻辑 (Numerical Reasoning)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#最终控制公式"><span class="toc_mobile_items-number">1.2.5.1.</span> <span class="toc_mobile_items-text">最终控制公式:</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#✅-6-结论与建议-Conclusion-amp-Recommendation"><span class="toc_mobile_items-number">1.2.6.</span> <span class="toc_mobile_items-text">✅ 6. 结论与建议 (Conclusion &amp; Recommendation)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#💡-深入思考与后续问题-Follow-up-Insights"><span class="toc_mobile_items-number">1.2.7.</span> <span class="toc_mobile_items-text">💡 深入思考与后续问题 (Follow-up Insights)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-1"><span class="toc_mobile_items-number">1.3.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-1"><span class="toc_mobile_items-number">1.4.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#🎯-1-核心背景：为什么需要Twiddle？-The-“Why”"><span class="toc_mobile_items-number">1.4.1.</span> <span class="toc_mobile_items-text">🎯 1. 核心背景：为什么需要Twiddle？ (The “Why”)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#🧐-2-Twiddle是什么？一个生动的比喻"><span class="toc_mobile_items-number">1.4.2.</span> <span class="toc_mobile_items-text">🧐 2. Twiddle是什么？一个生动的比喻</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#🧠-3-Twiddle如何工作？-分步详解"><span class="toc_mobile_items-number">1.4.3.</span> <span class="toc_mobile_items-text">🧠 3. Twiddle如何工作？(分步详解)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#第一步：初始化-Initialization"><span class="toc_mobile_items-number">1.4.3.1.</span> <span class="toc_mobile_items-text">第一步：初始化 (Initialization)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#第二步：主循环-The-Main-Loop"><span class="toc_mobile_items-number">1.4.3.2.</span> <span class="toc_mobile_items-text">第二步：主循环 (The Main Loop)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#第三步：内循环与“三步探戈”-The-Inner-Loop-amp-The-Three-Step-Dance"><span class="toc_mobile_items-number">1.4.3.3.</span> <span class="toc_mobile_items-text">第三步：内循环与“三步探戈” (The Inner Loop &amp; The Three-Step Dance)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#📊-4-Twiddle-流程总结"><span class="toc_mobile_items-number">1.4.4.</span> <span class="toc_mobile_items-text">📊 4. Twiddle 流程总结</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#✅-5-结论：Twiddle为何如此巧妙？"><span class="toc_mobile_items-number">1.4.5.</span> <span class="toc_mobile_items-text">✅ 5. 结论：Twiddle为何如此巧妙？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#💡-深入思考与后续问题"><span class="toc_mobile_items-number">1.4.6.</span> <span class="toc_mobile_items-text">💡 深入思考与后续问题</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PID控制器详解"><span class="toc-number">1.</span> <span class="toc-text">PID控制器详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User"><span class="toc-number">1.1.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant"><span class="toc-number">1.2.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🎯-1-核心背景：我们想解决什么问题？-The-Context"><span class="toc-number">1.2.1.</span> <span class="toc-text">🎯 1. 核心背景：我们想解决什么问题？ (The Context)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧐-2-什么是CTE？-Cross-Track-Error"><span class="toc-number">1.2.2.</span> <span class="toc-text">🧐 2. 什么是CTE？ (Cross-Track Error)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-3-P-I-D-三个核心部件详解"><span class="toc-number">1.2.3.</span> <span class="toc-text">🧠 3. P, I, D 三个核心部件详解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#P-Proportional-比例-控制"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">P - Proportional (比例) 控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D-Derivative-微分-控制"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">D - Derivative (微分) 控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#I-Integral-积分-控制"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">I - Integral (积分) 控制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📊-4-横向对比表格-Side-by-Side-Table"><span class="toc-number">1.2.4.</span> <span class="toc-text">📊 4. 横向对比表格 (Side-by-Side Table)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔢-5-数学与代码逻辑-Numerical-Reasoning"><span class="toc-number">1.2.5.</span> <span class="toc-text">🔢 5. 数学与代码逻辑 (Numerical Reasoning)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#最终控制公式"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">最终控制公式:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-6-结论与建议-Conclusion-amp-Recommendation"><span class="toc-number">1.2.6.</span> <span class="toc-text">✅ 6. 结论与建议 (Conclusion &amp; Recommendation)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#💡-深入思考与后续问题-Follow-up-Insights"><span class="toc-number">1.2.7.</span> <span class="toc-text">💡 深入思考与后续问题 (Follow-up Insights)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-1"><span class="toc-number">1.3.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-1"><span class="toc-number">1.4.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🎯-1-核心背景：为什么需要Twiddle？-The-“Why”"><span class="toc-number">1.4.1.</span> <span class="toc-text">🎯 1. 核心背景：为什么需要Twiddle？ (The “Why”)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧐-2-Twiddle是什么？一个生动的比喻"><span class="toc-number">1.4.2.</span> <span class="toc-text">🧐 2. Twiddle是什么？一个生动的比喻</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-3-Twiddle如何工作？-分步详解"><span class="toc-number">1.4.3.</span> <span class="toc-text">🧠 3. Twiddle如何工作？(分步详解)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一步：初始化-Initialization"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">第一步：初始化 (Initialization)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第二步：主循环-The-Main-Loop"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">第二步：主循环 (The Main Loop)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第三步：内循环与“三步探戈”-The-Inner-Loop-amp-The-Three-Step-Dance"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">第三步：内循环与“三步探戈” (The Inner Loop &amp; The Three-Step Dance)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📊-4-Twiddle-流程总结"><span class="toc-number">1.4.4.</span> <span class="toc-text">📊 4. Twiddle 流程总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-5-结论：Twiddle为何如此巧妙？"><span class="toc-number">1.4.5.</span> <span class="toc-text">✅ 5. 结论：Twiddle为何如此巧妙？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#💡-深入思考与后续问题"><span class="toc-number">1.4.6.</span> <span class="toc-text">💡 深入思考与后续问题</span></a></li></ol></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">PID控制器详解</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2025-09-28<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2026-01-24</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/">20-areas</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/">courses</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/omscs/">omscs</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/courses/omscs/cs7638-ai-robotics/">cs7638-ai-robotics</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2025/09/28/20-areas/courses/omscs/cs7638-ai-robotics/PID%E6%8E%A7%E5%88%B6%E5%99%A8%E8%AF%A6%E8%A7%A3/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2025/09/28/20-areas/courses/omscs/cs7638-ai-robotics/PID%E6%8E%A7%E5%88%B6%E5%99%A8%E8%AF%A6%E8%A7%A3/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="PID控制器详解"><a href="#PID控制器详解" class="headerlink" title="PID控制器详解"></a>PID控制器详解</h1><h2 id="🧑‍💻-User"><a href="#🧑‍💻-User" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>老师刚讲到pid那里的时候 我不太懂. 你能给我详解一下, cte是什么, p, i, d这3个是什么?</p>
+<hr>
+<h2 id="🤖-Assistant"><a href="#🤖-Assistant" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>同学你好！</p>
+<p>很高兴能帮你梳理PID控制器的知识点。你提供的笔记非常棒，是Sebastian Thrun的经典课程，他讲得非常直观。老师从“规划平滑路径”讲到“如何控制机器人精确地跟随这条路径”，这个思路非常清晰。PID控制就是解决第二个问题的核心方法。</p>
+<p>我们一步一步来拆解，保证你彻底搞懂。</p>
+<hr>
+<h3 id="🎯-1-核心背景：我们想解决什么问题？-The-Context"><a href="#🎯-1-核心背景：我们想解决什么问题？-The-Context" class="headerlink" title="🎯 1. 核心背景：我们想解决什么问题？ (The Context)"></a>🎯 1. 核心背景：我们想解决什么问题？ (The Context)</h3><p>想象一下，你已经用A*算法或者其他方法，在地图上为你的机器人规划好了一条完美的路径（就像笔记里提到的“红色”或“绿色”的平滑路径）。</p>
+<p>这条路径是你的 <strong>“理想”</strong> 或 <strong>“参考线” (Reference Trajectory)</strong>。</p>
+<p>但是，机器人是活在现实世界里的。它可能会因为地面不平、轮子打滑、风的干扰等各种原因，偏离这条完美的参考线。</p>
+<p><strong>PID控制器的唯一目标就是：</strong> 实时监测机器人偏离了参考线多远，然后智能地调整机器人的转向和速度，让它尽快、平稳地回到参考线上。</p>
+<p>这就引出了你的第一个问题：CTE是什么？</p>
+<hr>
+<h3 id="🧐-2-什么是CTE？-Cross-Track-Error"><a href="#🧐-2-什么是CTE？-Cross-Track-Error" class="headerlink" title="🧐 2. 什么是CTE？ (Cross-Track Error)"></a>🧐 2. 什么是CTE？ (Cross-Track Error)</h3><p><strong>CTE</strong> 是 <strong>Cross-Track Error（横向跟踪误差）</strong> 的缩写。</p>
+<p>💡 <strong>简单来说，CTE就是机器人的当前位置，到那条“理想参考线”的垂直距离。</strong></p>
+<ul>
+<li>如果机器人在参考线的右边，我们可以定义CTE为一个正数。</li>
+<li>如果机器人在参考线的左边，CTE就是个负数。</li>
+<li>如果机器人正好在参考线上，那么 ✅ <strong>CTE = 0</strong>。</li>
+</ul>
+<p>你可以把它想象成你在高速公路上开车：</p>
+<ul>
+<li><strong>参考线</strong> 就是车道正中间的隐形线。</li>
+<li><strong>CTE</strong> 就是你的车偏离了这条中心线多远。</li>
+<li><strong>你的大脑</strong> 就在扮演PID控制器的角色，不断微调方向盘，让车子保持在车道中央 (让CTE趋近于0)。</li>
+</ul>
+<p>在你的笔记中 (第11-12页)，小车要沿着X轴行驶，但它初始位置在 <code>y=1</code> 的地方。这里的 <code>y</code> 值，就是CTE。</p>
+<hr>
+<h3 id="🧠-3-P-I-D-三个核心部件详解"><a href="#🧠-3-P-I-D-三个核心部件详解" class="headerlink" title="🧠 3. P, I, D 三个核心部件详解"></a>🧠 3. P, I, D 三个核心部件详解</h3><p>PID代表三个部分：<strong>Proportional (比例)</strong>, <strong>Integral (积分)</strong>, 和 <strong>Derivative (微分)</strong>。它们是三个独立的“专家”，共同决定了机器人下一步该怎么走。</p>
+<p>我们可以用一个非常生动的比喻来理解它们：</p>
+<ul>
+<li><strong>P (比例) - 只看“现在”的急性子</strong></li>
+<li><strong>D (微分) - 预测“未来”的智者</strong></li>
+<li><strong>I (积分) - 记录“过去”的史官</strong></li>
+</ul>
+<p>现在我们把这三位“专家”请出来，看看它们各自的职责。</p>
+<h4 id="P-Proportional-比例-控制"><a href="#P-Proportional-比例-控制" class="headerlink" title="P - Proportional (比例) 控制"></a><strong>P - Proportional (比例) 控制</strong></h4><ul>
+<li><strong>它的工作方式：</strong> “P”只关心 <strong>当前</strong> 的误差有多大。误差越大，它给出的修正力度就越大。</li>
+<li><strong>数学表达 (来自笔记):</strong> <code>转向角度α = -τ_p * CTE</code><ul>
+<li><code>τ_p</code> (tau_p) 是一个我们自己设定的比例系数（也叫“增益”），用来调节修正的“猛烈”程度。</li>
+<li><code>CTE</code> 就是当前的横向误差。</li>
+<li>前面的负号表示：如果你在右边（CTE为正），就向左打方向盘（转向角为负），反之亦然。</li>
+</ul>
+</li>
+<li><strong>优点：</strong> ✅ 简单直观，能快速对误差做出反应。没有误差时，它就不工作。</li>
+<li><strong>缺点：</strong> ⚠️ <strong>容易导致“过冲”(Overshoot) 和“振荡”(Oscillation)。</strong> 就像你的笔记第12-13页所说，当车辆快要回到参考线 (CTE接近0) 时，P控制器的修正力度也变小了，但因为惯性，车身还是斜着冲过参考线，跑到另一边去了。然后又要反向修正，来来回回，就像在路上画S形。<code>τ_p</code> 设置得越大，这个S形就越剧烈。</li>
+</ul>
+<h4 id="D-Derivative-微分-控制"><a href="#D-Derivative-微分-控制" class="headerlink" title="D - Derivative (微分) 控制"></a><strong>D - Derivative (微分) 控制</strong></h4><ul>
+<li><strong>它的工作方式：</strong> “D”不关心当前误差多大，它只关心 <strong>误差变化的速度</strong>。它像一个“刹车”，能预测并抑制“过冲”。</li>
+<li><strong>直观理解：</strong> 当它发现车子正在飞快地冲向参考线（即CTE在迅速减小），它会说：“等等！照这个速度下去肯定要冲过头了！我得往反方向稍微打一点方向盘，提前减速！”</li>
+<li><strong>数学表达 (来自笔记):</strong> <code>转向角度α += -τ_d * (CTE_current - CTE_previous)</code><ul>
+<li><code>(CTE_current - CTE_previous)</code> 就是误差的变化率（导数）。如果误差在减小，这个值就是负的。</li>
+<li><code>τ_d</code> (tau_d) 是微分系数。</li>
+<li>整个D项的作用是：当误差快速减小时，它会产生一个与P项相反的力，起到“阻尼”或“缓冲”的作用，让系统更平稳。</li>
+</ul>
+</li>
+<li><strong>优点：</strong> ✅ 能有效抑制过冲，减少振荡，让系统更快稳定下来。</li>
+<li><strong>缺点：</strong> ⚠️ 对信号的噪声非常敏感。如果传感器数据有轻微抖动，误差的变化率会非常大，导致D控制器输出不稳定的控制指令，让机器人“发抖”。</li>
+</ul>
+<h4 id="I-Integral-积分-控制"><a href="#I-Integral-积分-控制" class="headerlink" title="I - Integral (积分) 控制"></a><strong>I - Integral (积分) 控制</strong></h4><ul>
+<li><strong>它的工作方式：</strong> “I”负责解决那些P和D都搞不定的 <strong>持续性的小误差（稳态误差）</strong>。它会把 <strong>过去所有</strong> 的误差累加起来。</li>
+<li><strong>直观理解：</strong> 你的笔记在第20-21页提到了一个绝佳的例子：<strong>系统性偏差 (Systematic Bias)</strong>，比如车轮本身就是歪的。<ul>
+<li>在这种情况下，即使P和D尽力了，车子最终还是会稳定在偏离中心线一点点的位置。这个持续存在的小误差，P觉得太小了没必要大力修正，D觉得误差不变（变化率为0）也不需要动作。</li>
+<li>这时“I”就出场了。它会不断累加这个小误差，时间一长，这个累加值会变得非常大。I就会说：“不行！我们已经偏离这么久了，累积的误差太大了！必须给一个强力的持续修正！” 从而彻底消除这个系统性偏差。</li>
+</ul>
+</li>
+<li><strong>数学表达 (来自笔记):</strong> <code>转向角度α += -τ_i * (Σ CTE)</code><ul>
+<li><code>Σ CTE</code> 就是所有历史CTE的总和（积分）。</li>
+<li><code>τ_i</code> (tau_i) 是积分系数。</li>
+</ul>
+</li>
+<li><strong>优点：</strong> ✅ 能够消除长期的、持续存在的稳态误差。</li>
+<li><strong>缺点：</strong> ⚠️ <strong>积分饱和 (Integral Windup)。</strong> 如果系统长时间有较大误差，积分项会累积得过大。当误差最终被修正时，这个巨大的积分项不会马上消失，会导致一个非常大的过冲。</li>
+</ul>
+<hr>
+<h3 id="📊-4-横向对比表格-Side-by-Side-Table"><a href="#📊-4-横向对比表格-Side-by-Side-Table" class="headerlink" title="📊 4. 横向对比表格 (Side-by-Side Table)"></a>📊 4. 横向对比表格 (Side-by-Side Table)</h3><p>为了让你看得更清楚，我把P、I、D三者的特点总结在下表中：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">P (Proportional) - 比例</th>
+<th style="text-align:left">D (Derivative) - 微分</th>
+<th style="text-align:left">I (Integral) - 积分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>关注点</strong></td>
+<td style="text-align:left"><strong>现在</strong> 的误差 <code>e(t)</code></td>
+<td style="text-align:left"><strong>未来趋势</strong> (误差的变化速率 <code>de/dt</code>)</td>
+<td style="text-align:left"><strong>过去积累</strong> (误差的总和 <code>∫e(t)dt</code>)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>核心作用</strong></td>
+<td style="text-align:left">快速响应，提供主要的控制力</td>
+<td style="text-align:left">抑制过冲，增加系统稳定性</td>
+<td style="text-align:left">消除稳态误差，提高系统精度</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>生活中的比喻</strong></td>
+<td style="text-align:left">看到车偏了，就打方向盘</td>
+<td style="text-align:left">感觉车快回正了，提前回正方向盘</td>
+<td style="text-align:left">发现车一直有点跑偏，就一直稍微把着方向盘</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>优点</strong></td>
+<td style="text-align:left">响应快，结构简单</td>
+<td style="text-align:left">预测性强，使系统更平稳</td>
+<td style="text-align:left">修正系统性、长期性的偏差</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>缺点</strong></td>
+<td style="text-align:left">易产生振荡和过冲</td>
+<td style="text-align:left">对噪声敏感，可能引起抖动</td>
+<td style="text-align:left">响应慢，可能导致积分饱和和过冲</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Emoji总结</strong></td>
+<td style="text-align:left">😠 (反应激烈)</td>
+<td style="text-align:left">🧘 (冷静平稳)</td>
+<td style="text-align:left">📜 (博古通今)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="🔢-5-数学与代码逻辑-Numerical-Reasoning"><a href="#🔢-5-数学与代码逻辑-Numerical-Reasoning" class="headerlink" title="🔢 5. 数学与代码逻辑 (Numerical Reasoning)"></a>🔢 5. 数学与代码逻辑 (Numerical Reasoning)</h3><p>完整的PID控制器，就是把这三个“专家”的意见加权汇总起来，得到最终的控制输出（比如转向角度）。</p>
+<h4 id="最终控制公式"><a href="#最终控制公式" class="headerlink" title="最终控制公式:"></a><strong>最终控制公式:</strong></h4><p><code>转向角度α = -τ_p * CTE - τ_d * (dCTE/dt) - τ_i * (∫CTE dt)</code></p>
+<p>在你的代码实现中：</p>
+<ul>
+<li><code>CTE</code> 就是 <code>robot.y</code></li>
+<li><code>dCTE/dt</code> (微分项) 被离散化为 <code>diff_crosstrack_error = robot.y - crosstrack_error</code> (当前y值 - 上一时刻y值)</li>
+<li><code>∫CTE dt</code> (积分项) 被离散化为 <code>int_crosstrack_error += robot.y</code> (用一个变量不断累加当前的y值)</li>
+</ul>
+<p>所以，最终的代码核心逻辑就是 (如笔记第24页所示):</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># P项</span></span><br><span class="line">term_p = -tau_p * crosstrack_error</span><br><span class="line"></span><br><span class="line"><span class="comment"># I项</span></span><br><span class="line">int_crosstrack_error += crosstrack_error</span><br><span class="line">term_i = -tau_i * int_crosstrack_error</span><br><span class="line"></span><br><span class="line"><span class="comment"># D项</span></span><br><span class="line">diff_crosstrack_error = crosstrack_error - previous_crosstrack_error</span><br><span class="line">term_d = -tau_d * diff_crosstrack_error</span><br><span class="line"></span><br><span class="line"><span class="comment"># 最终转向</span></span><br><span class="line">steer = term_p + term_i + term_d</span><br></pre></td></tr></table></figure></div>
+<p><em>(注意：代码中变量的定义可能与此略有出入，但核心思想一致)</em></p>
+<hr>
+<h3 id="✅-6-结论与建议-Conclusion-amp-Recommendation"><a href="#✅-6-结论与建议-Conclusion-amp-Recommendation" class="headerlink" title="✅ 6. 结论与建议 (Conclusion &amp; Recommendation)"></a>✅ 6. 结论与建议 (Conclusion &amp; Recommendation)</h3><p>PID是一个非常强大且经典的控制算法，它的精髓在于 <strong>“反馈”</strong> 和 <strong>“权衡”</strong>。</p>
+<ul>
+<li><strong>反馈 (Feedback):</strong> 它不断地测量误差(CTE)，并根据误差来调整自己。</li>
+<li><strong>权衡 (Trade-off):</strong> P, I, D 三者之间需要取得一个完美的平衡。这个平衡点找得好，你的机器人就会像一个经验丰富的老司机，行驶得又快又稳。如果平衡不好，机器人可能就会像一个新手司机，要么在路上画龙，要么反应迟钝。</li>
+</ul>
+<p>这就是为什么你的笔记最后花了大量篇幅（第25-32页）讲解 <strong>Twiddle算法</strong>。这个算法就是一种自动化的方法，用来寻找最优的 <code>τ_p</code>, <code>τ_d</code>, <code>τ_i</code> 这三个参数组合，这个过程也叫做 <strong>“参数整定” (Parameter Tuning)</strong>。</p>
+<p>希望这个详细的分解能帮助你彻底理解PID！</p>
+<hr>
+<h3 id="💡-深入思考与后续问题-Follow-up-Insights"><a href="#💡-深入思考与后续问题-Follow-up-Insights" class="headerlink" title="💡 深入思考与后续问题 (Follow-up Insights)"></a>💡 深入思考与后续问题 (Follow-up Insights)</h3><p>现在你已经理解了PID的基本原理，可以思考一些更深层次的问题：</p>
+<ol>
+<li><strong>参数整定的重要性：</strong> 你可以尝试在代码里只用P控制器，然后手动调整<code>τ_p</code>的值，看看机器人的行驶轨迹会发生什么有趣的变化。再加入D控制器，调整<code>τ_d</code>，观察振荡是如何被抑制的。</li>
+<li><strong>不同场景下的PID：</strong> 想一想，控制一个无人机和一个无人车，它们的PID参数会一样吗？为什么？（提示：惯性、响应速度、环境干扰都不同）。</li>
+</ol>
+<p>非常乐意为你解答更多问题。比如，如果你想深入了解 <strong>Twiddle算法是如何工作的</strong>，或者想探讨 <strong>PID在其他领域（如温度控制、金融建模）的应用</strong>，随时都可以提出来！</p>
+<hr>
+<h2 id="🧑‍💻-User-1"><a href="#🧑‍💻-User-1" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>那请你给我详细讲解一下twiddle算法. cover老师讲的剩下的部分吧.</p>
+<hr>
+<h2 id="🤖-Assistant-1"><a href="#🤖-Assistant-1" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>好的，我们接着往下聊！你已经掌握了PID这个“驾驶策略”，现在我们来学习如何自动找到最佳的策略参数，也就是Sebastian Thrun教授最喜欢的算法之一——<strong>Twiddle</strong>。</p>
+<p>这部分内容确实是整个课程的点睛之笔，因为它把一个棘手的、凭经验的“调参”问题，变成了一个可以由计算机自动解决的、优雅的优化问题。</p>
+<hr>
+<h3 id="🎯-1-核心背景：为什么需要Twiddle？-The-“Why”"><a href="#🎯-1-核心背景：为什么需要Twiddle？-The-“Why”" class="headerlink" title="🎯 1. 核心背景：为什么需要Twiddle？ (The “Why”)"></a>🎯 1. 核心背景：为什么需要Twiddle？ (The “Why”)</h3><p>我们已经知道，一个PID控制器的好坏，完全取决于三个关键参数：<code>τ_p</code>, <code>τ_d</code>, 和 <code>τ_i</code>。</p>
+<ul>
+<li>参数设置得好，车子开得又快又稳，丝滑地回到路径上。</li>
+<li>参数设置得不好，车子可能像喝醉了一样在路上疯狂摇摆（P过大），或者对偏差反应迟钝（P太小），或者因为系统偏差永远也回不到正轨（I不够）。</li>
+</ul>
+<p><strong>问题来了：</strong> 我们如何找到这三个参数的“黄金组合”呢？</p>
+<ul>
+<li><strong>手动调试？</strong> ⚠️ 这就像在玩一个极其复杂的游戏，你需要凭感觉和经验，不断地修改参数、运行、观察结果、再修改……这个过程非常耗时、枯燥，而且很难保证你找到的是最佳组合。</li>
+<li><strong>Twiddle算法？</strong> ✅ 这是一个智能的自动化方案。你给它一个评估“好坏”的标准（比如，横向跟踪误差CTE），它就能像一个孜孜不倦的机器人，自动为你探索并“扭动”(Twiddle)参数，直到找到一组足够好的值为止。</li>
+</ul>
+<hr>
+<h3 id="🧐-2-Twiddle是什么？一个生动的比喻"><a href="#🧐-2-Twiddle是什么？一个生动的比喻" class="headerlink" title="🧐 2. Twiddle是什么？一个生动的比喻"></a>🧐 2. Twiddle是什么？一个生动的比喻</h3><p><strong>Twiddle</strong> 的本质是一种 <strong>优化算法</strong>，学术上称之为 <strong>坐标上升法 (Coordinate Ascent)</strong>。</p>
+<p>💡 <strong>把它想象成一个“蒙着眼睛的登山者”：</strong></p>
+<p>你的目标是找到山峰的最高点（或者山谷的最低点，在我们的例子里是 <strong>最小化误差</strong>）。但你被蒙住了眼睛，不知道该往哪走。</p>
+<p>你会怎么做？</p>
+<ol>
+<li><strong>选定一个方向：</strong> 先沿着一个坐标轴（比如“东西”方向，对应我们的参数<code>τ_p</code>）试探性地迈出一步。</li>
+<li><strong>感受海拔变化：</strong> 迈出一步后，感受一下海拔是升高了还是降低了。</li>
+<li><strong>做出决策：</strong><ul>
+<li>如果海拔<strong>降低</strong>了（误差变小了，这是好事！），说明这个方向是对的！你不仅会待在新位置，可能还会因为信心大增，下一步迈得更大一点。</li>
+<li>如果海拔<strong>升高</strong>了（误差变大了），说明走错了。你会退回原点，然后尝试相反的方向（“西”）。</li>
+<li>如果反方向也<strong>升高</strong>了，说明“东西”方向上可能已经到达了局部最低点。你会退回原点，然后缩小你的步长，进行更精细的探索。</li>
+</ul>
+</li>
+<li><strong>切换方向：</strong> 在“东西”方向上找到一个满意的位置后，你开始探索“南北”方向（对应参数<code>τ_d</code>），重复以上步骤。然后再探索“上下”方向（对应<code>τ_i</code>）。</li>
+</ol>
+<p><strong>Twiddle算法就是这样，依次对每个参数(<code>τ_p</code>, <code>τ_d</code>, <code>τ_i</code>)进行“试探-评估-决策”的循环，直到所有参数的调整步长都变得非常小，意味着已经找到了一个足够好的“山谷”。</strong></p>
+<hr>
+<h3 id="🧠-3-Twiddle如何工作？-分步详解"><a href="#🧠-3-Twiddle如何工作？-分步详解" class="headerlink" title="🧠 3. Twiddle如何工作？(分步详解)"></a>🧠 3. Twiddle如何工作？(分步详解)</h3><p>现在，我们来严格地拆解一下Twiddle算法的每一个步骤，对照你的笔记（第25-26页），你会看得非常清楚。</p>
+<h4 id="第一步：初始化-Initialization"><a href="#第一步：初始化-Initialization" class="headerlink" title="第一步：初始化 (Initialization)"></a><strong>第一步：初始化 (Initialization)</strong></h4><p>我们需要三个核心变量：</p>
+<ul>
+<li><code>p</code>: 参数列表。<code>p = [τ_p, τ_d, τ_i]</code>。初始值可以设为 <code>[0.0, 0.0, 0.0]</code>。</li>
+<li><code>dp</code>: 每个参数的调整步长 (delta p)。<code>dp = [1.0, 1.0, 1.0]</code>。这代表我们一开始试探的“步子”有多大。</li>
+<li><code>best_err</code>: 当前找到的最小误差。首先用初始参数 <code>p</code> 跑一次模拟，得到一个初始的 <code>best_err</code>。</li>
+</ul>
+<h4 id="第二步：主循环-The-Main-Loop"><a href="#第二步：主循环-The-Main-Loop" class="headerlink" title="第二步：主循环 (The Main Loop)"></a><strong>第二步：主循环 (The Main Loop)</strong></h4><p>算法的核心是一个大的 <code>while</code> 循环，它的条件是：<br><code>while sum(dp) &gt; tolerance:</code></p>
+<ul>
+<li><strong><code>tolerance</code></strong> 是一个非常小的阈值（比如0.001）。</li>
+<li>这个循环的意思是：“只要我们的总步长还足够大，值得我们去继续探索，那么循环就继续。” 当所有<code>dp</code>值都变得非常小，说明参数已经收敛，再调整意义不大了。</li>
+</ul>
+<h4 id="第三步：内循环与“三步探戈”-The-Inner-Loop-amp-The-Three-Step-Dance"><a href="#第三步：内循环与“三步探戈”-The-Inner-Loop-amp-The-Three-Step-Dance" class="headerlink" title="第三步：内循环与“三步探戈” (The Inner Loop &amp; The Three-Step Dance)"></a><strong>第三步：内循环与“三步探戈” (The Inner Loop &amp; The Three-Step Dance)</strong></h4><p>在主循环内部，我们对<strong>每一个参数</strong> <code>p[i]</code> 进行一次优化。这就是算法最精彩的部分：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 遍历每一个参数 (i=0对应τ_p, i=1对应τ_d, i=2对应τ_i)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(p)):</span><br></pre></td></tr></table></figure></div>
+<p>对于<strong>当前正在调整的参数 <code>p[i]</code></strong>，执行以下“三步探戈”：</p>
+<ol>
+<li><p><strong>🕺 第一步：尝试增加参数值</strong></p>
+<ul>
+<li><code>p[i] += dp[i]</code></li>
+<li>运行模拟，计算新的误差 <code>err</code>。</li>
+<li><strong>检查：</strong> <code>if err &lt; best_err:</code></li>
+<li><strong>✅ 成功！</strong> 找到了更好的参数。</li>
+<li>更新最小误差：<code>best_err = err</code>。</li>
+<li><strong>变得更大胆：</strong> 增加这个方向的步长 <code>dp[i] *= 1.1</code>。因为走对了，下次可以迈得更大，加速收敛。</li>
+<li><strong>跳到下一个参数的调整</strong> (<code>continue</code>)。</li>
+</ul>
+</li>
+<li><p><strong>💃 第二步：如果第一步失败，尝试减小参数值</strong></p>
+<ul>
+<li>如果上面的 <code>if</code> 不成立，说明增加 <code>p[i]</code> 不是个好主意。</li>
+<li><code>p[i] -= 2 * dp[i]</code></li>
+<li>💡 <strong>为什么是 <code>2 * dp[i]</code>？</strong> 因为第一步已经加了 <code>dp[i]</code>，所以要先减去 <code>dp[i]</code> 回到原点，再减去 <code>dp[i]</code> 探索反方向。</li>
+<li>运行模拟，计算新的误差 <code>err</code>。</li>
+<li><strong>检查：</strong> <code>if err &lt; best_err:</code></li>
+<li><strong>✅ 成功！</strong></li>
+<li>更新最小误差：<code>best_err = err</code>。</li>
+<li><strong>同样变得更大胆：</strong> <code>dp[i] *= 1.1</code>。</li>
+<li><strong>跳到下一个参数的调整</strong> (<code>continue</code>)。</li>
+</ul>
+</li>
+<li><p><strong>🚶 第三步：如果两步都失败</strong></p>
+<ul>
+<li>如果前两步都没能减小误差，说明对于当前的步长 <code>dp[i]</code> 来说，我们可能已经处在一个局部最优位置。</li>
+<li><strong>回到原点：</strong> <code>p[i] += dp[i]</code>。</li>
+<li><strong>变得更谨慎：</strong> 缩小步长 <code>dp[i] *= 0.9</code>。这样在下一轮主循环中，我们就可以用更小的步子进行更精细的搜索。</li>
+</ul>
+</li>
+</ol>
+<p>这个过程会不断重复，直到<code>sum(dp)</code>小于设定的阈值，算法结束。</p>
+<h3 id="📊-4-Twiddle-流程总结"><a href="#📊-4-Twiddle-流程总结" class="headerlink" title="📊 4. Twiddle 流程总结"></a>📊 4. Twiddle 流程总结</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">步骤</th>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">成功 (err &lt; best_err)</th>
+<th style="text-align:left">失败 (err &gt;= best_err)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>1. 尝试增加</strong></td>
+<td style="text-align:left"><code>p[i] += dp[i]</code></td>
+<td style="text-align:left"><code>best_err = err</code>, <code>dp[i] *= 1.1</code>, <strong>结束本次内循环</strong></td>
+<td style="text-align:left">进入步骤2</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>2. 尝试减小</strong></td>
+<td style="text-align:left"><code>p[i] -= 2 * dp[i]</code></td>
+<td style="text-align:left"><code>best_err = err</code>, <code>dp[i] *= 1.1</code>, <strong>结束本次内循环</strong></td>
+<td style="text-align:left">进入步骤3</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>3. 均失败</strong></td>
+<td style="text-align:left"><code>p[i] += dp[i]</code> (复位)</td>
+<td style="text-align:left">(不可能发生)</td>
+<td style="text-align:left"><code>dp[i] *= 0.9</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="✅-5-结论：Twiddle为何如此巧妙？"><a href="#✅-5-结论：Twiddle为何如此巧妙？" class="headerlink" title="✅ 5. 结论：Twiddle为何如此巧妙？"></a>✅ 5. 结论：Twiddle为何如此巧妙？</h3><p>Twiddle算法之所以强大，在于它的 <strong>动态自适应性 (Dynamic Adaptability)</strong>：</p>
+<ul>
+<li><strong>动态调整步长：</strong> 它能根据探索结果动态地放大或缩小搜索步长。在距离最优解很远时，它大步流星地前进；在接近最优解时，它又会小心翼翼地进行微调。</li>
+<li><strong>简单有效：</strong> 它不需要计算复杂的梯度（像梯度下降法那样），只需要一个能够评估“好坏”的函数（在我们的例子里就是 <code>run()</code> 函数返回的误差），因此非常普适和易于实现。</li>
+<li><strong>局部最优解：</strong> ⚠️ 需要注意的是，Twiddle是一个局部搜索算法，它找到的是一个“足够好”的解，但不保证是全局最优解。不过在工程实践中，一个足够好的解往往就够用了。</li>
+</ul>
+<p>你的笔记最后（第30-32页）通过实验展示了这一点：</p>
+<ul>
+<li>完整的PID (<code>τ_p</code>, <code>τ_d</code>, <code>τ_i</code>) 控制器，通过Twiddle调参后，误差几乎为0。</li>
+<li>如果去掉积分项I (<code>dparams[^2] = 0.0</code>)，即使有系统偏差，PD控制器也无法完全消除误差。</li>
+<li>如果再去掉微分项D (<code>dparams[^1] = 0.0</code>)，只剩P控制器，误差会变得更大，并且伴随振荡。</li>
+</ul>
+<p>这完美地证明了PID三项各司其职，以及Twiddle算法在寻找它们最佳配合上的强大能力。</p>
+<hr>
+<h3 id="💡-深入思考与后续问题"><a href="#💡-深入思考与后续问题" class="headerlink" title="💡 深入思考与后续问题"></a>💡 深入思考与后续问题</h3><p>现在你已经完全理解了Twiddle的机制，可以进一步思考：</p>
+<ol>
+<li><strong>参数 <code>1.1</code> 和 <code>0.9</code> 的意义：</strong> 如果我们把这两个参数改成 <code>1.5</code> 和 <code>0.5</code> 会怎么样？（提示：收敛速度和稳定性的权衡）</li>
+<li><strong>误差函数的定义：</strong> 课程中提到，计算误差时忽略了前100步。这是为什么？（提示：给系统一个“稳定下来”的时间，避免初始的剧烈波动影响评估。）</li>
+<li><strong>Twiddle的应用：</strong> 除了PID调参，Twiddle还可以用在哪些你认为需要“自动调参”的场景？</li>
+</ol>
+<p>希望这份详尽的解释能帮你把课程的最后一部分彻底搞懂！如果还有任何疑问，随时提出！</p>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ai/">ai    </a><a class="post-meta__tags" href="/tags/coding/">coding    </a><a class="post-meta__tags" href="/tags/learning/">learning    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2025/09/28/40-archives/AI%20assistant%20prompt/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>AI assistant prompt</span></div></a></div><div class="next-post pull_right"><a href="/2025/09/14/20-areas/courses/omscs/cs7638-ai-robotics/%E6%96%B9%E5%B7%AE%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9F%A9%E9%98%B5%E9%80%9A%E4%BF%97%E8%A7%A3%E9%87%8A/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>方差协方差矩阵通俗解释</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2025/09/28/20-areas/courses/omscs/cs7638-ai-robotics/PID Twiddle原理/" title="PID Twiddle原理"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-28</div><div class="relatedPosts_title">PID Twiddle原理</div></div></a></div><div class="relatedPosts_item"><a href="/2025/09/13/20-areas/courses/omscs/cs7638-ai-robotics/value iteration代码解释/" title="value iteration代码解释"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-13</div><div class="relatedPosts_title">value iteration代码解释</div></div></a></div><div class="relatedPosts_item"><a href="/2025/08/21/20-areas/courses/omscs/cs7638-ai-robotics/人工智能与机器人技术课程要点总结/" title="人工智能与机器人技术课程要点总结"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-08-21</div><div class="relatedPosts_title">人工智能与机器人技术课程要点总结</div></div></a></div><div class="relatedPosts_item"><a href="/2025/09/14/20-areas/courses/omscs/cs7638-ai-robotics/Search算法核心概念回顾/" title="Search算法核心概念回顾"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-14</div><div class="relatedPosts_title">Search算法核心概念回顾</div></div></a></div><div class="relatedPosts_item"><a href="/2025/09/06/20-areas/courses/omscs/cs7638-ai-robotics/粒子滤波器核心概念与工作流程/" title="粒子滤波器核心概念与工作流程"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-06</div><div class="relatedPosts_title">粒子滤波器核心概念与工作流程</div></div></a></div><div class="relatedPosts_item"><a href="/2025/10/04/20-areas/courses/omscs/cs7638-ai-robotics/粒子滤波器项目指导/" title="粒子滤波器项目指导"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-10-04</div><div class="relatedPosts_title">粒子滤波器项目指导</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'xvMxbws16Erd8WUfqxkvHmb5-gzGzoHsz',
+  appKey:'4U0Vo7NQIUL0eJzHdkPzdCDr',
+  placeholder:'不说话的人会疯掉吗?',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'en',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By supersheepbear</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="external nofollow noopener noreferrer"><span>Butterfly</span></a></div><div class="footer_custom_text">外向孤独者患者</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="255,240,245" opacity="0.7" zindex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="external nofollow noopener noreferrer" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>

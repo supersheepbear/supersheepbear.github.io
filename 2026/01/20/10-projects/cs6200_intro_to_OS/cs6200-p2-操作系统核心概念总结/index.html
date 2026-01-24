@@ -1,0 +1,958 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>cs6200-p2-操作系统核心概念总结 | Bear's dream</title><meta name="description" content="cs6200-p2-操作系统核心概念总结"><meta name="keywords" content="knowledge,software,learning"><meta name="author" content="supersheepbear"><meta name="copyright" content="supersheepbear"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_1.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="p43hXBn3_dLvbyxUzx0eo5eYmj9OVYOV52pdrhBa2sw"><meta name="baidu-site-verification" content="EXLlfLv2pV"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="cs6200-p2-操作系统核心概念总结"><meta name="twitter:description" content="cs6200-p2-操作系统核心概念总结"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta property="og:type" content="article"><meta property="og:title" content="cs6200-p2-操作系统核心概念总结"><meta property="og:url" content="https://yxiong.org/2026/01/20/10-projects/cs6200_intro_to_OS/cs6200-p2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/"><meta property="og:site_name" content="Bear's dream"><meta property="og:description" content="cs6200-p2-操作系统核心概念总结"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://yxiong.org/2026/01/20/10-projects/cs6200_intro_to_OS/cs6200-p2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/"><link rel="prev" title="cs6200-p1-操作系统课程概述" href="https://yxiong.org/2026/01/20/10-projects/cs6200_intro_to_OS/cs6200-p1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E6%A6%82%E8%BF%B0/"><link rel="next" title="意识与量子现实的本质" href="https://yxiong.org/2026/01/20/20-areas/thoughts/%E6%84%8F%E8%AF%86%E4%B8%8E%E9%87%8F%E5%AD%90%E7%8E%B0%E5%AE%9E%E7%9A%84%E6%9C%AC%E8%B4%A8/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">162</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">59</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">34</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#cs6200-p2-操作系统核心概念总结"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">cs6200-p2-操作系统核心概念总结</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#操作系统导论-Introduction-to-Operating-Systems"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">操作系统导论 (Introduction to Operating Systems)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第一部分：课程概述与操作系统的基本定义"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">第一部分：课程概述与操作系统的基本定义</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-1-课程预览-Lesson-Preview"><span class="toc_mobile_items-number">2.1.1.</span> <span class="toc_mobile_items-text">1.1 课程预览 (Lesson Preview)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-2-视觉隐喻：玩具店经理-Visual-Metaphor-Toy-Shop-Manager"><span class="toc_mobile_items-number">2.1.2.</span> <span class="toc_mobile_items-text">1.2 视觉隐喻：玩具店经理 (Visual Metaphor: Toy Shop Manager)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#1-2-1-指导运营资源-Directing-Operational-Resources"><span class="toc_mobile_items-number">2.1.2.1.</span> <span class="toc_mobile_items-text">1.2.1 指导运营资源 (Directing Operational Resources)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#1-2-2-执行工作策略-Enforcing-Working-Policies"><span class="toc_mobile_items-number">2.1.2.2.</span> <span class="toc_mobile_items-text">1.2.2 执行工作策略 (Enforcing Working Policies)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#1-2-3-缓解复杂任务的难度-Mitigating-Difficulty-of-Complex-Tasks"><span class="toc_mobile_items-number">2.1.2.3.</span> <span class="toc_mobile_items-text">1.2.3 缓解复杂任务的难度 (Mitigating Difficulty of Complex Tasks)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-3-什么是操作系统？-What-Is-an-Operating-System"><span class="toc_mobile_items-number">2.1.3.</span> <span class="toc_mobile_items-text">1.3 什么是操作系统？(What Is an Operating System?)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#1-3-1-计算机系统的组成"><span class="toc_mobile_items-number">2.1.3.1.</span> <span class="toc_mobile_items-text">1.3.1 计算机系统的组成</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#1-3-2-操作系统的位置与角色"><span class="toc_mobile_items-number">2.1.3.2.</span> <span class="toc_mobile_items-text">1.3.2 操作系统的位置与角色</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-4-操作系统的正式定义-Operating-System-Definition"><span class="toc_mobile_items-number">2.1.4.</span> <span class="toc_mobile_items-text">1.4 操作系统的正式定义 (Operating System Definition)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第二部分：操作系统组件与设计"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">第二部分：操作系统组件与设计</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-1-操作系统组件测验-Operating-System-Components-Quiz"><span class="toc_mobile_items-number">2.2.1.</span> <span class="toc_mobile_items-text">2.1 操作系统组件测验 (Operating System Components Quiz)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-2-抽象与仲裁测验-Abstraction-or-Arbitration-Quiz"><span class="toc_mobile_items-number">2.2.2.</span> <span class="toc_mobile_items-text">2.2 抽象与仲裁测验 (Abstraction or Arbitration Quiz)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-3-操作系统示例-Operating-System-Examples"><span class="toc_mobile_items-number">2.2.3.</span> <span class="toc_mobile_items-text">2.3 操作系统示例 (Operating System Examples)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#2-3-1-桌面-服务器操作系统"><span class="toc_mobile_items-number">2.2.3.1.</span> <span class="toc_mobile_items-text">2.3.1 桌面&#x2F;服务器操作系统</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#2-3-2-嵌入式操作系统"><span class="toc_mobile_items-number">2.2.3.2.</span> <span class="toc_mobile_items-text">2.3.2 嵌入式操作系统</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-4-操作系统元素-OS-Elements"><span class="toc_mobile_items-number">2.2.4.</span> <span class="toc_mobile_items-text">2.4 操作系统元素 (OS Elements)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#2-4-1-抽象-Abstractions"><span class="toc_mobile_items-number">2.2.4.1.</span> <span class="toc_mobile_items-text">2.4.1 抽象 (Abstractions)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#2-4-2-机制-Mechanisms"><span class="toc_mobile_items-number">2.2.4.2.</span> <span class="toc_mobile_items-text">2.4.2 机制 (Mechanisms)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#2-4-3-策略-Policies"><span class="toc_mobile_items-number">2.2.4.3.</span> <span class="toc_mobile_items-text">2.4.3 策略 (Policies)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-5-操作系统元素示例：内存管理-OS-Elements-Example-Memory-Management"><span class="toc_mobile_items-number">2.2.5.</span> <span class="toc_mobile_items-text">2.5 操作系统元素示例：内存管理 (OS Elements Example: Memory Management)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#2-5-1-抽象：内存页-Memory-Page"><span class="toc_mobile_items-number">2.2.5.1.</span> <span class="toc_mobile_items-text">2.5.1 抽象：内存页 (Memory Page)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#2-5-2-机制"><span class="toc_mobile_items-number">2.2.5.2.</span> <span class="toc_mobile_items-text">2.5.2 机制</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#2-5-3-策略：最近最少使用-Least-Recently-Used-LRU"><span class="toc_mobile_items-number">2.2.5.3.</span> <span class="toc_mobile_items-text">2.5.3 策略：最近最少使用 (Least Recently Used, LRU)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-6-操作系统设计原则-OS-Design-Principles"><span class="toc_mobile_items-number">2.2.6.</span> <span class="toc_mobile_items-text">2.6 操作系统设计原则 (OS Design Principles)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#2-6-1-机制与策略分离-Separation-of-Mechanism-and-Policy"><span class="toc_mobile_items-number">2.2.6.1.</span> <span class="toc_mobile_items-text">2.6.1 机制与策略分离 (Separation of Mechanism and Policy)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#2-6-2-针对常见情况优化-Optimize-for-the-Common-Case"><span class="toc_mobile_items-number">2.2.6.2.</span> <span class="toc_mobile_items-text">2.6.2 针对常见情况优化 (Optimize for the Common Case)</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第三部分：用户-内核边界与系统调用"><span class="toc_mobile_items-number">2.3.</span> <span class="toc_mobile_items-text">第三部分：用户&#x2F;内核边界与系统调用</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-1-操作系统保护边界-OS-Protection-Boundary"><span class="toc_mobile_items-number">2.3.1.</span> <span class="toc_mobile_items-text">3.1 操作系统保护边界 (OS Protection Boundary)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#3-1-1-两种执行模式"><span class="toc_mobile_items-number">2.3.1.1.</span> <span class="toc_mobile_items-text">3.1.1 两种执行模式</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#3-1-2-硬件支持"><span class="toc_mobile_items-number">2.3.1.2.</span> <span class="toc_mobile_items-text">3.1.2 硬件支持</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#3-1-3-应用程序与操作系统的交互方式"><span class="toc_mobile_items-number">2.3.1.3.</span> <span class="toc_mobile_items-text">3.1.3 应用程序与操作系统的交互方式</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-2-系统调用流程-System-Call-Flowchart"><span class="toc_mobile_items-number">2.3.2.</span> <span class="toc_mobile_items-text">3.2 系统调用流程 (System Call Flowchart)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#步骤1：用户进程执行"><span class="toc_mobile_items-number">2.3.2.1.</span> <span class="toc_mobile_items-text">步骤1：用户进程执行</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#步骤2：发起系统调用"><span class="toc_mobile_items-number">2.3.2.2.</span> <span class="toc_mobile_items-text">步骤2：发起系统调用</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#步骤3：切换到内核模式"><span class="toc_mobile_items-number">2.3.2.3.</span> <span class="toc_mobile_items-text">步骤3：切换到内核模式</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#步骤4：操作系统执行操作"><span class="toc_mobile_items-number">2.3.2.4.</span> <span class="toc_mobile_items-text">步骤4：操作系统执行操作</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#步骤5：返回结果"><span class="toc_mobile_items-number">2.3.2.5.</span> <span class="toc_mobile_items-text">步骤5：返回结果</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#发起系统调用的步骤"><span class="toc_mobile_items-number">2.3.2.6.</span> <span class="toc_mobile_items-text">发起系统调用的步骤</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-3-跨越操作系统边界的代价-Crossing-the-OS-Boundary"><span class="toc_mobile_items-number">2.3.3.</span> <span class="toc_mobile_items-text">3.3 跨越操作系统边界的代价 (Crossing the OS Boundary)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#3-3-1-性能开销"><span class="toc_mobile_items-number">2.3.3.1.</span> <span class="toc_mobile_items-text">3.3.1 性能开销</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#3-3-2-缓存影响"><span class="toc_mobile_items-number">2.3.3.2.</span> <span class="toc_mobile_items-text">3.3.2 缓存影响</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-4-操作系统服务-OS-Services"><span class="toc_mobile_items-number">2.3.4.</span> <span class="toc_mobile_items-text">3.4 操作系统服务 (OS Services)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#3-4-1-基本服务类型"><span class="toc_mobile_items-number">2.3.4.1.</span> <span class="toc_mobile_items-text">3.4.1 基本服务类型</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#3-4-2-服务类别总结"><span class="toc_mobile_items-number">2.3.4.2.</span> <span class="toc_mobile_items-text">3.4.2 服务类别总结</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#3-4-3-系统调用示例"><span class="toc_mobile_items-number">2.3.4.3.</span> <span class="toc_mobile_items-text">3.4.3 系统调用示例</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-5-系统调用测验-System-Calls-Quiz"><span class="toc_mobile_items-number">2.3.5.</span> <span class="toc_mobile_items-text">3.5 系统调用测验 (System Calls Quiz)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第四部分：操作系统组织结构"><span class="toc_mobile_items-number">2.4.</span> <span class="toc_mobile_items-text">第四部分：操作系统组织结构</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-1-单体式操作系统-Monolithic-OS"><span class="toc_mobile_items-number">2.4.1.</span> <span class="toc_mobile_items-text">4.1 单体式操作系统 (Monolithic OS)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#4-1-1-特点"><span class="toc_mobile_items-number">2.4.1.1.</span> <span class="toc_mobile_items-text">4.1.1 特点</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#4-1-2-优点"><span class="toc_mobile_items-number">2.4.1.2.</span> <span class="toc_mobile_items-text">4.1.2 优点</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#4-1-3-缺点"><span class="toc_mobile_items-number">2.4.1.3.</span> <span class="toc_mobile_items-text">4.1.3 缺点</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-2-模块化操作系统-Modular-OS"><span class="toc_mobile_items-number">2.4.2.</span> <span class="toc_mobile_items-text">4.2 模块化操作系统 (Modular OS)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#4-2-1-特点"><span class="toc_mobile_items-number">2.4.2.1.</span> <span class="toc_mobile_items-text">4.2.1 特点</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#4-2-2-工作原理"><span class="toc_mobile_items-number">2.4.2.2.</span> <span class="toc_mobile_items-text">4.2.2 工作原理</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#4-2-3-优点"><span class="toc_mobile_items-number">2.4.2.3.</span> <span class="toc_mobile_items-text">4.2.3 优点</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#4-2-4-缺点"><span class="toc_mobile_items-number">2.4.2.4.</span> <span class="toc_mobile_items-text">4.2.4 缺点</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-3-微内核-Microkernel"><span class="toc_mobile_items-number">2.4.3.</span> <span class="toc_mobile_items-text">4.3 微内核 (Microkernel)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#4-3-1-特点"><span class="toc_mobile_items-number">2.4.3.1.</span> <span class="toc_mobile_items-text">4.3.1 特点</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#4-3-2-优点"><span class="toc_mobile_items-number">2.4.3.2.</span> <span class="toc_mobile_items-text">4.3.2 优点</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#4-3-3-缺点"><span class="toc_mobile_items-number">2.4.3.3.</span> <span class="toc_mobile_items-text">4.3.3 缺点</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-4-Linux和Mac-OS架构-Linux-and-Mac-OS-Architectures"><span class="toc_mobile_items-number">2.4.4.</span> <span class="toc_mobile_items-text">4.4 Linux和Mac OS架构 (Linux and Mac OS Architectures)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#4-4-1-Linux架构"><span class="toc_mobile_items-number">2.4.4.1.</span> <span class="toc_mobile_items-text">4.4.1 Linux架构</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#4-4-2-Mac-OS-X架构"><span class="toc_mobile_items-number">2.4.4.2.</span> <span class="toc_mobile_items-text">4.4.2 Mac OS X架构</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第五部分：课程总结"><span class="toc_mobile_items-number">2.5.</span> <span class="toc_mobile_items-text">第五部分：课程总结</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#核心要点回顾"><span class="toc_mobile_items-number">2.5.1.</span> <span class="toc_mobile_items-text">核心要点回顾</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#关键术语汇总表"><span class="toc_mobile_items-number">2.5.2.</span> <span class="toc_mobile_items-text">关键术语汇总表</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#cs6200-p2-操作系统核心概念总结"><span class="toc-number">1.</span> <span class="toc-text">cs6200-p2-操作系统核心概念总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User"><span class="toc-number">1.1.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant"><span class="toc-number">1.2.</span> <span class="toc-text">🤖 Assistant</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#操作系统导论-Introduction-to-Operating-Systems"><span class="toc-number">2.</span> <span class="toc-text">操作系统导论 (Introduction to Operating Systems)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一部分：课程概述与操作系统的基本定义"><span class="toc-number">2.1.</span> <span class="toc-text">第一部分：课程概述与操作系统的基本定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-课程预览-Lesson-Preview"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.1 课程预览 (Lesson Preview)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-视觉隐喻：玩具店经理-Visual-Metaphor-Toy-Shop-Manager"><span class="toc-number">2.1.2.</span> <span class="toc-text">1.2 视觉隐喻：玩具店经理 (Visual Metaphor: Toy Shop Manager)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-指导运营资源-Directing-Operational-Resources"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">1.2.1 指导运营资源 (Directing Operational Resources)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-执行工作策略-Enforcing-Working-Policies"><span class="toc-number">2.1.2.2.</span> <span class="toc-text">1.2.2 执行工作策略 (Enforcing Working Policies)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-缓解复杂任务的难度-Mitigating-Difficulty-of-Complex-Tasks"><span class="toc-number">2.1.2.3.</span> <span class="toc-text">1.2.3 缓解复杂任务的难度 (Mitigating Difficulty of Complex Tasks)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-什么是操作系统？-What-Is-an-Operating-System"><span class="toc-number">2.1.3.</span> <span class="toc-text">1.3 什么是操作系统？(What Is an Operating System?)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-计算机系统的组成"><span class="toc-number">2.1.3.1.</span> <span class="toc-text">1.3.1 计算机系统的组成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-操作系统的位置与角色"><span class="toc-number">2.1.3.2.</span> <span class="toc-text">1.3.2 操作系统的位置与角色</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-操作系统的正式定义-Operating-System-Definition"><span class="toc-number">2.1.4.</span> <span class="toc-text">1.4 操作系统的正式定义 (Operating System Definition)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二部分：操作系统组件与设计"><span class="toc-number">2.2.</span> <span class="toc-text">第二部分：操作系统组件与设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-操作系统组件测验-Operating-System-Components-Quiz"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.1 操作系统组件测验 (Operating System Components Quiz)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-抽象与仲裁测验-Abstraction-or-Arbitration-Quiz"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2 抽象与仲裁测验 (Abstraction or Arbitration Quiz)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-操作系统示例-Operating-System-Examples"><span class="toc-number">2.2.3.</span> <span class="toc-text">2.3 操作系统示例 (Operating System Examples)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-桌面-服务器操作系统"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">2.3.1 桌面&#x2F;服务器操作系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2-嵌入式操作系统"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">2.3.2 嵌入式操作系统</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-操作系统元素-OS-Elements"><span class="toc-number">2.2.4.</span> <span class="toc-text">2.4 操作系统元素 (OS Elements)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-1-抽象-Abstractions"><span class="toc-number">2.2.4.1.</span> <span class="toc-text">2.4.1 抽象 (Abstractions)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-机制-Mechanisms"><span class="toc-number">2.2.4.2.</span> <span class="toc-text">2.4.2 机制 (Mechanisms)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-策略-Policies"><span class="toc-number">2.2.4.3.</span> <span class="toc-text">2.4.3 策略 (Policies)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-操作系统元素示例：内存管理-OS-Elements-Example-Memory-Management"><span class="toc-number">2.2.5.</span> <span class="toc-text">2.5 操作系统元素示例：内存管理 (OS Elements Example: Memory Management)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-抽象：内存页-Memory-Page"><span class="toc-number">2.2.5.1.</span> <span class="toc-text">2.5.1 抽象：内存页 (Memory Page)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-2-机制"><span class="toc-number">2.2.5.2.</span> <span class="toc-text">2.5.2 机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-3-策略：最近最少使用-Least-Recently-Used-LRU"><span class="toc-number">2.2.5.3.</span> <span class="toc-text">2.5.3 策略：最近最少使用 (Least Recently Used, LRU)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-操作系统设计原则-OS-Design-Principles"><span class="toc-number">2.2.6.</span> <span class="toc-text">2.6 操作系统设计原则 (OS Design Principles)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-1-机制与策略分离-Separation-of-Mechanism-and-Policy"><span class="toc-number">2.2.6.1.</span> <span class="toc-text">2.6.1 机制与策略分离 (Separation of Mechanism and Policy)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-2-针对常见情况优化-Optimize-for-the-Common-Case"><span class="toc-number">2.2.6.2.</span> <span class="toc-text">2.6.2 针对常见情况优化 (Optimize for the Common Case)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三部分：用户-内核边界与系统调用"><span class="toc-number">2.3.</span> <span class="toc-text">第三部分：用户&#x2F;内核边界与系统调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-操作系统保护边界-OS-Protection-Boundary"><span class="toc-number">2.3.1.</span> <span class="toc-text">3.1 操作系统保护边界 (OS Protection Boundary)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-两种执行模式"><span class="toc-number">2.3.1.1.</span> <span class="toc-text">3.1.1 两种执行模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-硬件支持"><span class="toc-number">2.3.1.2.</span> <span class="toc-text">3.1.2 硬件支持</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-3-应用程序与操作系统的交互方式"><span class="toc-number">2.3.1.3.</span> <span class="toc-text">3.1.3 应用程序与操作系统的交互方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-系统调用流程-System-Call-Flowchart"><span class="toc-number">2.3.2.</span> <span class="toc-text">3.2 系统调用流程 (System Call Flowchart)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#步骤1：用户进程执行"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">步骤1：用户进程执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#步骤2：发起系统调用"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">步骤2：发起系统调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#步骤3：切换到内核模式"><span class="toc-number">2.3.2.3.</span> <span class="toc-text">步骤3：切换到内核模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#步骤4：操作系统执行操作"><span class="toc-number">2.3.2.4.</span> <span class="toc-text">步骤4：操作系统执行操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#步骤5：返回结果"><span class="toc-number">2.3.2.5.</span> <span class="toc-text">步骤5：返回结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#发起系统调用的步骤"><span class="toc-number">2.3.2.6.</span> <span class="toc-text">发起系统调用的步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-跨越操作系统边界的代价-Crossing-the-OS-Boundary"><span class="toc-number">2.3.3.</span> <span class="toc-text">3.3 跨越操作系统边界的代价 (Crossing the OS Boundary)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-1-性能开销"><span class="toc-number">2.3.3.1.</span> <span class="toc-text">3.3.1 性能开销</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-2-缓存影响"><span class="toc-number">2.3.3.2.</span> <span class="toc-text">3.3.2 缓存影响</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-操作系统服务-OS-Services"><span class="toc-number">2.3.4.</span> <span class="toc-text">3.4 操作系统服务 (OS Services)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-1-基本服务类型"><span class="toc-number">2.3.4.1.</span> <span class="toc-text">3.4.1 基本服务类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-2-服务类别总结"><span class="toc-number">2.3.4.2.</span> <span class="toc-text">3.4.2 服务类别总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-3-系统调用示例"><span class="toc-number">2.3.4.3.</span> <span class="toc-text">3.4.3 系统调用示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-系统调用测验-System-Calls-Quiz"><span class="toc-number">2.3.5.</span> <span class="toc-text">3.5 系统调用测验 (System Calls Quiz)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四部分：操作系统组织结构"><span class="toc-number">2.4.</span> <span class="toc-text">第四部分：操作系统组织结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-单体式操作系统-Monolithic-OS"><span class="toc-number">2.4.1.</span> <span class="toc-text">4.1 单体式操作系统 (Monolithic OS)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-特点"><span class="toc-number">2.4.1.1.</span> <span class="toc-text">4.1.1 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-优点"><span class="toc-number">2.4.1.2.</span> <span class="toc-text">4.1.2 优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-缺点"><span class="toc-number">2.4.1.3.</span> <span class="toc-text">4.1.3 缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-模块化操作系统-Modular-OS"><span class="toc-number">2.4.2.</span> <span class="toc-text">4.2 模块化操作系统 (Modular OS)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-特点"><span class="toc-number">2.4.2.1.</span> <span class="toc-text">4.2.1 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-工作原理"><span class="toc-number">2.4.2.2.</span> <span class="toc-text">4.2.2 工作原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-优点"><span class="toc-number">2.4.2.3.</span> <span class="toc-text">4.2.3 优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-4-缺点"><span class="toc-number">2.4.2.4.</span> <span class="toc-text">4.2.4 缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-微内核-Microkernel"><span class="toc-number">2.4.3.</span> <span class="toc-text">4.3 微内核 (Microkernel)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-特点"><span class="toc-number">2.4.3.1.</span> <span class="toc-text">4.3.1 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-优点"><span class="toc-number">2.4.3.2.</span> <span class="toc-text">4.3.2 优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-缺点"><span class="toc-number">2.4.3.3.</span> <span class="toc-text">4.3.3 缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-Linux和Mac-OS架构-Linux-and-Mac-OS-Architectures"><span class="toc-number">2.4.4.</span> <span class="toc-text">4.4 Linux和Mac OS架构 (Linux and Mac OS Architectures)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-1-Linux架构"><span class="toc-number">2.4.4.1.</span> <span class="toc-text">4.4.1 Linux架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-2-Mac-OS-X架构"><span class="toc-number">2.4.4.2.</span> <span class="toc-text">4.4.2 Mac OS X架构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五部分：课程总结"><span class="toc-number">2.5.</span> <span class="toc-text">第五部分：课程总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#核心要点回顾"><span class="toc-number">2.5.1.</span> <span class="toc-text">核心要点回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关键术语汇总表"><span class="toc-number">2.5.2.</span> <span class="toc-text">关键术语汇总表</span></a></li></ol></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">cs6200-p2-操作系统核心概念总结</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2026-01-20<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2026-01-24</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/">10-projects</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/cs6200-intro-to-OS/">cs6200_intro_to_OS</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2026/01/20/10-projects/cs6200_intro_to_OS/cs6200-p2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2026/01/20/10-projects/cs6200_intro_to_OS/cs6200-p2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="cs6200-p2-操作系统核心概念总结"><a href="#cs6200-p2-操作系统核心概念总结" class="headerlink" title="cs6200-p2-操作系统核心概念总结"></a>cs6200-p2-操作系统核心概念总结</h1><h2 id="🧑‍💻-User"><a href="#🧑‍💻-User" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><hr>
+<h2 id="🤖-Assistant"><a href="#🤖-Assistant" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><h1 id="操作系统导论-Introduction-to-Operating-Systems"><a href="#操作系统导论-Introduction-to-Operating-Systems" class="headerlink" title="操作系统导论 (Introduction to Operating Systems)"></a>操作系统导论 (Introduction to Operating Systems)</h1><h2 id="第一部分：课程概述与操作系统的基本定义"><a href="#第一部分：课程概述与操作系统的基本定义" class="headerlink" title="第一部分：课程概述与操作系统的基本定义"></a>第一部分：课程概述与操作系统的基本定义</h2><h3 id="1-1-课程预览-Lesson-Preview"><a href="#1-1-课程预览-Lesson-Preview" class="headerlink" title="1.1 课程预览 (Lesson Preview)"></a>1.1 课程预览 (Lesson Preview)</h3><p>欢迎来到操作系统的入门课程。在这一讲中，我们将从宏观的视角来认识操作系统，建立起对操作系统的整体理解框架。</p>
+<p>本节课将涵盖以下几个核心问题：</p>
+<p><strong>首先</strong>，我们将解答”什么是操作系统”这个根本性问题，并探讨操作系统在计算机系统中所扮演的角色。</p>
+<p><strong>其次</strong>，我们会深入了解操作系统的关键组件(key components)、设计原则(design principles)以及组织结构(organizational structures)。</p>
+<p>在后续的课程中，我们将对本节提到的各种术语和机制进行更加深入的讲解。但现在，让我们先建立一个基础性的认识。</p>
+<p><strong>用最简单的话来说，操作系统是一个对底层硬件系统进行抽象(abstract)和仲裁(arbitrate)的软件。</strong></p>
+<p>这里有两个关键词需要理解：</p>
+<ul>
+<li><strong>抽象(Abstract)</strong>：意味着简化硬件的实际样貌，让应用程序不需要了解硬件的复杂细节</li>
+<li><strong>仲裁(Arbitrate)</strong>：意味着管理、监督和控制硬件的使用</li>
+</ul>
+<p>在整个课程中，我们会看到操作系统为计算机系统中各种类型的硬件组件提供了大量的抽象和仲裁机制。</p>
+<hr>
+<h3 id="1-2-视觉隐喻：玩具店经理-Visual-Metaphor-Toy-Shop-Manager"><a href="#1-2-视觉隐喻：玩具店经理-Visual-Metaphor-Toy-Shop-Manager" class="headerlink" title="1.2 视觉隐喻：玩具店经理 (Visual Metaphor: Toy Shop Manager)"></a>1.2 视觉隐喻：玩具店经理 (Visual Metaphor: Toy Shop Manager)</h3><p>为了帮助你更直观地理解操作系统的本质，我们用一个生动的比喻来说明：<strong>操作系统就像一个玩具店的经理(Toy Shop Manager)</strong>。</p>
+<p>让我们来看看玩具店经理和操作系统之间的相似之处：</p>
+<h4 id="1-2-1-指导运营资源-Directing-Operational-Resources"><a href="#1-2-1-指导运营资源-Directing-Operational-Resources" class="headerlink" title="1.2.1 指导运营资源 (Directing Operational Resources)"></a>1.2.1 指导运营资源 (Directing Operational Resources)</h4><p><strong>玩具店经理的职责：</strong></p>
+<ul>
+<li>管理员工，指导他们的工作方向</li>
+<li>负责调度(scheduling)、分配(allocating)和分发(distributing)店内资源</li>
+<li>决定哪些员工处理哪些订单，使用哪些工具</li>
+<li>分配零件和工具等资源</li>
+</ul>
+<p><strong>操作系统的对应职责：</strong></p>
+<ul>
+<li>控制硬件的使用，包括CPU、内存(Memory)、外围设备(Peripheral Devices)如磁盘、网卡等</li>
+<li>决定如何将这些资源分配给各个应用程序</li>
+</ul>
+<h4 id="1-2-2-执行工作策略-Enforcing-Working-Policies"><a href="#1-2-2-执行工作策略-Enforcing-Working-Policies" class="headerlink" title="1.2.2 执行工作策略 (Enforcing Working Policies)"></a>1.2.2 执行工作策略 (Enforcing Working Policies)</h4><p><strong>玩具店经理的职责：</strong></p>
+<ul>
+<li>执行有关公平性(fairness)、安全性(safety)、清洁(clean-up)等方面的政策</li>
+<li>决定不同订单的工人如何共享资源（如共享零件和工具）</li>
+<li>制定工人完成订单后的清理规则</li>
+</ul>
+<p><strong>操作系统的对应职责：</strong></p>
+<ul>
+<li>执行关于资源使用的策略</li>
+<li>控制对共享资源的公平访问(fair access)</li>
+<li>设置资源限制(limits)，如每个进程可以打开的最大文件数</li>
+<li>设定阈值，触发内存管理守护进程(memory management daemons)的运行</li>
+</ul>
+<h4 id="1-2-3-缓解复杂任务的难度-Mitigating-Difficulty-of-Complex-Tasks"><a href="#1-2-3-缓解复杂任务的难度-Mitigating-Difficulty-of-Complex-Tasks" class="headerlink" title="1.2.3 缓解复杂任务的难度 (Mitigating Difficulty of Complex Tasks)"></a>1.2.3 缓解复杂任务的难度 (Mitigating Difficulty of Complex Tasks)</h4><p><strong>玩具店经理的职责：</strong></p>
+<ul>
+<li>优化和简化整个玩具店的运营</li>
+<li>没有经理的话，员工可能不知道如何协调工作、分配任务</li>
+</ul>
+<p><strong>操作系统的对应职责：</strong></p>
+<ul>
+<li>简化应用程序所看到的底层硬件视图</li>
+<li>应用程序通过系统调用(System Calls)与操作系统交互</li>
+<li>操作系统代为处理那些复杂的任务</li>
+</ul>
+<hr>
+<h3 id="1-3-什么是操作系统？-What-Is-an-Operating-System"><a href="#1-3-什么是操作系统？-What-Is-an-Operating-System" class="headerlink" title="1.3 什么是操作系统？(What Is an Operating System?)"></a>1.3 什么是操作系统？(What Is an Operating System?)</h3><p>现在让我们正式探讨操作系统的定义和角色。</p>
+<h4 id="1-3-1-计算机系统的组成"><a href="#1-3-1-计算机系统的组成" class="headerlink" title="1.3.1 计算机系统的组成"></a>1.3.1 计算机系统的组成</h4><p>一个计算机系统由多种硬件组件构成：</p>
+<ol>
+<li><p><strong>处理器/CPU (Processing Elements/CPUs)</strong></p>
+<ul>
+<li>现代CPU通常包含多个核心(cores)</li>
+<li>一个CPU可能有不止一个处理单元</li>
+</ul>
+</li>
+<li><p><strong>内存 (Memory)</strong></p>
+</li>
+<li><p><strong>网络设备 (Network Interconnects)</strong></p>
+<ul>
+<li>以太网端口(Ethernet port)</li>
+<li>WiFi网卡(WiFi card)</li>
+</ul>
+</li>
+<li><p><strong>图形处理卡 (Graphics Processing Cards)</strong></p>
+<ul>
+<li>如GPU (Graphics Processing Unit)</li>
+</ul>
+</li>
+<li><p><strong>存储设备 (Storage Devices)</strong></p>
+<ul>
+<li>硬盘(Hard Disks)</li>
+<li>固态硬盘(SSDs)</li>
+<li>闪存设备(Flash Devices)，如USB驱动器</li>
+</ul>
+</li>
+</ol>
+<p>除了某些特定的嵌入式平台或传感器，这些硬件组件通常会被多个应用程序共同使用。比如在你的笔记本电脑上，可能同时运行着浏览器、文本编辑器、Skype等多个应用。在数据中心的服务器上，也会同时运行Web服务器、数据库或计算密集型模拟程序。</p>
+<h4 id="1-3-2-操作系统的位置与角色"><a href="#1-3-2-操作系统的位置与角色" class="headerlink" title="1.3.2 操作系统的位置与角色"></a>1.3.2 操作系统的位置与角色</h4><p><strong>操作系统是位于复杂硬件和各种应用程序之间的系统软件层(Layer of Systems Software)。</strong></p>
+<p>虽然不存在一个正式的、统一的操作系统定义，但我们可以通过理解其角色和必须提供的功能来认识它。</p>
+<p><strong>角色一：隐藏硬件复杂性 (Hiding Hardware Complexity)</strong></p>
+<p>操作系统对应用程序和开发者隐藏底层硬件的复杂性。</p>
+<p><strong>示例1 - 存储抽象：</strong></p>
+<ul>
+<li>你不需要在保存程序输出时关心磁盘扇区(disk sectors)或块(blocks)</li>
+<li>操作系统隐藏了各种存储设备（硬盘、SSD、USB闪存）的复杂性</li>
+<li>它提供了更高层次的<strong>文件(File)</strong>抽象</li>
+<li>你只需执行读(read)和写(write)操作</li>
+</ul>
+<p><strong>示例2 - 网络抽象：</strong></p>
+<ul>
+<li>作为Web服务器，你不需要考虑如何组装通信所需的比特和数据包</li>
+<li>操作系统提供了<strong>套接字(Socket)</strong>这个高层抽象</li>
+<li>你只需通过套接字发送(send)和接收(receive)数据</li>
+</ul>
+<p><strong>角色二：管理硬件资源 (Managing Hardware Resources)</strong></p>
+<p>操作系统代表正在执行的应用程序管理底层硬件：</p>
+<ul>
+<li>决定应用程序使用多少资源、使用哪些资源</li>
+<li>为应用程序分配内存(allocates memory)</li>
+<li>将应用程序调度(schedules)到CPU上执行</li>
+<li>控制应用程序对各种设备的访问</li>
+<li>负责所有类型的资源分配(resource allocation)和资源管理(resource management)任务</li>
+</ul>
+<p><strong>角色三：提供隔离与保护 (Providing Isolation and Protection)</strong></p>
+<p>当多个应用程序在同一硬件上运行时，操作系统必须：</p>
+<ul>
+<li>确保每个应用程序都能取得适当的进展</li>
+<li>防止应用程序相互伤害</li>
+<li>为不同应用程序分配不同的物理内存区域</li>
+<li>确保（除非明确需要）应用程序不会访问彼此的内存</li>
+</ul>
+<p>这一点从<strong>保护(Protection)</strong>角度很重要——防止读取他人数据；从<strong>隔离(Isolation)</strong>角度也很重要——防止覆盖他人内存。</p>
+<p>值得注意的是，即使是传统上被视为嵌入式平台的移动手机，现在也需要这些机制。想想看，你的智能手机上同时运行着多少应用程序？浏览器、Skype、Facebook，还有最基本的电话功能。</p>
+<hr>
+<h3 id="1-4-操作系统的正式定义-Operating-System-Definition"><a href="#1-4-操作系统的正式定义-Operating-System-Definition" class="headerlink" title="1.4 操作系统的正式定义 (Operating System Definition)"></a>1.4 操作系统的正式定义 (Operating System Definition)</h3><p>总结以上讨论，我们可以给出操作系统的定义：</p>
+<p><strong>操作系统是位于应用程序和硬件之间的系统软件层(Layer of Systems Software)。</strong></p>
+<p>它具有以下特征：</p>
+<ol>
+<li><p><strong>拥有访问底层硬件并操纵其状态的特权(Privileges)</strong></p>
+<ul>
+<li>与之相反，应用程序软件不允许这样做</li>
+</ul>
+</li>
+<li><p><strong>隐藏硬件复杂性(Hide Hardware Complexity)</strong></p>
+<ul>
+<li>代表一个或多个应用程序管理硬件</li>
+</ul>
+</li>
+<li><p><strong>遵循预定义的策略(Predefined Policies)</strong></p>
+<ul>
+<li>按照某些策略进行资源管理</li>
+</ul>
+</li>
+<li><p><strong>确保隔离与保护(Isolation and Protection)</strong></p>
+<ul>
+<li>确保应用程序彼此隔离和保护</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="第二部分：操作系统组件与设计"><a href="#第二部分：操作系统组件与设计" class="headerlink" title="第二部分：操作系统组件与设计"></a>第二部分：操作系统组件与设计</h2><h3 id="2-1-操作系统组件测验-Operating-System-Components-Quiz"><a href="#2-1-操作系统组件测验-Operating-System-Components-Quiz" class="headerlink" title="2.1 操作系统组件测验 (Operating System Components Quiz)"></a>2.1 操作系统组件测验 (Operating System Components Quiz)</h3><p>让我们通过一个思考练习来加深理解：以下哪些可能是操作系统的组件？</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>是否属于OS组件</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文件编辑器(File Editor)</td>
+<td>❌ 否</td>
+<td>用户直接与之交互，不直接参与硬件管理</td>
+</tr>
+<tr>
+<td>文件系统(File System)</td>
+<td>✅ 是</td>
+<td>直接负责隐藏硬件复杂性，提供比”磁盘存储块”更简单直观的”文件”抽象</td>
+</tr>
+<tr>
+<td>设备驱动程序(Device Driver)</td>
+<td>✅ 是</td>
+<td>直接负责做出关于硬件设备使用的决策</td>
+</tr>
+<tr>
+<td>高速缓存(Cache Memory)</td>
+<td>❌ 否</td>
+<td>虽然OS和应用程序利用缓存提高性能，但OS并不直接管理缓存——这是硬件自己管理的</td>
+</tr>
+<tr>
+<td>网页浏览器(Web Browser)</td>
+<td>❌ 否</td>
+<td>与文件编辑器一样，是用户交互的应用程序，不直接控制底层硬件</td>
+</tr>
+<tr>
+<td>调度器(Scheduler)</td>
+<td>✅ 是</td>
+<td>负责在共享平台的所有应用程序之间分配对处理器(CPU)的访问权</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="2-2-抽象与仲裁测验-Abstraction-or-Arbitration-Quiz"><a href="#2-2-抽象与仲裁测验-Abstraction-or-Arbitration-Quiz" class="headerlink" title="2.2 抽象与仲裁测验 (Abstraction or Arbitration Quiz)"></a>2.2 抽象与仲裁测验 (Abstraction or Arbitration Quiz)</h3><p>我们说操作系统”抽象”和”仲裁”计算机系统的使用。让我们判断以下示例属于哪一类：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>类型</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>在多个进程之间分配内存</td>
+<td><strong>仲裁(Arbitration)</strong></td>
+<td>操作系统管理内存并决定多个进程如何共享</td>
+</tr>
+<tr>
+<td>支持不同类型的扬声器</td>
+<td><strong>抽象(Abstraction)</strong></td>
+<td>提供通用接口，可以插入不同的扬声器设备；设备驱动程序封装了具体硬件的知识</td>
+</tr>
+<tr>
+<td>可互换地访问硬盘或SSD</td>
+<td><strong>抽象(Abstraction)</strong></td>
+<td>使用存储抽象，操作系统可以在底层使用不同类型的设备，而对应用程序隐藏这些差异</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="2-3-操作系统示例-Operating-System-Examples"><a href="#2-3-操作系统示例-Operating-System-Examples" class="headerlink" title="2.3 操作系统示例 (Operating System Examples)"></a>2.3 操作系统示例 (Operating System Examples)</h3><p>不同的操作系统针对不同的运行环境而设计。让我们了解一些主要的操作系统：</p>
+<h4 id="2-3-1-桌面-服务器操作系统"><a href="#2-3-1-桌面-服务器操作系统" class="headerlink" title="2.3.1 桌面/服务器操作系统"></a>2.3.1 桌面/服务器操作系统</h4><ol>
+<li><p><strong>Microsoft Windows</strong></p>
+<ul>
+<li>自1980年代初期就广为人知</li>
+<li>广泛用于个人电脑</li>
+</ul>
+</li>
+<li><p><strong>UNIX系操作系统(UNIX-based Operating Systems)</strong></p>
+<ul>
+<li><p>起源于1960年代末贝尔实验室(Bell Labs)</p>
+</li>
+<li><p><strong>Mac OS X</strong></p>
+</li>
+<li>苹果设备的操作系统</li>
+<li>基于UNIX BSD内核扩展</li>
+<li><p>BSD = Berkeley System Distribution of Unix（伯克利系统发行版）</p>
+</li>
+<li><p><strong>Linux</strong></p>
+</li>
+<li>非常流行的类UNIX系统</li>
+<li>开源(Open Sourced)</li>
+<li>与许多流行的软件库捆绑</li>
+<li>有多个版本：Ubuntu、CentOS等</li>
+</ul>
+</li>
+</ol>
+<h4 id="2-3-2-嵌入式操作系统"><a href="#2-3-2-嵌入式操作系统" class="headerlink" title="2.3.2 嵌入式操作系统"></a>2.3.2 嵌入式操作系统</h4><p>由于智能手机、平板电脑等用户设备的激增，嵌入式操作系统近年来快速发展：</p>
+<ol>
+<li><p><strong>Android</strong></p>
+<ul>
+<li>嵌入式Linux的一种形式</li>
+<li>运行在各种移动设备上</li>
+<li>版本有有趣的名字，如Ice Cream Sandwich、KitKat</li>
+</ul>
+</li>
+<li><p><strong>iOS</strong></p>
+<ul>
+<li>苹果专有的操作系统</li>
+<li>用于iPhone和iPad等设备</li>
+</ul>
+</li>
+<li><p><strong>Symbian</strong> 及其他选择</p>
+</li>
+</ol>
+<p><strong>本课程将主要关注Linux操作系统</strong>，大多数深入的示例将基于Linux系统。</p>
+<hr>
+<h3 id="2-4-操作系统元素-OS-Elements"><a href="#2-4-操作系统元素-OS-Elements" class="headerlink" title="2.4 操作系统元素 (OS Elements)"></a>2.4 操作系统元素 (OS Elements)</h3><p>为了实现其目标，操作系统支持若干高层<strong>抽象(Abstractions)</strong>，以及在这些抽象之上运行的关键<strong>机制(Mechanisms)</strong>。</p>
+<h4 id="2-4-1-抽象-Abstractions"><a href="#2-4-1-抽象-Abstractions" class="headerlink" title="2.4.1 抽象 (Abstractions)"></a>2.4.1 抽象 (Abstractions)</h4><p><strong>与应用程序执行相关的抽象：</strong></p>
+<ul>
+<li><strong>进程(Process)</strong>：代表正在执行的应用程序</li>
+<li><strong>线程(Thread)</strong>：程序执行的基本单位</li>
+</ul>
+<p><strong>与硬件资源相关的抽象：</strong></p>
+<ul>
+<li><strong>文件(File)</strong>：对应存储设备（如磁盘）</li>
+<li><strong>套接字(Socket)</strong>：对应网卡</li>
+<li><strong>内存页(Memory Page)</strong>：对应实际内存</li>
+</ul>
+<h4 id="2-4-2-机制-Mechanisms"><a href="#2-4-2-机制-Mechanisms" class="headerlink" title="2.4.2 机制 (Mechanisms)"></a>2.4.2 机制 (Mechanisms)</h4><p>操作系统提供机制来操作这些抽象：</p>
+<ul>
+<li><strong>创建(Create)</strong>：启动一个应用程序开始执行</li>
+<li><strong>调度(Schedule)</strong>：将应用程序安排到CPU上运行</li>
+<li><strong>打开(Open)</strong>：获取对特定设备或硬件组件的访问</li>
+<li><strong>写入(Write)</strong>：更新资源的状态</li>
+<li><strong>分配(Allocate)</strong>：确保特定应用程序可以访问该资源</li>
+</ul>
+<h4 id="2-4-3-策略-Policies"><a href="#2-4-3-策略-Policies" class="headerlink" title="2.4.3 策略 (Policies)"></a>2.4.3 策略 (Policies)</h4><p>操作系统还集成了特定的策略，决定如何使用这些机制来管理底层硬件：</p>
+<ul>
+<li>控制一个进程可以访问的最大套接字数</li>
+<li>决定哪些数据将从物理内存中移除</li>
+<li>基于算法（如最近最少使用LRU）管理资源</li>
+</ul>
+<hr>
+<h3 id="2-5-操作系统元素示例：内存管理-OS-Elements-Example-Memory-Management"><a href="#2-5-操作系统元素示例：内存管理-OS-Elements-Example-Memory-Management" class="headerlink" title="2.5 操作系统元素示例：内存管理 (OS Elements Example: Memory Management)"></a>2.5 操作系统元素示例：内存管理 (OS Elements Example: Memory Management)</h3><p>让我们通过内存管理的例子来理解抽象、机制和策略的关系。</p>
+<h4 id="2-5-1-抽象：内存页-Memory-Page"><a href="#2-5-1-抽象：内存页-Memory-Page" class="headerlink" title="2.5.1 抽象：内存页 (Memory Page)"></a>2.5.1 抽象：内存页 (Memory Page)</h4><p>操作系统使用<strong>内存页(Memory Page)</strong>作为抽象：</p>
+<ul>
+<li>对应某个固定大小的可寻址内存区域</li>
+<li>例如：4KB大小</li>
+</ul>
+<h4 id="2-5-2-机制"><a href="#2-5-2-机制" class="headerlink" title="2.5.2 机制"></a>2.5.2 机制</h4><p>操作系统集成了若干机制来操作内存页：</p>
+<ol>
+<li><strong>分配(Allocate)</strong>：在DRAM中分配该页</li>
+<li><strong>映射(Map)</strong>：将该页映射到进程的地址空间<ul>
+<li>允许进程访问对应该页内容的实际物理内存</li>
+</ul>
+</li>
+</ol>
+<p>随着时间推移，这个页可能：</p>
+<ul>
+<li>在物理内存中的不同位置之间移动</li>
+<li>有时甚至被存储到磁盘上（如果需要为其他内容腾出物理内存空间）</li>
+</ul>
+<h4 id="2-5-3-策略：最近最少使用-Least-Recently-Used-LRU"><a href="#2-5-3-策略：最近最少使用-Least-Recently-Used-LRU" class="headerlink" title="2.5.3 策略：最近最少使用 (Least Recently Used, LRU)"></a>2.5.3 策略：最近最少使用 (Least Recently Used, LRU)</h4><p>由于从内存访问数据比从磁盘访问快得多，操作系统需要策略来决定页面内容应该存放在哪里。</p>
+<p><strong>LRU策略</strong>：</p>
+<ul>
+<li>在一段时间内最近最少使用的页面将不再保留在物理内存中</li>
+<li>这些页面会被复制到磁盘上（称为<strong>交换/Swapping</strong>）</li>
+</ul>
+<p><strong>策略背后的逻辑</strong>：</p>
+<ul>
+<li>长时间未被访问的页面可能不那么重要</li>
+<li>它们很可能在近期也不会被使用</li>
+<li>因此可以将它们移到磁盘上</li>
+<li>而频繁访问的页面保留在内存中，因为它们更可能被继续使用</li>
+</ul>
+<hr>
+<h3 id="2-6-操作系统设计原则-OS-Design-Principles"><a href="#2-6-操作系统设计原则-OS-Design-Principles" class="headerlink" title="2.6 操作系统设计原则 (OS Design Principles)"></a>2.6 操作系统设计原则 (OS Design Principles)</h3><p>在设计操作系统时，有一些重要的指导原则：</p>
+<h4 id="2-6-1-机制与策略分离-Separation-of-Mechanism-and-Policy"><a href="#2-6-1-机制与策略分离-Separation-of-Mechanism-and-Policy" class="headerlink" title="2.6.1 机制与策略分离 (Separation of Mechanism and Policy)"></a>2.6.1 机制与策略分离 (Separation of Mechanism and Policy)</h4><p><strong>核心思想</strong>：在操作系统中纳入灵活的机制，这些机制可以支持一系列不同的策略。</p>
+<p><strong>以内存管理为例</strong>，有用的策略可能包括：</p>
+<ul>
+<li><strong>最近最少使用(Least Recently Used, LRU)</strong></li>
+<li><strong>最不经常使用(Least Frequently Used, LFU)</strong></li>
+<li><strong>完全随机(Completely Random)</strong></li>
+</ul>
+<p>为了支持这些策略，操作系统需要某种机制来跟踪内存位置被访问的频率或时间。这样，无论选择哪种策略，都可以在同一机制框架内实现。</p>
+<p><strong>为什么需要分离？</strong> 因为在不同的设置中，不同的策略更有意义。</p>
+<h4 id="2-6-2-针对常见情况优化-Optimize-for-the-Common-Case"><a href="#2-6-2-针对常见情况优化-Optimize-for-the-Common-Case" class="headerlink" title="2.6.2 针对常见情况优化 (Optimize for the Common Case)"></a>2.6.2 针对常见情况优化 (Optimize for the Common Case)</h4><p><strong>核心思想</strong>：我们需要理解操作系统将如何被使用，才能确定什么是”常见情况”。</p>
+<p>需要考虑的问题包括：</p>
+<ul>
+<li><p><strong>硬件环境</strong>：</p>
+<ul>
+<li>将在什么样的机器上运行？</li>
+<li>有多少处理器？</li>
+<li>有多少内存？</li>
+<li>有什么类型的设备？</li>
+</ul>
+</li>
+<li><p><strong>用户行为</strong>：</p>
+<ul>
+<li>用户在这台机器上通常做什么？</li>
+<li>会执行什么应用程序？</li>
+<li>工作负载的特性是什么？</li>
+</ul>
+</li>
+</ul>
+<p>基于对常见情况的理解，选择合适的策略，并利用操作系统支持的机制和抽象来实现它。</p>
+<hr>
+<h2 id="第三部分：用户-内核边界与系统调用"><a href="#第三部分：用户-内核边界与系统调用" class="headerlink" title="第三部分：用户/内核边界与系统调用"></a>第三部分：用户/内核边界与系统调用</h2><h3 id="3-1-操作系统保护边界-OS-Protection-Boundary"><a href="#3-1-操作系统保护边界-OS-Protection-Boundary" class="headerlink" title="3.1 操作系统保护边界 (OS Protection Boundary)"></a>3.1 操作系统保护边界 (OS Protection Boundary)</h3><p>为了实现控制和管理硬件资源的角色，操作系统必须拥有<strong>特殊权限(Special Privileges)</strong>来直接访问硬件。</p>
+<h4 id="3-1-1-两种执行模式"><a href="#3-1-1-两种执行模式" class="headerlink" title="3.1.1 两种执行模式"></a>3.1.1 两种执行模式</h4><p>计算机平台至少区分两种模式：</p>
+<ol>
+<li><p><strong>内核模式(Kernel Mode)</strong> - 特权模式</p>
+<ul>
+<li>操作系统在此模式下运行</li>
+<li>可以直接访问硬件</li>
+</ul>
+</li>
+<li><p><strong>用户模式(User Mode)</strong> - 非特权模式</p>
+<ul>
+<li>应用程序在此模式下运行</li>
+<li>不能直接访问硬件</li>
+</ul>
+</li>
+</ol>
+<h4 id="3-1-2-硬件支持"><a href="#3-1-2-硬件支持" class="headerlink" title="3.1.2 硬件支持"></a>3.1.2 硬件支持</h4><p>在用户级别和内核级别之间的切换由硬件支持：</p>
+<ul>
+<li><p><strong>特权位(Privilege Bit)</strong>：当处于内核模式时，CPU中的一个特殊位被设置</p>
+<ul>
+<li>如果设置了这个位，任何直接操纵硬件的指令都被允许执行</li>
+<li>当处于用户模式时，这个位未设置，尝试执行特权操作的指令将被禁止</li>
+</ul>
+</li>
+<li><p><strong>陷阱(Trap)</strong>：当用户模式下的应用程序尝试执行特权操作时</p>
+<ul>
+<li>应用程序被中断</li>
+<li>硬件将控制权切换到操作系统的特定位置</li>
+<li>操作系统检查引发陷阱的原因</li>
+<li>验证是否应该授予访问权限，或者终止进程（如果它试图执行非法操作）</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-1-3-应用程序与操作系统的交互方式"><a href="#3-1-3-应用程序与操作系统的交互方式" class="headerlink" title="3.1.3 应用程序与操作系统的交互方式"></a>3.1.3 应用程序与操作系统的交互方式</h4><ol>
+<li><p><strong>系统调用接口(System Call Interface)</strong></p>
+<ul>
+<li>操作系统导出一组操作，应用程序可以显式调用</li>
+<li>请求操作系统代表它们执行某些服务和特权访问</li>
+<li>例如：<code>open</code>（访问文件）、<code>send</code>（通过套接字发送）、<code>malloc</code>（分配内存）</li>
+</ul>
+</li>
+<li><p><strong>信号(Signals)</strong></p>
+<ul>
+<li>操作系统向应用程序传递通知的机制</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="3-2-系统调用流程-System-Call-Flowchart"><a href="#3-2-系统调用流程-System-Call-Flowchart" class="headerlink" title="3.2 系统调用流程 (System Call Flowchart)"></a>3.2 系统调用流程 (System Call Flowchart)</h3><p>让我们追踪一次系统调用过程中控制和数据的交换：</p>
+<h4 id="步骤1：用户进程执行"><a href="#步骤1：用户进程执行" class="headerlink" title="步骤1：用户进程执行"></a>步骤1：用户进程执行</h4><p>假设我们当前在一个正在执行的用户进程中。</p>
+<h4 id="步骤2：发起系统调用"><a href="#步骤2：发起系统调用" class="headerlink" title="步骤2：发起系统调用"></a>步骤2：发起系统调用</h4><p>因为用户进程需要某些硬件访问，它发起一个系统调用。</p>
+<h4 id="步骤3：切换到内核模式"><a href="#步骤3：切换到内核模式" class="headerlink" title="步骤3：切换到内核模式"></a>步骤3：切换到内核模式</h4><ul>
+<li>控制权传递给操作系统（在特权模式下）</li>
+<li>这涉及：<ul>
+<li>将执行上下文从用户进程更改为OS内核</li>
+<li>传递必要的参数</li>
+<li>跳转到内核内存中对应该系统调用的指令序列</li>
+</ul>
+</li>
+</ul>
+<h4 id="步骤4：操作系统执行操作"><a href="#步骤4：操作系统执行操作" class="headerlink" title="步骤4：操作系统执行操作"></a>步骤4：操作系统执行操作</h4><p>操作系统以特权模式运行，被允许执行系统调用指定的任何操作。</p>
+<h4 id="步骤5：返回结果"><a href="#步骤5：返回结果" class="headerlink" title="步骤5：返回结果"></a>步骤5：返回结果</h4><p>系统调用完成后：</p>
+<ul>
+<li>将结果和控制权返回给调用进程</li>
+<li>这涉及：<ul>
+<li>将执行上下文从内核模式更改回用户模式</li>
+<li>将任何参数传回用户地址空间</li>
+<li>跳转到用户进程中发起系统调用的确切位置</li>
+</ul>
+</li>
+</ul>
+<p><strong>重要说明</strong>：整个过程涉及上下文切换、参数传递和内存跳转，<strong>这不是一个廉价的操作</strong>。</p>
+<h4 id="发起系统调用的步骤"><a href="#发起系统调用的步骤" class="headerlink" title="发起系统调用的步骤"></a>发起系统调用的步骤</h4><ol>
+<li><strong>写入参数</strong>：应用程序必须将参数写入</li>
+<li><strong>保存数据</strong>：在预定义的位置保存所有相关数据</li>
+<li><strong>使用系统调用号</strong>：用特定的系统调用号发起实际的系统调用</li>
+</ol>
+<p>预定义位置是必要的，这样操作系统内核可以根据系统调用号确定：</p>
+<ul>
+<li>应该获取多少个参数</li>
+<li>这些参数在哪里</li>
+</ul>
+<p>参数可以直接在用户程序和操作系统之间传递，也可以通过指定地址间接传递。</p>
+<p>在<strong>同步模式(Synchronous Mode)</strong>下，进程会等待直到系统调用完成。（异步系统调用将在后续课程讨论）</p>
+<hr>
+<h3 id="3-3-跨越操作系统边界的代价-Crossing-the-OS-Boundary"><a href="#3-3-跨越操作系统边界的代价-Crossing-the-OS-Boundary" class="headerlink" title="3.3 跨越操作系统边界的代价 (Crossing the OS Boundary)"></a>3.3 跨越操作系统边界的代价 (Crossing the OS Boundary)</h3><p>用户/内核转换是应用程序执行过程中的必要步骤：</p>
+<ul>
+<li>应用程序可能需要访问某些类型的硬件</li>
+<li>可能需要请求更改分配给它们的硬件资源</li>
+</ul>
+<p>只有操作系统（内核）被允许执行这些类型的操作。</p>
+<h4 id="3-3-1-性能开销"><a href="#3-3-1-性能开销" class="headerlink" title="3.3.1 性能开销"></a>3.3.1 性能开销</h4><p>尽管硬件提供支持，执行这些转换仍然需要许多指令：</p>
+<p><strong>时间成本示例</strong>：</p>
+<ul>
+<li>在运行Linux的2GHz机器上</li>
+<li>一次用户/内核转换可能需要<strong>50到100纳秒</strong></li>
+<li>这是实际的时间开销</li>
+</ul>
+<h4 id="3-3-2-缓存影响"><a href="#3-3-2-缓存影响" class="headerlink" title="3.3.2 缓存影响"></a>3.3.2 缓存影响</h4><p>另一个问题是这些转换对<strong>硬件缓存(Hardware Cache)</strong>使用的影响：</p>
+<p><strong>背景</strong>：</p>
+<ul>
+<li>访问缓存大约需要几个周期</li>
+<li>访问内存可能需要数百个周期</li>
+<li>应用程序性能高度依赖于使用硬件缓存的能力</li>
+</ul>
+<p><strong>问题</strong>：</p>
+<ul>
+<li>当我们执行系统调用或进入操作系统时</li>
+<li>操作系统在执行过程中可能会将其需要的内容加载到缓存中</li>
+<li>这会替换转换之前缓存中的应用程序内容</li>
+<li>应用程序将无法从缓存中访问其数据，必须转到内存</li>
+</ul>
+<p><strong>总结</strong>：用户/内核转换代价不菲，需要谨慎设计以减少不必要的转换。</p>
+<hr>
+<h3 id="3-4-操作系统服务-OS-Services"><a href="#3-4-操作系统服务-OS-Services" class="headerlink" title="3.4 操作系统服务 (OS Services)"></a>3.4 操作系统服务 (OS Services)</h3><p>操作系统通过导出一系列服务为应用程序提供对底层硬件的访问。</p>
+<h4 id="3-4-1-基本服务类型"><a href="#3-4-1-基本服务类型" class="headerlink" title="3.4.1 基本服务类型"></a>3.4.1 基本服务类型</h4><p><strong>与硬件组件直接相关的服务：</strong></p>
+<ul>
+<li><strong>调度组件(Scheduling Component)</strong>：控制对CPU的访问</li>
+<li><strong>内存管理器(Memory Manager)</strong>：将物理内存分配给一个或多个共同运行的应用程序，确保它们不会覆盖彼此的内存访问</li>
+<li><strong>块设备驱动程序(Block Device Driver)</strong>：负责访问块设备（如磁盘）</li>
+</ul>
+<p><strong>与高层抽象相关的服务：</strong></p>
+<ul>
+<li><strong>文件系统(File System)</strong>：几乎所有操作系统都支持的有用抽象</li>
+</ul>
+<h4 id="3-4-2-服务类别总结"><a href="#3-4-2-服务类别总结" class="headerlink" title="3.4.2 服务类别总结"></a>3.4.2 服务类别总结</h4><p>操作系统需要整合多种服务来提供有用的功能：</p>
+<ul>
+<li><strong>进程管理(Process Management)</strong></li>
+<li><strong>文件管理(File Management)</strong></li>
+<li><strong>设备管理(Device Management)</strong></li>
+<li>等等</li>
+</ul>
+<h4 id="3-4-3-系统调用示例"><a href="#3-4-3-系统调用示例" class="headerlink" title="3.4.3 系统调用示例"></a>3.4.3 系统调用示例</h4><p>操作系统通过系统调用使所有这些服务可用。以下是Windows和Unix中一些系统调用的对比：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>功能类别</th>
+<th>Windows</th>
+<th>Unix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>进程控制</td>
+<td>CreateProcess(), ExitProcess(), WaitForSingleObject()</td>
+<td>fork(), exit(), wait()</td>
+</tr>
+<tr>
+<td>文件操作</td>
+<td>CreateFile(), ReadFile(), WriteFile()</td>
+<td>open(), read(), write()</td>
+</tr>
+<tr>
+<td>设备操作</td>
+<td>SetConsoleMode(), ReadConsole()</td>
+<td>ioctl(), read(), write()</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>尽管是两个非常不同的操作系统，它们提供的系统调用类型和围绕这些系统调用的抽象非常相似——进程控制、创建进程、退出进程、等待对象、创建文件等。</p>
+<hr>
+<h3 id="3-5-系统调用测验-System-Calls-Quiz"><a href="#3-5-系统调用测验-System-Calls-Quiz" class="headerlink" title="3.5 系统调用测验 (System Calls Quiz)"></a>3.5 系统调用测验 (System Calls Quiz)</h3><p>在64位Linux操作系统上，以下功能使用哪个系统调用？</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>系统调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>向进程发送信号</td>
+<td><code>kill</code></td>
+</tr>
+<tr>
+<td>设置进程的组标识</td>
+<td><code>setgid</code> (64位系统；16位或32位系统有<code>setgid16</code>、<code>setgid32</code>变体)</td>
+</tr>
+<tr>
+<td>挂载文件系统</td>
+<td><code>mount</code></td>
+</tr>
+<tr>
+<td>读/写系统参数</td>
+<td><code>sysctl</code> (系统控制)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="第四部分：操作系统组织结构"><a href="#第四部分：操作系统组织结构" class="headerlink" title="第四部分：操作系统组织结构"></a>第四部分：操作系统组织结构</h2><h3 id="4-1-单体式操作系统-Monolithic-OS"><a href="#4-1-单体式操作系统-Monolithic-OS" class="headerlink" title="4.1 单体式操作系统 (Monolithic OS)"></a>4.1 单体式操作系统 (Monolithic OS)</h3><p>历史上，操作系统采用<strong>单体设计(Monolithic Design)</strong>。</p>
+<h4 id="4-1-1-特点"><a href="#4-1-1-特点" class="headerlink" title="4.1.1 特点"></a>4.1.1 特点</h4><p>在单体式操作系统中：</p>
+<ul>
+<li>任何应用程序可能需要的每种可能服务</li>
+<li>任何类型的硬件可能需要的所有功能</li>
+<li>都已经是操作系统的一部分</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<ul>
+<li>可能包含多个文件系统</li>
+<li>一个针对顺序工作负载优化（顺序读写文件）</li>
+<li>另一个针对随机I/O优化（常见于数据库场景，每个操作可能随机访问文件的任何部分）</li>
+</ul>
+<h4 id="4-1-2-优点"><a href="#4-1-2-优点" class="headerlink" title="4.1.2 优点"></a>4.1.2 优点</h4><ul>
+<li>一切都包含在操作系统中</li>
+<li>抽象、所有服务都同时打包</li>
+<li>存在编译时优化(Compile-time Optimizations)的可能性</li>
+</ul>
+<h4 id="4-1-3-缺点"><a href="#4-1-3-缺点" class="headerlink" title="4.1.3 缺点"></a>4.1.3 缺点</h4><ul>
+<li>状态太多、代码太多</li>
+<li>难以维护、调试和升级</li>
+<li>体积大导致内存需求高</li>
+<li>可能影响应用程序能够观察到的性能</li>
+</ul>
+<hr>
+<h3 id="4-2-模块化操作系统-Modular-OS"><a href="#4-2-模块化操作系统-Modular-OS" class="headerlink" title="4.2 模块化操作系统 (Modular OS)"></a>4.2 模块化操作系统 (Modular OS)</h3><p>当今更常见的方法是<strong>模块化方法(Modular Approach)</strong>，Linux操作系统就采用这种设计。</p>
+<h4 id="4-2-1-特点"><a href="#4-2-1-特点" class="headerlink" title="4.2.1 特点"></a>4.2.1 特点</h4><ul>
+<li>有一些基本服务和API已经是操作系统的一部分</li>
+<li>更重要的是，一切都可以作为<strong>模块(Module)</strong>添加</li>
+<li>可以轻松定制操作系统使用哪个文件系统或调度器</li>
+</ul>
+<h4 id="4-2-2-工作原理"><a href="#4-2-2-工作原理" class="headerlink" title="4.2.2 工作原理"></a>4.2.2 工作原理</h4><ul>
+<li>操作系统指定某些<strong>接口(Interfaces)</strong></li>
+<li>任何模块必须实现这些接口才能成为操作系统的一部分</li>
+<li>根据工作负载，可以<strong>动态(Dynamically)</strong>安装以适当方式实现接口的模块</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<ul>
+<li>如果是数据库应用程序，运行针对随机文件访问优化的文件系统</li>
+<li>如果是其他类型的计算，运行针对顺序访问优化的文件系统</li>
+<li>可以在操作系统中动态安装新模块</li>
+</ul>
+<h4 id="4-2-3-优点"><a href="#4-2-3-优点" class="headerlink" title="4.2.3 优点"></a>4.2.3 优点</h4><ul>
+<li><strong>更易维护和升级</strong></li>
+<li><strong>更小的代码基础</strong></li>
+<li><strong>资源消耗更少</strong>：为应用程序留下更多资源（更多内存）</li>
+<li><strong>可能带来更好的性能</strong></li>
+</ul>
+<h4 id="4-2-4-缺点"><a href="#4-2-4-缺点" class="headerlink" title="4.2.4 缺点"></a>4.2.4 缺点</h4><ul>
+<li>模块化虽然有利于可维护性</li>
+<li>但需要通过接口规范才能进入特定服务的实现</li>
+<li>这可能<strong>减少一些优化机会</strong></li>
+<li>可能对性能有一些影响（通常不显著）</li>
+<li>模块可能来自完全不同的代码库，可能是<strong>bug的来源</strong></li>
+</ul>
+<p><strong>总体而言</strong>，这种方法相比单体方法有显著改进，是当今更常用的方法。</p>
+<hr>
+<h3 id="4-3-微内核-Microkernel"><a href="#4-3-微内核-Microkernel" class="headerlink" title="4.3 微内核 (Microkernel)"></a>4.3 微内核 (Microkernel)</h3><p>另一种操作系统设计是<strong>微内核(Microkernel)</strong>。</p>
+<h4 id="4-3-1-特点"><a href="#4-3-1-特点" class="headerlink" title="4.3.1 特点"></a>4.3.1 特点</h4><p>微内核在操作系统级别只需要最基本的原语：</p>
+<p><strong>内核级别包含的内容</strong>：</p>
+<ul>
+<li>表示正在执行的应用程序</li>
+<li>其地址空间</li>
+<li>其上下文（线程/Thread）</li>
+<li><strong>进程间通信(Inter-Process Communication, IPC)</strong>机制</li>
+</ul>
+<p><strong>在用户级别运行的内容</strong>：</p>
+<ul>
+<li>所有其他软件组件</li>
+<li>应用程序（如数据库）</li>
+<li>传统上认为是操作系统组件的软件（如文件系统、设备驱动程序）</li>
+</ul>
+<p>由于这种组织方式，微内核需要大量的进程间交互。</p>
+<h4 id="4-3-2-优点"><a href="#4-3-2-优点" class="headerlink" title="4.3.2 优点"></a>4.3.2 优点</h4><ul>
+<li><strong>非常小</strong></li>
+<li>不仅可能带来更低的开销和更好的性能</li>
+<li>更容易<strong>验证和测试</strong>代码行为是否正确</li>
+<li>在某些对操作系统正确行为特别关键的环境中很有价值<ul>
+<li>嵌入式设备</li>
+<li>某些控制系统</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-3-3-缺点"><a href="#4-3-3-缺点" class="headerlink" title="4.3.3 缺点"></a>4.3.3 缺点</h4><ul>
+<li><strong>可移植性存疑</strong>：通常针对底层硬件高度专门化和定制</li>
+<li>可能有更多针对不同平台的一次性版本</li>
+<li>难以找到通用软件组件，导致<strong>软件复杂性</strong></li>
+<li>进程之间频繁交互意味着<strong>频繁的用户/内核切换</strong>，这可能代价高昂</li>
+</ul>
+<hr>
+<h3 id="4-4-Linux和Mac-OS架构-Linux-and-Mac-OS-Architectures"><a href="#4-4-Linux和Mac-OS架构-Linux-and-Mac-OS-Architectures" class="headerlink" title="4.4 Linux和Mac OS架构 (Linux and Mac OS Architectures)"></a>4.4 Linux和Mac OS架构 (Linux and Mac OS Architectures)</h3><p>让我们看看两个流行操作系统的具体架构：</p>
+<h4 id="4-4-1-Linux架构"><a href="#4-4-1-Linux架构" class="headerlink" title="4.4.1 Linux架构"></a>4.4.1 Linux架构</h4><p>从底层到顶层：</p>
+<ol>
+<li><p><strong>硬件(Hardware)</strong>：最底层</p>
+</li>
+<li><p><strong>Linux内核(Linux Kernel)</strong></p>
+<ul>
+<li>抽象和管理硬件</li>
+<li>支持许多抽象和相关机制</li>
+<li>由几个逻辑组件组成：</li>
+<li>I/O管理</li>
+<li>内存管理</li>
+<li>进程管理</li>
+<li>这些组件有明确定义的功能和接口</li>
+<li>每个组件可以<strong>独立修改或替换</strong>（这使Linux的模块化方法成为可能）</li>
+</ul>
+</li>
+<li><p><strong>标准库(Standard Libraries)</strong></p>
+<ul>
+<li>如实现系统调用接口的库</li>
+</ul>
+</li>
+<li><p><strong>实用程序(Utility Programs)</strong></p>
+<ul>
+<li>使用户和开发者更容易与操作系统交互</li>
+</ul>
+</li>
+<li><p><strong>用户开发的应用程序(User-Developed Applications)</strong>：最顶层</p>
+</li>
+</ol>
+<h4 id="4-4-2-Mac-OS-X架构"><a href="#4-4-2-Mac-OS-X架构" class="headerlink" title="4.4.2 Mac OS X架构"></a>4.4.2 Mac OS X架构</h4><p>Apple的Mac OS X操作系统使用不同的组织方式：</p>
+<p><strong>核心：Mach微内核</strong></p>
+<ul>
+<li>实现关键原语：<ul>
+<li>内存管理</li>
+<li>线程调度</li>
+<li>进程间通信机制（包括RPC）</li>
+</ul>
+</li>
+</ul>
+<p><strong>BSD组件</strong></p>
+<ul>
+<li>通过BSD命令行界面提供Unix互操作性</li>
+<li>POSIX API支持</li>
+<li>网络I/O</li>
+</ul>
+<p><strong>应用环境</strong></p>
+<ul>
+<li>所有应用环境位于这一层之上</li>
+</ul>
+<p><strong>底层模块</strong></p>
+<ul>
+<li>驱动程序开发环境</li>
+<li>可动态加载到内核的内核模块</li>
+</ul>
+<hr>
+<h2 id="第五部分：课程总结"><a href="#第五部分：课程总结" class="headerlink" title="第五部分：课程总结"></a>第五部分：课程总结</h2><p>在本课程中，我们回答了一个重要问题：<strong>什么是操作系统？</strong></p>
+<h3 id="核心要点回顾"><a href="#核心要点回顾" class="headerlink" title="核心要点回顾"></a>核心要点回顾</h3><ol>
+<li><p><strong>操作系统的重要性</strong></p>
+<ul>
+<li>帮助抽象和仲裁底层硬件系统的使用</li>
+</ul>
+</li>
+<li><p><strong>实现方式</strong></p>
+<ul>
+<li>依靠<strong>抽象(Abstractions)</strong>：如进程和线程</li>
+<li>依靠<strong>机制(Mechanisms)</strong>：允许操作这些抽象</li>
+<li>依靠<strong>策略(Policies)</strong>：指定如何修改这些抽象</li>
+</ul>
+</li>
+<li><p><strong>系统调用接口(System Call Interface)</strong></p>
+<ul>
+<li>允许应用程序与操作系统交互</li>
+</ul>
+</li>
+<li><p><strong>组织结构选择</strong></p>
+<ul>
+<li>单体式(Monolithic)</li>
+<li>模块化(Modular)</li>
+<li>微内核(Microkernel)</li>
+</ul>
+</li>
+<li><p><strong>具体示例</strong></p>
+<ul>
+<li>Windows、Linux、Mac OS的系统调用接口</li>
+<li>Linux和Mac OS的组织结构</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="关键术语汇总表"><a href="#关键术语汇总表" class="headerlink" title="关键术语汇总表"></a>关键术语汇总表</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>中文术语</th>
+<th>英文术语</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作系统</td>
+<td>Operating System (OS)</td>
+</tr>
+<tr>
+<td>抽象</td>
+<td>Abstraction</td>
+</tr>
+<tr>
+<td>仲裁</td>
+<td>Arbitration</td>
+</tr>
+<tr>
+<td>内核模式</td>
+<td>Kernel Mode</td>
+</tr>
+<tr>
+<td>用户模式</td>
+<td>User Mode</td>
+</tr>
+<tr>
+<td>系统调用</td>
+<td>System Call</td>
+</tr>
+<tr>
+<td>进程</td>
+<td>Process</td>
+</tr>
+<tr>
+<td>线程</td>
+<td>Thread</td>
+</tr>
+<tr>
+<td>内存页</td>
+<td>Memory Page</td>
+</tr>
+<tr>
+<td>文件</td>
+<td>File</td>
+</tr>
+<tr>
+<td>套接字</td>
+<td>Socket</td>
+</tr>
+<tr>
+<td>调度器</td>
+<td>Scheduler</td>
+</tr>
+<tr>
+<td>设备驱动程序</td>
+<td>Device Driver</td>
+</tr>
+<tr>
+<td>文件系统</td>
+<td>File System</td>
+</tr>
+<tr>
+<td>陷阱</td>
+<td>Trap</td>
+</tr>
+<tr>
+<td>信号</td>
+<td>Signal</td>
+</tr>
+<tr>
+<td>隔离</td>
+<td>Isolation</td>
+</tr>
+<tr>
+<td>保护</td>
+<td>Protection</td>
+</tr>
+<tr>
+<td>单体式</td>
+<td>Monolithic</td>
+</tr>
+<tr>
+<td>模块化</td>
+<td>Modular</td>
+</tr>
+<tr>
+<td>微内核</td>
+<td>Microkernel</td>
+</tr>
+<tr>
+<td>进程间通信</td>
+<td>Inter-Process Communication (IPC)</td>
+</tr>
+<tr>
+<td>最近最少使用</td>
+<td>Least Recently Used (LRU)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<p>希望通过这节课的学习，你对操作系统有了全面的基础认识。后续课程将深入探讨这里提到的各个概念和机制。</p>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/knowledge/">knowledge    </a><a class="post-meta__tags" href="/tags/software/">software    </a><a class="post-meta__tags" href="/tags/learning/">learning    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2026/01/20/10-projects/cs6200_intro_to_OS/cs6200-p1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E6%A6%82%E8%BF%B0/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>cs6200-p1-操作系统课程概述</span></div></a></div><div class="next-post pull_right"><a href="/2026/01/20/20-areas/thoughts/%E6%84%8F%E8%AF%86%E4%B8%8E%E9%87%8F%E5%AD%90%E7%8E%B0%E5%AE%9E%E7%9A%84%E6%9C%AC%E8%B4%A8/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>意识与量子现实的本质</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2026/01/24/10-projects/cs6200_intro_to_OS/cs6200-p3-操作系统进程管理总结/" title="cs6200-p3-操作系统进程管理总结"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2026-01-24</div><div class="relatedPosts_title">cs6200-p3-操作系统进程管理总结</div></div></a></div><div class="relatedPosts_item"><a href="/2025/12/25/10-projects/learncpp/learncpp_12_pointer_and_reference/" title="learncpp_12_pointer_and_reference"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-12-25</div><div class="relatedPosts_title">learncpp_12_pointer_and_reference</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/thoughts/黑格尔理论解读/" title="黑格尔理论解读"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">黑格尔理论解读</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/thoughts/黑格尔精神辩证法/" title="黑格尔精神辩证法"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">黑格尔精神辩证法</div></div></a></div><div class="relatedPosts_item"><a href="/2025/10/24/40-archives/飞盘/飞盘腿部发力研究/" title="飞盘腿部发力研究"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-10-24</div><div class="relatedPosts_title">飞盘腿部发力研究</div></div></a></div><div class="relatedPosts_item"><a href="/2025/12/09/20-areas/courses/omscs/course selection/" title="course selection"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-12-09</div><div class="relatedPosts_title">course selection</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'xvMxbws16Erd8WUfqxkvHmb5-gzGzoHsz',
+  appKey:'4U0Vo7NQIUL0eJzHdkPzdCDr',
+  placeholder:'不说话的人会疯掉吗?',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'en',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By supersheepbear</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="external nofollow noopener noreferrer"><span>Butterfly</span></a></div><div class="footer_custom_text">外向孤独者患者</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="255,240,245" opacity="0.7" zindex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="external nofollow noopener noreferrer" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>

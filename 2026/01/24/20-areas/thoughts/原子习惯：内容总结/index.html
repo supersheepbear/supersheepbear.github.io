@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>原子习惯：内容总结 | Bear's dream</title><meta name="description" content="原子习惯：内容总结"><meta name="keywords" content="productivity"><meta name="author" content="supersheepbear"><meta name="copyright" content="supersheepbear"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_1.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="p43hXBn3_dLvbyxUzx0eo5eYmj9OVYOV52pdrhBa2sw"><meta name="baidu-site-verification" content="EXLlfLv2pV"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="原子习惯：内容总结"><meta name="twitter:description" content="原子习惯：内容总结"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta property="og:type" content="article"><meta property="og:title" content="原子习惯：内容总结"><meta property="og:url" content="https://yxiong.org/2026/01/24/20-areas/thoughts/%E5%8E%9F%E5%AD%90%E4%B9%A0%E6%83%AF%EF%BC%9A%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/"><meta property="og:site_name" content="Bear's dream"><meta property="og:description" content="原子习惯：内容总结"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://yxiong.org/2026/01/24/20-areas/thoughts/%E5%8E%9F%E5%AD%90%E4%B9%A0%E6%83%AF%EF%BC%9A%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/"><link rel="next" title="学习心流游戏化应用_" href="https://yxiong.org/2026/01/24/20-areas/thoughts/%E5%AD%A6%E4%B9%A0%E5%BF%83%E6%B5%81%E6%B8%B8%E6%88%8F%E5%8C%96%E5%BA%94%E7%94%A8_/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">162</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">59</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">34</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#用原子习惯解锁持久改变"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">用原子习惯解锁持久改变</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Works-cited"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">Works cited</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#用原子习惯解锁持久改变"><span class="toc-number">1.</span> <span class="toc-text">用原子习惯解锁持久改变</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Works-cited"><span class="toc-number">1.1.</span> <span class="toc-text">Works cited</span></a></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">原子习惯：内容总结</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2026-01-24<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2026-01-24</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/">20-areas</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/thoughts/">thoughts</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2026/01/24/20-areas/thoughts/%E5%8E%9F%E5%AD%90%E4%B9%A0%E6%83%AF%EF%BC%9A%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2026/01/24/20-areas/thoughts/%E5%8E%9F%E5%AD%90%E4%B9%A0%E6%83%AF%EF%BC%9A%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="用原子习惯解锁持久改变"><a href="#用原子习惯解锁持久改变" class="headerlink" title="用原子习惯解锁持久改变"></a><strong>用原子习惯解锁持久改变</strong></h1><p><strong>I. 引言：微小改变的惊人力量</strong></p>
+<ul>
+<li><strong>A. 《原子习惯》与詹姆斯·克利尔简介</strong>《原子习惯：建立良好习惯、打破不良习惯的简单有效方法》（Atomic Habits: An Easy &amp; Proven Way to Build Good Habits &amp; Break Bad Ones）是由习惯养成领域的世界顶尖专家之一詹姆斯·克利尔（James Clear）撰写的突破性著作 。这本书已在全球售出超过 2000 万册，被翻译成 60 多种语言，并荣登《纽约时报》畅销书榜首，产生了广泛的影响 。克利尔以其将生物学、心理学和神经科学中复杂的理论提炼成简单、可操作的行为而闻名，这些行为可以轻松应用于日常生活和工作中 。  </li>
+<li><strong>B. 核心前提：微小改变，显著成果</strong>本书的核心观点极具颠覆性：真正的自我完善并非源于戏剧性的巨大转变，而是数百个微小、持续的习惯所产生的复利效应 。这些就是所谓的“原子习惯”——它们是微小且易于执行的日常惯例，却蕴藏着不可思议的力量，是复合增长系统的基本组成部分 。克利尔指出，真正的改变来自于无数微小的决定和日常习惯的积累，而非仅仅依靠动力或一生一次的努力 。  </li>
+<li><strong>C. 为何这很重要</strong>我们常常陷入一个困境：我们知道应该培养好习惯、戒除坏习惯，但实际行动却异常艰难 。坏习惯之所以反复出现，往往不是因为我们不想改变，而是因为我们采用了错误的改变系统 。许多人在改变习惯时遇到困难，问题不在于他们自身，而在于他们所依赖的系统 。《原子习惯》正是针对这一普遍难题，提供了一个经过验证的、可靠的框架，帮助人们有效地建立好习惯和打破坏习惯 。</li>
+</ul>
+<p><strong>II. 复利效应：微小习惯如何造就巨大差异</strong></p>
+<ul>
+<li><strong>A. 1% 法则：边际收益的数学原理</strong>克利尔提出了一个核心概念：“每天进步 1\%” 。这个看似微不足道的改进，随着时间的推移，其累积效应是惊人的。数学计算表明：如果你能在一年中每天进步 1\%，那么一年后，你将比开始时优秀近 37 倍 (1.01^{365} \approx 37.78) 。相反，如果每天退步 1\%，一年后，你将几乎衰退到零 (0.99^{365} \approx 0.03) 。这清晰地揭示了微小改进随时间累积的巨大力量。这个概念可以通过多种比喻来理解。微小的习惯就像金融领域的复利，其效果会随着时间的推移而成倍增长 。它们也像滚下山的雪球，越滚越大 ；或者像播下的种子，最终长成参天大树 。每一个微小的行动，都是构建更大目标的一部分。一个经典的现实案例是英国自行车队的成功故事 。在戴夫·布雷斯福德（Dave Brailsford）的领导下，团队采用了“边际收益聚合”（aggregation of marginal gains）策略。他们致力于在与骑行相关的每一个微小方面都寻求 1\% 的改进，从更舒适的车座、用酒精清洁轮胎以获得更好抓地力，到测试不同面料的风阻、聘请外科医生教授正确的洗手方法以减少感冒，甚至将队车内部漆成白色以便更容易发现灰尘 。这些看似微不足道的改进累积起来，最终帮助英国自行车队在奥运会和环法自行车赛上取得了前所未有的辉煌成就，有力地证明了微小改进的巨大威力 。  </li>
+<li><strong>B. 潜能蓄积期（失望之谷）</strong>然而，习惯的复利效应并非立即可见。克利尔指出了一个关键阶段，称为“潜能蓄积期”（Plateau of Latent Potential），或“失望之谷”（Valley of Disappointment） 。在这个阶段，我们付出了努力，但似乎看不到明显的进展或结果，这常常导致人们感到沮丧、失去动力甚至放弃 。重要的是要理解，任何复利过程中，最强大的成果往往是延迟出现的 。就像竹子在最初几年里默默扎根地下，然后才开始快速向上生长一样。这个看似停滞的阶段并非表明努力无效，而是成功的必经之路，是潜能在水面下积蓄力量的过程。因此，耐心和坚持至关重要 。只有持续投入，才能最终突破这个平台期，看到显著的成果。将这个阶段视为成长过程中的一个正常特征，而非失败的信号，有助于保持动力，继续前进。  </li>
+<li><strong>C. 关注轨迹，而非当前结果</strong>基于复利效应和潜能蓄积期的存在，克利尔强调，我们应该更关注习惯所引导的<em>发展轨迹</em>，而不是仅仅盯着当前的成败 。正如他所说：“你应该更关心你当前的轨迹，而不是你当前的结果” 。我们当前的成果，无论是体重、财富还是知识水平，实际上都是过去习惯的滞后指标 。例如，你的净资产是你财务习惯的滞后指标，你的体重是你饮食习惯的滞后指标，你的知识是你学习习惯的滞后指标 。你重复做什么，最终就会得到什么 。因此，关键在于确保你的日常习惯正将你引向成功的道路，即使成果尚未显现。</li>
+</ul>
+<p><strong>III. 转变焦点：体系与身份认同的力量</strong></p>
+<ul>
+<li><strong>A. 为何体系优于目标</strong>在追求改变的过程中，人们通常会设定目标。然而，克利尔提出了一个重要的区分：目标（Goals）是你想要达到的结果，而体系（Systems）是引导你达到这些结果的过程 。他认为，改变习惯之所以困难，问题往往不在于目标本身或缺乏意志力，而在于我们赖以改变的体系是错误的 。一句被广泛引用的名言是：“你不会上升到目标的高度，你会下降到体系的水平” (You do not rise to the level of your goals. You fall to the level of your systems) 。专注于体系而非仅仅是目标，具有多重优势。它让我们关注过程本身，更容易看到进展并进行调整，使整个过程不那么令人生畏 。目标达成通常只是短暂的改变，而体系则关乎持续的实践和改进 。设定目标是为了赢得比赛，而建立体系是为了能够持续参与比赛 。当你爱上过程而非仅仅是结果时，你可以在体系运行的任何时候感到满足，而不必等到达成目标的那一刻 。这种对体系的关注，本质上是将自我完善从一系列有终点的“有限游戏”（finite game）转变为一个持续改进、不断参与的“无限游戏”（infinite game）。这种心态上的转变，更有利于培养长期坚持的习惯，并与习惯的复利性质相契合。  </li>
+<li><strong>B. 基于身份认同的习惯：最深层次的改变</strong>克利尔进一步提出了行为改变的三个层次：结果（Outcomes）、过程（Process）和身份认同（Identity） 。他指出，最持久、最深刻的改变往往发生在身份认同层面 。其核心思想是：改变习惯最有效的方法，不是专注于你想要<em>实现</em>什么，而是专注于你想要<em>成为</em>谁 。例如，目标不应该是跑一场马拉松，而应该是<em>成为一名跑步者</em>；目标不应该是读一本书，而应该是<em>成为一名阅读者</em>；目标不应该是学习一门乐器，而应该是<em>成为一名音乐家</em> 。这种方法之所以有效，是因为我们当前的行为在很大程度上反映了我们当前的身份认同——我们认为自己是哪种类型的人 。习惯是身份认同的具体体现 。你每天整理床铺，你就在体现一个有条理的人的身份；你每天写作，你就在体现一个有创造力的人的身份 。每一次行动，都像是在为你希望成为的那种人投下一票 。虽然单一的行动实例不会立即改变你的信念，但随着“选票”的积累，你新身份的证据也会随之增加 。这揭示了一个习惯与身份认同之间的相互作用关系：行动（习惯）塑造身份认同，而不断强化的身份认同反过来又提供了内在动力，使坚持这些习惯变得更加自然和容易。这个反馈循环是实现可持续改变的引擎。当一个习惯成为你身份的一部分时，它就变成了最强大的内在动机形式 。外部激励或许能启动一个习惯，但最终是身份认同在维持它 。实现基于身份认同的改变，可以遵循一个简单的两步流程：1. 决定你想成为什么样的人（明确你的原则和价值观）。2. 通过微小的胜利向自己证明这一点（采取与期望身份一致的微小行动） 。</li>
+</ul>
+<p><strong>IV. 习惯蓝图：行为改变四大定律</strong></p>
+<ul>
+<li><strong>A. 习惯回路框架</strong>克利尔将习惯的形成过程分解为一个简单的四步模型，称为“习惯回路”（Habit Loop）：提示（Cue） -> 渴求（Craving） -> 反应（Response） -> 奖励（Reward） 。这四个阶段形成了一个神经反馈回路，最终让习惯自动化 。提示触发渴求，渴求驱动反应，反应带来奖励，奖励满足渴求，并最终与提示相关联 。习惯的根本目的，是以尽可能少的精力和努力来解决生活中的问题 。理解这个回路是掌握如何建立和改变习惯的基础。  </li>
+<li><strong>B. 定律一：让它显而易见（提示）</strong>目标：让好习惯的触发提示变得清晰可见、易于察觉 。改变习惯的第一步是意识到它们的存在 。 策略：  <ul>
+<li><strong>习惯计分卡 (Habit Scorecard):</strong> 列出你每天的活动，识别出哪些是积极的、消极的或中性的习惯，从而提高自我意识 。  </li>
+<li><strong>执行意图 (Implementation Intentions):</strong> 制定明确的时间和地点计划：“我将于 [时间] 在 [地点] 进行 [行为]” 。这克服了模糊的意图，例如“多锻炼”，代之以具体的行动指令 。  </li>
+<li><strong>习惯叠加 (Habit Stacking):</strong> 将新习惯与一个已有的习惯绑定：“在 [当前习惯] 之后，我将进行 [新习惯]” 。这利用了现有习惯的惯性。  </li>
+<li><strong>环境设计 (Environment Design):</strong> 让好习惯的提示在环境中随处可见。例如，把跑鞋放在门口，把吉他放在客厅中央，早上把想读的书放在枕头上 。环境是塑造行为的“无形之手” 。主动设计环境，让好习惯的提示显而易见，是减少对意志力依赖的关键一步。  </li>
+</ul>
+</li>
+<li><strong>C. 定律二：让它有吸引力（渴求）</strong>目标：增加习惯的诱惑力，使其更令人向往 。习惯的动力来自于对奖励的预期 。欲望驱动行动 。 策略：  <ul>
+<li><strong>诱惑捆绑 (Temptation Bundling):</strong> 将一个你<em>想做</em>的行为与一个你<em>需要做</em>的行为配对 。例如，只在健身房锻炼时听自己最喜欢的播客。  </li>
+<li><strong>利用社会规范 (Leverage Social Norms):</strong> 加入一个你期望的行为是常态的文化或社群 。与那些拥有你想要培养的习惯的人为伍 。  </li>
+<li><strong>重塑思维模式 (Reframe Mindset):</strong> 将积极的情绪与习惯联系起来 。关注习惯带来的益处，而非执行过程中的困难。  </li>
+</ul>
+</li>
+<li><strong>D. 定律三：让它简便易行（反应）</strong>目标：减少执行习惯的阻力，使其尽可能毫不费力 。人类天生倾向于选择最省力的路径。 策略：  <ul>
+<li><strong>减少阻力 (Reduce Friction):</strong> 简化执行步骤，提前做好准备（例如，前一晚准备好健身服） 。通过环境设计让行动更便捷 。  </li>
+<li><strong>两分钟规则 (The Two-Minute Rule):</strong> 将习惯缩减到能在两分钟内开始的版本 。例如，想养成阅读习惯，从每天读一页开始；想做瑜伽，从拿出瑜伽垫开始；想做俯卧撑，从做一个开始 。关键在于掌握起步的艺术 ，优先保证一致性而非完美 。这个微小的行动就像一个“门户习惯”，能自然地引导你走向更深入的实践 。  </li>
+<li><strong>自动化习惯 (Automate Habits):</strong> 利用科技或一次性投入来锁定未来的行为 。例如，设置自动转账存钱，购买高质量的跑鞋。再次体现了环境和系统设置的重要性。  </li>
+</ul>
+</li>
+<li><strong>E. 定律四：让它令人愉悦（奖励）</strong>目标：确保习惯完成后能立即获得满足感，从而强化行为，完成习惯回路，并鼓励重复 。被即时奖励的行为会得到重复。 策略：  <ul>
+<li><strong>即时强化 (Immediate Reinforcement):</strong> 在完成习惯后，立即给自己一个小奖励 。即使是口头表扬或在心里给自己点赞也可以。让“无所作为”（例如成功避免了一个坏习惯）也变得令人愉悦 。  </li>
+<li><strong>习惯追踪 (Habit Tracking):</strong> 使用日历、应用程序或日记来记录你的进展，形成连续记录的“链条”，提供视觉上的满足感 。目标是“不要中断链条”。一个具体的例子是“回形针策略”（Paper Clip Strategy）：准备两个罐子和一定数量的回形针（代表当天要完成的次数），每完成一次行动，就将一个回形针从一个罐子移到另一个，目标是到一天结束时移动所有回形针 。这种方法提供了即时的视觉反馈和成就感 。  </li>
+<li><strong>问责伙伴/习惯契约 (Accountability Partner/Contract):</strong> 让别人监督你，或者签订有约束力的习惯契约，让不执行习惯的后果变得更直接、更令人不快 。</li>
+</ul>
+</li>
+</ul>
+<p>第四定律尤其关键，因为它直接应对了人类大脑的一个基本偏好：我们更看重即时回报而非延迟回报。许多好习惯（如锻炼、学习）的主要益处是长期的，这使得它们容易受到“潜能蓄积期”的影响而难以坚持。通过人为地设计即时满足感（即使是象征性的），第四定律帮助我们“欺骗”大脑，弥合了行为与长期回报之间的时间差，从而有效克服了因短期内看不到成果而产生的挫败感。<br><strong>V. 逆向法则：如何戒除坏习惯</strong></p>
+<ul>
+<li><strong>A. 四大定律的反转</strong>要打破不良习惯，只需将上述四大定律进行反转应用 。  </li>
+<li><strong>B. 反转定律一：让它隐藏不见（提示）</strong>目标：减少接触引发坏习惯的提示 。自控力强的人往往不是意志力超群，而是更善于避开诱惑环境 。 策略：从环境中移除提示物（例如，把垃圾食品藏起来或扔掉，取消订阅诱人的促销邮件）。  </li>
+<li><strong>C. 反转定律二：让它失去吸引力（渴求）</strong>目标：降低坏习惯的诱惑力 。 策略：重塑你对坏习惯的看法，强调其负面后果，关注避免它带来的好处 。将其与不愉快的感觉联系起来。  </li>
+<li><strong>D. 反转定律三：让它难以执行（反应）</strong>目标：增加执行坏习惯的阻力 。 策略：增加步骤，设置障碍，利用技术手段阻止（例如，使用网站拦截器）。让好习惯成为阻力最小的选择 。环境设计再次扮演重要角色，通过增加坏习惯的执行难度来引导行为。  </li>
+<li><strong>E. 反转定律四：让它令人厌恶（奖励）</strong>目标：让坏习惯的后果即时化且令人不快 。 策略：寻找一个问责伙伴，让他/她在你犯规时施加代价；签订有惩罚条款的习惯契约 ；将坏习惯与一项你不喜欢的任务（例如，如果吃了快餐就必须打扫卫生间）联系起来 。追踪坏习惯带来的负面影响，使其更加具体可见 。</li>
+</ul>
+<p><strong>行为改变四大定律总结表</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">建立好习惯</th>
+<th style="text-align:left">策略示例 (好习惯)</th>
+<th style="text-align:left">戒除坏习惯</th>
+<th style="text-align:left">策略示例 (坏习惯)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>定律一：让它显而易见</strong></td>
+<td style="text-align:left">习惯叠加、执行意图、习惯计分卡、环境设计 (让提示可见)</td>
+<td style="text-align:left"><strong>反转一：让它隐藏不见</strong></td>
+<td style="text-align:left">减少接触、移除环境中的提示</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>定律二：让它有吸引力</strong></td>
+<td style="text-align:left">诱惑捆绑、加入积极社群、重塑思维 (关注益处)</td>
+<td style="text-align:left"><strong>反转二：让它失去吸引力</strong></td>
+<td style="text-align:left">重新定义心态 (强调负面后果)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>定律三：让它简便易行</strong></td>
+<td style="text-align:left">两分钟规则、减少阻力 (简化步骤、提前准备)、自动化、环境设计 (减少阻力)</td>
+<td style="text-align:left"><strong>反转三：让它难以执行</strong></td>
+<td style="text-align:left">增加阻力 (增加步骤、设置障碍)、利用技术阻断</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>定律四：让它令人愉悦</strong></td>
+<td style="text-align:left">即时奖励、习惯追踪 (如回形针策略)、问责伙伴</td>
+<td style="text-align:left"><strong>反转四：让它令人厌恶</strong></td>
+<td style="text-align:left">问责伙伴 (施加代价)、习惯契约 (设置惩罚)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>审视这四大定律及其反转的应用策略，一个贯穿始终的主题浮现出来：环境设计是一项极其强大的元策略。无论是通过让好习惯的提示显而易见、易于执行，还是通过让坏习惯的提示隐藏不见、难以执行，都有意识地构建和管理我们所处的物理和社交环境，能够主动地引导行为，从而大大减少对有限的、易耗竭的意志力的依赖。这或许是克利尔理论中最具实践性的核心要素之一。<br><strong>VI. 进阶策略与保持动力</strong></p>
+<ul>
+<li><strong>A. 金发姑娘原则 (The Goldilocks Rule)</strong>克利尔还提到了“金发姑娘原则”：人类在处理难度恰到好处的任务时，会体验到最高的动力——既不太难（以免沮丧放弃），也不太容易（以免感到无聊） 。要保持习惯的动力，需要找到挑战与能力的最佳平衡点，让任务保持在能力范围的边缘。  </li>
+<li><strong>B. 拥抱一致性，克服厌倦感</strong>再次强调，一致性是习惯养成的关键，而非追求完美 。成功是日常习惯的产物，而非一生一次的转变 。然而，随着习惯的巩固，厌倦感是不可避免的挑战 。任何领域的精进都需要拥抱重复和常规 。克利尔鼓励人们“爱上无聊” (fall in love with boredom) ，认识到坚持日常练习是通往卓越的必经之路。  </li>
+<li><strong>C. 偏离轨道后如何重回正轨</strong>在习惯养成的过程中，偶尔偏离轨道是正常的 。关键在于尽快回到正轨。一个有用的原则是：永远不要连续错过两次。一次失误是意外，两次失误则可能开启一个新的坏习惯。  </li>
+<li><strong>D. 测量的作用</strong>除了习惯追踪（定律四），克利尔还建议采用“向后测量”（measure backward）的方式，即关注已经完成的工作量，而不是仅仅向前看、预测未来的目标 。例如，记录本周实际锻炼次数，而不是计划下周要锻炼多少次。这种回顾性的测量方式有助于保持对当前一致性的关注。</li>
+</ul>
+<p><strong>VII. 结论：每天进步 1%</strong></p>
+<ul>
+<li><strong>A. 核心信息回顾</strong>《原子习惯》的核心信息在于其深刻揭示了微小改变的巨大力量。通过理解并应用 1\% 法则的复利效应、认识到体系优于目标、将习惯与身份认同深度绑定，并掌握行为改变四大定律（让它显而易见、有吸引力、简便易行、令人愉悦）及其反转形式，我们就能为自己装备一套强大而实用的工具箱 。持久的改变并非遥不可及，它恰恰蕴藏在那些微小、持续的日常行动之中。  </li>
+<li><strong>B. 最后的鼓励</strong>书中的原则和策略为我们提供了转变习惯、进而转变生活的蓝图 。自我完善并非关乎某个单一的成就，而是一个持续精进、不断改进的循环过程 。每一次微小的行动，都是在为你理想中的未来投下一票 。通过践行原子习惯的理念，我们可以日复一日地进步，最终实现非凡的成果。</li>
+</ul>
+<h2 id="Works-cited"><a href="#Works-cited" class="headerlink" title="Works cited"></a><strong>Works cited</strong></h2><p>1. Atomic Habits Summary: All Key Points from James Clear - Instagantt, <a href="https://www.instagantt.com/project-management/atomic-habits-summary" target="_blank" rel="external nofollow noopener noreferrer">https://www.instagantt.com/project-management/atomic-habits-summary</a> 2. Atomic Habits Summary by James Clear, <a href="https://jamesclear.com/atomic-habits-summary" target="_blank" rel="external nofollow noopener noreferrer">https://jamesclear.com/atomic-habits-summary</a> 3. ‘Atomic Habits’ Author James Clear on How to Get 1% Better Every Day - Casting Frontier, <a href="https://castingfrontier.com/blog/atomic-habits-author-james-clear-on-how-to-get-1-better-every-day/" target="_blank" rel="external nofollow noopener noreferrer">https://castingfrontier.com/blog/atomic-habits-author-james-clear-on-how-to-get-1-better-every-day/</a> 4. Atomic Habits: Tiny Changes, Remarkable Results by James Clear, <a href="https://jamesclear.com/atomic-habits" target="_blank" rel="external nofollow noopener noreferrer">https://jamesclear.com/atomic-habits</a> 5. Atomic Habits: An Easy &amp; Proven Way to Build Good Habits &amp; Break Bad Ones, <a href="https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/0735211299" target="_blank" rel="external nofollow noopener noreferrer">https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/0735211299</a> 6. James Clear, <a href="https://jamesclear.com/" target="_blank" rel="external nofollow noopener noreferrer">https://jamesclear.com/</a> 7. Atomic Habits Summary: Takeaways - BeforeSunset AI, <a href="https://www.beforesunset.ai/post/atomic-habits-summary" target="_blank" rel="external nofollow noopener noreferrer">https://www.beforesunset.ai/post/atomic-habits-summary</a> 8. Atomic Habits Summary: Chapters, Key Points, and More - Patrick Mabilog., <a href="https://patrickmabilog.com/atomic-habits-summary/" target="_blank" rel="external nofollow noopener noreferrer">https://patrickmabilog.com/atomic-habits-summary/</a> 9. [Advice] Summary of Atomic Habits : r/getdisciplined - Reddit, <a href="https://www.reddit.com/r/getdisciplined/comments/alqpx4/advice\_summary\_of\_atomic\_habits/" target="_blank" rel="external nofollow noopener noreferrer">https://www.reddit.com/r/getdisciplined/comments/alqpx4/advice\_summary\_of\_atomic\_habits/</a> 10. Six Takeaways from James Clear’s Atomic Habits for Getting 1% Better Daily, <a href="https://hughesmarino.com/boston/blog/2024/10/10/six-takeaways-from-james-clears-atomic-habits-for-getting-1-better-daily/" target="_blank" rel="external nofollow noopener noreferrer">https://hughesmarino.com/boston/blog/2024/10/10/six-takeaways-from-james-clears-atomic-habits-for-getting-1-better-daily/</a> 11. Atomic Habits Book Summary: Key Takeaways &amp; review | ClickUp, <a href="https://clickup.com/blog/atomic-habits-summary/" target="_blank" rel="external nofollow noopener noreferrer">https://clickup.com/blog/atomic-habits-summary/</a> 12. Atomic Habits (James Clear) - Book Summary, Notes &amp; Highlights - Ali Abdaal, <a href="https://aliabdaal.com/book-notes/atomic-habits-summary/" target="_blank" rel="external nofollow noopener noreferrer">https://aliabdaal.com/book-notes/atomic-habits-summary/</a> 13. Summary of Atomic Habits by James Clear (Continuous Improvement) - Belt Course, <a href="https://www.beltcourse.com/blog/summary-of-atomic-habits-by-james-clear-continuous-improvement" target="_blank" rel="external nofollow noopener noreferrer">https://www.beltcourse.com/blog/summary-of-atomic-habits-by-james-clear-continuous-improvement</a> 14. How to Master the Art of Continuous Improvement - James Clear, <a href="https://jamesclear.com/continuous-improvement" target="_blank" rel="external nofollow noopener noreferrer">https://jamesclear.com/continuous-improvement</a> 15. Atomic Habits [Method] : r/getdisciplined - Reddit, <a href="https://www.reddit.com/r/getdisciplined/comments/1124rm0/atomic\_habits\_method/" target="_blank" rel="external nofollow noopener noreferrer">https://www.reddit.com/r/getdisciplined/comments/1124rm0/atomic\_habits\_method/</a> 16. 10 Ideas for Getting 1% Better Every Day With Atomic Habits | Growth Faculty, <a href="https://thegrowthfaculty.com/articles/get1percentbetteratomichabits" target="_blank" rel="external nofollow noopener noreferrer">https://thegrowthfaculty.com/articles/get1percentbetteratomichabits</a> 17. Marginal Gains: This Coach Improved Every Tiny Thing by 1 Percent, <a href="https://jamesclear.com/marginal-gains" target="_blank" rel="external nofollow noopener noreferrer">https://jamesclear.com/marginal-gains</a> 18. Atomic Habits by James Clear: Summary and Lessons - Dan Silvestre, <a href="https://dansilvestre.com/summaries/atomic-habits-james-clear/" target="_blank" rel="external nofollow noopener noreferrer">https://dansilvestre.com/summaries/atomic-habits-james-clear/</a> 19. What I’ve Learned from Atomic Habits by James Clear. : r/getdisciplined - Reddit, <a href="https://www.reddit.com/r/getdisciplined/comments/1c93ide/what\_ive\_learned\_from\_atomic\_habits\_by\_james\_clear/" target="_blank" rel="external nofollow noopener noreferrer">https://www.reddit.com/r/getdisciplined/comments/1c93ide/what\_ive\_learned\_from\_atomic\_habits\_by\_james\_clear/</a> 20. Atomic Habits: How to Get 1% Better Every Day - James Clear - YouTube, <a href="https://www.youtube.com/watch?v=U\_nzqnXWvSo" target="_blank" rel="external nofollow noopener noreferrer">https://www.youtube.com/watch?v=U\_nzqnXWvSo</a> 21. Atoms. The official Atomic Habits app - James Clear, <a href="https://atoms.jamesclear.com/" target="_blank" rel="external nofollow noopener noreferrer">https://atoms.jamesclear.com/</a> 22. Atomic Habits Readers: Confirmed - James Clear, <a href="https://jamesclear.com/atomic-habits/customer-confirmed" target="_blank" rel="external nofollow noopener noreferrer">https://jamesclear.com/atomic-habits/customer-confirmed</a> 23. Habits Cheat Sheet.pdf - Amazon S3, <a href="https://s3.amazonaws.com/jamesclear/Atomic+Habits/Habits+Cheat+Sheet.pdf" target="_blank" rel="external nofollow noopener noreferrer">https://s3.amazonaws.com/jamesclear/Atomic+Habits/Habits+Cheat+Sheet.pdf</a> 24. Habits Guide: How to Build Good Habits and Break Bad Ones, <a href="https://jamesclear.com/habits" target="_blank" rel="external nofollow noopener noreferrer">https://jamesclear.com/habits</a> 25. How to Stick With Good Habits Every Day with the Paper Clip Strategy, <a href="https://jamesclear.com/paper-clips" target="_blank" rel="external nofollow noopener noreferrer">https://jamesclear.com/paper-clips</a></p>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/productivity/">productivity    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2026/01/24/20-areas/thoughts/%E5%AD%A6%E4%B9%A0%E5%BF%83%E6%B5%81%E6%B8%B8%E6%88%8F%E5%8C%96%E5%BA%94%E7%94%A8_/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>学习心流游戏化应用_</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2025/09/28/40-archives/AI assistant prompt/" title="AI assistant prompt"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-09-28</div><div class="relatedPosts_title">AI assistant prompt</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/27/40-archives/cursor rule complete version/" title="cursor rule complete version"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-27</div><div class="relatedPosts_title">cursor rule complete version</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/thoughts/心流状态/" title="心流状态"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">心流状态</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/thoughts/How to learn 10 times faster using AI/" title="How to learn 10 times faster using AI"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">How to learn 10 times faster using AI</div></div></a></div><div class="relatedPosts_item"><a href="/2026/01/15/20-areas/thoughts/战术压力/" title="战术压力"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2026-01-15</div><div class="relatedPosts_title">战术压力</div></div></a></div><div class="relatedPosts_item"><a href="/2026/01/15/20-areas/thoughts/行动秘诀/" title="行动秘诀"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2026-01-15</div><div class="relatedPosts_title">行动秘诀</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'xvMxbws16Erd8WUfqxkvHmb5-gzGzoHsz',
+  appKey:'4U0Vo7NQIUL0eJzHdkPzdCDr',
+  placeholder:'不说话的人会疯掉吗?',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'en',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By supersheepbear</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="external nofollow noopener noreferrer"><span>Butterfly</span></a></div><div class="footer_custom_text">外向孤独者患者</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="255,240,245" opacity="0.7" zindex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="external nofollow noopener noreferrer" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>
