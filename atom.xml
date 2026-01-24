@@ -90,9 +90,9 @@
     <category term="thoughts" scheme="https://www.lovexy.me/categories/20-areas/thoughts/"/>
     
     
-    <category term="productivity" scheme="https://www.lovexy.me/tags/productivity/"/>
-    
     <category term="self" scheme="https://www.lovexy.me/tags/self/"/>
+    
+    <category term="productivity" scheme="https://www.lovexy.me/tags/productivity/"/>
     
     <category term="psychology" scheme="https://www.lovexy.me/tags/psychology/"/>
     
@@ -100,8 +100,8 @@
   
   <entry>
     <title>操作系统进程管理总结</title>
-    <link href="https://www.lovexy.me/2026/01/24/10-projects/cs6200_intro_to_os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E6%80%BB%E7%BB%93/"/>
-    <id>https://www.lovexy.me/2026/01/24/10-projects/cs6200_intro_to_os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E6%80%BB%E7%BB%93/</id>
+    <link href="https://www.lovexy.me/2026/01/24/10-projects/cs6200/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E6%80%BB%E7%BB%93/"/>
+    <id>https://www.lovexy.me/2026/01/24/10-projects/cs6200/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E6%80%BB%E7%BB%93/</id>
     <published>2026-01-24T15:01:00.000Z</published>
     <updated>2026-01-24T22:02:38.025Z</updated>
     
@@ -117,7 +117,7 @@
     
     <category term="10-projects" scheme="https://www.lovexy.me/categories/10-projects/"/>
     
-    <category term="cs6200_intro_to_os" scheme="https://www.lovexy.me/categories/10-projects/cs6200-intro-to-os/"/>
+    <category term="cs6200" scheme="https://www.lovexy.me/categories/10-projects/cs6200/"/>
     
     
     <category term="software" scheme="https://www.lovexy.me/tags/software/"/>
@@ -162,8 +162,8 @@
   
   <entry>
     <title>操作系统核心概念总结</title>
-    <link href="https://www.lovexy.me/2026/01/20/10-projects/cs6200_intro_to_os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/"/>
-    <id>https://www.lovexy.me/2026/01/20/10-projects/cs6200_intro_to_os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/</id>
+    <link href="https://www.lovexy.me/2026/01/20/10-projects/cs6200/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/"/>
+    <id>https://www.lovexy.me/2026/01/20/10-projects/cs6200/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/</id>
     <published>2026-01-20T06:01:00.000Z</published>
     <updated>2026-01-24T22:02:40.918Z</updated>
     
@@ -179,7 +179,7 @@
     
     <category term="10-projects" scheme="https://www.lovexy.me/categories/10-projects/"/>
     
-    <category term="cs6200_intro_to_os" scheme="https://www.lovexy.me/categories/10-projects/cs6200-intro-to-os/"/>
+    <category term="cs6200" scheme="https://www.lovexy.me/categories/10-projects/cs6200/"/>
     
     
     <category term="software" scheme="https://www.lovexy.me/tags/software/"/>
@@ -192,8 +192,8 @@
   
   <entry>
     <title>操作系统课程概述</title>
-    <link href="https://www.lovexy.me/2026/01/20/10-projects/cs6200_intro_to_os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E6%A6%82%E8%BF%B0/"/>
-    <id>https://www.lovexy.me/2026/01/20/10-projects/cs6200_intro_to_os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E6%A6%82%E8%BF%B0/</id>
+    <link href="https://www.lovexy.me/2026/01/20/10-projects/cs6200/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E6%A6%82%E8%BF%B0/"/>
+    <id>https://www.lovexy.me/2026/01/20/10-projects/cs6200/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E6%A6%82%E8%BF%B0/</id>
     <published>2026-01-20T06:01:00.000Z</published>
     <updated>2026-01-24T22:02:43.638Z</updated>
     
@@ -209,7 +209,7 @@
     
     <category term="10-projects" scheme="https://www.lovexy.me/categories/10-projects/"/>
     
-    <category term="cs6200_intro_to_os" scheme="https://www.lovexy.me/categories/10-projects/cs6200-intro-to-os/"/>
+    <category term="cs6200" scheme="https://www.lovexy.me/categories/10-projects/cs6200/"/>
     
     
     <category term="software" scheme="https://www.lovexy.me/tags/software/"/>
@@ -244,9 +244,9 @@
     
     <category term="knowledge" scheme="https://www.lovexy.me/tags/knowledge/"/>
     
-    <category term="philosophy" scheme="https://www.lovexy.me/tags/philosophy/"/>
-    
     <category term="psychology" scheme="https://www.lovexy.me/tags/psychology/"/>
+    
+    <category term="philosophy" scheme="https://www.lovexy.me/tags/philosophy/"/>
     
   </entry>
   
@@ -304,9 +304,9 @@
     
     <category term="self" scheme="https://www.lovexy.me/tags/self/"/>
     
-    <category term="mindset" scheme="https://www.lovexy.me/tags/mindset/"/>
-    
     <category term="psychology" scheme="https://www.lovexy.me/tags/psychology/"/>
+    
+    <category term="mindset" scheme="https://www.lovexy.me/tags/mindset/"/>
     
   </entry>
   
@@ -332,9 +332,9 @@
     <category term="thoughts" scheme="https://www.lovexy.me/categories/20-areas/thoughts/"/>
     
     
-    <category term="productivity" scheme="https://www.lovexy.me/tags/productivity/"/>
-    
     <category term="self" scheme="https://www.lovexy.me/tags/self/"/>
+    
+    <category term="productivity" scheme="https://www.lovexy.me/tags/productivity/"/>
     
     <category term="psychology" scheme="https://www.lovexy.me/tags/psychology/"/>
     
@@ -362,9 +362,9 @@
     <category term="thoughts" scheme="https://www.lovexy.me/categories/20-areas/thoughts/"/>
     
     
-    <category term="philosophy" scheme="https://www.lovexy.me/tags/philosophy/"/>
-    
     <category term="self" scheme="https://www.lovexy.me/tags/self/"/>
+    
+    <category term="philosophy" scheme="https://www.lovexy.me/tags/philosophy/"/>
     
     <category term="reflection" scheme="https://www.lovexy.me/tags/reflection/"/>
     
@@ -394,9 +394,9 @@
     
     <category term="productivity" scheme="https://www.lovexy.me/tags/productivity/"/>
     
-    <category term="mindset" scheme="https://www.lovexy.me/tags/mindset/"/>
-    
     <category term="psychology" scheme="https://www.lovexy.me/tags/psychology/"/>
+    
+    <category term="mindset" scheme="https://www.lovexy.me/tags/mindset/"/>
     
   </entry>
   
@@ -424,9 +424,9 @@
     
     <category term="self" scheme="https://www.lovexy.me/tags/self/"/>
     
-    <category term="mindset" scheme="https://www.lovexy.me/tags/mindset/"/>
-    
     <category term="psychology" scheme="https://www.lovexy.me/tags/psychology/"/>
+    
+    <category term="mindset" scheme="https://www.lovexy.me/tags/mindset/"/>
     
   </entry>
   
