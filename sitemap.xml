@@ -2,7 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.lovexy.me/2026/01/24/20-areas/tech/DNS%E7%A7%91%E6%99%AE%E5%8F%8A%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE/</loc>
+    <loc>https://www.lovexy.me/2026/01/24/20-areas/tech/DNS%E7%A7%91%E6%99%AE%E5%8F%8A%E5%9F%9F%E5%90%8D%E9%97%AE%E7%AD%94/</loc>
+    
+    <lastmod>2026-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.lovexy.me/2026/01/24/20-areas/tech/DNS%E4%B8%8E%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/</loc>
     
     <lastmod>2026-01-25</lastmod>
     
@@ -1334,15 +1343,6 @@
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/tags/index.html</loc>
-    
-    <lastmod>2025-06-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.lovexy.me/photos/index.html</loc>
     
     <lastmod>2025-06-08</lastmod>
@@ -1352,7 +1352,7 @@
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/messageboard/index.html</loc>
+    <loc>https://www.lovexy.me/tags/index.html</loc>
     
     <lastmod>2025-06-08</lastmod>
     
@@ -1362,6 +1362,15 @@
   
   <url>
     <loc>https://www.lovexy.me/music/index.html</loc>
+    
+    <lastmod>2025-06-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.lovexy.me/messageboard/index.html</loc>
     
     <lastmod>2025-06-08</lastmod>
     
@@ -1429,14 +1438,14 @@
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/tags/cpp/</loc>
+    <loc>https://www.lovexy.me/tags/coding/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/tags/coding/</loc>
+    <loc>https://www.lovexy.me/tags/cpp/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1457,6 +1466,27 @@
   </url>
   
   <url>
+    <loc>https://www.lovexy.me/tags/productivity/</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.lovexy.me/tags/mindset/</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.lovexy.me/tags/self/</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.lovexy.me/tags/network/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -1471,34 +1501,6 @@
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/tags/linux/</loc>
-    <lastmod>2026-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.lovexy.me/tags/self/</loc>
-    <lastmod>2026-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.lovexy.me/tags/mindset/</loc>
-    <lastmod>2026-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.lovexy.me/tags/productivity/</loc>
-    <lastmod>2026-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.lovexy.me/tags/philosophy/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -1507,6 +1509,13 @@
   
   <url>
     <loc>https://www.lovexy.me/tags/spirituality/</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.lovexy.me/tags/linux/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1576,14 +1585,14 @@
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/tags/finance/</loc>
+    <loc>https://www.lovexy.me/tags/deep-reasearch/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/tags/stock/</loc>
+    <loc>https://www.lovexy.me/tags/research/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1604,21 +1613,7 @@
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/tags/deep-reasearch/</loc>
-    <lastmod>2026-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.lovexy.me/tags/research/</loc>
-    <lastmod>2026-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.lovexy.me/tags/economics/</loc>
+    <loc>https://www.lovexy.me/tags/finance/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1639,14 +1634,14 @@
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/tags/sport/</loc>
+    <loc>https://www.lovexy.me/tags/stock/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/tags/resources/</loc>
+    <loc>https://www.lovexy.me/tags/economics/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1660,6 +1655,13 @@
   </url>
   
   <url>
+    <loc>https://www.lovexy.me/tags/resources/</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.lovexy.me/tags/cursor/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -1667,14 +1669,7 @@
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/tags/quant/</loc>
-    <lastmod>2026-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.lovexy.me/tags/language/</loc>
+    <loc>https://www.lovexy.me/tags/sport/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1695,6 +1690,13 @@
   </url>
   
   <url>
+    <loc>https://www.lovexy.me/tags/language/</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.lovexy.me/tags/math/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -1703,6 +1705,13 @@
   
   <url>
     <loc>https://www.lovexy.me/tags/statistics/</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.lovexy.me/tags/quant/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1802,13 +1811,6 @@
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/categories/20-areas/knowledge/</loc>
-    <lastmod>2026-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.lovexy.me/categories/20-areas/courses/omscs/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -1816,7 +1818,14 @@
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/categories/20-areas/money/</loc>
+    <loc>https://www.lovexy.me/categories/20-areas/knowledge/</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.lovexy.me/categories/20-areas/knowledge/economics/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1830,14 +1839,14 @@
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/categories/20-areas/tech/ai/</loc>
+    <loc>https://www.lovexy.me/categories/20-areas/money/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/categories/20-areas/knowledge/economics/</loc>
+    <loc>https://www.lovexy.me/categories/20-areas/tech/ai/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1858,7 +1867,7 @@
   </url>
   
   <url>
-    <loc>https://www.lovexy.me/categories/20-areas/money/stock/</loc>
+    <loc>https://www.lovexy.me/categories/20-areas/tech/coding/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1866,13 +1875,6 @@
   
   <url>
     <loc>https://www.lovexy.me/categories/20-areas/tech/ai-coding/</loc>
-    <lastmod>2026-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.lovexy.me/categories/20-areas/tech/coding/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1887,6 +1889,13 @@
   
   <url>
     <loc>https://www.lovexy.me/categories/20-areas/tech/math/</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.lovexy.me/categories/20-areas/money/stock/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
