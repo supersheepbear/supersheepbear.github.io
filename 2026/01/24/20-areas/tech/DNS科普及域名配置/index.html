@@ -1,0 +1,646 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>DNS科普及域名配置 | Bear's dream</title><meta name="description" content="DNS科普及域名配置"><meta name="keywords" content="network,server"><meta name="author" content="supersheepbear"><meta name="copyright" content="supersheepbear"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_1.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="p43hXBn3_dLvbyxUzx0eo5eYmj9OVYOV52pdrhBa2sw"><meta name="baidu-site-verification" content="EXLlfLv2pV"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="DNS科普及域名配置"><meta name="twitter:description" content="DNS科普及域名配置"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta property="og:type" content="article"><meta property="og:title" content="DNS科普及域名配置"><meta property="og:url" content="https://www.lovexy.me/2026/01/24/20-areas/tech/DNS%E7%A7%91%E6%99%AE%E5%8F%8A%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE/"><meta property="og:site_name" content="Bear's dream"><meta property="og:description" content="DNS科普及域名配置"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://www.lovexy.me/2026/01/24/20-areas/tech/DNS%E7%A7%91%E6%99%AE%E5%8F%8A%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE/"><link rel="next" title="learncpp_15_more_classes" href="https://www.lovexy.me/2026/01/24/10-projects/learncpp/learncpp_15_more_classes/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">148</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">46</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">27</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#DNS科普及域名配置"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">DNS科普及域名配置</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#DNS-是什么？一个通俗易懂的解释"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">DNS 是什么？一个通俗易懂的解释</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#核心概念：DNS-就像互联网的”电话簿”"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">核心概念：DNS 就像互联网的”电话簿”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#技术细节：DNS-查询是怎么工作的？"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">技术细节：DNS 查询是怎么工作的？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Domain-相关的那些配置项（DNS-记录类型）"><span class="toc_mobile_items-number">2.3.</span> <span class="toc_mobile_items-text">Domain 相关的那些配置项（DNS 记录类型）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#最常见的记录类型"><span class="toc_mobile_items-number">2.3.1.</span> <span class="toc_mobile_items-text">最常见的记录类型</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#具体例子"><span class="toc_mobile_items-number">2.3.2.</span> <span class="toc_mobile_items-text">具体例子</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#在继续深入之前，我想了解你的背景"><span class="toc_mobile_items-number">2.4.</span> <span class="toc_mobile_items-text">在继续深入之前，我想了解你的背景</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-1"><span class="toc_mobile_items-number">2.5.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-1"><span class="toc_mobile_items-number">2.6.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#第一步：什么是-IP-地址？"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">第一步：什么是 IP 地址？</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#类比：IP-地址就是”门牌号”"><span class="toc_mobile_items-number">3.1.</span> <span class="toc_mobile_items-text">类比：IP 地址就是”门牌号”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#IPv4：老版门牌号"><span class="toc_mobile_items-number">3.2.</span> <span class="toc_mobile_items-text">IPv4：老版门牌号</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#IPv6：新版门牌号"><span class="toc_mobile_items-number">3.3.</span> <span class="toc_mobile_items-text">IPv6：新版门牌号</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#快速测试一下-✅"><span class="toc_mobile_items-number">3.4.</span> <span class="toc_mobile_items-text">快速测试一下 ✅</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#第二步：你的配置场景"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">第二步：你的配置场景</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-2"><span class="toc_mobile_items-number">4.1.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-2"><span class="toc_mobile_items-number">4.2.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#为什么我们不能只记-IP-地址？"><span class="toc_mobile_items-number">4.2.1.</span> <span class="toc_mobile_items-text">为什么我们不能只记 IP 地址？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#现在，我们深入解析：当你修改域名配置时，你到底在改什么？"><span class="toc_mobile_items-number">4.2.2.</span> <span class="toc_mobile_items-text">现在，我们深入解析：当你修改域名配置时，你到底在改什么？</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#1-A-记录-Address-Record-——-“指路牌”"><span class="toc_mobile_items-number">4.2.2.1.</span> <span class="toc_mobile_items-text">1. A 记录 (Address Record) —— “指路牌”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#2-CNAME-记录-Canonical-Name-——-“别名-外号”"><span class="toc_mobile_items-number">4.2.2.2.</span> <span class="toc_mobile_items-text">2. CNAME 记录 (Canonical Name) —— “别名&#x2F;外号”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#3-TTL-Time-to-Live-——-“保鲜期”"><span class="toc_mobile_items-number">4.2.2.3.</span> <span class="toc_mobile_items-text">3. TTL (Time to Live) —— “保鲜期”</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#技术进阶：DNS-的“分层递归查询”"><span class="toc_mobile_items-number">4.2.3.</span> <span class="toc_mobile_items-text">技术进阶：DNS 的“分层递归查询”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#递归测试：检测一下你的理解深度"><span class="toc_mobile_items-number">4.2.4.</span> <span class="toc_mobile_items-text">递归测试：检测一下你的理解深度</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#在回答之前，我还需确认一个前置知识"><span class="toc_mobile_items-number">4.2.5.</span> <span class="toc_mobile_items-text">在回答之前，我还需确认一个前置知识</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-3"><span class="toc_mobile_items-number">4.3.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-3"><span class="toc_mobile_items-number">4.4.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-完善你的测试答案（进阶理解）"><span class="toc_mobile_items-number">4.4.1.</span> <span class="toc_mobile_items-text">1. 完善你的测试答案（进阶理解）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-什么是端口-Port-？——-门牌号后面的“房间号”"><span class="toc_mobile_items-number">4.4.2.</span> <span class="toc_mobile_items-text">2. 什么是端口 (Port)？—— 门牌号后面的“房间号”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-深挖：DNS-的“分层递归查询”"><span class="toc_mobile_items-number">4.4.3.</span> <span class="toc_mobile_items-text">3. 深挖：DNS 的“分层递归查询”</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#分层结构（树状图）"><span class="toc_mobile_items-number">4.4.3.1.</span> <span class="toc_mobile_items-text">分层结构（树状图）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#什么是“递归”-Recursive-？"><span class="toc_mobile_items-number">4.4.3.2.</span> <span class="toc_mobile_items-text">什么是“递归” (Recursive)？</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#递归测试：挑战升级"><span class="toc_mobile_items-number">4.4.4.</span> <span class="toc_mobile_items-text">递归测试：挑战升级</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-4"><span class="toc_mobile_items-number">4.5.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-4"><span class="toc_mobile_items-number">4.6.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-NS-记录（Name-Server）：权力的移交"><span class="toc_mobile_items-number">4.6.1.</span> <span class="toc_mobile_items-text">1. NS 记录（Name Server）：权力的移交</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-缓存：不止在你的电脑里"><span class="toc_mobile_items-number">4.6.2.</span> <span class="toc_mobile_items-text">2. 缓存：不止在你的电脑里</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-DNS-劫持与污染：被篡改的地图"><span class="toc_mobile_items-number">4.6.3.</span> <span class="toc_mobile_items-text">3. DNS 劫持与污染：被篡改的地图</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#现在，把所有知识串起来看你的“配置”"><span class="toc_mobile_items-number">4.6.4.</span> <span class="toc_mobile_items-text">现在，把所有知识串起来看你的“配置”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#递归测试：进入实战环节"><span class="toc_mobile_items-number">4.6.5.</span> <span class="toc_mobile_items-text">递归测试：进入实战环节</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-5"><span class="toc_mobile_items-number">4.7.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-5"><span class="toc_mobile_items-number">4.8.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-实战题：TXT-记录的妙用"><span class="toc_mobile_items-number">4.8.1.</span> <span class="toc_mobile_items-text">1. 实战题：TXT 记录的妙用</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-纠错题：消失的更新"><span class="toc_mobile_items-number">4.8.2.</span> <span class="toc_mobile_items-text">2. 纠错题：消失的更新</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-进阶题：IP-端口的组合拳"><span class="toc_mobile_items-number">4.8.3.</span> <span class="toc_mobile_items-text">3. 进阶题：IP + 端口的组合拳</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-6"><span class="toc_mobile_items-number">4.9.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-6"><span class="toc_mobile_items-number">4.10.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-深度拆解：为什么-DNS-记录（A-记录）不能带端口？"><span class="toc_mobile_items-number">4.10.1.</span> <span class="toc_mobile_items-text">1. 深度拆解：为什么 DNS 记录（A 记录）不能带端口？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-本地缓存的“顽疾”：即便改了-DNS-也没用？"><span class="toc_mobile_items-number">4.10.2.</span> <span class="toc_mobile_items-text">2. 本地缓存的“顽疾”：即便改了 DNS 也没用？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-TXT-记录：DNS-的“分布式数据库”属性"><span class="toc_mobile_items-number">4.10.3.</span> <span class="toc_mobile_items-text">3. TXT 记录：DNS 的“分布式数据库”属性</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#递归测试：终极实战挑战"><span class="toc_mobile_items-number">4.10.4.</span> <span class="toc_mobile_items-text">递归测试：终极实战挑战</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-7"><span class="toc_mobile_items-number">4.11.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-7"><span class="toc_mobile_items-number">4.12.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-纠错：CNAME-真的能指向端口吗？"><span class="toc_mobile_items-number">4.12.1.</span> <span class="toc_mobile_items-text">1. 纠错：CNAME 真的能指向端口吗？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-缓存的层级：二哥（TLD）也被记住了？"><span class="toc_mobile_items-number">4.12.2.</span> <span class="toc_mobile_items-text">2. 缓存的层级：二哥（TLD）也被记住了？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-防火墙：多维度的“保镖”"><span class="toc_mobile_items-number">4.12.3.</span> <span class="toc_mobile_items-text">3. 防火墙：多维度的“保镖”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#递归测试：最后的“通关文牒”"><span class="toc_mobile_items-number">4.12.4.</span> <span class="toc_mobile_items-text">递归测试：最后的“通关文牒”</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-8"><span class="toc_mobile_items-number">4.13.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-8"><span class="toc_mobile_items-number">4.14.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-DNS-劫持：那个“撒谎的邮差”"><span class="toc_mobile_items-number">4.14.1.</span> <span class="toc_mobile_items-text">1. DNS 劫持：那个“撒谎的邮差”</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-HTTPS-与证书：为什么“假银行”骗不了你？"><span class="toc_mobile_items-number">4.14.2.</span> <span class="toc_mobile_items-text">2. HTTPS 与证书：为什么“假银行”骗不了你？</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#A-核心原理：非对称加密（Asymmetric-Encryption）"><span class="toc_mobile_items-number">4.14.2.1.</span> <span class="toc_mobile_items-text">A. 核心原理：非对称加密（Asymmetric Encryption）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#B-证书颁发机构（CA）：谁来证明你是你？"><span class="toc_mobile_items-number">4.14.2.2.</span> <span class="toc_mobile_items-text">B. 证书颁发机构（CA）：谁来证明你是你？</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-硬核技术细节：TLS-握手（Handshake）"><span class="toc_mobile_items-number">4.14.3.</span> <span class="toc_mobile_items-text">3. 硬核技术细节：TLS 握手（Handshake）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#递归测试：最终决战"><span class="toc_mobile_items-number">4.14.4.</span> <span class="toc_mobile_items-text">递归测试：最终决战</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-9"><span class="toc_mobile_items-number">4.15.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-9"><span class="toc_mobile_items-number">4.16.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-为什么不加-Https-就会超时？"><span class="toc_mobile_items-number">4.16.1.</span> <span class="toc_mobile_items-text">1. 为什么不加 Https 就会超时？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-解决方案：DNS-能解决吗？"><span class="toc_mobile_items-number">4.16.2.</span> <span class="toc_mobile_items-text">2. 解决方案：DNS 能解决吗？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-性能与安全：为什么要“多此一举”传随机数？"><span class="toc_mobile_items-number">4.16.3.</span> <span class="toc_mobile_items-text">3. 性能与安全：为什么要“多此一举”传随机数？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#恭喜你！你已经完成了“通用入门（Universal-Primer）”的互联网底层架构课程"><span class="toc_mobile_items-number">4.16.4.</span> <span class="toc_mobile_items-text">恭喜你！你已经完成了“通用入门（Universal Primer）”的互联网底层架构课程</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DNS科普及域名配置"><span class="toc-number">1.</span> <span class="toc-text">DNS科普及域名配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User"><span class="toc-number">1.1.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant"><span class="toc-number">1.2.</span> <span class="toc-text">🤖 Assistant</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DNS-是什么？一个通俗易懂的解释"><span class="toc-number">2.</span> <span class="toc-text">DNS 是什么？一个通俗易懂的解释</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#核心概念：DNS-就像互联网的”电话簿”"><span class="toc-number">2.1.</span> <span class="toc-text">核心概念：DNS 就像互联网的”电话簿”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#技术细节：DNS-查询是怎么工作的？"><span class="toc-number">2.2.</span> <span class="toc-text">技术细节：DNS 查询是怎么工作的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Domain-相关的那些配置项（DNS-记录类型）"><span class="toc-number">2.3.</span> <span class="toc-text">Domain 相关的那些配置项（DNS 记录类型）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#最常见的记录类型"><span class="toc-number">2.3.1.</span> <span class="toc-text">最常见的记录类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体例子"><span class="toc-number">2.3.2.</span> <span class="toc-text">具体例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在继续深入之前，我想了解你的背景"><span class="toc-number">2.4.</span> <span class="toc-text">在继续深入之前，我想了解你的背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-1"><span class="toc-number">2.5.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-1"><span class="toc-number">2.6.</span> <span class="toc-text">🤖 Assistant</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一步：什么是-IP-地址？"><span class="toc-number">3.</span> <span class="toc-text">第一步：什么是 IP 地址？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#类比：IP-地址就是”门牌号”"><span class="toc-number">3.1.</span> <span class="toc-text">类比：IP 地址就是”门牌号”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv4：老版门牌号"><span class="toc-number">3.2.</span> <span class="toc-text">IPv4：老版门牌号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv6：新版门牌号"><span class="toc-number">3.3.</span> <span class="toc-text">IPv6：新版门牌号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速测试一下-✅"><span class="toc-number">3.4.</span> <span class="toc-text">快速测试一下 ✅</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二步：你的配置场景"><span class="toc-number">4.</span> <span class="toc-text">第二步：你的配置场景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-2"><span class="toc-number">4.1.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-2"><span class="toc-number">4.2.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么我们不能只记-IP-地址？"><span class="toc-number">4.2.1.</span> <span class="toc-text">为什么我们不能只记 IP 地址？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#现在，我们深入解析：当你修改域名配置时，你到底在改什么？"><span class="toc-number">4.2.2.</span> <span class="toc-text">现在，我们深入解析：当你修改域名配置时，你到底在改什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-A-记录-Address-Record-——-“指路牌”"><span class="toc-number">4.2.2.1.</span> <span class="toc-text">1. A 记录 (Address Record) —— “指路牌”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-CNAME-记录-Canonical-Name-——-“别名-外号”"><span class="toc-number">4.2.2.2.</span> <span class="toc-text">2. CNAME 记录 (Canonical Name) —— “别名&#x2F;外号”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-TTL-Time-to-Live-——-“保鲜期”"><span class="toc-number">4.2.2.3.</span> <span class="toc-text">3. TTL (Time to Live) —— “保鲜期”</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#技术进阶：DNS-的“分层递归查询”"><span class="toc-number">4.2.3.</span> <span class="toc-text">技术进阶：DNS 的“分层递归查询”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#递归测试：检测一下你的理解深度"><span class="toc-number">4.2.4.</span> <span class="toc-text">递归测试：检测一下你的理解深度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在回答之前，我还需确认一个前置知识"><span class="toc-number">4.2.5.</span> <span class="toc-text">在回答之前，我还需确认一个前置知识</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-3"><span class="toc-number">4.3.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-3"><span class="toc-number">4.4.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-完善你的测试答案（进阶理解）"><span class="toc-number">4.4.1.</span> <span class="toc-text">1. 完善你的测试答案（进阶理解）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-什么是端口-Port-？——-门牌号后面的“房间号”"><span class="toc-number">4.4.2.</span> <span class="toc-text">2. 什么是端口 (Port)？—— 门牌号后面的“房间号”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-深挖：DNS-的“分层递归查询”"><span class="toc-number">4.4.3.</span> <span class="toc-text">3. 深挖：DNS 的“分层递归查询”</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分层结构（树状图）"><span class="toc-number">4.4.3.1.</span> <span class="toc-text">分层结构（树状图）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是“递归”-Recursive-？"><span class="toc-number">4.4.3.2.</span> <span class="toc-text">什么是“递归” (Recursive)？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#递归测试：挑战升级"><span class="toc-number">4.4.4.</span> <span class="toc-text">递归测试：挑战升级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-4"><span class="toc-number">4.5.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-4"><span class="toc-number">4.6.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-NS-记录（Name-Server）：权力的移交"><span class="toc-number">4.6.1.</span> <span class="toc-text">1. NS 记录（Name Server）：权力的移交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-缓存：不止在你的电脑里"><span class="toc-number">4.6.2.</span> <span class="toc-text">2. 缓存：不止在你的电脑里</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-DNS-劫持与污染：被篡改的地图"><span class="toc-number">4.6.3.</span> <span class="toc-text">3. DNS 劫持与污染：被篡改的地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#现在，把所有知识串起来看你的“配置”"><span class="toc-number">4.6.4.</span> <span class="toc-text">现在，把所有知识串起来看你的“配置”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#递归测试：进入实战环节"><span class="toc-number">4.6.5.</span> <span class="toc-text">递归测试：进入实战环节</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-5"><span class="toc-number">4.7.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-5"><span class="toc-number">4.8.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-实战题：TXT-记录的妙用"><span class="toc-number">4.8.1.</span> <span class="toc-text">1. 实战题：TXT 记录的妙用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-纠错题：消失的更新"><span class="toc-number">4.8.2.</span> <span class="toc-text">2. 纠错题：消失的更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-进阶题：IP-端口的组合拳"><span class="toc-number">4.8.3.</span> <span class="toc-text">3. 进阶题：IP + 端口的组合拳</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-6"><span class="toc-number">4.9.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-6"><span class="toc-number">4.10.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-深度拆解：为什么-DNS-记录（A-记录）不能带端口？"><span class="toc-number">4.10.1.</span> <span class="toc-text">1. 深度拆解：为什么 DNS 记录（A 记录）不能带端口？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-本地缓存的“顽疾”：即便改了-DNS-也没用？"><span class="toc-number">4.10.2.</span> <span class="toc-text">2. 本地缓存的“顽疾”：即便改了 DNS 也没用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-TXT-记录：DNS-的“分布式数据库”属性"><span class="toc-number">4.10.3.</span> <span class="toc-text">3. TXT 记录：DNS 的“分布式数据库”属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#递归测试：终极实战挑战"><span class="toc-number">4.10.4.</span> <span class="toc-text">递归测试：终极实战挑战</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-7"><span class="toc-number">4.11.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-7"><span class="toc-number">4.12.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-纠错：CNAME-真的能指向端口吗？"><span class="toc-number">4.12.1.</span> <span class="toc-text">1. 纠错：CNAME 真的能指向端口吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-缓存的层级：二哥（TLD）也被记住了？"><span class="toc-number">4.12.2.</span> <span class="toc-text">2. 缓存的层级：二哥（TLD）也被记住了？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-防火墙：多维度的“保镖”"><span class="toc-number">4.12.3.</span> <span class="toc-text">3. 防火墙：多维度的“保镖”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#递归测试：最后的“通关文牒”"><span class="toc-number">4.12.4.</span> <span class="toc-text">递归测试：最后的“通关文牒”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-8"><span class="toc-number">4.13.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-8"><span class="toc-number">4.14.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-DNS-劫持：那个“撒谎的邮差”"><span class="toc-number">4.14.1.</span> <span class="toc-text">1. DNS 劫持：那个“撒谎的邮差”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-HTTPS-与证书：为什么“假银行”骗不了你？"><span class="toc-number">4.14.2.</span> <span class="toc-text">2. HTTPS 与证书：为什么“假银行”骗不了你？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-核心原理：非对称加密（Asymmetric-Encryption）"><span class="toc-number">4.14.2.1.</span> <span class="toc-text">A. 核心原理：非对称加密（Asymmetric Encryption）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-证书颁发机构（CA）：谁来证明你是你？"><span class="toc-number">4.14.2.2.</span> <span class="toc-text">B. 证书颁发机构（CA）：谁来证明你是你？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-硬核技术细节：TLS-握手（Handshake）"><span class="toc-number">4.14.3.</span> <span class="toc-text">3. 硬核技术细节：TLS 握手（Handshake）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#递归测试：最终决战"><span class="toc-number">4.14.4.</span> <span class="toc-text">递归测试：最终决战</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-9"><span class="toc-number">4.15.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-9"><span class="toc-number">4.16.</span> <span class="toc-text">🤖 Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-为什么不加-Https-就会超时？"><span class="toc-number">4.16.1.</span> <span class="toc-text">1. 为什么不加 Https 就会超时？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-解决方案：DNS-能解决吗？"><span class="toc-number">4.16.2.</span> <span class="toc-text">2. 解决方案：DNS 能解决吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-性能与安全：为什么要“多此一举”传随机数？"><span class="toc-number">4.16.3.</span> <span class="toc-text">3. 性能与安全：为什么要“多此一举”传随机数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#恭喜你！你已经完成了“通用入门（Universal-Primer）”的互联网底层架构课程"><span class="toc-number">4.16.4.</span> <span class="toc-text">恭喜你！你已经完成了“通用入门（Universal Primer）”的互联网底层架构课程</span></a></li></ol></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">DNS科普及域名配置</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2026-01-24<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2026-01-24</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/">20-areas</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/20-areas/tech/">tech</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2026/01/24/20-areas/tech/DNS%E7%A7%91%E6%99%AE%E5%8F%8A%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2026/01/24/20-areas/tech/DNS%E7%A7%91%E6%99%AE%E5%8F%8A%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="DNS科普及域名配置"><a href="#DNS科普及域名配置" class="headerlink" title="DNS科普及域名配置"></a>DNS科普及域名配置</h1><h2 id="🧑‍💻-User"><a href="#🧑‍💻-User" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>dns 是什么, 和domain相关的填的那些东西有什么关系?</p>
+<hr>
+<h2 id="🤖-Assistant"><a href="#🤖-Assistant" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><h1 id="DNS-是什么？一个通俗易懂的解释"><a href="#DNS-是什么？一个通俗易懂的解释" class="headerlink" title="DNS 是什么？一个通俗易懂的解释"></a>DNS 是什么？一个通俗易懂的解释</h1><h2 id="核心概念：DNS-就像互联网的”电话簿”"><a href="#核心概念：DNS-就像互联网的”电话簿”" class="headerlink" title="核心概念：DNS 就像互联网的”电话簿”"></a>核心概念：DNS 就像互联网的”电话簿”</h2><p>想象一下，你想打电话给朋友，但你只记得他的名字”张三”，不记得他的电话号码。你需要一本电话簿来查找”张三 → 138xxxx1234”。</p>
+<p><strong>DNS（Domain Name System，域名系统）</strong> 做的就是同样的事情：</p>
+<ul>
+<li>你输入：<code>www.google.com</code>（人类友好的名字）</li>
+<li>DNS 返回：<code>142.250.80.46</code>（计算机需要的 IP 地址）</li>
+</ul>
+<p>计算机之间通信只认 IP 地址（一串数字），但人类记不住这些数字，所以 DNS 充当了”翻译官”。</p>
+<hr>
+<h2 id="技术细节：DNS-查询是怎么工作的？"><a href="#技术细节：DNS-查询是怎么工作的？" class="headerlink" title="技术细节：DNS 查询是怎么工作的？"></a>技术细节：DNS 查询是怎么工作的？</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">你的浏览器输入 www.example.com</span><br><span class="line">        ↓</span><br><span class="line">[1] 本地缓存 → 没找到</span><br><span class="line">        ↓</span><br><span class="line">[2] 递归解析器（你的ISP或8.8.8.8）→ 没找到</span><br><span class="line">        ↓</span><br><span class="line">[3] 根域名服务器 → &quot;去问 .com 服务器&quot;</span><br><span class="line">        ↓</span><br><span class="line">[4] .com 顶级域服务器 → &quot;去问 example.com 的权威服务器&quot;</span><br><span class="line">        ↓</span><br><span class="line">[5] example.com 权威服务器 → &quot;IP 是 93.184.216.34&quot;</span><br><span class="line">        ↓</span><br><span class="line">返回给你的浏览器，建立连接</span><br></pre></td></tr></table></figure></div>
+<p>这就像问路：先问”美国在哪？”→ “加州在哪？”→ “旧金山在哪？”→ “这条街在哪？”</p>
+<hr>
+<h2 id="Domain-相关的那些配置项（DNS-记录类型）"><a href="#Domain-相关的那些配置项（DNS-记录类型）" class="headerlink" title="Domain 相关的那些配置项（DNS 记录类型）"></a>Domain 相关的那些配置项（DNS 记录类型）</h2><p>当你购买域名后，需要配置各种 <strong>DNS 记录</strong>。这些记录告诉全世界：”当有人找我的域名时，应该去哪里”。</p>
+<h3 id="最常见的记录类型"><a href="#最常见的记录类型" class="headerlink" title="最常见的记录类型"></a>最常见的记录类型</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>记录类型</th>
+<th>作用</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A 记录</strong></td>
+<td>域名 → IPv4 地址</td>
+<td>“张三住在北京路100号”</td>
+</tr>
+<tr>
+<td><strong>AAAA 记录</strong></td>
+<td>域名 → IPv6 地址</td>
+<td>同上，但是新版地址格式</td>
+</tr>
+<tr>
+<td><strong>CNAME 记录</strong></td>
+<td>域名 → 另一个域名</td>
+<td>“找张三？他现在用李四的地址”</td>
+</tr>
+<tr>
+<td><strong>MX 记录</strong></td>
+<td>指定邮件服务器</td>
+<td>“张三的信件请送到邮局A”</td>
+</tr>
+<tr>
+<td><strong>TXT 记录</strong></td>
+<td>存储文本信息</td>
+<td>“张三的备注信息”</td>
+</tr>
+<tr>
+<td><strong>NS 记录</strong></td>
+<td>指定域名服务器</td>
+<td>“关于张三的问题，请问这个人”</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="具体例子"><a href="#具体例子" class="headerlink" title="具体例子"></a>具体例子</h3><p>假设你有域名 <code>mysite.com</code>，你可能会这样配置：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">类型    名称              值                    用途</span><br><span class="line">─────────────────────────────────────────────────────────</span><br><span class="line">A       @                 192.168.1.1          主域名指向你的服务器</span><br><span class="line">A       www               192.168.1.1          www.mysite.com 也指向同一服务器</span><br><span class="line">CNAME   blog              mysite.github.io     blog.mysite.com 转到 GitHub Pages</span><br><span class="line">MX      @                 mail.google.com      邮件由 Gmail 处理</span><br><span class="line">TXT     @                 &quot;v&#x3D;spf1...&quot;          邮件验证&#x2F;防伪造</span><br></pre></td></tr></table></figure></div>
+<p><strong>@ 符号</strong> = 代表根域名本身（即 <code>mysite.com</code>）</p>
+<hr>
+<h2 id="在继续深入之前，我想了解你的背景"><a href="#在继续深入之前，我想了解你的背景" class="headerlink" title="在继续深入之前，我想了解你的背景"></a>在继续深入之前，我想了解你的背景</h2><ol>
+<li><strong>你对 IP 地址的理解如何？</strong> 知道 IPv4/IPv6 的区别吗？</li>
+<li><strong>你是在配置自己的域名吗？</strong> 比如买了域名要绑定到服务器/网站？</li>
+<li><strong>你对网络基础（如 HTTP、端口）熟悉程度如何？</strong></li>
+</ol>
+<p>这样我可以针对性地解释你最需要的部分！</p>
+<hr>
+<h2 id="🧑‍💻-User-1"><a href="#🧑‍💻-User-1" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><ol>
+<li>不知道</li>
+<li>对我自己在配置, 就是想理解一下</li>
+<li>不是很熟悉</li>
+</ol>
+<hr>
+<h2 id="🤖-Assistant-1"><a href="#🤖-Assistant-1" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>太好了！让我从最基础的地方开始，一步步帮你建立完整的理解。</p>
+<hr>
+<h1 id="第一步：什么是-IP-地址？"><a href="#第一步：什么是-IP-地址？" class="headerlink" title="第一步：什么是 IP 地址？"></a>第一步：什么是 IP 地址？</h1><h2 id="类比：IP-地址就是”门牌号”"><a href="#类比：IP-地址就是”门牌号”" class="headerlink" title="类比：IP 地址就是”门牌号”"></a>类比：IP 地址就是”门牌号”</h2><p>现实世界中，每栋房子都有唯一的地址（北京市朝阳区XX路100号），快递员才能找到你。</p>
+<p>互联网世界中，每台联网的设备（服务器、电脑、手机）都有唯一的 <strong>IP 地址</strong>，数据包才能找到目的地。</p>
+<hr>
+<h2 id="IPv4：老版门牌号"><a href="#IPv4：老版门牌号" class="headerlink" title="IPv4：老版门牌号"></a>IPv4：老版门牌号</h2><p>长这样：<code>192.168.1.1</code> 或 <code>142.250.80.46</code></p>
+<ul>
+<li>4 组数字，每组 0-255</li>
+<li>总共约 43 亿个地址</li>
+<li><strong>问题</strong>：地球上设备太多，地址不够用了！</li>
+</ul>
+<h2 id="IPv6：新版门牌号"><a href="#IPv6：新版门牌号" class="headerlink" title="IPv6：新版门牌号"></a>IPv6：新版门牌号</h2><p>长这样：<code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code></p>
+<ul>
+<li>更长，能提供几乎无限的地址</li>
+<li>目前在逐步普及中</li>
+</ul>
+<hr>
+<h2 id="快速测试一下-✅"><a href="#快速测试一下-✅" class="headerlink" title="快速测试一下 ✅"></a>快速测试一下 ✅</h2><p><strong>问题</strong>：为什么我们不能直接在浏览器输入 <code>142.250.80.46</code> 来访问网站，而要用 <code>google.com</code>？</p>
+<p>（想一想，然后告诉我你的答案）</p>
+<hr>
+<h1 id="第二步：你的配置场景"><a href="#第二步：你的配置场景" class="headerlink" title="第二步：你的配置场景"></a>第二步：你的配置场景</h1><p>你说你正在配置自己的域名，能告诉我：</p>
+<ol>
+<li><p><strong>你买的域名是在哪个平台？</strong>（比如阿里云、腾讯云、GoDaddy、Cloudflare？）</p>
+</li>
+<li><p><strong>你想把域名指向什么？</strong></p>
+<ul>
+<li>自己的服务器？</li>
+<li>GitHub Pages？</li>
+<li>Vercel / Netlify 这类托管平台？</li>
+<li>其他？</li>
+</ul>
+</li>
+<li><p><strong>你现在卡在哪一步？</strong> 或者只是想先搞懂原理？</p>
+</li>
+</ol>
+<p>告诉我这些，我就能用你的<strong>实际配置</strong>作为例子来讲解，这样学起来最快！</p>
+<hr>
+<h2 id="🧑‍💻-User-2"><a href="#🧑‍💻-User-2" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>快速测试不懂.</p>
+<p>另外我没卡, 就是想懂原理</p>
+<hr>
+<h2 id="🤖-Assistant-2"><a href="#🤖-Assistant-2" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>好的，那我们先揭开那个“快速测试”的谜底，这涉及到一个非常关键的<strong>技术细节</strong>。</p>
+<h3 id="为什么我们不能只记-IP-地址？"><a href="#为什么我们不能只记-IP-地址？" class="headerlink" title="为什么我们不能只记 IP 地址？"></a>为什么我们不能只记 IP 地址？</h3><p>除了人类记不住一串数字这个原因外，还有一个核心的技术原因：<strong>一个 IP 地址后面可能藏着几千个网站。</strong></p>
+<p><strong>类比：酒店与房间号</strong></p>
+<ul>
+<li><strong>IP 地址</strong> 就像是“希尔顿大酒店”的街道地址（例如：南京路100号）。</li>
+<li><strong>域名</strong> 就像是住在里面的客人的名字（例如：张三、李四）。</li>
+</ul>
+<p>如果你只告诉快递员：“送到南京路100号”，快递员到了酒店门口就傻眼了，因为他不知道这件快递是给张三还是给李四的。</p>
+<p>在技术上，这叫 <strong>“虚拟主机（Virtual Hosting）”</strong>。当你的浏览器通过 IP 找到服务器后，它会额外发一个“纸条”（HTTP 请求头里的 <code>Host</code> 字段），上面写着：“我是来找 <code>example.com</code> 的”。服务器看到这个名字，才知道从它的硬盘里翻出哪一个文件夹的内容给你。</p>
+<hr>
+<h3 id="现在，我们深入解析：当你修改域名配置时，你到底在改什么？"><a href="#现在，我们深入解析：当你修改域名配置时，你到底在改什么？" class="headerlink" title="现在，我们深入解析：当你修改域名配置时，你到底在改什么？"></a>现在，我们深入解析：当你修改域名配置时，你到底在改什么？</h3><p>当你登录域名后台（比如阿里云或 Cloudflare），你会看到一个表格，每一行就是一个 <strong>DNS 记录</strong>。我们把这个过程想象成<strong>为一个大型园区设计导视系统</strong>。</p>
+<h4 id="1-A-记录-Address-Record-——-“指路牌”"><a href="#1-A-记录-Address-Record-——-“指路牌”" class="headerlink" title="1. A 记录 (Address Record) —— “指路牌”"></a>1. A 记录 (Address Record) —— “指路牌”</h4><ul>
+<li><strong>技术定义</strong>：将域名直接映射到一个 IPv4 地址。</li>
+<li><strong>类比</strong>：你在园区门口立个牌子：“办公大楼在 A 区 101 室”。</li>
+<li><strong>配置</strong>：<code>www</code> -&gt; <code>1.2.3.4</code>。</li>
+</ul>
+<h4 id="2-CNAME-记录-Canonical-Name-——-“别名-外号”"><a href="#2-CNAME-记录-Canonical-Name-——-“别名-外号”" class="headerlink" title="2. CNAME 记录 (Canonical Name) —— “别名/外号”"></a>2. CNAME 记录 (Canonical Name) —— “别名/外号”</h4><ul>
+<li><strong>技术定义</strong>：将一个域名指向<strong>另一个域名</strong>，而不是 IP。</li>
+<li><strong>类比</strong>：你告诉别人：“如果你找‘小王’，就去问‘王经理’在哪”。</li>
+<li><strong>为什么用它？</strong>：如果你的网站托管在 GitHub 或 Shopify 上，他们的 IP 经常变。你配置 CNAME 指向他们的域名，他们改了 IP，你也不用动，非常省心。</li>
+</ul>
+<h4 id="3-TTL-Time-to-Live-——-“保鲜期”"><a href="#3-TTL-Time-to-Live-——-“保鲜期”" class="headerlink" title="3. TTL (Time to Live) —— “保鲜期”"></a>3. TTL (Time to Live) —— “保鲜期”</h4><ul>
+<li><strong>技术定义</strong>：这条 DNS 信息在别人的电脑里可以缓存多久。单位通常是秒（如 600 = 10分钟）。</li>
+<li><strong>类比</strong>：你发了一张传单，上面写着：“10分钟内有效”。过了10分钟，别人就得重新找你问一次最新的地址。</li>
+<li><strong>重要性</strong>：如果你要搬家（换服务器），你会提前把 TTL 改小（比如 60 秒），这样全世界的电脑就能更火速地更新到你的新地址。</li>
+</ul>
+<hr>
+<h3 id="技术进阶：DNS-的“分层递归查询”"><a href="#技术进阶：DNS-的“分层递归查询”" class="headerlink" title="技术进阶：DNS 的“分层递归查询”"></a>技术进阶：DNS 的“分层递归查询”</h3><p>这是 DNS 最迷人的地方。它不是一个单一的大数据库，而是一个<strong>分层的树状结构</strong>。</p>
+<ol>
+<li><strong>根域名服务器（Root Servers）</strong>：全世界只有 13 组（但有几百个镜像）。它只管一件大事：告诉我 <code>.com</code> 在哪？<code>.net</code> 在哪？</li>
+<li><strong>顶级域名服务器（TLD Servers）</strong>：负责管理 <code>.com</code> 或 <code>.cn</code>。它告诉你：你要找的 <code>baidu.com</code> 的管理员是谁？</li>
+<li><strong>权威域名服务器（Authoritative DNS）</strong>：这就是<strong>你配置域名的地方</strong>。这里存着最权威的答案：<code>www</code> 到底对应哪个 IP。</li>
+</ol>
+<hr>
+<h3 id="递归测试：检测一下你的理解深度"><a href="#递归测试：检测一下你的理解深度" class="headerlink" title="递归测试：检测一下你的理解深度"></a>递归测试：检测一下你的理解深度</h3><p>为了确保你真正理解了这些“干货”，请尝试回答以下几个比较硬核的问题：</p>
+<ol>
+<li><strong>场景题</strong>：如果你有一个 A 记录把 <code>abc.com</code> 指向了 IP <code>1.1.1.1</code>，现在你想让 <code>blog.abc.com</code> 也指向同样的 IP。你是应该再加一个 <strong>A 记录</strong>，还是加一个 <strong>CNAME 记录</strong>？为什么？</li>
+<li><strong>技术题</strong>：为什么当你刚改完域名配置，有的人能打开你的网站，有的人却打不开（提示：回想一下 <strong>TTL</strong> 的类比）？</li>
+<li><strong>理解题</strong>：如果全球的“根域名服务器”都挂了，互联网会发生什么？</li>
+</ol>
+<hr>
+<h3 id="在回答之前，我还需确认一个前置知识"><a href="#在回答之前，我还需确认一个前置知识" class="headerlink" title="在回答之前，我还需确认一个前置知识"></a>在回答之前，我还需确认一个前置知识</h3><p><strong>你知道“服务器”和“客户端”这两个概念在通信时，除了 IP 地址，还需要一个叫“端口（Port）”的东西吗？</strong>（比如 80 端口或 443 端口）这对理解 DNS 之后的流程至关重要。</p>
+<hr>
+<h2 id="🧑‍💻-User-3"><a href="#🧑‍💻-User-3" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>DNS 的“分层递归查询”不太懂呢.</p>
+<p>递归测试回答</p>
+<ol>
+<li>加一个cname记录, 别名就可以了吧.</li>
+<li>缓存的原因? 可能本地解析还在老ip?</li>
+<li>可能就直接找不到ip了?</li>
+</ol>
+<p>port我不是特别懂, 略知道一点</p>
+<hr>
+<h2 id="🤖-Assistant-3"><a href="#🤖-Assistant-3" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>握个手！你的直觉非常准，测试题答得很好。</p>
+<p>我们先完善一下你的测试答案，然后深入拆解<strong>“分层递归查询”</strong>和<strong>“端口（Port）”</strong>这两个核心技术点。</p>
+<hr>
+<h3 id="1-完善你的测试答案（进阶理解）"><a href="#1-完善你的测试答案（进阶理解）" class="headerlink" title="1. 完善你的测试答案（进阶理解）"></a>1. 完善你的测试答案（进阶理解）</h3><ul>
+<li><strong>关于 CNAME</strong>：你说加个 CNAME 没错。但技术上的好处是：如果以后服务器换了 IP，你<strong>只需要改 <code>abc.com</code> 的 A 记录</strong>，而 <code>blog.abc.com</code> 会自动跟着变。这叫“解耦”，减少了维护工作量。</li>
+<li><strong>关于缓存</strong>：没错。由于 <strong>TTL</strong> 的存在，旧的 IP 还在全世界的路由器和运营商电脑里“保鲜”。你只能等它过期，或者手动刷新。</li>
+<li><strong>关于根服务器挂了</strong>：基本正确。虽然你可以直接输入 IP 访问，但谁会记 IP 呢？整个互联网的导航系统会瘫痪，除非你的电脑里已经缓存了那个网站。</li>
+</ul>
+<hr>
+<h3 id="2-什么是端口-Port-？——-门牌号后面的“房间号”"><a href="#2-什么是端口-Port-？——-门牌号后面的“房间号”" class="headerlink" title="2. 什么是端口 (Port)？—— 门牌号后面的“房间号”"></a>2. 什么是端口 (Port)？—— 门牌号后面的“房间号”</h3><p><strong>类比：IP 是大楼地址，Port 是房间号</strong></p>
+<p>想象你要去“建设银行”办事：</p>
+<ul>
+<li><strong>IP 地址</strong>：是这座大楼的地址（南京路 100 号）。</li>
+<li><strong>端口 (Port)</strong>：是你要去的柜台。存钱去 1 号柜台，取钱去 2 号柜台。</li>
+</ul>
+<p><strong>技术细节：</strong><br>一个 IP 地址可以提供很多服务。计算机用端口号来区分它们（端口范围是 0 到 65535）：</p>
+<ul>
+<li><strong>80 端口</strong>：专门给 HTTP（普通网页）用的。</li>
+<li><strong>443 端口</strong>：专门给 HTTPS（加密网页）用的。</li>
+<li><strong>22 端口</strong>：通常是给 SSH（远程管理服务器）用的。</li>
+</ul>
+<p><strong>为什么你配置域名时不用填端口？</strong><br>因为浏览器很有默契。如果你输入 <code>http://</code>，它默认就去找 <strong>80</strong>；输入 <code>https://</code>，它默认找 <strong>443</strong>。</p>
+<hr>
+<h3 id="3-深挖：DNS-的“分层递归查询”"><a href="#3-深挖：DNS-的“分层递归查询”" class="headerlink" title="3. 深挖：DNS 的“分层递归查询”"></a>3. 深挖：DNS 的“分层递归查询”</h3><p>之所以叫“分层”，是因为 DNS 不是一个超大的 Excel 表格，而是像<strong>“行政管理体系”</strong>。</p>
+<h4 id="分层结构（树状图）"><a href="#分层结构（树状图）" class="headerlink" title="分层结构（树状图）"></a>分层结构（树状图）</h4><ol>
+<li><strong>根域名服务器（Root）</strong>：它是老大，只管后缀。它不记得 <code>google.com</code>，它只知道 <code>.com</code> 该去哪问。</li>
+<li><strong>TLD 顶级域名服务器</strong>：它是二哥（比如管理 <code>.com</code> 的部门）。它不记得 <code>google.com</code> 的 IP，它只知道 <code>google.com</code> 的<strong>权威服务器</strong>在哪里。</li>
+<li><strong>权威服务器（Authoritative）</strong>：这是最后一站，也就是<strong>你买域名的地方</strong>。这里存着最终的 A 记录或 CNAME。</li>
+</ol>
+<h4 id="什么是“递归”-Recursive-？"><a href="#什么是“递归”-Recursive-？" class="headerlink" title="什么是“递归” (Recursive)？"></a>什么是“递归” (Recursive)？</h4><p><strong>类比：你是一个懒惰的雇主，DNS 解析器是你的秘书。</strong></p>
+<ol>
+<li>你对<strong>秘书（解析器）</strong>说：“给我找 <code>www.example.com</code> 的 IP！”</li>
+<li>秘书去问<strong>根服务器</strong>，根服务器说：“我不知道，你去问管理 <code>.com</code> 的二哥。”</li>
+<li>秘书又跑去问<strong>二哥（TLD）</strong>，二哥说：“我不知道，你去问 <code>example.com</code> 的权威服务器。”</li>
+<li>秘书最后问到<strong>权威服务器</strong>，拿到了 IP <code>93.184.216.34</code>。</li>
+<li>秘书回来告诉你结果。</li>
+</ol>
+<p><strong>在这个过程中，你只发了一次指令，秘书跑断了腿。这种“你帮我查到底”的过程就叫“递归”。</strong></p>
+<hr>
+<h3 id="递归测试：挑战升级"><a href="#递归测试：挑战升级" class="headerlink" title="递归测试：挑战升级"></a>递归测试：挑战升级</h3><p>如果你理解了上面的逻辑，请尝试回答这三个更具挑战性的问题：</p>
+<ol>
+<li><strong>技术场景</strong>：当你购买一个域名（如 <code>mysite.com</code>）时，域名商通常会要求你填入两个 <strong>NS (Name Server)</strong> 记录。结合“分层结构”，这两个 NS 记录是告诉哪一级服务器的？</li>
+<li><strong>性能题</strong>：既然每次查询都要从根服务器开始问，为什么我们平时上网感觉不到延迟？（提示：结合你之前的“缓存”答案）。</li>
+<li><strong>安全题</strong>：如果一个黑客在中途拦截了“秘书”拿到的答案，并把 IP 换成了他自己的钓鱼网站 IP，这种攻击在技术上叫什么？（猜猜看，或者描述这个行为）。</li>
+</ol>
+<p><strong>等你回答后，我们将进入最后一个环节：如何把这些知识应用到你现在的域名配置实践中！</strong></p>
+<hr>
+<h2 id="🧑‍💻-User-4"><a href="#🧑‍💻-User-4" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><ol>
+<li>不知道</li>
+<li>第一次访问就缓存了, 后面就记住了?</li>
+<li>relay?</li>
+</ol>
+<hr>
+<h2 id="🤖-Assistant-4"><a href="#🤖-Assistant-4" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>非常好，你的直觉已经带你走到了技术的大门口！让我们把这几个点彻底拆解清楚。</p>
+<h3 id="1-NS-记录（Name-Server）：权力的移交"><a href="#1-NS-记录（Name-Server）：权力的移交" class="headerlink" title="1. NS 记录（Name Server）：权力的移交"></a>1. NS 记录（Name Server）：权力的移交</h3><p><strong>（针对你不知道的第一题）</strong></p>
+<p><strong>类比：连锁店的授权书</strong><br>想象 <code>.com</code> 是一个巨大的总公司（TLD 顶级域名服务器）。它不可能记得旗下几亿个域名的详细地址。<br>当你买了 <code>mysite.com</code>，总公司会在它的账本上记下一笔：“关于 <code>mysite.com</code> 的事，去问 <strong>Cloudflare</strong> 的服务器，或者去问 <strong>阿里云</strong> 的服务器。”</p>
+<p>这两台服务器的名字就是 <strong>NS 记录</strong>。</p>
+<ul>
+<li><strong>技术细节</strong>：NS 记录是告诉“二哥”（TLD 服务器），哪台服务器才是这个域名的<strong>最终解释权拥有者</strong>（权威服务器）。</li>
+<li><strong>你的操作</strong>：如果你在阿里云买域名，但想用 Cloudflare 管理，你就需要把阿里云后台的 NS 记录改成 Cloudflare 提供的地址。</li>
+</ul>
+<hr>
+<h3 id="2-缓存：不止在你的电脑里"><a href="#2-缓存：不止在你的电脑里" class="headerlink" title="2. 缓存：不止在你的电脑里"></a>2. 缓存：不止在你的电脑里</h3><p><strong>（针对你回答的第二题：非常准确！）</strong></p>
+<p>你说“第一次访问就记住了”，这完全正确。但技术上，这个“记忆”存在好几个地方：</p>
+<ol>
+<li><strong>浏览器缓存</strong>：浏览器自己先记一会儿。</li>
+<li><strong>系统缓存</strong>：你的 Windows 或 macOS 也会记一会儿（<code>hosts</code> 文件就是这个原理）。</li>
+<li><strong>路由器缓存</strong>：你家里的路由器也会记。</li>
+<li><strong>ISP（运营商）缓存</strong>：这是最关键的。电信、联通、移动的服务器会缓存全网的热门域名解析。</li>
+</ol>
+<p><strong>为什么这很重要？</strong><br>因为有了这些缓存，全球 99% 的 DNS 查询根本不需要跑去问“根服务器”，在你的运营商那里就直接拿到答案返回了。这大大减轻了互联网主干网的压力。</p>
+<hr>
+<h3 id="3-DNS-劫持与污染：被篡改的地图"><a href="#3-DNS-劫持与污染：被篡改的地图" class="headerlink" title="3. DNS 劫持与污染：被篡改的地图"></a>3. DNS 劫持与污染：被篡改的地图</h3><p><strong>（针对你回答的“Relay”：其实是“中间人攻击”）</strong></p>
+<p>你说的 Relay（中转）其实离答案很近了。如果黑客在中间截获了你的请求，并给你一个假的 IP，这在技术上叫：</p>
+<ul>
+<li><strong>DNS 缓存污染 (DNS Cache Poisoning)</strong>：黑客给“秘书”一个假的回复，让“秘书”把错误的地址记在脑子里，并告诉所有人。</li>
+<li><strong>DNS 劫持</strong>：强行让你只能看他给你的地图。</li>
+</ul>
+<p><strong>类比：恶作剧的路牌</strong><br>你问路人“某某银行在哪？”，路人（黑客）指着前面一个假装成银行的破庙说：“就在那”。你进去了，钱（数据）就被抢了。</p>
+<hr>
+<h3 id="现在，把所有知识串起来看你的“配置”"><a href="#现在，把所有知识串起来看你的“配置”" class="headerlink" title="现在，把所有知识串起来看你的“配置”"></a>现在，把所有知识串起来看你的“配置”</h3><p>当你坐在电脑前，在域名管理后台填入一个 <strong>A 记录</strong> 时，背后发生了什么？</p>
+<ol>
+<li>你提交了配置，<strong>权威服务器</strong>（比如阿里云的 DNS）更新了数据库。</li>
+<li>全球的“秘书”（各地的递归解析服务器）并不知道你改了，因为它们脑子里还有<strong>旧的缓存</strong>。</li>
+<li>等到 <strong>TTL</strong> 时间（比如 10 分钟）到期，旧的缓存失效。</li>
+<li>下一个用户发起请求，“秘书”发现缓存没了，重新跑去问根、问二哥、问你的权威服务器，拿到了<strong>新 IP</strong>。</li>
+<li><strong>这就是为什么你说“配置需要几分钟甚至 24 小时生效”的原因。</strong></li>
+</ol>
+<hr>
+<h3 id="递归测试：进入实战环节"><a href="#递归测试：进入实战环节" class="headerlink" title="递归测试：进入实战环节"></a>递归测试：进入实战环节</h3><p>为了确认你已经可以独立进行域名配置了，请回答这几个实战问题：</p>
+<ol>
+<li><p><strong>实战题</strong>：你正在为一个新网站配置 HTTPS。你发现需要添加一个特殊的记录，它的名字叫 <strong>TXT 记录</strong>。这个记录通常不是用来指路（指向 IP）的，而是用来“证明这个域名是你的”。</p>
+<ul>
+<li><strong>思考</strong>：你觉得 TXT 记录里存的是什么类型的信息？（提示：既然不是 IP，也不是别名，它更像是一张什么样的“证明”？）</li>
+</ul>
+</li>
+<li><p><strong>纠错题</strong>：如果你的网站服务器 IP 变了，你立刻去改了 A 记录，但你发现自己访问还是旧 IP。你</p>
+</li>
+</ol>
+<hr>
+<h2 id="🧑‍💻-User-5"><a href="#🧑‍💻-User-5" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>问题你没发全 重新发</p>
+<hr>
+<h2 id="🤖-Assistant-5"><a href="#🤖-Assistant-5" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>抱歉，刚才信号可能“抖动”了一下，信息没发全。我们继续。</p>
+<p>为了确保你已经具备了独立操作域名的“实战能力”，请尝试回答这三个更深入的挑战题：</p>
+<h3 id="1-实战题：TXT-记录的妙用"><a href="#1-实战题：TXT-记录的妙用" class="headerlink" title="1. 实战题：TXT 记录的妙用"></a>1. 实战题：TXT 记录的妙用</h3><p>除了 A 记录（指路）和 CNAME（起外号），你还会经常看到 <strong>TXT 记录</strong>。</p>
+<ul>
+<li><strong>技术定义</strong>：它不负责跳转，只负责存储一段<strong>文本信息</strong>。</li>
+<li><strong>场景</strong>：当你把域名接入 Google 企业邮箱或者某些安全验证时，他们会要求你在 TXT 记录里填入一串乱码（比如 <code>v=spf1 include:_spf.google.com ~all</code>）。</li>
+<li><strong>思考题</strong>：你觉得为什么 Google 要让你在 DNS 里填这串乱码？它是通过什么原理来“证明你拥有这个域名”的？（<strong>类比提示</strong>：这就像是在你家门口的公告栏上贴一张特定的防伪贴纸。）</li>
+</ul>
+<h3 id="2-纠错题：消失的更新"><a href="#2-纠错题：消失的更新" class="headerlink" title="2. 纠错题：消失的更新"></a>2. 纠错题：消失的更新</h3><p><strong>场景</strong>：你刚刚在后台把 A 记录从 <code>1.1.1.1</code> 改成了 <code>2.2.2.2</code>，并且把 TTL 设成了最短的 60 秒。但是过了 5 分钟，你刷新浏览器，发现看到的还是旧服务器的内容。</p>
+<ul>
+<li><strong>排除法</strong>：你确定 TTL 已经过期了，权威服务器也更新了。请问：<strong>除了互联网上的缓存，你的“本地电脑”里可能藏着哪些让你看不到新 IP 的“惯性记忆”？</strong>（提示：想一想浏览器和操作系统内部）。</li>
+</ul>
+<h3 id="3-进阶题：IP-端口的组合拳"><a href="#3-进阶题：IP-端口的组合拳" class="headerlink" title="3. 进阶题：IP + 端口的组合拳"></a>3. 进阶题：IP + 端口的组合拳</h3><p>刚才我们聊了端口（Port）是房间号。</p>
+<ul>
+<li><strong>技术细节</strong>：一个数据包从你的电脑出发，到达服务器的 IP 后，它必须敲开正确的“端口门”才能找到对应的软件。</li>
+<li><strong>思考题</strong>：如果我在服务器上运行了两个网站，一个用 <strong>80</strong> 端口，一个用 <strong>8080</strong> 端口。当我只在浏览器输入 <code>www.test.com</code>（不手动加端口号）时，浏览器默认会敲哪扇门？如果你想让用户访问 8080 那个网站，你的域名 A 记录能直接实现“自动跳转到 8080 端口”吗？</li>
+</ul>
+<hr>
+<p><strong>请尝试回答，哪怕是猜的也没关系，我会根据你的回答深度，带你进入最硬核的网络底层原理部分！</strong></p>
+<hr>
+<h2 id="🧑‍💻-User-6"><a href="#🧑‍💻-User-6" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><ol>
+<li>像是密钥识别身份?</li>
+<li>浏览器缓存没清? 或者HOST缓存没清?</li>
+<li>不能直接跳吧, 只能去默认的端口吧?</li>
+</ol>
+<hr>
+<h2 id="🤖-Assistant-6"><a href="#🤖-Assistant-6" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>击掌！你的理解非常到位。这三个问题的回答不仅正确，而且抓住了网络协议的本质。</p>
+<p>既然你提到了“不能直接跳”和“身份识别”，我们现在就进入<strong>“最硬核”</strong>的部分。我们要拆解一下为什么 DNS 不能管端口，以及在技术底层，你的数据包是如何通过这些“层”找到最终位置的。</p>
+<hr>
+<h3 id="1-深度拆解：为什么-DNS-记录（A-记录）不能带端口？"><a href="#1-深度拆解：为什么-DNS-记录（A-记录）不能带端口？" class="headerlink" title="1. 深度拆解：为什么 DNS 记录（A 记录）不能带端口？"></a>1. 深度拆解：为什么 DNS 记录（A 记录）不能带端口？</h3><p>这是很多初学者最困惑的地方。</p>
+<p><strong>类比：GPS 导航 vs. 电梯控制</strong></p>
+<ul>
+<li><strong>DNS (A 记录)</strong> 就像是 <strong>GPS 导航</strong>。它只负责把你带到“南京路 100 号”这座大楼。</li>
+<li><strong>端口 (Port)</strong> 则是大楼内部的<strong>电梯按钮</strong>。</li>
+<li>GPS 导航系统里是不存“几楼”信息的，它只管经纬度。</li>
+</ul>
+<p><strong>技术硬核细节：OSI 七层模型（简化版）</strong><br>计算机通信是分层的。</p>
+<ul>
+<li><strong>IP 地址</strong> 属于 <strong>第三层（网络层）</strong>。它的任务是寻找主机。</li>
+<li><strong>端口号</strong> 属于 <strong>第四层（传输层）</strong>（如 TCP/UDP）。它的任务是寻找主机上的某个程序。</li>
+<li><strong>DNS</strong> 的 A 记录设计之初就是为了把域名映射到 <strong>IP（第三层）</strong>。它不关心第四层的事。</li>
+</ul>
+<p><strong>那如果你非要让 <code>www.test.com</code> 访问 8080 端口怎么办？</strong><br>由于 A 记录不行，技术大牛们发明了两个方案：</p>
+<ol>
+<li><strong>显式输入</strong>：<code>www.test.com:8080</code>（用户体验差）。</li>
+<li><strong>反向代理（Reverse Proxy）</strong>：这是工业界的标准做法。你在服务器上装一个叫 <strong>Nginx</strong> 的软件。让 Nginx 监听 <strong>80 端口</strong>。当它看到有人访问 <code>www.test.com</code> 时，它在服务器内部偷偷把请求转交给 <strong>8080 端口</strong>。</li>
+</ol>
+<hr>
+<h3 id="2-本地缓存的“顽疾”：即便改了-DNS-也没用？"><a href="#2-本地缓存的“顽疾”：即便改了-DNS-也没用？" class="headerlink" title="2. 本地缓存的“顽疾”：即便改了 DNS 也没用？"></a>2. 本地缓存的“顽疾”：即便改了 DNS 也没用？</h3><p>你提到的“浏览器缓存”和“Hosts 缓存”非常精准。</p>
+<p><strong>技术细节：</strong><br>当你在浏览器输入域名时，查找顺序是这样的：</p>
+<ol>
+<li><strong>浏览器缓存</strong>：Chrome 甚至会为了快，自己记一张表。</li>
+<li><strong>系统 Hosts 文件</strong>：这是“最高优先级”的后门。</li>
+<li><strong>系统 DNS 缓存</strong>：Windows 有个服务叫 <code>dnscache</code>。</li>
+<li><strong>路由器/运营商 DNS</strong>。</li>
+</ol>
+<p><strong>调试小技巧：</strong><br>如果你改了 DNS 没生效，可以在命令行输入：</p>
+<ul>
+<li>Windows: <code>ipconfig /flushdns</code> (强制清空系统记忆)</li>
+<li>Mac: <code>sudo killall -HUP mDNSResponder</code></li>
+<li>或者直接用 <code>nslookup yourdomain.com</code> 命令。这个命令会绕过浏览器缓存，直接去问 DNS 服务器：“你现在到底存的是哪个 IP？”</li>
+</ul>
+<hr>
+<h3 id="3-TXT-记录：DNS-的“分布式数据库”属性"><a href="#3-TXT-记录：DNS-的“分布式数据库”属性" class="headerlink" title="3. TXT 记录：DNS 的“分布式数据库”属性"></a>3. TXT 记录：DNS 的“分布式数据库”属性</h3><p><strong>类比：在公告栏贴一张“暗号”</strong><br>你说它是“密钥识别身份”，完全正确！<br>比如 Google 给你一段字符串：<code>google-site-verification=abc12345</code>。<br>你把它填进 DNS 的 TXT 记录。<br>Google 的程序会定期去查你的域名。如果它能查到这段字符串，就说明<strong>你确实有这个域名的管理权</strong>。因为除了域名的主人，没人能在 DNS 后台加这条记录。</p>
+<hr>
+<h3 id="递归测试：终极实战挑战"><a href="#递归测试：终极实战挑战" class="headerlink" title="递归测试：终极实战挑战"></a>递归测试：终极实战挑战</h3><p>既然你已经掌握了 <strong>分层递归查询</strong>、<strong>IP/Port 的层级差异</strong>、以及 <strong>缓存机制</strong>，现在我们要模拟一个复杂的真实生产环境问题。</p>
+<p><strong>情境模拟：</strong><br>你公司有一台服务器 IP 是 <code>1.1.1.1</code>。<br>上面跑着两个服务：</p>
+<ul>
+<li>一个是<strong>官网</strong>（用 Nginx 监听 80 端口）。</li>
+<li>一个是<strong>后台管理系统</strong>（由于安全原因，跑在 9999 端口）。</li>
+</ul>
+<p><strong>问题 1（路由策略）</strong>：<br>你想让员工访问 <code>admin.company.com</code> 就能进入后台管理系统，而不需要手动打 <code>:9999</code>。既然 A 记录办不到，你准备用 Nginx 做转发。<br><strong>请问：你的 <code>admin.company.com</code> 的 A 记录应该指向哪里？是指向 <code>1.1.1.1</code>，还是有别的骚操作？</strong></p>
+<p><strong>问题 2（递归深度）</strong>：<br>如果一个用户在北京访问你的网站，他的 DNS 递归查询器（秘书）去问 <code>.com</code> 的“二哥”要地址。<br><strong>请问：如果“二哥”告诉“秘书”地址后，那个“二哥”的地址也会被缓存吗？这样下次查另一个 <code>.com</code> 域名是不是就快了？</strong></p>
+<p><strong>问题 3（安全防范）</strong>：<br>你发现有人在恶意攻击你的 9999 端口。你决定在服务器上开启 <strong>防火墙（Firewall）</strong>。<br><strong>请问：从原理上讲，防火墙是在拦截“IP 地址”还是在拦截“端口”？或者是两者都能拦？</strong></p>
+<p><em>加油，这三个问题如果答对，你对域名和服务器网络架构的理解就已经超过 80% 的普通站长了！</em></p>
+<hr>
+<h2 id="🧑‍💻-User-7"><a href="#🧑‍💻-User-7" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><ol>
+<li>应该是cname 指向内部端口吧?</li>
+<li>应该是吧</li>
+<li>我猜是综合拦截</li>
+</ol>
+<hr>
+<h2 id="🤖-Assistant-7"><a href="#🤖-Assistant-7" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>你的直觉非常敏锐，但在<strong>第1题</strong>上，我们遇到了一个经典的技术“陷阱”。这正是理解网络架构最关键的分水岭！</p>
+<p>让我们通过这三个问题，把你的知识体系从“业余爱好者”提升到“资深架构师”水平。</p>
+<hr>
+<h3 id="1-纠错：CNAME-真的能指向端口吗？"><a href="#1-纠错：CNAME-真的能指向端口吗？" class="headerlink" title="1. 纠错：CNAME 真的能指向端口吗？"></a>1. 纠错：CNAME 真的能指向端口吗？</h3><p><strong>（针对你回答的第一题：差一点点就对了！）</strong></p>
+<p><strong>残酷的真相</strong>：<strong>CNAME 记录完全不支持端口。</strong><br>如果你在后台配置 <code>admin.company.com</code> CNAME 到 <code>1.1.1.1:9999</code>，解析系统会直接报错，或者根本无法生效。</p>
+<p><strong>为什么？（技术底层）</strong></p>
+<ul>
+<li><strong>CNAME 的本质</strong>：它只是一个<strong>名字的替换</strong>。它告诉电脑：“当你找张三（<code>admin</code>）时，直接去问李四（<code>1.1.1.1</code>）在哪。”</li>
+<li><strong>协议隔离</strong>：DNS 运行在它自己的世界里，它根本不知道什么是 HTTP，什么是 9999 端口。它只负责把名字翻译成 IP。</li>
+</ul>
+<p><strong>那怎么实现“不输入端口就进入后台”？（Nginx 的魔术）</strong></p>
+<ol>
+<li><strong>域名端</strong>：你依然把 <code>admin.company.com</code> 指向 <code>1.1.1.1</code>（用 A 记录或 CNAME）。</li>
+<li><strong>服务器端</strong>：当用户访问时，浏览器默认敲响了 <code>1.1.1.1</code> 的 <strong>80 端口</strong>（Nginx 守在那）。</li>
+<li><strong>反向代理</strong>：Nginx 看到请求的信封上写着“收件人：<code>admin.company.com</code>”，它就会根据配置文件，<strong>在服务器内部</strong>把请求转发给正在 <strong>9999 端口</strong> 睡觉的后台程序。<ul>
+<li><strong>类比</strong>：这就像公司前台。所有人都找前台（80端口），前台看你找谁。如果你找经理（admin），她就把电话转接到内线 9999。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="2-缓存的层级：二哥（TLD）也被记住了？"><a href="#2-缓存的层级：二哥（TLD）也被记住了？" class="headerlink" title="2. 缓存的层级：二哥（TLD）也被记住了？"></a>2. 缓存的层级：二哥（TLD）也被记住了？</h3><p><strong>（针对你回答的第二题：完全正确！）</strong></p>
+<p><strong>技术细节</strong>：<br>不仅是 IP 会被缓存，<strong>NS 记录（谁管这个域名）也会被缓存</strong>。</p>
+<ul>
+<li>当递归服务器问到了 <code>.com</code> 的地址后，它会把这个地址存好几个小时甚至几天。</li>
+<li>这样，当你下次访问 <code>another-site.com</code> 时，它就不需要去问“根服务器”了，直接跳到第二步去问 <code>.com</code> 服务器。</li>
+<li><strong>好处</strong>：这让全球互联网的查询速度提升了几个数量级。</li>
+</ul>
+<hr>
+<h3 id="3-防火墙：多维度的“保镖”"><a href="#3-防火墙：多维度的“保镖”" class="headerlink" title="3. 防火墙：多维度的“保镖”"></a>3. 防火墙：多维度的“保镖”</h3><p><strong>（针对你回答的第三题：满分回答！）</strong></p>
+<p><strong>防火墙拦截的三个维度（由浅入深）：</strong></p>
+<ol>
+<li><strong>IP 拦截（Layer 3 网络层）</strong>：看到是黑名单里的坏人 IP，直接拒之门外。</li>
+<li><strong>端口拦截（Layer 4 传输层）</strong>：只允许 80 和 443 进，9999 端口被锁死，谁来都不开。</li>
+<li><strong>内容拦截（Layer 7 应用层，即 WAF）</strong>：即便你是从 80 端口进来的合法用户，但如果你提交的数据包里藏着病毒代码，保镖（WAF）也能一眼识破。</li>
+</ol>
+<hr>
+<h3 id="递归测试：最后的“通关文牒”"><a href="#递归测试：最后的“通关文牒”" class="headerlink" title="递归测试：最后的“通关文牒”"></a>递归测试：最后的“通关文牒”</h3><p>如果你能解答下面这个关于<strong>安全性</strong>和<strong>故障排除</strong>的终极难题，那你在 DNS 和网络基础这一块就彻底“通关”了。</p>
+<p><strong>终极情境：</strong><br>你的一位用户投诉说，他访问 <code>www.yourshop.com</code> 时，页面跳到了一个色情网站。<br>但你在自己的电脑上访问，一切正常。<br>你查看了域名后台，A 记录、CNAME 都没有被修改。</p>
+<ol>
+<li><strong>分析题</strong>：这最可能是发生了什么？（提示：既然你的配置没变，但用户看到了假网页，问题可能出在“谁”的手里？）</li>
+<li><strong>验证题</strong>：你会让这位用户在命令行输入什么指令（刚才提到过的），来验证他拿到的 IP 到底是不是你服务器的真实 IP？</li>
+<li><strong>架构题</strong>：为了防止这种“路人乱指路”的情况，现在有一种技术叫 <strong>HTTPS</strong>。虽然 HTTPS 解决不了 DNS 乱指路的问题，但它能保证即使用户被指到了假服务器，也<strong>无法建立连接</strong>。<ul>
+<li><strong>思考</strong>：为什么 HTTPS 能识破假服务器？（提示：假服务器手里缺了一样只有你才有的“电子印章”。）</li>
+</ul>
+</li>
+</ol>
+<p><em>写出你的想法，我们即将完成这次 Universal Primer 的深度学习之旅！</em></p>
+<hr>
+<h2 id="🧑‍💻-User-8"><a href="#🧑‍💻-User-8" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><ol>
+<li>那个哥们电脑里的dns服务器地址被黑了吧?</li>
+<li>nslookup</li>
+<li>这个是要靠证书来保证?</li>
+</ol>
+<hr>
+<h2 id="🤖-Assistant-8"><a href="#🤖-Assistant-8" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>太棒了！你的技术直觉非常敏锐。你已经抓住了网络安全的核心：<strong>信任链条</strong>。</p>
+<p>我们来把这最后一块拼图——<strong>“加密与验证”</strong>——彻底拆解清楚。</p>
+<hr>
+<h3 id="1-DNS-劫持：那个“撒谎的邮差”"><a href="#1-DNS-劫持：那个“撒谎的邮差”" class="headerlink" title="1. DNS 劫持：那个“撒谎的邮差”"></a>1. DNS 劫持：那个“撒谎的邮差”</h3><p><strong>（针对你的回答 1 &amp; 2）</strong></p>
+<p>你说得对。用户看到的 IP 不对，通常有两种可能：</p>
+<ol>
+<li><strong>DNS 劫持</strong>：用户电脑里的 DNS 服务器地址被恶意篡改了（比如改成了一个黑客控制的服务器）。</li>
+<li><strong>DNS 污染</strong>：用户请求在经过运营商或防火墙时，中间人抢先发回了一个假的 IP 地址。</li>
+</ol>
+<p><strong>实战验证 (<code>nslookup</code>)</strong>：<br>当你让用户输入 <code>nslookup www.yourshop.com</code> 时，输出结果会显示：</p>
+<ul>
+<li><strong>Server</strong>: 这是正在为用户提供服务的 DNS 名字。</li>
+<li><strong>Address</strong>: 这是返回给用户的 IP。<br>如果这个 IP 和你服务器的真实 IP 对不上，那就抓到了“撒谎的证据”。</li>
+</ul>
+<hr>
+<h3 id="2-HTTPS-与证书：为什么“假银行”骗不了你？"><a href="#2-HTTPS-与证书：为什么“假银行”骗不了你？" class="headerlink" title="2. HTTPS 与证书：为什么“假银行”骗不了你？"></a>2. HTTPS 与证书：为什么“假银行”骗不了你？</h3><p><strong>（针对你的回答 3）</strong></p>
+<p>虽然 DNS 会指错路，但 <strong>HTTPS（SSL/TLS）</strong> 是最后一道坚实的防线。</p>
+<h4 id="A-核心原理：非对称加密（Asymmetric-Encryption）"><a href="#A-核心原理：非对称加密（Asymmetric-Encryption）" class="headerlink" title="A. 核心原理：非对称加密（Asymmetric Encryption）"></a>A. 核心原理：非对称加密（Asymmetric Encryption）</h4><p><strong>类比：一把钥匙和一万把锁</strong></p>
+<ul>
+<li><strong>私钥（Private Key）</strong>：只有你手里有，藏在服务器最深处。就像一个独特的<strong>印章原件</strong>。</li>
+<li><strong>公钥（Public Key）</strong>：发给全世界看。就像是印章盖出来的<strong>无数个副本</strong>。</li>
+<li><strong>神奇特性</strong>：全世界的人都可以用你的“公钥副本”来验证一份文件是不是用你的“私钥原件”盖的章，但没人能伪造这个章。</li>
+</ul>
+<h4 id="B-证书颁发机构（CA）：谁来证明你是你？"><a href="#B-证书颁发机构（CA）：谁来证明你是你？" class="headerlink" title="B. 证书颁发机构（CA）：谁来证明你是你？"></a>B. 证书颁发机构（CA）：谁来证明你是你？</h4><p>如果黑客也生成一套自己的公钥和私钥，伪装成你的店怎么办？<br>这时候就需要 <strong>CA（Certificate Authority）</strong> 登场了。</p>
+<p><strong>类比：护照办理中心</strong></p>
+<ol>
+<li>你把你的公钥交给 CA（就像拿着照片去办护照）。</li>
+<li>CA 验证你的身份后，用<strong>它的私钥</strong>在你的公钥上盖个章。</li>
+<li><strong>关键点</strong>：所有浏览器（Chrome, Safari）出厂时，肚子里都自带了一份“各大 CA 的公钥列表”。</li>
+<li>当用户访问你的假网站时，浏览器会要求看证书。黑客拿不出由权威 CA 盖章的证书（因为 CA 不会给骗子发证），浏览器就会弹出那个恐怖的<strong>红色大警告</strong>：“您的连接不是私密连接！”</li>
+</ol>
+<hr>
+<h3 id="3-硬核技术细节：TLS-握手（Handshake）"><a href="#3-硬核技术细节：TLS-握手（Handshake）" class="headerlink" title="3. 硬核技术细节：TLS 握手（Handshake）"></a>3. 硬核技术细节：TLS 握手（Handshake）</h3><p>为了确保你真正理解了 HTTPS，我们需要拆解一下浏览器和服务器初次见面时的“暗号对接”过程。</p>
+<p><strong>技术步骤：</strong></p>
+<ol>
+<li><strong>Client Hello</strong>：浏览器说：“我想安全地跟你聊，我支持这几种加密算法。”</li>
+<li><strong>Server Hello</strong>：服务器说：“好，咱们就用这种算法，这是我的<strong>数字证书</strong>（包含公钥）。”</li>
+<li><strong>验证与交换</strong>：浏览器检查证书的盖章（CA），确认是真的。然后浏览器会生成一个<strong>随机数</strong>，并用服务器的<strong>公钥</strong>加密后发过去。</li>
+<li><strong>解密</strong>：服务器用只有它自己才有的<strong>私钥</strong>解开这个随机数。</li>
+<li><strong>开始通话</strong>：从此以后，双方就用这个“只有天知地知你知我知”的随机数作为秘钥进行加密通信。</li>
+</ol>
+<hr>
+<h3 id="递归测试：最终决战"><a href="#递归测试：最终决战" class="headerlink" title="递归测试：最终决战"></a>递归测试：最终决战</h3><p>既然你已经掌握了 <strong>DNS 解析、端口转发、防火墙、以及 HTTPS 证书验证</strong>。现在，我们要把所有知识点串联起来，解决一个极其硬核的故障：</p>
+<p><strong>情境挑战：</strong><br>你部署了一个网站 <code>https://secure.work.com</code>。</p>
+<ul>
+<li>域名解析（A 记录）正确指向了服务器 IP。</li>
+<li>服务器防火墙已经放行了 443 端口（HTTPS 的标准端口）。</li>
+<li>Nginx 也配置好了证书。</li>
+</ul>
+<p><strong>故障现象：</strong><br>用户在浏览器输入 <code>secure.work.com</code>（不带 https 前缀），浏览器转了半天圈，最后显示<strong>“连接超时”</strong>。<br>但是，如果用户手动输入 <code>https://secure.work.com</code>，网站就能瞬间秒开。</p>
+<p><strong>请问：</strong></p>
+<ol>
+<li><strong>技术诊断</strong>：为什么不加 <code>https</code> 就会超时？（提示：浏览器默认尝试的是哪扇门？那扇门开了吗？）</li>
+<li><strong>解决方案</strong>：作为架构师，你该如何配置服务器，让那些“偷懒”不输入 <code>https</code> 的用户也能自动、平滑地进入安全网站？</li>
+<li><strong>数学/逻辑延伸</strong>：在 TLS 握手中，为什么浏览器要用“公钥”加密一个“随机数”传回去，而不是直接把整封信都用公钥加密发送？（提示：想一想性能问题。加密一整本书和加密一个 16 位的数字，哪个更累？）</li>
+</ol>
+<p><strong>只要你能理清这逻辑，你已经完全掌握了现代互联网通信的底层架构！</strong></p>
+<hr>
+<h2 id="🧑‍💻-User-9"><a href="#🧑‍💻-User-9" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><ol>
+<li>不加就是默认Http, 然后这个Http不工作</li>
+<li>让@ 和 A 记录都指向https?</li>
+<li>减少不必要的传输数据量?</li>
+</ol>
+<hr>
+<h2 id="🤖-Assistant-9"><a href="#🤖-Assistant-9" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>你的直觉再次立了大功，但我们现在需要把这最后一点“技术迷雾”拨开。你刚才提到的第 2 点是很多开发者最容易混淆的地方：<strong>DNS 真的不能决定协议（Http vs Https）</strong>。</p>
+<p>让我们用费曼式的讲解，把这最后三个技术难点彻底击穿。</p>
+<hr>
+<h3 id="1-为什么不加-Https-就会超时？"><a href="#1-为什么不加-Https-就会超时？" class="headerlink" title="1. 为什么不加 Https 就会超时？"></a>1. 为什么不加 Https 就会超时？</h3><p><strong>（你的回答：正确。端口没开门。）</strong></p>
+<p><strong>技术硬核细节：</strong></p>
+<ul>
+<li>当你只输入 <code>secure.work.com</code> 时，浏览器会默认尝试 <strong>HTTP 协议</strong>，它的默认目的地是服务器的 <strong>80 端口</strong>。</li>
+<li>如果你只配置了 HTTPS 并在防火墙里只开了 <strong>443 端口</strong>，那么当请求到达服务器的 80 端口时，服务器就像是一堵厚墙，不回应任何握手信息。</li>
+<li>浏览器等不到回应（TCP 握手超时），就会告诉你“连接超时”。</li>
+</ul>
+<hr>
+<h3 id="2-解决方案：DNS-能解决吗？"><a href="#2-解决方案：DNS-能解决吗？" class="headerlink" title="2. 解决方案：DNS 能解决吗？"></a>2. 解决方案：DNS 能解决吗？</h3><p><strong>（你的回答：这是个经典的误区！）</strong></p>
+<p>你提到的“让 A 记录指向 https”是<strong>做不到的</strong>。</p>
+<ul>
+<li><strong>A 记录</strong>只能写类似 <code>1.2.3.4</code> 这样的 IP 地址。</li>
+<li><strong>它不能写 <code>https://...</code></strong>，因为它不知道什么是“协议”。</li>
+</ul>
+<p><strong>真正的架构师解法：301 重定向 (Redirect)</strong></p>
+<ol>
+<li><strong>开两扇门</strong>：在服务器防火墙上，同时打开 <strong>80</strong> 和 <strong>443</strong> 端口。</li>
+<li><strong>前台引路（Nginx 配置）</strong>：<ul>
+<li>让 Nginx 同时也监听 80 端口。</li>
+<li>当有人从 80 端口（Http）进来时，Nginx 不给他看网页，而是立刻回一句指令：“<strong>301 Moved Permanently</strong>，请去 <code>https://secure.work.com</code>。”</li>
+</ul>
+</li>
+<li><strong>浏览器自动跳转</strong>：浏览器收到这个指令后，会立刻自动重新连接 443 端口。</li>
+</ol>
+<p><strong>类比</strong>：这就像你在旧校区的门口（80端口）贴了一张告示：“学校搬到新校区了（443端口），请左转直走。”</p>
+<hr>
+<h3 id="3-性能与安全：为什么要“多此一举”传随机数？"><a href="#3-性能与安全：为什么要“多此一举”传随机数？" class="headerlink" title="3. 性能与安全：为什么要“多此一举”传随机数？"></a>3. 性能与安全：为什么要“多此一举”传随机数？</h3><p><strong>（你的回答：为了减少开销。非常接近本质！）</strong></p>
+<p>这里涉及到了密码学中最天才的设计。</p>
+<p><strong>技术硬核细节：非对称加密 vs 对称加密</strong></p>
+<ul>
+<li><strong>非对称加密（公钥/私钥）</strong>：极其安全，但<strong>运算量巨大</strong>。如果用它来加密整个网页（比如看个 4K 视频），服务器的 CPU 会瞬间烧爆。</li>
+<li><strong>对称加密（用同一个秘钥加密/解密）</strong>：速度极快，像切菜一样简单。但问题是：<strong>你怎么把这个秘钥安全地传给对方？</strong> 如果在网络上直接传秘钥，被黑客截获了，后续所有通信就全透明了。</li>
+</ul>
+<p><strong>天才的折中方案：混合加密</strong></p>
+<ol>
+<li><strong>先用贵的，再用便宜的</strong>：我们只在最开始“交换秘钥”的时候，用昂贵的<strong>非对称加密</strong>。</li>
+<li><strong>只传一个小东西</strong>：浏览器生成一个很小的随机数（这就是后续通话的“对称秘钥”），用服务器的公钥锁上，发过去。</li>
+<li><strong>愉快通话</strong>：服务器用私钥解开，拿到了这个随机数。从此，双方都用这个随机数和<strong>对称加密算法（如 AES）</strong>来飞快地传输大数据。</li>
+</ol>
+<p><strong>类比</strong>：<br>这就好比我要给你寄一个非常沉重的保险箱（大量数据）。</p>
+<ul>
+<li>我如果全程用昂贵的押运公司（非对称加密）保护这个保险箱，运费会让我破产。</li>
+<li>我先用押运公司只送给你一顶<strong>小钥匙</strong>（随机数）。</li>
+<li>等你拿到钥匙后，我把保险箱直接寄快递（对称加密），你用手里的钥匙一开就行了。</li>
+</ul>
+<hr>
+<h3 id="恭喜你！你已经完成了“通用入门（Universal-Primer）”的互联网底层架构课程"><a href="#恭喜你！你已经完成了“通用入门（Universal-Primer）”的互联网底层架构课程" class="headerlink" title="恭喜你！你已经完成了“通用入门（Universal Primer）”的互联网底层架构课程"></a>恭喜你！你已经完成了“通用入门（Universal Primer）”的互联网底层架构课程</h3><p>我们从<strong>域名解析（DNS）</strong>开始，聊到了<strong>端口（Port）</strong>，拆解了<strong>缓存（Cache）</strong>，最后攻克了<strong>HTTPS 加密和证书（SSL/TLS）</strong>。</p>
+<p>你现在对互联网的理解，已经从“能上网”进化到了“能设计一个安全的、高性能的网站架构”。</p>
+<p><strong>你还有什么想要深入探索的“硬核”领域吗？</strong></p>
+<ul>
+<li>比如：<strong>负载均衡（Load Balancing）</strong>（如果 100 万人同时访问你的网站，一台服务器炸了怎么办？）</li>
+<li>比如：<strong>CDN 缓存</strong>（为什么你在北京访问美国网站也会很快？）</li>
+<li>或者：<strong>数据库底层逻辑</strong>（你的账号密码在服务器里是怎么存的？）</li>
+</ul>
+<p><strong>请下达你的下一个指令，指挥官！</strong></p>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/network/">network    </a><a class="post-meta__tags" href="/tags/server/">server    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2026/01/24/10-projects/learncpp/learncpp_15_more_classes/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>learncpp_15_more_classes</span></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'xvMxbws16Erd8WUfqxkvHmb5-gzGzoHsz',
+  appKey:'4U0Vo7NQIUL0eJzHdkPzdCDr',
+  placeholder:'不说话的人会疯掉吗?',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'en',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By supersheepbear</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="external nofollow noopener noreferrer"><span>Butterfly</span></a></div><div class="footer_custom_text">外向孤独者患者</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="255,240,245" opacity="0.7" zindex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="external nofollow noopener noreferrer" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>
