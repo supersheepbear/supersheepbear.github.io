@@ -1,0 +1,624 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>莫言AI全自动内容运营 | Bear's dream</title><meta name="description" content="莫言AI全自动内容运营"><meta name="keywords" content="business,productivity"><meta name="author" content="supersheepbear"><meta name="copyright" content="supersheepbear"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon_1.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="p43hXBn3_dLvbyxUzx0eo5eYmj9OVYOV52pdrhBa2sw"><meta name="baidu-site-verification" content="EXLlfLv2pV"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="莫言AI全自动内容运营"><meta name="twitter:description" content="莫言AI全自动内容运营"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta property="og:type" content="article"><meta property="og:title" content="莫言AI全自动内容运营"><meta property="og:url" content="https://www.lovexy.me/2026/01/24/00-inbox/%E8%8E%AB%E8%A8%80AI%E5%85%A8%E8%87%AA%E5%8A%A8%E5%86%85%E5%AE%B9%E8%BF%90%E8%90%A5/"><meta property="og:site_name" content="Bear's dream"><meta property="og:description" content="莫言AI全自动内容运营"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://www.lovexy.me/2026/01/24/00-inbox/%E8%8E%AB%E8%A8%80AI%E5%85%A8%E8%87%AA%E5%8A%A8%E5%86%85%E5%AE%B9%E8%BF%90%E8%90%A5/"><link rel="prev" title="DNS与域名配置讲解" href="https://www.lovexy.me/2026/01/24/20-areas/tech/DNS%E4%B8%8E%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/"><link rel="next" title="DNS科普及域名问答" href="https://www.lovexy.me/2026/01/24/20-areas/tech/DNS%E7%A7%91%E6%99%AE%E5%8F%8A%E5%9F%9F%E5%90%8D%E9%97%AE%E7%AD%94/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">152</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">46</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">27</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#莫言AI全自动内容运营"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">莫言AI全自动内容运营</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#Menes-AI-全自动自媒体运营工具详解-Menes-AI-Automated-Social-Media-Operation-Tool"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">Menes AI 全自动自媒体运营工具详解 (Menes AI: Automated Social Media Operation Tool)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#课程导言"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">课程导言</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第一部分：工具概述与核心价值-Tool-Overview-and-Core-Value"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">第一部分：工具概述与核心价值 (Tool Overview and Core Value)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-1-产品定位-Product-Positioning"><span class="toc_mobile_items-number">2.2.1.</span> <span class="toc_mobile_items-text">1.1 产品定位 (Product Positioning)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-2-全链路功能架构-Full-chain-Function-Architecture"><span class="toc_mobile_items-number">2.2.2.</span> <span class="toc_mobile_items-text">1.2 全链路功能架构 (Full-chain Function Architecture)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-3-适用范围-Applicable-Scenarios"><span class="toc_mobile_items-number">2.2.3.</span> <span class="toc_mobile_items-text">1.3 适用范围 (Applicable Scenarios)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第二部分：AI调研——下拉词裂变技术-AI-Research-Dropdown-Keywords-Expansion"><span class="toc_mobile_items-number">2.3.</span> <span class="toc_mobile_items-text">第二部分：AI调研——下拉词裂变技术 (AI Research: Dropdown Keywords Expansion)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-1-什么是下拉词-What-Are-Dropdown-Keywords"><span class="toc_mobile_items-number">2.3.1.</span> <span class="toc_mobile_items-text">2.1 什么是下拉词 (What Are Dropdown Keywords)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-2-传统调研的痛点-Pain-Points-of-Traditional-Research"><span class="toc_mobile_items-number">2.3.2.</span> <span class="toc_mobile_items-text">2.2 传统调研的痛点 (Pain Points of Traditional Research)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-3-一键提取下拉词操作流程-One-click-Dropdown-Keywords-Extraction"><span class="toc_mobile_items-number">2.3.3.</span> <span class="toc_mobile_items-text">2.3 一键提取下拉词操作流程 (One-click Dropdown Keywords Extraction)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-4-下拉词的深度裂变策略-Deep-Expansion-Strategy"><span class="toc_mobile_items-number">2.3.4.</span> <span class="toc_mobile_items-text">2.4 下拉词的深度裂变策略 (Deep Expansion Strategy)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-5-寻找小众高爆款率模板的技巧-Finding-Niche-High-viral-Templates"><span class="toc_mobile_items-number">2.3.5.</span> <span class="toc_mobile_items-text">2.5 寻找小众高爆款率模板的技巧 (Finding Niche High-viral Templates)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第三部分：AI笔记采集-AI-Note-Collection"><span class="toc_mobile_items-number">2.4.</span> <span class="toc_mobile_items-text">第三部分：AI笔记采集 (AI Note Collection)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-1-笔记采集的目的-Purpose-of-Note-Collection"><span class="toc_mobile_items-number">2.4.1.</span> <span class="toc_mobile_items-text">3.1 笔记采集的目的 (Purpose of Note Collection)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-2-采集操作流程-Collection-Process"><span class="toc_mobile_items-number">2.4.2.</span> <span class="toc_mobile_items-text">3.2 采集操作流程 (Collection Process)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-3-评论区数据的价值-Value-of-Comment-Section-Data"><span class="toc_mobile_items-number">2.4.3.</span> <span class="toc_mobile_items-text">3.3 评论区数据的价值 (Value of Comment Section Data)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第四部分：AI提取爆款模板-AI-Viral-Template-Extraction"><span class="toc_mobile_items-number">2.5.</span> <span class="toc_mobile_items-text">第四部分：AI提取爆款模板 (AI Viral Template Extraction)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-1-什么是爆款模板-What-is-a-Viral-Template"><span class="toc_mobile_items-number">2.5.1.</span> <span class="toc_mobile_items-text">4.1 什么是爆款模板 (What is a Viral Template)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-2-传统提取方式的问题-Problems-with-Traditional-Extraction"><span class="toc_mobile_items-number">2.5.2.</span> <span class="toc_mobile_items-text">4.2 传统提取方式的问题 (Problems with Traditional Extraction)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-3-一键提取爆款模板-One-click-Template-Extraction"><span class="toc_mobile_items-number">2.5.3.</span> <span class="toc_mobile_items-text">4.3 一键提取爆款模板 (One-click Template Extraction)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第五部分：批量原创内容生成-Batch-Original-Content-Generation"><span class="toc_mobile_items-number">2.6.</span> <span class="toc_mobile_items-text">第五部分：批量原创内容生成 (Batch Original Content Generation)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-1-跨赛道模板套利策略-Cross-niche-Template-Arbitrage"><span class="toc_mobile_items-number">2.6.1.</span> <span class="toc_mobile_items-text">5.1 跨赛道模板套利策略 (Cross-niche Template Arbitrage)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-2-批量生成操作流程-Batch-Generation-Process"><span class="toc_mobile_items-number">2.6.2.</span> <span class="toc_mobile_items-text">5.2 批量生成操作流程 (Batch Generation Process)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-3-为什么这种方法有效-Why-This-Method-Works"><span class="toc_mobile_items-number">2.6.3.</span> <span class="toc_mobile_items-text">5.3 为什么这种方法有效 (Why This Method Works)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第六部分：自动发布机制-Auto-publishing-Mechanism"><span class="toc_mobile_items-number">2.7.</span> <span class="toc_mobile_items-text">第六部分：自动发布机制 (Auto-publishing Mechanism)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#6-1-发布前准备-Pre-publishing-Preparation"><span class="toc_mobile_items-number">2.7.1.</span> <span class="toc_mobile_items-text">6.1 发布前准备 (Pre-publishing Preparation)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#6-2-一键发布流程-One-click-Publishing-Process"><span class="toc_mobile_items-number">2.7.2.</span> <span class="toc_mobile_items-text">6.2 一键发布流程 (One-click Publishing Process)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#6-3-多平台扩展-Multi-platform-Extension"><span class="toc_mobile_items-number">2.7.3.</span> <span class="toc_mobile_items-text">6.3 多平台扩展 (Multi-platform Extension)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第七部分：效率与产能分析-Efficiency-And-Capacity-Analysis"><span class="toc_mobile_items-number">2.8.</span> <span class="toc_mobile_items-text">第七部分：效率与产能分析 (Efficiency And Capacity Analysis)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#7-1-时间效率对比-Time-Efficiency-Comparison"><span class="toc_mobile_items-number">2.8.1.</span> <span class="toc_mobile_items-text">7.1 时间效率对比 (Time Efficiency Comparison)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#7-2-产能提升-Capacity-Enhancement"><span class="toc_mobile_items-number">2.8.2.</span> <span class="toc_mobile_items-text">7.2 产能提升 (Capacity Enhancement)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#7-3-团队协作价值-Team-Collaboration-Value"><span class="toc_mobile_items-number">2.8.3.</span> <span class="toc_mobile_items-text">7.3 团队协作价值 (Team Collaboration Value)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#第八部分：核心方法论总结-Core-Methodology-Summary"><span class="toc_mobile_items-number">2.9.</span> <span class="toc_mobile_items-text">第八部分：核心方法论总结 (Core Methodology Summary)</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#8-1-流量获取的底层逻辑-Underlying-Logic-of-Traffic-Acquisition"><span class="toc_mobile_items-number">2.9.1.</span> <span class="toc_mobile_items-text">8.1 流量获取的底层逻辑 (Underlying Logic of Traffic Acquisition)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#8-2-小众词策略-Niche-Keywords-Strategy"><span class="toc_mobile_items-number">2.9.2.</span> <span class="toc_mobile_items-text">8.2 小众词策略 (Niche Keywords Strategy)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#8-3-全链路自动化的价值-Value-of-Full-chain-Automation"><span class="toc_mobile_items-number">2.9.3.</span> <span class="toc_mobile_items-text">8.3 全链路自动化的价值 (Value of Full-chain Automation)</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#关键术语汇总表-Key-Terms-Glossary"><span class="toc_mobile_items-number">2.10.</span> <span class="toc_mobile_items-text">关键术语汇总表 (Key Terms Glossary)</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#课程总结"><span class="toc_mobile_items-number">2.11.</span> <span class="toc_mobile_items-text">课程总结</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#莫言AI全自动内容运营"><span class="toc-number">1.</span> <span class="toc-text">莫言AI全自动内容运营</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User"><span class="toc-number">1.1.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant"><span class="toc-number">1.2.</span> <span class="toc-text">🤖 Assistant</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Menes-AI-全自动自媒体运营工具详解-Menes-AI-Automated-Social-Media-Operation-Tool"><span class="toc-number">2.</span> <span class="toc-text">Menes AI 全自动自媒体运营工具详解 (Menes AI: Automated Social Media Operation Tool)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程导言"><span class="toc-number">2.1.</span> <span class="toc-text">课程导言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一部分：工具概述与核心价值-Tool-Overview-and-Core-Value"><span class="toc-number">2.2.</span> <span class="toc-text">第一部分：工具概述与核心价值 (Tool Overview and Core Value)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-产品定位-Product-Positioning"><span class="toc-number">2.2.1.</span> <span class="toc-text">1.1 产品定位 (Product Positioning)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-全链路功能架构-Full-chain-Function-Architecture"><span class="toc-number">2.2.2.</span> <span class="toc-text">1.2 全链路功能架构 (Full-chain Function Architecture)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-适用范围-Applicable-Scenarios"><span class="toc-number">2.2.3.</span> <span class="toc-text">1.3 适用范围 (Applicable Scenarios)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二部分：AI调研——下拉词裂变技术-AI-Research-Dropdown-Keywords-Expansion"><span class="toc-number">2.3.</span> <span class="toc-text">第二部分：AI调研——下拉词裂变技术 (AI Research: Dropdown Keywords Expansion)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-什么是下拉词-What-Are-Dropdown-Keywords"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.1 什么是下拉词 (What Are Dropdown Keywords)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-传统调研的痛点-Pain-Points-of-Traditional-Research"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.2 传统调研的痛点 (Pain Points of Traditional Research)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-一键提取下拉词操作流程-One-click-Dropdown-Keywords-Extraction"><span class="toc-number">2.3.3.</span> <span class="toc-text">2.3 一键提取下拉词操作流程 (One-click Dropdown Keywords Extraction)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-下拉词的深度裂变策略-Deep-Expansion-Strategy"><span class="toc-number">2.3.4.</span> <span class="toc-text">2.4 下拉词的深度裂变策略 (Deep Expansion Strategy)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-寻找小众高爆款率模板的技巧-Finding-Niche-High-viral-Templates"><span class="toc-number">2.3.5.</span> <span class="toc-text">2.5 寻找小众高爆款率模板的技巧 (Finding Niche High-viral Templates)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三部分：AI笔记采集-AI-Note-Collection"><span class="toc-number">2.4.</span> <span class="toc-text">第三部分：AI笔记采集 (AI Note Collection)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-笔记采集的目的-Purpose-of-Note-Collection"><span class="toc-number">2.4.1.</span> <span class="toc-text">3.1 笔记采集的目的 (Purpose of Note Collection)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-采集操作流程-Collection-Process"><span class="toc-number">2.4.2.</span> <span class="toc-text">3.2 采集操作流程 (Collection Process)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-评论区数据的价值-Value-of-Comment-Section-Data"><span class="toc-number">2.4.3.</span> <span class="toc-text">3.3 评论区数据的价值 (Value of Comment Section Data)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四部分：AI提取爆款模板-AI-Viral-Template-Extraction"><span class="toc-number">2.5.</span> <span class="toc-text">第四部分：AI提取爆款模板 (AI Viral Template Extraction)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-什么是爆款模板-What-is-a-Viral-Template"><span class="toc-number">2.5.1.</span> <span class="toc-text">4.1 什么是爆款模板 (What is a Viral Template)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-传统提取方式的问题-Problems-with-Traditional-Extraction"><span class="toc-number">2.5.2.</span> <span class="toc-text">4.2 传统提取方式的问题 (Problems with Traditional Extraction)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-一键提取爆款模板-One-click-Template-Extraction"><span class="toc-number">2.5.3.</span> <span class="toc-text">4.3 一键提取爆款模板 (One-click Template Extraction)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五部分：批量原创内容生成-Batch-Original-Content-Generation"><span class="toc-number">2.6.</span> <span class="toc-text">第五部分：批量原创内容生成 (Batch Original Content Generation)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-跨赛道模板套利策略-Cross-niche-Template-Arbitrage"><span class="toc-number">2.6.1.</span> <span class="toc-text">5.1 跨赛道模板套利策略 (Cross-niche Template Arbitrage)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-批量生成操作流程-Batch-Generation-Process"><span class="toc-number">2.6.2.</span> <span class="toc-text">5.2 批量生成操作流程 (Batch Generation Process)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-为什么这种方法有效-Why-This-Method-Works"><span class="toc-number">2.6.3.</span> <span class="toc-text">5.3 为什么这种方法有效 (Why This Method Works)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第六部分：自动发布机制-Auto-publishing-Mechanism"><span class="toc-number">2.7.</span> <span class="toc-text">第六部分：自动发布机制 (Auto-publishing Mechanism)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-发布前准备-Pre-publishing-Preparation"><span class="toc-number">2.7.1.</span> <span class="toc-text">6.1 发布前准备 (Pre-publishing Preparation)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-一键发布流程-One-click-Publishing-Process"><span class="toc-number">2.7.2.</span> <span class="toc-text">6.2 一键发布流程 (One-click Publishing Process)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-多平台扩展-Multi-platform-Extension"><span class="toc-number">2.7.3.</span> <span class="toc-text">6.3 多平台扩展 (Multi-platform Extension)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第七部分：效率与产能分析-Efficiency-And-Capacity-Analysis"><span class="toc-number">2.8.</span> <span class="toc-text">第七部分：效率与产能分析 (Efficiency And Capacity Analysis)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-时间效率对比-Time-Efficiency-Comparison"><span class="toc-number">2.8.1.</span> <span class="toc-text">7.1 时间效率对比 (Time Efficiency Comparison)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-产能提升-Capacity-Enhancement"><span class="toc-number">2.8.2.</span> <span class="toc-text">7.2 产能提升 (Capacity Enhancement)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-团队协作价值-Team-Collaboration-Value"><span class="toc-number">2.8.3.</span> <span class="toc-text">7.3 团队协作价值 (Team Collaboration Value)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第八部分：核心方法论总结-Core-Methodology-Summary"><span class="toc-number">2.9.</span> <span class="toc-text">第八部分：核心方法论总结 (Core Methodology Summary)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-流量获取的底层逻辑-Underlying-Logic-of-Traffic-Acquisition"><span class="toc-number">2.9.1.</span> <span class="toc-text">8.1 流量获取的底层逻辑 (Underlying Logic of Traffic Acquisition)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-小众词策略-Niche-Keywords-Strategy"><span class="toc-number">2.9.2.</span> <span class="toc-text">8.2 小众词策略 (Niche Keywords Strategy)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-全链路自动化的价值-Value-of-Full-chain-Automation"><span class="toc-number">2.9.3.</span> <span class="toc-text">8.3 全链路自动化的价值 (Value of Full-chain Automation)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关键术语汇总表-Key-Terms-Glossary"><span class="toc-number">2.10.</span> <span class="toc-text">关键术语汇总表 (Key Terms Glossary)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程总结"><span class="toc-number">2.11.</span> <span class="toc-text">课程总结</span></a></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">莫言AI全自动内容运营</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2026-01-24<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2026-01-25</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/00-inbox/">00-inbox</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2026/01/24/00-inbox/%E8%8E%AB%E8%A8%80AI%E5%85%A8%E8%87%AA%E5%8A%A8%E5%86%85%E5%AE%B9%E8%BF%90%E8%90%A5/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2026/01/24/00-inbox/%E8%8E%AB%E8%A8%80AI%E5%85%A8%E8%87%AA%E5%8A%A8%E5%86%85%E5%AE%B9%E8%BF%90%E8%90%A5/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="莫言AI全自动内容运营"><a href="#莫言AI全自动内容运营" class="headerlink" title="莫言AI全自动内容运营"></a>莫言AI全自动内容运营</h1><h2 id="🧑‍💻-User"><a href="#🧑‍💻-User" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><blockquote>
+<p><a href="https://www.bilibili.com/list/watchlater/?bvid=BV1oHSbBeEWx&amp;oid=115651070920024&amp;watchlater_cfg=%7B%22viewed%22%3A0,%22key%22%3A%22%22,%22asc%22%3Afalse%7D&amp;spm_id_from=333.881.0.0&amp;vd_source=be3cdcd75d88c33815c418be455cba45" target="_blank" rel="external nofollow noopener noreferrer">https://www.bilibili.com/list/watchlater/?bvid=BV1oHSbBeEWx&amp;oid=115651070920024&amp;watchlater_cfg=%7B%22viewed%22%3A0,%22key%22%3A%22%22,%22asc%22%3Afalse%7D&amp;spm_id_from=333.881.0.0&amp;vd_source=be3cdcd75d88c33815c418be455cba45</a></p>
+<p>渡</p>
+<h2 id="🤖-Assistant"><a href="#🤖-Assistant" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2></blockquote>
+<h1 id="Menes-AI-全自动自媒体运营工具详解-Menes-AI-Automated-Social-Media-Operation-Tool"><a href="#Menes-AI-全自动自媒体运营工具详解-Menes-AI-Automated-Social-Media-Operation-Tool" class="headerlink" title="Menes AI 全自动自媒体运营工具详解 (Menes AI: Automated Social Media Operation Tool)"></a>Menes AI 全自动自媒体运营工具详解 (Menes AI: Automated Social Media Operation Tool)</h1><h2 id="课程导言"><a href="#课程导言" class="headerlink" title="课程导言"></a>课程导言</h2><p>欢迎来到本次关于 <strong>Menes AI（莫言AI）</strong> 自媒体运营工具的详细讲解。本课程将带你深入了解这款能够实现<strong>全链路自动化运营（Full-chain Automated Operation）</strong>的AI软件，帮助你理解如何利用AI技术实现”一个人就是一个团队”的高效运营模式。</p>
+<p>本课程将涵盖以下核心内容：</p>
+<ul>
+<li><strong>工具定位与核心价值</strong>：理解Menes AI解决的痛点</li>
+<li><strong>下拉词裂变技术（Dropdown Keywords Expansion）</strong>：快速获取260+选题</li>
+<li><strong>爆款模板采集与提取（Viral Template Collection &amp; Extraction）</strong>：找到可复用的内容框架</li>
+<li><strong>批量原创内容生成（Batch Original Content Generation）</strong>：跨赛道模板套利</li>
+<li><strong>自动发布机制（Auto-publishing Mechanism）</strong>：实现全流程自动化</li>
+</ul>
+<hr>
+<h2 id="第一部分：工具概述与核心价值-Tool-Overview-and-Core-Value"><a href="#第一部分：工具概述与核心价值-Tool-Overview-and-Core-Value" class="headerlink" title="第一部分：工具概述与核心价值 (Tool Overview and Core Value)"></a>第一部分：工具概述与核心价值 (Tool Overview and Core Value)</h2><h3 id="1-1-产品定位-Product-Positioning"><a href="#1-1-产品定位-Product-Positioning" class="headerlink" title="1.1 产品定位 (Product Positioning)"></a>1.1 产品定位 (Product Positioning)</h3><p><strong>Menes AI</strong> 是一款专注于<strong>小红书（Xiaohongshu/RED）</strong>平台的全自动内容运营工具。与传统的AI获客工具不同，它的核心优势在于能够覆盖内容运营的<strong>完整链路（Complete Pipeline）</strong>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>传统工具的局限</th>
+<th>Menes AI的突破</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>只能完成单一环节</td>
+<td>从调研到发布全自动</td>
+</tr>
+<tr>
+<td>需要人工介入多个步骤</td>
+<td>解放双手，全程自动化</td>
+</tr>
+<tr>
+<td>无法系统化选题</td>
+<td>5分钟裂变260个选题</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>核心理念</strong>：该工具结合了<strong>AI（人工智能）</strong>与<strong>RPA（Robotic Process Automation，机器人流程自动化）</strong>技术，实现了内容创作的工业化生产。</p>
+<h3 id="1-2-全链路功能架构-Full-chain-Function-Architecture"><a href="#1-2-全链路功能架构-Full-chain-Function-Architecture" class="headerlink" title="1.2 全链路功能架构 (Full-chain Function Architecture)"></a>1.2 全链路功能架构 (Full-chain Function Architecture)</h3><p>Menes AI的功能架构可以从三个层次来理解：</p>
+<p><strong>第一层：顶层商业设计（Top-level Business Design）</strong></p>
+<ul>
+<li>商业架构规划</li>
+<li>流量爆品打造策略</li>
+<li>商业模式裂变</li>
+</ul>
+<p><strong>第二层：内容创作工厂（Content Creation Factory）</strong></p>
+<ul>
+<li>自然流爆款创作工厂（Organic Traffic Content Factory）</li>
+<li>IP打造爆款创作工厂（Personal IP Content Factory）</li>
+</ul>
+<p><strong>第三层：执行链路（Execution Pipeline）</strong></p>
+<ol>
+<li>衍生词批量生成（Derivative Keywords Batch Generation）</li>
+<li>爆款模板和文案采集（Viral Template &amp; Copy Collection）</li>
+<li>底层逻辑提炼（Underlying Logic Extraction）</li>
+<li>图文/视频合成（Image-text/Video Synthesis）</li>
+<li>自动发布（Auto-publishing）</li>
+</ol>
+<h3 id="1-3-适用范围-Applicable-Scenarios"><a href="#1-3-适用范围-Applicable-Scenarios" class="headerlink" title="1.3 适用范围 (Applicable Scenarios)"></a>1.3 适用范围 (Applicable Scenarios)</h3><p>根据视频中的介绍，该工具经过约<strong>六个月的内部测试</strong>，适用于几乎所有赛道：</p>
+<ul>
+<li><strong>线上赛道</strong>：个人IP打造、知识付费、跨境电商</li>
+<li><strong>线下赛道</strong>：装修、美业、医美、家具</li>
+<li><strong>同城赛道</strong>：本地生活服务、传统行业</li>
+<li><strong>垂直领域</strong>：大健康、支付费、负债咨询等</li>
+</ul>
+<hr>
+<h2 id="第二部分：AI调研——下拉词裂变技术-AI-Research-Dropdown-Keywords-Expansion"><a href="#第二部分：AI调研——下拉词裂变技术-AI-Research-Dropdown-Keywords-Expansion" class="headerlink" title="第二部分：AI调研——下拉词裂变技术 (AI Research: Dropdown Keywords Expansion)"></a>第二部分：AI调研——下拉词裂变技术 (AI Research: Dropdown Keywords Expansion)</h2><h3 id="2-1-什么是下拉词-What-Are-Dropdown-Keywords"><a href="#2-1-什么是下拉词-What-Are-Dropdown-Keywords" class="headerlink" title="2.1 什么是下拉词 (What Are Dropdown Keywords)"></a>2.1 什么是下拉词 (What Are Dropdown Keywords)</h3><p><strong>下拉词（Dropdown Keywords）</strong>是指用户在小红书搜索框中输入关键词后，系统自动推荐的相关搜索词。这些词代表了<strong>用户的真实搜索意图（User Search Intent）</strong>。</p>
+<p><strong>举例说明</strong>：</p>
+<ul>
+<li>当你搜索”大健康”时，系统会显示：大健康AI赛道、大健康行业、大健康创富等</li>
+<li>当你继续输入字母”A”、”B”、”C”时，会出现更多相关词汇</li>
+</ul>
+<p><strong>下拉词的价值</strong>：</p>
+<ol>
+<li><strong>选题调研方向</strong>：直接反映用户关注点</li>
+<li><strong>爆款模板来源</strong>：通过下拉词找到对应的热门内容</li>
+<li><strong>笔记标签优化</strong>：使用下拉词作为标签可增加流量</li>
+</ol>
+<h3 id="2-2-传统调研的痛点-Pain-Points-of-Traditional-Research"><a href="#2-2-传统调研的痛点-Pain-Points-of-Traditional-Research" class="headerlink" title="2.2 传统调研的痛点 (Pain Points of Traditional Research)"></a>2.2 传统调研的痛点 (Pain Points of Traditional Research)</h3><p>在没有工具辅助的情况下，运营人员需要：</p>
+<ul>
+<li>手动在搜索框输入关键词</li>
+<li>逐个字母（A-Z）查看下拉词</li>
+<li>一个个复制、整理到文档中</li>
+<li>耗时耗力，效率极低</li>
+</ul>
+<h3 id="2-3-一键提取下拉词操作流程-One-click-Dropdown-Keywords-Extraction"><a href="#2-3-一键提取下拉词操作流程-One-click-Dropdown-Keywords-Extraction" class="headerlink" title="2.3 一键提取下拉词操作流程 (One-click Dropdown Keywords Extraction)"></a>2.3 一键提取下拉词操作流程 (One-click Dropdown Keywords Extraction)</h3><p><strong>步骤一：环境准备</strong></p>
+<p>首先需要配置<strong>指纹浏览器（Fingerprint Browser）</strong>：</p>
+<ul>
+<li>创建新的浏览器端口</li>
+<li>可选择添加主机代理IP（用于多账号管理）</li>
+<li>登录小红书创作者中心</li>
+</ul>
+<p><strong>指纹浏览器的作用</strong>：模拟不同的浏览器环境，避免平台检测到多账号操作。</p>
+<p><strong>步骤二：执行下拉词采集</strong></p>
+<ol>
+<li>打开Menes AI的”小红书电源工厂”模块</li>
+<li>输入你的赛道核心关键词（如”创业”）</li>
+<li>点击”一键提取下拉词”</li>
+<li>系统自动遍历A-Z共26个字母</li>
+<li>约5分钟内获取<strong>260个下拉词</strong>（每个字母约10个词）</li>
+</ol>
+<p><strong>关键点</strong>：整个过程完全自动化，无需手动操作。</p>
+<h3 id="2-4-下拉词的深度裂变策略-Deep-Expansion-Strategy"><a href="#2-4-下拉词的深度裂变策略-Deep-Expansion-Strategy" class="headerlink" title="2.4 下拉词的深度裂变策略 (Deep Expansion Strategy)"></a>2.4 下拉词的深度裂变策略 (Deep Expansion Strategy)</h3><p>获取初始下拉词后，可以进行<strong>二次裂变（Secondary Expansion）</strong>：</p>
+<p><strong>方法一：AI分析高频词</strong></p>
+<ol>
+<li>将采集的下拉词文件保存到素材库</li>
+<li>使用Menes AI内置的对话模型（版本7.3，定位为”顶级投流专家”）</li>
+<li>上传文件并输入指令：”帮我提炼总结以下分析”</li>
+<li>AI会分析出<strong>高频出现的关键词</strong></li>
+</ol>
+<p><strong>分析结果示例</strong>：</p>
+<ul>
+<li>创业项目小成本：出现11次</li>
+<li>创业计划书：高频词</li>
+<li>创业做什么好：高频词</li>
+</ul>
+<p><strong>方法二：递归裂变</strong></p>
+<ol>
+<li>从高频词中选取一个（如”创业小成本项目”）</li>
+<li>在小红书中搜索该词</li>
+<li>观察新出现的下拉词（如”女生创业”、”银发经济”）</li>
+<li>将新词再次放入工具进行260词裂变</li>
+<li>循环往复，<strong>选题取之不尽</strong></li>
+</ol>
+<h3 id="2-5-寻找小众高爆款率模板的技巧-Finding-Niche-High-viral-Templates"><a href="#2-5-寻找小众高爆款率模板的技巧-Finding-Niche-High-viral-Templates" class="headerlink" title="2.5 寻找小众高爆款率模板的技巧 (Finding Niche High-viral Templates)"></a>2.5 寻找小众高爆款率模板的技巧 (Finding Niche High-viral Templates)</h3><p><strong>核心原则</strong>：不要只搜索大众关键词，要寻找<strong>小众但精准</strong>的词汇。</p>
+<p><strong>实操技巧</strong>：</p>
+<ul>
+<li>不直接搜索”创业”，而是搜索”野路子”、”前辈有没有什么野路子”</li>
+<li>这类词汇的特点：<ul>
+<li>发布的人少（竞争小）</li>
+<li>人群属性精准（都是创业人群）</li>
+<li>模板更容易爆</li>
+</ul>
+</li>
+</ul>
+<p><strong>筛选条件设置</strong>：</p>
+<ul>
+<li>时间范围：一周内</li>
+<li>排序方式：最多点赞</li>
+<li>这样能找到<strong>最新且已验证有效</strong>的爆款模板</li>
+</ul>
+<hr>
+<h2 id="第三部分：AI笔记采集-AI-Note-Collection"><a href="#第三部分：AI笔记采集-AI-Note-Collection" class="headerlink" title="第三部分：AI笔记采集 (AI Note Collection)"></a>第三部分：AI笔记采集 (AI Note Collection)</h2><h3 id="3-1-笔记采集的目的-Purpose-of-Note-Collection"><a href="#3-1-笔记采集的目的-Purpose-of-Note-Collection" class="headerlink" title="3.1 笔记采集的目的 (Purpose of Note Collection)"></a>3.1 笔记采集的目的 (Purpose of Note Collection)</h3><p>在确定了选题方向后，下一步是<strong>采集该选题下的爆款笔记</strong>，用于：</p>
+<ul>
+<li>分析爆款内容的结构</li>
+<li>提取可复用的模板</li>
+<li>获取配图参考</li>
+</ul>
+<h3 id="3-2-采集操作流程-Collection-Process"><a href="#3-2-采集操作流程-Collection-Process" class="headerlink" title="3.2 采集操作流程 (Collection Process)"></a>3.2 采集操作流程 (Collection Process)</h3><p><strong>步骤一：设置筛选条件</strong></p>
+<ul>
+<li>在小红书搜索目标关键词</li>
+<li>筛选条件：最多点赞 + 一周内/半个月内</li>
+<li>这样能确保采集到的是<strong>近期验证有效的爆款</strong></li>
+</ul>
+<p><strong>步骤二：执行批量采集</strong></p>
+<ol>
+<li>在Menes AI中打开”笔记评论采集”模块</li>
+<li>输入目标关键词</li>
+<li>选择已启动的指纹浏览器</li>
+<li>点击”开始笔记采集”</li>
+</ol>
+<p><strong>采集内容包括</strong>：<br>| 采集项目 | 说明 |<br>|————-|———|<br>| 标题（Title） | 笔记的标题文案 |<br>| 正文内容（Content） | 完整的笔记文案 |<br>| 标签（Tags） | 笔记使用的话题标签 |<br>| 图片（Images） | 所有配图，可直接下载 |</p>
+<p><strong>效率优势</strong>：传统手动调研速度极慢，而工具采集速度”非常夸张”，可快速获取大量样本。</p>
+<h3 id="3-3-评论区数据的价值-Value-of-Comment-Section-Data"><a href="#3-3-评论区数据的价值-Value-of-Comment-Section-Data" class="headerlink" title="3.3 评论区数据的价值 (Value of Comment Section Data)"></a>3.3 评论区数据的价值 (Value of Comment Section Data)</h3><p>除了笔记本身，工具还支持<strong>采集评论区用户数据</strong>：</p>
+<ul>
+<li>分析用户画像</li>
+<li>建立用户档案</li>
+<li>了解目标受众的真实需求和痛点</li>
+</ul>
+<hr>
+<h2 id="第四部分：AI提取爆款模板-AI-Viral-Template-Extraction"><a href="#第四部分：AI提取爆款模板-AI-Viral-Template-Extraction" class="headerlink" title="第四部分：AI提取爆款模板 (AI Viral Template Extraction)"></a>第四部分：AI提取爆款模板 (AI Viral Template Extraction)</h2><h3 id="4-1-什么是爆款模板-What-is-a-Viral-Template"><a href="#4-1-什么是爆款模板-What-is-a-Viral-Template" class="headerlink" title="4.1 什么是爆款模板 (What is a Viral Template)"></a>4.1 什么是爆款模板 (What is a Viral Template)</h3><p><strong>爆款模板（Viral Template）</strong>是指从成功的爆款内容中提炼出的<strong>可复用的内容框架</strong>，包括：</p>
+<ul>
+<li>标题结构</li>
+<li>正文逻辑</li>
+<li>心理学技巧</li>
+<li>标签策略</li>
+<li>配图建议</li>
+</ul>
+<h3 id="4-2-传统提取方式的问题-Problems-with-Traditional-Extraction"><a href="#4-2-传统提取方式的问题-Problems-with-Traditional-Extraction" class="headerlink" title="4.2 传统提取方式的问题 (Problems with Traditional Extraction)"></a>4.2 传统提取方式的问题 (Problems with Traditional Extraction)</h3><p>传统方式需要：</p>
+<ol>
+<li>手动复制文案</li>
+<li>复制作品链接和图片</li>
+<li>自己编写提示词让AI总结</li>
+<li>往往不知道如何写有效的提示词</li>
+</ol>
+<h3 id="4-3-一键提取爆款模板-One-click-Template-Extraction"><a href="#4-3-一键提取爆款模板-One-click-Template-Extraction" class="headerlink" title="4.3 一键提取爆款模板 (One-click Template Extraction)"></a>4.3 一键提取爆款模板 (One-click Template Extraction)</h3><p><strong>操作方法</strong>：</p>
+<ol>
+<li>在采集完成的笔记列表中</li>
+<li>点击右上角”一键提取爆款模板”</li>
+<li>约2分钟自动生成完整模板</li>
+</ol>
+<p><strong>生成的模板内容包括</strong>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模板组成部分</th>
+<th>具体内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>适用对象（Target Audience）</td>
+<td>如：创业者、职场人士、商业学习者</td>
+</tr>
+<tr>
+<td>疯传基因（Viral Factors）</td>
+<td>内容为何能引发传播的心理学分析</td>
+</tr>
+<tr>
+<td>正文结构（Content Structure）</td>
+<td>如：用数据制造敬畏感和紧迫感、结构化拆解、结尾升华</td>
+</tr>
+<tr>
+<td>标签建议（Tag Suggestions）</td>
+<td>推荐使用的话题标签</td>
+</tr>
+<tr>
+<td>配图建议（Image Suggestions）</td>
+<td>配图风格和内容建议</td>
+</tr>
+<tr>
+<td>心理学结构（Psychological Structure）</td>
+<td>内容背后的心理学原理</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>技术优势</strong>：Menes AI的模型融入了大量<strong>原创心理学知识库</strong>和<strong>私域获客知识库</strong>，能够深度分析爆款内容的底层逻辑。</p>
+<hr>
+<h2 id="第五部分：批量原创内容生成-Batch-Original-Content-Generation"><a href="#第五部分：批量原创内容生成-Batch-Original-Content-Generation" class="headerlink" title="第五部分：批量原创内容生成 (Batch Original Content Generation)"></a>第五部分：批量原创内容生成 (Batch Original Content Generation)</h2><h3 id="5-1-跨赛道模板套利策略-Cross-niche-Template-Arbitrage"><a href="#5-1-跨赛道模板套利策略-Cross-niche-Template-Arbitrage" class="headerlink" title="5.1 跨赛道模板套利策略 (Cross-niche Template Arbitrage)"></a>5.1 跨赛道模板套利策略 (Cross-niche Template Arbitrage)</h3><p>这是本课程最核心的策略之一：<strong>不要只在本赛道内找模板，要跨赛道套用</strong>。</p>
+<p><strong>核心理念</strong>：</p>
+<blockquote>
+<p>“聪明人搞流量千万不要盯着表面去看，我们要透过现象看本质。”</p>
+</blockquote>
+<p><strong>操作逻辑</strong>：</p>
+<ol>
+<li>从A赛道（如创业）提取爆款模板</li>
+<li>将模板套用到B赛道（如大健康）</li>
+<li>生成的内容是<strong>纯原创</strong>，全网从未出现过</li>
+<li>因为没有竞争，爆款概率极高</li>
+</ol>
+<p><strong>举例</strong>：</p>
+<ul>
+<li>原模板：《一天吃透一条产业链》（创业赛道）</li>
+<li>套用后：《一天吃透大健康产业链全梳理》（大健康赛道）</li>
+</ul>
+<h3 id="5-2-批量生成操作流程-Batch-Generation-Process"><a href="#5-2-批量生成操作流程-Batch-Generation-Process" class="headerlink" title="5.2 批量生成操作流程 (Batch Generation Process)"></a>5.2 批量生成操作流程 (Batch Generation Process)</h3><p><strong>步骤一：保存模板到模板库</strong></p>
+<ul>
+<li>在提取完成后点击”单个保存到模板库”</li>
+</ul>
+<p><strong>步骤二：配置生成参数</strong></p>
+<ol>
+<li>前往模板库，找到目标模板</li>
+<li>点击”按此模板生成内容”</li>
+<li>设置<strong>核心变量（Core Variables）</strong>：<ul>
+<li>输入你的赛道关键词（如：大健康、保健、男性保养）</li>
+<li>可输入多个关键词增加变量</li>
+</ul>
+</li>
+<li>选择内容类型：文章 或 视频脚本</li>
+<li>设置生成数量（如：3篇）</li>
+</ol>
+<p><strong>步骤三：执行生成</strong></p>
+<ul>
+<li>点击”生成”</li>
+<li>约2分钟完成</li>
+<li>生成的内容自动保存到”灵感草稿箱”</li>
+</ul>
+<p><strong>生成结果示例</strong>：</p>
+<ul>
+<li>《一天吃透大健康产业链全梳理》</li>
+<li>《男性保健产业链全梳理》</li>
+<li>《男性健康保健机会全梳理》</li>
+</ul>
+<h3 id="5-3-为什么这种方法有效-Why-This-Method-Works"><a href="#5-3-为什么这种方法有效-Why-This-Method-Works" class="headerlink" title="5.3 为什么这种方法有效 (Why This Method Works)"></a>5.3 为什么这种方法有效 (Why This Method Works)</h3><p><strong>流量的本质是抄爆款</strong>，但关键在于<strong>怎么抄</strong>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>低效做法</th>
+<th>高效做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>在同赛道抄同样的模板</td>
+<td>跨赛道套用模板</td>
+</tr>
+<tr>
+<td>内容同质化严重</td>
+<td>内容独一无二</td>
+</tr>
+<tr>
+<td>竞争激烈</td>
+<td>几乎无竞争</td>
+</tr>
+<tr>
+<td>靠”玄学”爆款</td>
+<td>靠”概率”爆款</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>高手与普通人的差距</strong>：</p>
+<blockquote>
+<p>“为什么你发的作品很难爆，但是高手去做小红书，十台手机能爆八台？”</p>
+</blockquote>
+<p>答案就在于：高手掌握了<strong>跨平台、跨赛道的模板套利方法</strong>。</p>
+<hr>
+<h2 id="第六部分：自动发布机制-Auto-publishing-Mechanism"><a href="#第六部分：自动发布机制-Auto-publishing-Mechanism" class="headerlink" title="第六部分：自动发布机制 (Auto-publishing Mechanism)"></a>第六部分：自动发布机制 (Auto-publishing Mechanism)</h2><h3 id="6-1-发布前准备-Pre-publishing-Preparation"><a href="#6-1-发布前准备-Pre-publishing-Preparation" class="headerlink" title="6.1 发布前准备 (Pre-publishing Preparation)"></a>6.1 发布前准备 (Pre-publishing Preparation)</h3><p><strong>配图处理</strong>：</p>
+<ul>
+<li>可手动上传图片</li>
+<li>也可根据模板的”配图建议”使用AI生成原创配图</li>
+<li>AI生图功能可批量生成，直接使用</li>
+</ul>
+<p><strong>注意事项</strong>：<br>小红书的<strong>创作者中心</strong>和<strong>网页浏览器</strong>是两个不同的窗口，发布时需要：</p>
+<ol>
+<li>在指纹浏览器中打开创作者服务中心</li>
+<li>登录账号</li>
+<li>缩小窗口后返回Menes AI操作</li>
+</ol>
+<h3 id="6-2-一键发布流程-One-click-Publishing-Process"><a href="#6-2-一键发布流程-One-click-Publishing-Process" class="headerlink" title="6.2 一键发布流程 (One-click Publishing Process)"></a>6.2 一键发布流程 (One-click Publishing Process)</h3><ol>
+<li>在草稿箱中选择要发布的内容</li>
+<li>上传配图</li>
+<li>进入”待发布中心”</li>
+<li>选择”浏览器发布”</li>
+<li>选择对应的指纹浏览器（创作者中心）</li>
+<li>点击”一键发布”</li>
+</ol>
+<p><strong>自动化程度</strong>：</p>
+<blockquote>
+<p>“接下来的所有流程全部全自动，鼠标离开电脑，键盘离开电脑，不需要你用手。”</p>
+</blockquote>
+<h3 id="6-3-多平台扩展-Multi-platform-Extension"><a href="#6-3-多平台扩展-Multi-platform-Extension" class="headerlink" title="6.3 多平台扩展 (Multi-platform Extension)"></a>6.3 多平台扩展 (Multi-platform Extension)</h3><p>虽然本课程以小红书为主，但该方法同样适用于：</p>
+<ul>
+<li><strong>抖音图文</strong></li>
+<li><strong>视频号</strong></li>
+<li><strong>公众号</strong></li>
+</ul>
+<p>实现<strong>全平台内容矩阵</strong>的自动化运营。</p>
+<hr>
+<h2 id="第七部分：效率与产能分析-Efficiency-And-Capacity-Analysis"><a href="#第七部分：效率与产能分析-Efficiency-And-Capacity-Analysis" class="headerlink" title="第七部分：效率与产能分析 (Efficiency And Capacity Analysis)"></a>第七部分：效率与产能分析 (Efficiency And Capacity Analysis)</h2><h3 id="7-1-时间效率对比-Time-Efficiency-Comparison"><a href="#7-1-时间效率对比-Time-Efficiency-Comparison" class="headerlink" title="7.1 时间效率对比 (Time Efficiency Comparison)"></a>7.1 时间效率对比 (Time Efficiency Comparison)</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>传统方式</th>
+<th>使用Menes AI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>下拉词采集</td>
+<td>数小时手动整理</td>
+<td>5分钟自动完成260个</td>
+</tr>
+<tr>
+<td>爆款模板分析</td>
+<td>需要专业运营经验</td>
+<td>2分钟自动提取</td>
+</tr>
+<tr>
+<td>内容创作</td>
+<td>每篇30分钟-1小时</td>
+<td>批量生成，2分钟多篇</td>
+</tr>
+<tr>
+<td>发布</td>
+<td>手动操作</td>
+<td>全自动</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="7-2-产能提升-Capacity-Enhancement"><a href="#7-2-产能提升-Capacity-Enhancement" class="headerlink" title="7.2 产能提升 (Capacity Enhancement)"></a>7.2 产能提升 (Capacity Enhancement)</h3><p>使用这套方法：</p>
+<ul>
+<li><strong>选题库</strong>：一天可积累上千个选题</li>
+<li><strong>内容产出</strong>：一天可发布上千篇作品</li>
+<li><strong>人力成本</strong>：一个人 = 一个私域流量部门</li>
+</ul>
+<h3 id="7-3-团队协作价值-Team-Collaboration-Value"><a href="#7-3-团队协作价值-Team-Collaboration-Value" class="headerlink" title="7.3 团队协作价值 (Team Collaboration Value)"></a>7.3 团队协作价值 (Team Collaboration Value)</h3><p>采集的下拉词和模板可以：</p>
+<ul>
+<li>导出为文档</li>
+<li>存储到飞书等协作工具</li>
+<li>组建公司/部门的<strong>选题库（Topic Database）</strong></li>
+<li>实现知识资产的沉淀和复用</li>
+</ul>
+<hr>
+<h2 id="第八部分：核心方法论总结-Core-Methodology-Summary"><a href="#第八部分：核心方法论总结-Core-Methodology-Summary" class="headerlink" title="第八部分：核心方法论总结 (Core Methodology Summary)"></a>第八部分：核心方法论总结 (Core Methodology Summary)</h2><h3 id="8-1-流量获取的底层逻辑-Underlying-Logic-of-Traffic-Acquisition"><a href="#8-1-流量获取的底层逻辑-Underlying-Logic-of-Traffic-Acquisition" class="headerlink" title="8.1 流量获取的底层逻辑 (Underlying Logic of Traffic Acquisition)"></a>8.1 流量获取的底层逻辑 (Underlying Logic of Traffic Acquisition)</h3><blockquote>
+<p>“流量的本质就是抄爆款”</p>
+</blockquote>
+<p>但抄的方式决定了结果：</p>
+<ul>
+<li><strong>表面抄</strong>：同赛道抄同内容 → 同质化 → 难爆</li>
+<li><strong>本质抄</strong>：提取底层逻辑 → 跨赛道套用 → 原创 → 易爆</li>
+</ul>
+<h3 id="8-2-小众词策略-Niche-Keywords-Strategy"><a href="#8-2-小众词策略-Niche-Keywords-Strategy" class="headerlink" title="8.2 小众词策略 (Niche Keywords Strategy)"></a>8.2 小众词策略 (Niche Keywords Strategy)</h3><p>寻找爆款模板的核心技巧：</p>
+<ol>
+<li>不搜大众词，搜小众词</li>
+<li>小众词特点：发的人少 + 人群精准</li>
+<li>用小众词找到的模板竞争小、爆款率高</li>
+</ol>
+<h3 id="8-3-全链路自动化的价值-Value-of-Full-chain-Automation"><a href="#8-3-全链路自动化的价值-Value-of-Full-chain-Automation" class="headerlink" title="8.3 全链路自动化的价值 (Value of Full-chain Automation)"></a>8.3 全链路自动化的价值 (Value of Full-chain Automation)</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>传统运营</th>
+<th>AI自动化运营</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需要专业运营团队</td>
+<td>一个人即可完成</td>
+</tr>
+<tr>
+<td>依赖经验和”玄学”</td>
+<td>依赖数据和概率</td>
+</tr>
+<tr>
+<td>产出有限</td>
+<td>产出可规模化</td>
+</tr>
+<tr>
+<td>成本高</td>
+<td>成本极低</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="关键术语汇总表-Key-Terms-Glossary"><a href="#关键术语汇总表-Key-Terms-Glossary" class="headerlink" title="关键术语汇总表 (Key Terms Glossary)"></a>关键术语汇总表 (Key Terms Glossary)</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>中文术语</th>
+<th>英文术语</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全链路</td>
+<td>Full-chain/Pipeline</td>
+<td>从调研到发布的完整流程</td>
+</tr>
+<tr>
+<td>下拉词</td>
+<td>Dropdown Keywords</td>
+<td>搜索框自动推荐的关键词</td>
+</tr>
+<tr>
+<td>爆款模板</td>
+<td>Viral Template</td>
+<td>可复用的爆款内容框架</td>
+</tr>
+<tr>
+<td>指纹浏览器</td>
+<td>Fingerprint Browser</td>
+<td>模拟不同浏览器环境的工具</td>
+</tr>
+<tr>
+<td>RPA</td>
+<td>Robotic Process Automation</td>
+<td>机器人流程自动化</td>
+</tr>
+<tr>
+<td>跨赛道套利</td>
+<td>Cross-niche Arbitrage</td>
+<td>将A赛道模板套用到B赛道</td>
+</tr>
+<tr>
+<td>选题裂变</td>
+<td>Topic Expansion</td>
+<td>从一个词裂变出多个选题</td>
+</tr>
+<tr>
+<td>自然流</td>
+<td>Organic Traffic</td>
+<td>非付费推广获得的流量</td>
+</tr>
+<tr>
+<td>私域流量</td>
+<td>Private Domain Traffic</td>
+<td>可反复触达的用户群体</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="课程总结"><a href="#课程总结" class="headerlink" title="课程总结"></a>课程总结</h2><p>本课程详细讲解了 <strong>Menes AI</strong> 这款全自动自媒体运营工具的核心功能和使用方法。通过学习，你应该掌握了：</p>
+<ol>
+<li><strong>下拉词裂变技术</strong>：5分钟获取260个选题，并可无限递归裂变</li>
+<li><strong>爆款模板提取</strong>：一键分析爆款内容的底层逻辑</li>
+<li><strong>跨赛道套利策略</strong>：将模板套用到不同赛道，生成纯原创内容</li>
+<li><strong>全流程自动化</strong>：从调研到发布，全程无需手动操作</li>
+</ol>
+<p><strong>核心价值主张</strong>：</p>
+<blockquote>
+<p>“真正实现一个人就是一个团队，一个人就是一个私域流量部门。”</p>
+</blockquote>
+<p>如需了解更多关于<strong>AI生图配图</strong>、<strong>特定赛道的获客教程</strong>等内容，可以继续关注后续课程。</p>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/business/">business    </a><a class="post-meta__tags" href="/tags/productivity/">productivity    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2026/01/24/20-areas/tech/DNS%E4%B8%8E%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>DNS与域名配置讲解</span></div></a></div><div class="next-post pull_right"><a href="/2026/01/24/20-areas/tech/DNS%E7%A7%91%E6%99%AE%E5%8F%8A%E5%9F%9F%E5%90%8D%E9%97%AE%E7%AD%94/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>DNS科普及域名问答</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/knowledge/deepresearch/perplexity_AI_sidehustle/" title="perplexity_AI_sidehustle"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">perplexity_AI_sidehustle</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/knowledge/economics/Tariff_explanation/" title="Tariff_explanation"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">Tariff_explanation</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/30/20-areas/knowledge/economics/大国经济转型之路/" title="大国经济转型之路"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-30</div><div class="relatedPosts_title">大国经济转型之路</div></div></a></div><div class="relatedPosts_item"><a href="/2026/01/21/20-areas/money/side_hustle/AI挖掘创业灵感教程/" title="AI挖掘创业灵感教程"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2026-01-21</div><div class="relatedPosts_title">AI挖掘创业灵感教程</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/money/side_hustle/Craft Selling Platform Registration Status/" title="Craft Selling Platform Registration Status"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">Craft Selling Platform Registration Status</div></div></a></div><div class="relatedPosts_item"><a href="/2025/06/08/20-areas/money/side_hustle/scira_ai_sidehustle_research/" title="scira_ai_sidehustle_research"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2025-06-08</div><div class="relatedPosts_title">scira_ai_sidehustle_research</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = true == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'xvMxbws16Erd8WUfqxkvHmb5-gzGzoHsz',
+  appKey:'4U0Vo7NQIUL0eJzHdkPzdCDr',
+  placeholder:'不说话的人会疯掉吗?',
+  avatar:'retro',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'en',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By supersheepbear</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="external nofollow noopener noreferrer"><span>Butterfly</span></a></div><div class="footer_custom_text">外向孤独者患者</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="255,240,245" opacity="0.7" zindex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="external nofollow noopener noreferrer" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>
