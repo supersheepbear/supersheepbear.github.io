@@ -43,7 +43,7 @@ function activateLightMode(){
   if (document.querySelector('meta[name="theme-color"]') !== null){
   document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
   }
-}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://www.lovexy.me/2026/02/19/10-projects/cs6250/chapter-6/Router%20Design%20and%20Algorithms%20part2/"><link rel="next" title="路由器组成转发控制平面硬件" href="https://www.lovexy.me/2026/02/14/%E8%B7%AF%E7%94%B1%E5%99%A8%E7%BB%84%E6%88%90%E8%BD%AC%E5%8F%91%E6%8E%A7%E5%88%B6%E5%B9%B3%E9%9D%A2%E7%A1%AC%E4%BB%B6/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://www.lovexy.me/2026/02/19/10-projects/cs6250/chapter-6/Router%20Design%20and%20Algorithms%20part2/"><link rel="next" title="ai coding rule one file version" href="https://www.lovexy.me/2026/02/09/20-areas/tech/ai%20coding/ai%20coding%20rule%20one%20file%20version/"><link rel="stylesheet" href="hfttps://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
   root: '/',
   algolia: undefined,
   localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
@@ -70,7 +70,934 @@ function activateLightMode(){
   isPost: true
   
 }</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Bear's dream" type="application/atom+xml">
-</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">172</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">48</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">33</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#Router-Design-and-Algorithms-Part2"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">Router Design and Algorithms Part2</span></a></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Router-Design-and-Algorithms-Part2"><span class="toc-number">1.</span> <span class="toc-text">Router Design and Algorithms Part2</span></a></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">Router Design and Algorithms part2</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2026-02-19<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2026-02-19</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/">10-projects</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/cs6250/">cs6250</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/cs6250/chapter-6/">chapter-6</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2026/02/19/10-projects/cs6250/chapter-6/Router%20Design%20and%20Algorithms%20part2/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2026/02/19/10-projects/cs6250/chapter-6/Router%20Design%20and%20Algorithms%20part2/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="Router-Design-and-Algorithms-Part2"><a href="#Router-Design-and-Algorithms-Part2" class="headerlink" title="Router Design and Algorithms Part2"></a>Router Design and Algorithms Part2</h1></div></article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2026/02/14/%E8%B7%AF%E7%94%B1%E5%99%A8%E7%BB%84%E6%88%90%E8%BD%AC%E5%8F%91%E6%8E%A7%E5%88%B6%E5%B9%B3%E9%9D%A2%E7%A1%AC%E4%BB%B6/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>路由器组成转发控制平面硬件</span></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Bear's dream</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200520153141.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">168</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">48</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">32</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat" aria-hidden="true"></i><span> 音乐照片</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 学习计划</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#Router-Design-and-Algorithms-Part2"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">Router Design and Algorithms Part2</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#数据包分类（Packet-Classification）：为什么我们需要它？"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">数据包分类（Packet Classification）：为什么我们需要它？</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#从一个生活类比开始：邮局分拣"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">从一个生活类比开始：邮局分拣</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#核心问题：为什么传统转发不够用？"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">核心问题：为什么传统转发不够用？</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#传统转发的工作方式"><span class="toc_mobile_items-number">2.2.1.</span> <span class="toc_mobile_items-text">传统转发的工作方式</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#为什么这不够？"><span class="toc_mobile_items-number">2.2.2.</span> <span class="toc_mobile_items-text">为什么这不够？</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#先想再讲：你能想到哪些场景需要数据包分类？"><span class="toc_mobile_items-number">2.3.</span> <span class="toc_mobile_items-text">先想再讲：你能想到哪些场景需要数据包分类？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#数据包分类的三大经典应用场景"><span class="toc_mobile_items-number">2.4.</span> <span class="toc_mobile_items-text">数据包分类的三大经典应用场景</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-防火墙（Firewalls）"><span class="toc_mobile_items-number">2.4.1.</span> <span class="toc_mobile_items-text">1. 防火墙（Firewalls）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-资源预留协议（Resource-Reservation-Protocols）"><span class="toc_mobile_items-number">2.4.2.</span> <span class="toc_mobile_items-text">2. 资源预留协议（Resource Reservation Protocols）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-基于流量类型的路由（Routing-Based-on-Traffic-Type）"><span class="toc_mobile_items-number">2.4.3.</span> <span class="toc_mobile_items-text">3. 基于流量类型的路由（Routing Based on Traffic Type）</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#具体示例：基于流量类型的路由规则"><span class="toc_mobile_items-number">2.5.</span> <span class="toc_mobile_items-text">具体示例：基于流量类型的路由规则</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#网络拓扑"><span class="toc_mobile_items-number">2.5.1.</span> <span class="toc_mobile_items-text">网络拓扑</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#三条分类规则"><span class="toc_mobile_items-number">2.5.2.</span> <span class="toc_mobile_items-text">三条分类规则</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#概念图：数据包分类的全景"><span class="toc_mobile_items-number">2.6.</span> <span class="toc_mobile_items-text">概念图：数据包分类的全景</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#关键概念总结"><span class="toc_mobile_items-number">2.7.</span> <span class="toc_mobile_items-text">关键概念总结</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#费曼自检-Checklist"><span class="toc_mobile_items-number">2.8.</span> <span class="toc_mobile_items-text">费曼自检 Checklist</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-什么是数据包分类（Packet-Classification）？它和传统的数据包转发有什么本质区别？"><span class="toc_mobile_items-number">2.8.1.</span> <span class="toc_mobile_items-text">1. 什么是数据包分类（Packet Classification）？它和传统的数据包转发有什么本质区别？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-为什么仅靠目的-IP-地址的最长前缀匹配不足以满足现代网络的需求？"><span class="toc_mobile_items-number">2.8.2.</span> <span class="toc_mobile_items-text">2. 为什么仅靠目的 IP 地址的最长前缀匹配不足以满足现代网络的需求？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-请列举数据包分类的三个经典应用场景，并分别用一句话说明每个场景为什么需要数据包分类。"><span class="toc_mobile_items-number">2.8.3.</span> <span class="toc_mobile_items-text">3. 请列举数据包分类的三个经典应用场景，并分别用一句话说明每个场景为什么需要数据包分类。</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-在原文的示例中，三条规则分别对应哪种应用场景？每条规则检查了哪些字段、执行了什么动作？"><span class="toc_mobile_items-number">2.8.4.</span> <span class="toc_mobile_items-text">4. 在原文的示例中，三条规则分别对应哪种应用场景？每条规则检查了哪些字段、执行了什么动作？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-请用你自己的话，向一个完全不懂网络的朋友解释什么是数据包分类，以及为什么需要它。"><span class="toc_mobile_items-number">2.8.5.</span> <span class="toc_mobile_items-text">5. 请用你自己的话，向一个完全不懂网络的朋友解释什么是数据包分类，以及为什么需要它。</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#6-L1-和-L2-在示例拓扑中代表什么？为什么规则-1-要指定通过-L1-转发？"><span class="toc_mobile_items-number">2.8.6.</span> <span class="toc_mobile_items-text">6. L1 和 L2 在示例拓扑中代表什么？为什么规则 1 要指定通过 L1 转发？</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#数据包分类问题的直观解法（Straightforward-Approaches-to-Packet-Classification）"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">数据包分类问题的直观解法（Straightforward Approaches to Packet Classification）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#0-先建立背景：什么是数据包分类（Packet-Classification）？"><span class="toc_mobile_items-number">3.1.</span> <span class="toc_mobile_items-text">0. 先建立背景：什么是数据包分类（Packet Classification）？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-方法一：线性搜索（Linear-Search）"><span class="toc_mobile_items-number">3.2.</span> <span class="toc_mobile_items-text">1. 方法一：线性搜索（Linear Search）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-1-原理"><span class="toc_mobile_items-number">3.2.1.</span> <span class="toc_mobile_items-text">1.1 原理</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-2-类比"><span class="toc_mobile_items-number">3.2.2.</span> <span class="toc_mobile_items-text">1.2 类比</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-3-性能分析"><span class="toc_mobile_items-number">3.2.3.</span> <span class="toc_mobile_items-text">1.3 性能分析</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-4-实际应用"><span class="toc_mobile_items-number">3.2.4.</span> <span class="toc_mobile_items-text">1.4 实际应用</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-方法二：缓存（Caching）"><span class="toc_mobile_items-number">3.3.</span> <span class="toc_mobile_items-text">2. 方法二：缓存（Caching）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-1-原理"><span class="toc_mobile_items-number">3.3.1.</span> <span class="toc_mobile_items-text">2.1 原理</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-2-两个致命问题"><span class="toc_mobile_items-number">3.3.2.</span> <span class="toc_mobile_items-text">2.2 两个致命问题</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#问题一：缓存未命中（Cache-Miss）仍然不可避免"><span class="toc_mobile_items-number">3.3.2.1.</span> <span class="toc_mobile_items-text">问题一：缓存未命中（Cache Miss）仍然不可避免</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#问题二：即使命中率很高，平均性能仍然可能很差"><span class="toc_mobile_items-number">3.3.2.2.</span> <span class="toc_mobile_items-text">问题二：即使命中率很高，平均性能仍然可能很差</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#直觉理解"><span class="toc_mobile_items-number">3.3.2.3.</span> <span class="toc_mobile_items-text">直觉理解</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#🧠-先想再讲（检索练习-Retrieval-Practice）"><span class="toc_mobile_items-number">3.3.3.</span> <span class="toc_mobile_items-text">🧠 先想再讲（检索练习 Retrieval Practice）</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#3-方法三：传递标签（Passing-Labels）"><span class="toc_mobile_items-number">3.4.</span> <span class="toc_mobile_items-text">3. 方法三：传递标签（Passing Labels）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-1-核心思想"><span class="toc_mobile_items-number">3.4.1.</span> <span class="toc_mobile_items-text">3.1 核心思想</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-2-MPLS（多协议标签交换，Multiprotocol-Label-Switching）"><span class="toc_mobile_items-number">3.4.2.</span> <span class="toc_mobile_items-text">3.2 MPLS（多协议标签交换，Multiprotocol Label Switching）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-3-DiffServ（区分服务，Differentiated-Services）"><span class="toc_mobile_items-number">3.4.3.</span> <span class="toc_mobile_items-text">3.3 DiffServ（区分服务，Differentiated Services）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-4-传递标签方法的本质"><span class="toc_mobile_items-number">3.4.4.</span> <span class="toc_mobile_items-text">3.4 传递标签方法的本质</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#4-三种方法的对比总结"><span class="toc_mobile_items-number">3.5.</span> <span class="toc_mobile_items-text">4. 三种方法的对比总结</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#5-费曼自检-Checklist"><span class="toc_mobile_items-number">3.6.</span> <span class="toc_mobile_items-text">5. 费曼自检 Checklist</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Q1-什么是数据包分类（Packet-Classification）问题？它为什么困难？"><span class="toc_mobile_items-number">3.6.1.</span> <span class="toc_mobile_items-text">Q1: 什么是数据包分类（Packet Classification）问题？它为什么困难？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Q2-线性搜索为什么要记录”最佳匹配”而不是找到第一个匹配就停下？"><span class="toc_mobile_items-number">3.6.2.</span> <span class="toc_mobile_items-text">Q2: 线性搜索为什么要记录”最佳匹配”而不是找到第一个匹配就停下？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Q3-缓存方法的两个问题分别是什么？请用自己的话解释。"><span class="toc_mobile_items-number">3.6.3.</span> <span class="toc_mobile_items-text">Q3: 缓存方法的两个问题分别是什么？请用自己的话解释。</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Q4-请手动推导：缓存命中率-90-，缓存查找-100-nsec，线性搜索-10-000-条规则每条-100-nsec，平均搜索时间是多少？"><span class="toc_mobile_items-number">3.6.4.</span> <span class="toc_mobile_items-text">Q4: 请手动推导：缓存命中率 90%，缓存查找 100 nsec，线性搜索 10,000 条规则每条 100 nsec，平均搜索时间是多少？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Q5-MPLS-的完整工作流程是什么？它如何避免中间路由器重复做分类？"><span class="toc_mobile_items-number">3.6.5.</span> <span class="toc_mobile_items-text">Q5: MPLS 的完整工作流程是什么？它如何避免中间路由器重复做分类？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Q6-DiffServ-和-MPLS-的思路有什么相似之处？目标有什么不同？"><span class="toc_mobile_items-number">3.6.6.</span> <span class="toc_mobile_items-text">Q6: DiffServ 和 MPLS 的思路有什么相似之处？目标有什么不同？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Q7-为什么说这三种方法都是”直观的”解法，还需要更高级的算法？"><span class="toc_mobile_items-number">3.6.7.</span> <span class="toc_mobile_items-text">Q7: 为什么说这三种方法都是”直观的”解法，还需要更高级的算法？</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#集合剪枝-Trie-树（Set-Pruning-Tries）：二维数据包分类"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">集合剪枝 Trie 树（Set Pruning Tries）：二维数据包分类</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#一、问题背景：为什么需要二维分类？"><span class="toc_mobile_items-number">4.1.</span> <span class="toc_mobile_items-text">一、问题背景：为什么需要二维分类？</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-1-从一维到二维"><span class="toc_mobile_items-number">4.1.1.</span> <span class="toc_mobile_items-text">1.1 从一维到二维</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-2-规则表（Rule-Table）"><span class="toc_mobile_items-number">4.1.2.</span> <span class="toc_mobile_items-text">1.2 规则表（Rule Table）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-3-核心问题"><span class="toc_mobile_items-number">4.1.3.</span> <span class="toc_mobile_items-text">1.3 核心问题</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#二、Set-Pruning-Tries-的核心思想"><span class="toc_mobile_items-number">4.2.</span> <span class="toc_mobile_items-text">二、Set Pruning Tries 的核心思想</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-1-直觉：分而治之"><span class="toc_mobile_items-number">4.2.1.</span> <span class="toc_mobile_items-text">2.1 直觉：分而治之</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-2-符号约定"><span class="toc_mobile_items-number">4.2.2.</span> <span class="toc_mobile_items-text">2.2 符号约定</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#三、构建-Set-Pruning-Tries：逐步详解"><span class="toc_mobile_items-number">4.3.</span> <span class="toc_mobile_items-text">三、构建 Set Pruning Tries：逐步详解</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-1-第一步：建立目的地址-Trie-树"><span class="toc_mobile_items-number">4.3.1.</span> <span class="toc_mobile_items-text">3.1 第一步：建立目的地址 Trie 树</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-2-第二步：在每个节点挂载源-Trie-树"><span class="toc_mobile_items-number">4.3.2.</span> <span class="toc_mobile_items-text">3.2 第二步：在每个节点挂载源 Trie 树</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-3-逐节点分析"><span class="toc_mobile_items-number">4.3.3.</span> <span class="toc_mobile_items-text">3.3 逐节点分析</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-4-完整结构总览"><span class="toc_mobile_items-number">4.3.4.</span> <span class="toc_mobile_items-text">3.4 完整结构总览</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#四、查找过程（Lookup）"><span class="toc_mobile_items-number">4.4.</span> <span class="toc_mobile_items-text">四、查找过程（Lookup）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-1-算法步骤"><span class="toc_mobile_items-number">4.4.1.</span> <span class="toc_mobile_items-text">4.1 算法步骤</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-2-用一句话总结查找"><span class="toc_mobile_items-number">4.4.2.</span> <span class="toc_mobile_items-text">4.2 用一句话总结查找</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#五、关键挑战：源-Trie-中应该存什么？（Pruning-的含义）"><span class="toc_mobile_items-number">4.5.</span> <span class="toc_mobile_items-text">五、关键挑战：源 Trie 中应该存什么？（Pruning 的含义）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-1-“剪枝”（Pruning）的含义"><span class="toc_mobile_items-number">4.5.1.</span> <span class="toc_mobile_items-text">5.1 “剪枝”（Pruning）的含义</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-2-以-D-00-为例的详细推导"><span class="toc_mobile_items-number">4.5.2.</span> <span class="toc_mobile_items-text">5.2 以 $D &#x3D; 00*$ 为例的详细推导</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#六、致命缺陷：内存爆炸（Memory-Explosion）"><span class="toc_mobile_items-number">4.6.</span> <span class="toc_mobile_items-text">六、致命缺陷：内存爆炸（Memory Explosion）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#6-1-问题的本质"><span class="toc_mobile_items-number">4.6.1.</span> <span class="toc_mobile_items-text">6.1 问题的本质</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#6-2-最坏情况分析"><span class="toc_mobile_items-number">4.6.2.</span> <span class="toc_mobile_items-text">6.2 最坏情况分析</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#6-3-数字直觉"><span class="toc_mobile_items-number">4.6.3.</span> <span class="toc_mobile_items-text">6.3 数字直觉</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#6-4-权衡总结"><span class="toc_mobile_items-number">4.6.4.</span> <span class="toc_mobile_items-text">6.4 权衡总结</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#七、概念图总结"><span class="toc_mobile_items-number">4.7.</span> <span class="toc_mobile_items-text">七、概念图总结</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#八、费曼自检-Checklist"><span class="toc_mobile_items-number">4.8.</span> <span class="toc_mobile_items-text">八、费曼自检 Checklist</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-什么是二维数据包分类问题？为什么一维的-Trie-不够用？"><span class="toc_mobile_items-number">4.8.1.</span> <span class="toc_mobile_items-text">1. 什么是二维数据包分类问题？为什么一维的 Trie 不够用？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-Set-Pruning-Tries-的基本结构是什么？它由哪两层组成？"><span class="toc_mobile_items-number">4.8.2.</span> <span class="toc_mobile_items-text">2. Set Pruning Tries 的基本结构是什么？它由哪两层组成？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-对于目的地址-Trie-中的某个节点（比如代表前缀-00-），它挂载的源-Trie-应该包含哪些规则的源前缀？为什么？"><span class="toc_mobile_items-number">4.8.3.</span> <span class="toc_mobile_items-text">3. 对于目的地址 Trie 中的某个节点（比如代表前缀 00*），它挂载的源 Trie 应该包含哪些规则的源前缀？为什么？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-为什么-R-7-的源前缀-S-7-会出现在每一棵源-Trie-中？"><span class="toc_mobile_items-number">4.8.4.</span> <span class="toc_mobile_items-text">4. 为什么 $R_7$ 的源前缀 $S_7$ 会出现在每一棵源 Trie 中？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-Set-Pruning-Tries-的查找过程是怎样的？请用自己的话描述完整步骤。"><span class="toc_mobile_items-number">4.8.5.</span> <span class="toc_mobile_items-text">5. Set Pruning Tries 的查找过程是怎样的？请用自己的话描述完整步骤。</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#回溯法省内存换时间"><span class="toc_mobile_items-number">5.</span> <span class="toc_mobile_items-text">回溯法省内存换时间</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User"><span class="toc_mobile_items-number">5.1.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Reducing-Memory-Using-Backtracking"><span class="toc_mobile_items-number">5.2.</span> <span class="toc_mobile_items-text">Reducing Memory Using Backtracking</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#References"><span class="toc_mobile_items-number">5.2.0.1.</span> <span class="toc_mobile_items-text">References:</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant"><span class="toc_mobile_items-number">5.3.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a></li></ol><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#使用回溯法减少内存（Reducing-Memory-Using-Backtracking）"><span class="toc_mobile_items-number">6.</span> <span class="toc_mobile_items-text">使用回溯法减少内存（Reducing Memory Using Backtracking）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#从头建立背景：为什么需要这个方法？"><span class="toc_mobile_items-number">6.1.</span> <span class="toc_mobile_items-text">从头建立背景：为什么需要这个方法？</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#问题的起点：数据包分类（Packet-Classification）"><span class="toc_mobile_items-number">6.1.1.</span> <span class="toc_mobile_items-text">问题的起点：数据包分类（Packet Classification）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#用-Trie-来做匹配"><span class="toc_mobile_items-number">6.1.2.</span> <span class="toc_mobile_items-text">用 Trie 来做匹配</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#前置知识回顾：Set-Pruning-Trie-的问题"><span class="toc_mobile_items-number">6.2.</span> <span class="toc_mobile_items-text">前置知识回顾：Set-Pruning Trie 的问题</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#核心内容：回溯法（Backtracking）"><span class="toc_mobile_items-number">6.3.</span> <span class="toc_mobile_items-text">核心内容：回溯法（Backtracking）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#设计哲学：反过来做取舍"><span class="toc_mobile_items-number">6.3.1.</span> <span class="toc_mobile_items-text">设计哲学：反过来做取舍</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#回溯法的数据结构是怎么建的？"><span class="toc_mobile_items-number">6.3.2.</span> <span class="toc_mobile_items-text">回溯法的数据结构是怎么建的？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#回溯法的查找过程（Search-Algorithm）"><span class="toc_mobile_items-number">6.3.3.</span> <span class="toc_mobile_items-text">回溯法的查找过程（Search Algorithm）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#阶段一：向下走——找最长目的前缀匹配"><span class="toc_mobile_items-number">6.3.3.1.</span> <span class="toc_mobile_items-text">阶段一：向下走——找最长目的前缀匹配</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#阶段二：向上走——回溯搜索所有祖先的源-trie"><span class="toc_mobile_items-number">6.3.3.2.</span> <span class="toc_mobile_items-text">阶段二：向上走——回溯搜索所有祖先的源 trie</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#为什么必须回溯？"><span class="toc_mobile_items-number">6.3.3.3.</span> <span class="toc_mobile_items-text">为什么必须回溯？</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#用一个具体例子走一遍"><span class="toc_mobile_items-number">6.3.4.</span> <span class="toc_mobile_items-text">用一个具体例子走一遍</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#性能分析对比"><span class="toc_mobile_items-number">6.4.</span> <span class="toc_mobile_items-text">性能分析对比</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#概念图总结"><span class="toc_mobile_items-number">6.5.</span> <span class="toc_mobile_items-text">概念图总结</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#费曼自检-Checklist-1"><span class="toc_mobile_items-number">6.6.</span> <span class="toc_mobile_items-text">费曼自检 Checklist</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-为什么-Set-Pruning-Trie-的内存开销高？"><span class="toc_mobile_items-number">6.6.1.</span> <span class="toc_mobile_items-text">1. 为什么 Set-Pruning Trie 的内存开销高？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-在回溯法中，每个目的前缀节点-D-的源-trie-里存储的是什么？"><span class="toc_mobile_items-number">6.6.2.</span> <span class="toc_mobile_items-text">2. 在回溯法中，每个目的前缀节点 D 的源 trie 里存储的是什么？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-回溯法的查找过程分哪两个阶段？请具体描述。"><span class="toc_mobile_items-number">6.6.3.</span> <span class="toc_mobile_items-text">3. 回溯法的查找过程分哪两个阶段？请具体描述。</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-为什么回溯法必须搜索祖先节点的源-trie，而不能只搜索最长匹配节点-D-的源-trie？"><span class="toc_mobile_items-number">6.6.4.</span> <span class="toc_mobile_items-text">4. 为什么回溯法必须搜索祖先节点的源 trie，而不能只搜索最长匹配节点 D 的源 trie？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-回溯法相比-Set-Pruning-Trie，在时间和空间上的取舍是什么？"><span class="toc_mobile_items-number">6.6.5.</span> <span class="toc_mobile_items-text">5. 回溯法相比 Set-Pruning Trie，在时间和空间上的取舍是什么？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#6-如果目的-trie-的深度为-W（比如-IPv4-地址是-32-位，W-32），回溯法最坏情况下需要搜索多少棵源-trie？"><span class="toc_mobile_items-number">6.6.6.</span> <span class="toc_mobile_items-text">6. 如果目的 trie 的深度为 W（比如 IPv4 地址是 32 位，W&#x3D;32），回溯法最坏情况下需要搜索多少棵源 trie？</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🧑‍💻-User-1"><span class="toc_mobile_items-number">6.7.</span> <span class="toc_mobile_items-text">🧑‍💻 User</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#🤖-Assistant-1"><span class="toc_mobile_items-number">6.8.</span> <span class="toc_mobile_items-text">🤖 Assistant</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#Grid-of-Tries（网格字典树）——-数据包分类中的高效查找方法"><span class="toc_mobile_items-number">7.</span> <span class="toc_mobile_items-text">Grid of Tries（网格字典树）—— 数据包分类中的高效查找方法</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#一、前置知识回顾：为什么需要二维匹配？"><span class="toc_mobile_items-number">7.1.</span> <span class="toc_mobile_items-text">一、前置知识回顾：为什么需要二维匹配？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#二、Trie（字典树）是什么？——核心数据结构"><span class="toc_mobile_items-number">7.2.</span> <span class="toc_mobile_items-text">二、Trie（字典树）是什么？——核心数据结构</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#三、已有的两种方案及其问题"><span class="toc_mobile_items-number">7.3.</span> <span class="toc_mobile_items-text">三、已有的两种方案及其问题</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#方案-A：Set-Pruning（集合剪枝）"><span class="toc_mobile_items-number">7.3.1.</span> <span class="toc_mobile_items-text">方案 A：Set Pruning（集合剪枝）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#方案-B：Backtracking（回溯）"><span class="toc_mobile_items-number">7.3.2.</span> <span class="toc_mobile_items-text">方案 B：Backtracking（回溯）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#🧠-先想再讲（在继续之前，请你先思考）"><span class="toc_mobile_items-number">7.3.3.</span> <span class="toc_mobile_items-text">🧠 先想再讲（在继续之前，请你先思考）</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#四、Grid-of-Tries（网格字典树）——核心方案"><span class="toc_mobile_items-number">7.4.</span> <span class="toc_mobile_items-text">四、Grid of Tries（网格字典树）——核心方案</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-1-核心思想：用预计算（precomputation）消除回溯"><span class="toc_mobile_items-number">7.4.1.</span> <span class="toc_mobile_items-text">4.1 核心思想：用预计算（precomputation）消除回溯</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-2-Switch-Pointer-的含义"><span class="toc_mobile_items-number">7.4.2.</span> <span class="toc_mobile_items-text">4.2 Switch Pointer 的含义</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-3-完整查找流程"><span class="toc_mobile_items-number">7.4.3.</span> <span class="toc_mobile_items-text">4.3 完整查找流程</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#五、具体例子详解"><span class="toc_mobile_items-number">7.5.</span> <span class="toc_mobile_items-text">五、具体例子详解</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#第-1-步：目的地址-Trie-匹配"><span class="toc_mobile_items-number">7.5.1.</span> <span class="toc_mobile_items-text">第 1 步：目的地址 Trie 匹配</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#第-2-步：进入-D-00-的源地址-Trie"><span class="toc_mobile_items-number">7.5.2.</span> <span class="toc_mobile_items-text">第 2 步：进入 D &#x3D; 00 的源地址 Trie</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#第-3-步：跟随-Switch-Pointer"><span class="toc_mobile_items-number">7.5.3.</span> <span class="toc_mobile_items-text">第 3 步：跟随 Switch Pointer</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#第-4-步：在节点-x-继续匹配"><span class="toc_mobile_items-number">7.5.4.</span> <span class="toc_mobile_items-text">第 4 步：在节点 x 继续匹配</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#第-5-步：再次跟随-Switch-Pointer"><span class="toc_mobile_items-number">7.5.5.</span> <span class="toc_mobile_items-text">第 5 步：再次跟随 Switch Pointer</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#第-6-步：在节点-y-处终止"><span class="toc_mobile_items-number">7.5.6.</span> <span class="toc_mobile_items-text">第 6 步：在节点 y 处终止</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#对比-Backtracking-的过程"><span class="toc_mobile_items-number">7.5.7.</span> <span class="toc_mobile_items-text">对比 Backtracking 的过程</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#六、三种方案的对比总结"><span class="toc_mobile_items-number">7.6.</span> <span class="toc_mobile_items-text">六、三种方案的对比总结</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#七、概念图"><span class="toc_mobile_items-number">7.7.</span> <span class="toc_mobile_items-text">七、概念图</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#八、费曼自检-Checklist-1"><span class="toc_mobile_items-number">7.8.</span> <span class="toc_mobile_items-text">八、费曼自检 Checklist</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-二维数据包分类问题是什么？为什么比一维匹配更难？"><span class="toc_mobile_items-number">7.8.1.</span> <span class="toc_mobile_items-text">1. 二维数据包分类问题是什么？为什么比一维匹配更难？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-Set-Pruning-方案的核心思路是什么？它的主要缺点是什么？"><span class="toc_mobile_items-number">7.8.2.</span> <span class="toc_mobile_items-text">2. Set Pruning 方案的核心思路是什么？它的主要缺点是什么？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#3-Backtracking-方案的核心思路是什么？它的主要缺点是什么？"><span class="toc_mobile_items-number">7.8.3.</span> <span class="toc_mobile_items-text">3. Backtracking 方案的核心思路是什么？它的主要缺点是什么？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-Grid-of-Tries-中的-switch-pointer-是什么？它解决了什么问题？"><span class="toc_mobile_items-number">7.8.4.</span> <span class="toc_mobile_items-text">4. Grid of Tries 中的 switch pointer 是什么？它解决了什么问题？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-请用自己的话描述-Grid-of-Tries-的完整查找流程。"><span class="toc_mobile_items-number">7.8.5.</span> <span class="toc_mobile_items-text">5. 请用自己的话描述 Grid of Tries 的完整查找流程。</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#6-为什么-switch-pointer-跳转时可以安全地跳过某些源地址-Trie？"><span class="toc_mobile_items-number">7.8.6.</span> <span class="toc_mobile_items-text">6. 为什么 switch pointer 跳转时可以安全地跳过某些源地址 Trie？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#7-Grid-of-Tries-相比-Set-Pruning-和-Backtracking，在时间和空间上的权衡是怎样的？"><span class="toc_mobile_items-number">7.8.7.</span> <span class="toc_mobile_items-text">7. Grid of Tries 相比 Set Pruning 和 Backtracking，在时间和空间上的权衡是怎样的？</span></a></li></ol></li></ol></li></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Router-Design-and-Algorithms-Part2"><span class="toc-number">1.</span> <span class="toc-text">Router Design and Algorithms Part2</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据包分类（Packet-Classification）：为什么我们需要它？"><span class="toc-number">2.</span> <span class="toc-text">数据包分类（Packet Classification）：为什么我们需要它？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#从一个生活类比开始：邮局分拣"><span class="toc-number">2.1.</span> <span class="toc-text">从一个生活类比开始：邮局分拣</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心问题：为什么传统转发不够用？"><span class="toc-number">2.2.</span> <span class="toc-text">核心问题：为什么传统转发不够用？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#传统转发的工作方式"><span class="toc-number">2.2.1.</span> <span class="toc-text">传统转发的工作方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么这不够？"><span class="toc-number">2.2.2.</span> <span class="toc-text">为什么这不够？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#先想再讲：你能想到哪些场景需要数据包分类？"><span class="toc-number">2.3.</span> <span class="toc-text">先想再讲：你能想到哪些场景需要数据包分类？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据包分类的三大经典应用场景"><span class="toc-number">2.4.</span> <span class="toc-text">数据包分类的三大经典应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-防火墙（Firewalls）"><span class="toc-number">2.4.1.</span> <span class="toc-text">1. 防火墙（Firewalls）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-资源预留协议（Resource-Reservation-Protocols）"><span class="toc-number">2.4.2.</span> <span class="toc-text">2. 资源预留协议（Resource Reservation Protocols）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-基于流量类型的路由（Routing-Based-on-Traffic-Type）"><span class="toc-number">2.4.3.</span> <span class="toc-text">3. 基于流量类型的路由（Routing Based on Traffic Type）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#具体示例：基于流量类型的路由规则"><span class="toc-number">2.5.</span> <span class="toc-text">具体示例：基于流量类型的路由规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网络拓扑"><span class="toc-number">2.5.1.</span> <span class="toc-text">网络拓扑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三条分类规则"><span class="toc-number">2.5.2.</span> <span class="toc-text">三条分类规则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#概念图：数据包分类的全景"><span class="toc-number">2.6.</span> <span class="toc-text">概念图：数据包分类的全景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关键概念总结"><span class="toc-number">2.7.</span> <span class="toc-text">关键概念总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#费曼自检-Checklist"><span class="toc-number">2.8.</span> <span class="toc-text">费曼自检 Checklist</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-什么是数据包分类（Packet-Classification）？它和传统的数据包转发有什么本质区别？"><span class="toc-number">2.8.1.</span> <span class="toc-text">1. 什么是数据包分类（Packet Classification）？它和传统的数据包转发有什么本质区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-为什么仅靠目的-IP-地址的最长前缀匹配不足以满足现代网络的需求？"><span class="toc-number">2.8.2.</span> <span class="toc-text">2. 为什么仅靠目的 IP 地址的最长前缀匹配不足以满足现代网络的需求？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-请列举数据包分类的三个经典应用场景，并分别用一句话说明每个场景为什么需要数据包分类。"><span class="toc-number">2.8.3.</span> <span class="toc-text">3. 请列举数据包分类的三个经典应用场景，并分别用一句话说明每个场景为什么需要数据包分类。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-在原文的示例中，三条规则分别对应哪种应用场景？每条规则检查了哪些字段、执行了什么动作？"><span class="toc-number">2.8.4.</span> <span class="toc-text">4. 在原文的示例中，三条规则分别对应哪种应用场景？每条规则检查了哪些字段、执行了什么动作？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-请用你自己的话，向一个完全不懂网络的朋友解释什么是数据包分类，以及为什么需要它。"><span class="toc-number">2.8.5.</span> <span class="toc-text">5. 请用你自己的话，向一个完全不懂网络的朋友解释什么是数据包分类，以及为什么需要它。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-L1-和-L2-在示例拓扑中代表什么？为什么规则-1-要指定通过-L1-转发？"><span class="toc-number">2.8.6.</span> <span class="toc-text">6. L1 和 L2 在示例拓扑中代表什么？为什么规则 1 要指定通过 L1 转发？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据包分类问题的直观解法（Straightforward-Approaches-to-Packet-Classification）"><span class="toc-number">3.</span> <span class="toc-text">数据包分类问题的直观解法（Straightforward Approaches to Packet Classification）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-先建立背景：什么是数据包分类（Packet-Classification）？"><span class="toc-number">3.1.</span> <span class="toc-text">0. 先建立背景：什么是数据包分类（Packet Classification）？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-方法一：线性搜索（Linear-Search）"><span class="toc-number">3.2.</span> <span class="toc-text">1. 方法一：线性搜索（Linear Search）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-原理"><span class="toc-number">3.2.1.</span> <span class="toc-text">1.1 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-类比"><span class="toc-number">3.2.2.</span> <span class="toc-text">1.2 类比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-性能分析"><span class="toc-number">3.2.3.</span> <span class="toc-text">1.3 性能分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-实际应用"><span class="toc-number">3.2.4.</span> <span class="toc-text">1.4 实际应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-方法二：缓存（Caching）"><span class="toc-number">3.3.</span> <span class="toc-text">2. 方法二：缓存（Caching）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-原理"><span class="toc-number">3.3.1.</span> <span class="toc-text">2.1 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-两个致命问题"><span class="toc-number">3.3.2.</span> <span class="toc-text">2.2 两个致命问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题一：缓存未命中（Cache-Miss）仍然不可避免"><span class="toc-number">3.3.2.1.</span> <span class="toc-text">问题一：缓存未命中（Cache Miss）仍然不可避免</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#问题二：即使命中率很高，平均性能仍然可能很差"><span class="toc-number">3.3.2.2.</span> <span class="toc-text">问题二：即使命中率很高，平均性能仍然可能很差</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#直觉理解"><span class="toc-number">3.3.2.3.</span> <span class="toc-text">直觉理解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-先想再讲（检索练习-Retrieval-Practice）"><span class="toc-number">3.3.3.</span> <span class="toc-text">🧠 先想再讲（检索练习 Retrieval Practice）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-方法三：传递标签（Passing-Labels）"><span class="toc-number">3.4.</span> <span class="toc-text">3. 方法三：传递标签（Passing Labels）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-核心思想"><span class="toc-number">3.4.1.</span> <span class="toc-text">3.1 核心思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-MPLS（多协议标签交换，Multiprotocol-Label-Switching）"><span class="toc-number">3.4.2.</span> <span class="toc-text">3.2 MPLS（多协议标签交换，Multiprotocol Label Switching）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-DiffServ（区分服务，Differentiated-Services）"><span class="toc-number">3.4.3.</span> <span class="toc-text">3.3 DiffServ（区分服务，Differentiated Services）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-传递标签方法的本质"><span class="toc-number">3.4.4.</span> <span class="toc-text">3.4 传递标签方法的本质</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-三种方法的对比总结"><span class="toc-number">3.5.</span> <span class="toc-text">4. 三种方法的对比总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-费曼自检-Checklist"><span class="toc-number">3.6.</span> <span class="toc-text">5. 费曼自检 Checklist</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Q1-什么是数据包分类（Packet-Classification）问题？它为什么困难？"><span class="toc-number">3.6.1.</span> <span class="toc-text">Q1: 什么是数据包分类（Packet Classification）问题？它为什么困难？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q2-线性搜索为什么要记录”最佳匹配”而不是找到第一个匹配就停下？"><span class="toc-number">3.6.2.</span> <span class="toc-text">Q2: 线性搜索为什么要记录”最佳匹配”而不是找到第一个匹配就停下？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q3-缓存方法的两个问题分别是什么？请用自己的话解释。"><span class="toc-number">3.6.3.</span> <span class="toc-text">Q3: 缓存方法的两个问题分别是什么？请用自己的话解释。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q4-请手动推导：缓存命中率-90-，缓存查找-100-nsec，线性搜索-10-000-条规则每条-100-nsec，平均搜索时间是多少？"><span class="toc-number">3.6.4.</span> <span class="toc-text">Q4: 请手动推导：缓存命中率 90%，缓存查找 100 nsec，线性搜索 10,000 条规则每条 100 nsec，平均搜索时间是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q5-MPLS-的完整工作流程是什么？它如何避免中间路由器重复做分类？"><span class="toc-number">3.6.5.</span> <span class="toc-text">Q5: MPLS 的完整工作流程是什么？它如何避免中间路由器重复做分类？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q6-DiffServ-和-MPLS-的思路有什么相似之处？目标有什么不同？"><span class="toc-number">3.6.6.</span> <span class="toc-text">Q6: DiffServ 和 MPLS 的思路有什么相似之处？目标有什么不同？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q7-为什么说这三种方法都是”直观的”解法，还需要更高级的算法？"><span class="toc-number">3.6.7.</span> <span class="toc-text">Q7: 为什么说这三种方法都是”直观的”解法，还需要更高级的算法？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#集合剪枝-Trie-树（Set-Pruning-Tries）：二维数据包分类"><span class="toc-number">4.</span> <span class="toc-text">集合剪枝 Trie 树（Set Pruning Tries）：二维数据包分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、问题背景：为什么需要二维分类？"><span class="toc-number">4.1.</span> <span class="toc-text">一、问题背景：为什么需要二维分类？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-从一维到二维"><span class="toc-number">4.1.1.</span> <span class="toc-text">1.1 从一维到二维</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-规则表（Rule-Table）"><span class="toc-number">4.1.2.</span> <span class="toc-text">1.2 规则表（Rule Table）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-核心问题"><span class="toc-number">4.1.3.</span> <span class="toc-text">1.3 核心问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Set-Pruning-Tries-的核心思想"><span class="toc-number">4.2.</span> <span class="toc-text">二、Set Pruning Tries 的核心思想</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-直觉：分而治之"><span class="toc-number">4.2.1.</span> <span class="toc-text">2.1 直觉：分而治之</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-符号约定"><span class="toc-number">4.2.2.</span> <span class="toc-text">2.2 符号约定</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、构建-Set-Pruning-Tries：逐步详解"><span class="toc-number">4.3.</span> <span class="toc-text">三、构建 Set Pruning Tries：逐步详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-第一步：建立目的地址-Trie-树"><span class="toc-number">4.3.1.</span> <span class="toc-text">3.1 第一步：建立目的地址 Trie 树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-第二步：在每个节点挂载源-Trie-树"><span class="toc-number">4.3.2.</span> <span class="toc-text">3.2 第二步：在每个节点挂载源 Trie 树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-逐节点分析"><span class="toc-number">4.3.3.</span> <span class="toc-text">3.3 逐节点分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-完整结构总览"><span class="toc-number">4.3.4.</span> <span class="toc-text">3.4 完整结构总览</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、查找过程（Lookup）"><span class="toc-number">4.4.</span> <span class="toc-text">四、查找过程（Lookup）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-算法步骤"><span class="toc-number">4.4.1.</span> <span class="toc-text">4.1 算法步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-用一句话总结查找"><span class="toc-number">4.4.2.</span> <span class="toc-text">4.2 用一句话总结查找</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、关键挑战：源-Trie-中应该存什么？（Pruning-的含义）"><span class="toc-number">4.5.</span> <span class="toc-text">五、关键挑战：源 Trie 中应该存什么？（Pruning 的含义）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-“剪枝”（Pruning）的含义"><span class="toc-number">4.5.1.</span> <span class="toc-text">5.1 “剪枝”（Pruning）的含义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-以-D-00-为例的详细推导"><span class="toc-number">4.5.2.</span> <span class="toc-text">5.2 以 $D &#x3D; 00*$ 为例的详细推导</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、致命缺陷：内存爆炸（Memory-Explosion）"><span class="toc-number">4.6.</span> <span class="toc-text">六、致命缺陷：内存爆炸（Memory Explosion）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-问题的本质"><span class="toc-number">4.6.1.</span> <span class="toc-text">6.1 问题的本质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-最坏情况分析"><span class="toc-number">4.6.2.</span> <span class="toc-text">6.2 最坏情况分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-数字直觉"><span class="toc-number">4.6.3.</span> <span class="toc-text">6.3 数字直觉</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-权衡总结"><span class="toc-number">4.6.4.</span> <span class="toc-text">6.4 权衡总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、概念图总结"><span class="toc-number">4.7.</span> <span class="toc-text">七、概念图总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八、费曼自检-Checklist"><span class="toc-number">4.8.</span> <span class="toc-text">八、费曼自检 Checklist</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-什么是二维数据包分类问题？为什么一维的-Trie-不够用？"><span class="toc-number">4.8.1.</span> <span class="toc-text">1. 什么是二维数据包分类问题？为什么一维的 Trie 不够用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Set-Pruning-Tries-的基本结构是什么？它由哪两层组成？"><span class="toc-number">4.8.2.</span> <span class="toc-text">2. Set Pruning Tries 的基本结构是什么？它由哪两层组成？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对于目的地址-Trie-中的某个节点（比如代表前缀-00-），它挂载的源-Trie-应该包含哪些规则的源前缀？为什么？"><span class="toc-number">4.8.3.</span> <span class="toc-text">3. 对于目的地址 Trie 中的某个节点（比如代表前缀 00*），它挂载的源 Trie 应该包含哪些规则的源前缀？为什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-为什么-R-7-的源前缀-S-7-会出现在每一棵源-Trie-中？"><span class="toc-number">4.8.4.</span> <span class="toc-text">4. 为什么 $R_7$ 的源前缀 $S_7$ 会出现在每一棵源 Trie 中？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Set-Pruning-Tries-的查找过程是怎样的？请用自己的话描述完整步骤。"><span class="toc-number">4.8.5.</span> <span class="toc-text">5. Set Pruning Tries 的查找过程是怎样的？请用自己的话描述完整步骤。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#回溯法省内存换时间"><span class="toc-number">5.</span> <span class="toc-text">回溯法省内存换时间</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User"><span class="toc-number">5.1.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reducing-Memory-Using-Backtracking"><span class="toc-number">5.2.</span> <span class="toc-text">Reducing Memory Using Backtracking</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#References"><span class="toc-number">5.2.0.1.</span> <span class="toc-text">References:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant"><span class="toc-number">5.3.</span> <span class="toc-text">🤖 Assistant</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#使用回溯法减少内存（Reducing-Memory-Using-Backtracking）"><span class="toc-number">6.</span> <span class="toc-text">使用回溯法减少内存（Reducing Memory Using Backtracking）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#从头建立背景：为什么需要这个方法？"><span class="toc-number">6.1.</span> <span class="toc-text">从头建立背景：为什么需要这个方法？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题的起点：数据包分类（Packet-Classification）"><span class="toc-number">6.1.1.</span> <span class="toc-text">问题的起点：数据包分类（Packet Classification）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用-Trie-来做匹配"><span class="toc-number">6.1.2.</span> <span class="toc-text">用 Trie 来做匹配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前置知识回顾：Set-Pruning-Trie-的问题"><span class="toc-number">6.2.</span> <span class="toc-text">前置知识回顾：Set-Pruning Trie 的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心内容：回溯法（Backtracking）"><span class="toc-number">6.3.</span> <span class="toc-text">核心内容：回溯法（Backtracking）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设计哲学：反过来做取舍"><span class="toc-number">6.3.1.</span> <span class="toc-text">设计哲学：反过来做取舍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回溯法的数据结构是怎么建的？"><span class="toc-number">6.3.2.</span> <span class="toc-text">回溯法的数据结构是怎么建的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回溯法的查找过程（Search-Algorithm）"><span class="toc-number">6.3.3.</span> <span class="toc-text">回溯法的查找过程（Search Algorithm）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#阶段一：向下走——找最长目的前缀匹配"><span class="toc-number">6.3.3.1.</span> <span class="toc-text">阶段一：向下走——找最长目的前缀匹配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#阶段二：向上走——回溯搜索所有祖先的源-trie"><span class="toc-number">6.3.3.2.</span> <span class="toc-text">阶段二：向上走——回溯搜索所有祖先的源 trie</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么必须回溯？"><span class="toc-number">6.3.3.3.</span> <span class="toc-text">为什么必须回溯？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用一个具体例子走一遍"><span class="toc-number">6.3.4.</span> <span class="toc-text">用一个具体例子走一遍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#性能分析对比"><span class="toc-number">6.4.</span> <span class="toc-text">性能分析对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#概念图总结"><span class="toc-number">6.5.</span> <span class="toc-text">概念图总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#费曼自检-Checklist-1"><span class="toc-number">6.6.</span> <span class="toc-text">费曼自检 Checklist</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-为什么-Set-Pruning-Trie-的内存开销高？"><span class="toc-number">6.6.1.</span> <span class="toc-text">1. 为什么 Set-Pruning Trie 的内存开销高？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-在回溯法中，每个目的前缀节点-D-的源-trie-里存储的是什么？"><span class="toc-number">6.6.2.</span> <span class="toc-text">2. 在回溯法中，每个目的前缀节点 D 的源 trie 里存储的是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-回溯法的查找过程分哪两个阶段？请具体描述。"><span class="toc-number">6.6.3.</span> <span class="toc-text">3. 回溯法的查找过程分哪两个阶段？请具体描述。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-为什么回溯法必须搜索祖先节点的源-trie，而不能只搜索最长匹配节点-D-的源-trie？"><span class="toc-number">6.6.4.</span> <span class="toc-text">4. 为什么回溯法必须搜索祖先节点的源 trie，而不能只搜索最长匹配节点 D 的源 trie？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-回溯法相比-Set-Pruning-Trie，在时间和空间上的取舍是什么？"><span class="toc-number">6.6.5.</span> <span class="toc-text">5. 回溯法相比 Set-Pruning Trie，在时间和空间上的取舍是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-如果目的-trie-的深度为-W（比如-IPv4-地址是-32-位，W-32），回溯法最坏情况下需要搜索多少棵源-trie？"><span class="toc-number">6.6.6.</span> <span class="toc-text">6. 如果目的 trie 的深度为 W（比如 IPv4 地址是 32 位，W&#x3D;32），回溯法最坏情况下需要搜索多少棵源 trie？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧑‍💻-User-1"><span class="toc-number">6.7.</span> <span class="toc-text">🧑‍💻 User</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🤖-Assistant-1"><span class="toc-number">6.8.</span> <span class="toc-text">🤖 Assistant</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Grid-of-Tries（网格字典树）——-数据包分类中的高效查找方法"><span class="toc-number">7.</span> <span class="toc-text">Grid of Tries（网格字典树）—— 数据包分类中的高效查找方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、前置知识回顾：为什么需要二维匹配？"><span class="toc-number">7.1.</span> <span class="toc-text">一、前置知识回顾：为什么需要二维匹配？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Trie（字典树）是什么？——核心数据结构"><span class="toc-number">7.2.</span> <span class="toc-text">二、Trie（字典树）是什么？——核心数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、已有的两种方案及其问题"><span class="toc-number">7.3.</span> <span class="toc-text">三、已有的两种方案及其问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方案-A：Set-Pruning（集合剪枝）"><span class="toc-number">7.3.1.</span> <span class="toc-text">方案 A：Set Pruning（集合剪枝）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方案-B：Backtracking（回溯）"><span class="toc-number">7.3.2.</span> <span class="toc-text">方案 B：Backtracking（回溯）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-先想再讲（在继续之前，请你先思考）"><span class="toc-number">7.3.3.</span> <span class="toc-text">🧠 先想再讲（在继续之前，请你先思考）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、Grid-of-Tries（网格字典树）——核心方案"><span class="toc-number">7.4.</span> <span class="toc-text">四、Grid of Tries（网格字典树）——核心方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-核心思想：用预计算（precomputation）消除回溯"><span class="toc-number">7.4.1.</span> <span class="toc-text">4.1 核心思想：用预计算（precomputation）消除回溯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Switch-Pointer-的含义"><span class="toc-number">7.4.2.</span> <span class="toc-text">4.2 Switch Pointer 的含义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-完整查找流程"><span class="toc-number">7.4.3.</span> <span class="toc-text">4.3 完整查找流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、具体例子详解"><span class="toc-number">7.5.</span> <span class="toc-text">五、具体例子详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第-1-步：目的地址-Trie-匹配"><span class="toc-number">7.5.1.</span> <span class="toc-text">第 1 步：目的地址 Trie 匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第-2-步：进入-D-00-的源地址-Trie"><span class="toc-number">7.5.2.</span> <span class="toc-text">第 2 步：进入 D &#x3D; 00 的源地址 Trie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第-3-步：跟随-Switch-Pointer"><span class="toc-number">7.5.3.</span> <span class="toc-text">第 3 步：跟随 Switch Pointer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第-4-步：在节点-x-继续匹配"><span class="toc-number">7.5.4.</span> <span class="toc-text">第 4 步：在节点 x 继续匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第-5-步：再次跟随-Switch-Pointer"><span class="toc-number">7.5.5.</span> <span class="toc-text">第 5 步：再次跟随 Switch Pointer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第-6-步：在节点-y-处终止"><span class="toc-number">7.5.6.</span> <span class="toc-text">第 6 步：在节点 y 处终止</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对比-Backtracking-的过程"><span class="toc-number">7.5.7.</span> <span class="toc-text">对比 Backtracking 的过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、三种方案的对比总结"><span class="toc-number">7.6.</span> <span class="toc-text">六、三种方案的对比总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、概念图"><span class="toc-number">7.7.</span> <span class="toc-text">七、概念图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八、费曼自检-Checklist-1"><span class="toc-number">7.8.</span> <span class="toc-text">八、费曼自检 Checklist</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-二维数据包分类问题是什么？为什么比一维匹配更难？"><span class="toc-number">7.8.1.</span> <span class="toc-text">1. 二维数据包分类问题是什么？为什么比一维匹配更难？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Set-Pruning-方案的核心思路是什么？它的主要缺点是什么？"><span class="toc-number">7.8.2.</span> <span class="toc-text">2. Set Pruning 方案的核心思路是什么？它的主要缺点是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Backtracking-方案的核心思路是什么？它的主要缺点是什么？"><span class="toc-number">7.8.3.</span> <span class="toc-text">3. Backtracking 方案的核心思路是什么？它的主要缺点是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Grid-of-Tries-中的-switch-pointer-是什么？它解决了什么问题？"><span class="toc-number">7.8.4.</span> <span class="toc-text">4. Grid of Tries 中的 switch pointer 是什么？它解决了什么问题？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-请用自己的话描述-Grid-of-Tries-的完整查找流程。"><span class="toc-number">7.8.5.</span> <span class="toc-text">5. 请用自己的话描述 Grid of Tries 的完整查找流程。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-为什么-switch-pointer-跳转时可以安全地跳过某些源地址-Trie？"><span class="toc-number">7.8.6.</span> <span class="toc-text">6. 为什么 switch pointer 跳转时可以安全地跳过某些源地址 Trie？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Grid-of-Tries-相比-Set-Pruning-和-Backtracking，在时间和空间上的权衡是怎样的？"><span class="toc-number">7.8.7.</span> <span class="toc-text">7. Grid of Tries 相比 Set Pruning 和 Backtracking，在时间和空间上的权衡是怎样的？</span></a></li></ol></li></ol></li></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png)"><div id="post-info"><div id="post-title"><div class="posttitle">Router Design and Algorithms part2</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2026-02-19<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2026-02-20</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/">10-projects</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/cs6250/">cs6250</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/10-projects/cs6250/chapter-6/">chapter-6</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/2026/02/19/10-projects/cs6250/chapter-6/Router%20Design%20and%20Algorithms%20part2/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2026/02/19/10-projects/cs6250/chapter-6/Router%20Design%20and%20Algorithms%20part2/" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="Router-Design-and-Algorithms-Part2"><a href="#Router-Design-and-Algorithms-Part2" class="headerlink" title="Router Design and Algorithms Part2"></a>Router Design and Algorithms Part2</h1><h1 id="数据包分类（Packet-Classification）：为什么我们需要它？"><a href="#数据包分类（Packet-Classification）：为什么我们需要它？" class="headerlink" title="数据包分类（Packet Classification）：为什么我们需要它？"></a>数据包分类（Packet Classification）：为什么我们需要它？</h1><hr>
+<h2 id="从一个生活类比开始：邮局分拣"><a href="#从一个生活类比开始：邮局分拣" class="headerlink" title="从一个生活类比开始：邮局分拣"></a>从一个生活类比开始：邮局分拣</h2><p>想象你在一个邮局工作。最简单的分拣方式是：只看信封上的”收件地址”，然后把信扔到对应的邮筒里。这就是传统路由器做的事情——根据目的 IP 地址（destination IP address）进行最长前缀匹配（longest prefix matching），然后转发数据包。</p>
+<p>但现在，邮局的需求变复杂了：</p>
+<ul>
+<li>有些信来自被列入黑名单的寄件人，需要直接丢弃</li>
+<li>有些是加急快递，需要走专门的快速通道</li>
+<li>有些大客户预约了每天固定的运力，需要给他们预留带宽</li>
+</ul>
+<p>这时候，光看”收件地址”就不够了。你还需要看寄件人是谁、信件类型是什么、有没有特殊标记等等。</p>
+<p>在网络世界里，这种”不仅看目的地址，还要看多个字段来决定如何处理数据包”的做法，就叫做<strong>数据包分类（Packet Classification）</strong>。</p>
+<hr>
+<h2 id="核心问题：为什么传统转发不够用？"><a href="#核心问题：为什么传统转发不够用？" class="headerlink" title="核心问题：为什么传统转发不够用？"></a>核心问题：为什么传统转发不够用？</h2><h3 id="传统转发的工作方式"><a href="#传统转发的工作方式" class="headerlink" title="传统转发的工作方式"></a>传统转发的工作方式</h3><p>传统路由器在转发数据包时，只做一件事：</p>
+<ol>
+<li>取出数据包头部（packet header）中的<strong>目的 IP 地址（destination IP address）</strong></li>
+<li>在路由表（routing table）中进行<strong>最长前缀匹配（Longest Prefix Matching, LPM）</strong></li>
+<li>找到匹配的条目后，把数据包从对应的出口（output port）转发出去</li>
+</ol>
+<p>这种方式简单高效，但它只关心一个维度——“这个包要去哪里”。</p>
+<h3 id="为什么这不够？"><a href="#为什么这不够？" class="headerlink" title="为什么这不够？"></a>为什么这不够？</h3><p>随着互联网日益复杂，网络需要为流量提供两类保障：</p>
+<ol>
+<li><strong>服务质量保障（Quality of Service, QoS）</strong>：比如视频通话的数据包需要低延迟，不能和普通网页浏览的数据包一样排队等待</li>
+<li><strong>安全保障（Security）</strong>：比如需要阻止来自某些恶意来源的流量</li>
+</ol>
+<p>要实现这些保障，路由器必须根据<strong>多个条件</strong>来判断如何处理一个数据包，这些条件可能包括：</p>
+<ul>
+<li>源 IP 地址（source IP address）：这个包从哪里来？</li>
+<li>目的 IP 地址（destination IP address）：这个包要去哪里？</li>
+<li>源端口号（source port）</li>
+<li>目的端口号（destination port）</li>
+<li>协议类型（protocol type）：是 TCP 还是 UDP？</li>
+<li>TCP 标志位（TCP flags）：比如 SYN、ACK 等标志</li>
+</ul>
+<p>这种基于多个字段、更精细地处理数据包的机制，就是<strong>数据包分类（Packet Classification）</strong>。</p>
+<hr>
+<h2 id="先想再讲：你能想到哪些场景需要数据包分类？"><a href="#先想再讲：你能想到哪些场景需要数据包分类？" class="headerlink" title="先想再讲：你能想到哪些场景需要数据包分类？"></a>先想再讲：你能想到哪些场景需要数据包分类？</h2><p>在继续之前，请你暂停几秒钟，试着自己想一想：在现实网络中，有哪些场景需要路由器不仅仅看目的地址，而是要看更多信息来决定怎么处理数据包？</p>
+<p>想好了吗？下面我们来看三个经典的应用场景。</p>
+<hr>
+<h2 id="数据包分类的三大经典应用场景"><a href="#数据包分类的三大经典应用场景" class="headerlink" title="数据包分类的三大经典应用场景"></a>数据包分类的三大经典应用场景</h2><h3 id="1-防火墙（Firewalls）"><a href="#1-防火墙（Firewalls）" class="headerlink" title="1. 防火墙（Firewalls）"></a>1. 防火墙（Firewalls）</h3><p><strong>是什么？</strong> 防火墙是部署在网络入口和出口处的安全机制，由路由器实现。</p>
+<p><strong>做什么？</strong> 它根据预定义的规则，检查每个经过的数据包，决定是放行还是丢弃。</p>
+<p><strong>为什么需要数据包分类？</strong> 防火墙的规则通常不只看目的地址。比如：</p>
+<ul>
+<li>“丢弃所有来自 IP 地址 10.0.0.5 的数据包”——需要看<strong>源地址</strong></li>
+<li>“只允许 TCP 端口 80（HTTP）和 443（HTTPS）的流量通过”——需要看<strong>协议类型</strong>和<strong>端口号</strong></li>
+<li>“阻止所有带有 SYN 标志但没有 ACK 标志的入站连接”——需要看 <strong>TCP 标志位</strong></li>
+</ul>
+<p>类比：防火墙就像大楼的保安，不是只看你要去哪个楼层（目的地址），还要看你的身份证（源地址）、你带了什么东西（协议/端口）、你有没有预约（TCP 标志位）。</p>
+<h3 id="2-资源预留协议（Resource-Reservation-Protocols）"><a href="#2-资源预留协议（Resource-Reservation-Protocols）" class="headerlink" title="2. 资源预留协议（Resource Reservation Protocols）"></a>2. 资源预留协议（Resource Reservation Protocols）</h3><p><strong>是什么？</strong> 这类协议允许网络为特定的流量预先分配带宽等资源。</p>
+<p><strong>典型例子：DiffServ（Differentiated Services，差分服务）</strong>。DiffServ 可以在源（source）和目的（destination）之间预留带宽（bandwidth）。</p>
+<p><strong>为什么需要数据包分类？</strong> 要实现资源预留，路由器必须能识别出”哪些数据包属于被预留了资源的那条流”。这需要匹配源地址、目的地址、甚至端口号等多个字段。</p>
+<p>类比：这就像高速公路上的 HOV 车道（高承载车道）。要判断一辆车能不能走 HOV 车道，不能只看它要去哪里，还要看车里坐了几个人（多个条件匹配）。</p>
+<h3 id="3-基于流量类型的路由（Routing-Based-on-Traffic-Type）"><a href="#3-基于流量类型的路由（Routing-Based-on-Traffic-Type）" class="headerlink" title="3. 基于流量类型的路由（Routing Based on Traffic Type）"></a>3. 基于流量类型的路由（Routing Based on Traffic Type）</h3><p><strong>是什么？</strong> 根据流量的具体类型（比如视频、语音、普通数据），选择不同的转发路径。</p>
+<p><strong>为什么需要？</strong> 不同类型的流量对网络的要求不同：</p>
+<ul>
+<li>视频和语音是<strong>时间敏感型应用（time-sensitive applications）</strong>，需要低延迟、低抖动</li>
+<li>普通文件下载对延迟不敏感，但需要高吞吐量</li>
+</ul>
+<p>通过识别流量类型并选择合适的路径，可以避免时间敏感型应用遭受不必要的延迟。</p>
+<p>类比：这就像医院的分诊台。急诊病人（视频流量）走绿色通道，普通门诊病人（普通数据）走正常排队流程。</p>
+<hr>
+<h2 id="具体示例：基于流量类型的路由规则"><a href="#具体示例：基于流量类型的路由规则" class="headerlink" title="具体示例：基于流量类型的路由规则"></a>具体示例：基于流量类型的路由规则</h2><p>原文给出了一个具体的网络拓扑和规则表，让我们逐一拆解。</p>
+<h3 id="网络拓扑"><a href="#网络拓扑" class="headerlink" title="网络拓扑"></a>网络拓扑</h3><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">S1 ──┐</span><br><span class="line">S2 ──┤</span><br><span class="line">     ├── Router R ──┬── L1 ──→ ...</span><br><span class="line">X  ──┤              └── L2 ──→ ...</span><br><span class="line">Y  ──┤</span><br><span class="line">D  ──┘</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li><strong>Router R</strong>：中心路由器，连接着多个网络</li>
+<li><strong>S1, S2, X, Y, D</strong>：代表不同的网络目的地或来源</li>
+<li><strong>L1, L2</strong>：是路由器 R 上的两个特定连接点（可以理解为两个不同的出口链路/接口）</li>
+</ul>
+<h3 id="三条分类规则"><a href="#三条分类规则" class="headerlink" title="三条分类规则"></a>三条分类规则</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>规则编号</th>
+<th>含义</th>
+<th>涉及的字段</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>规则 1</td>
+<td>从 S1 发往 D 的视频流量</td>
+<td>源地址=S1，目的地址=D，流量类型=视频</td>
+<td>通过 L1 转发</td>
+</tr>
+<tr>
+<td>规则 2</td>
+<td>来自 S2 的所有流量</td>
+<td>源地址=S2</td>
+<td>丢弃（drop）</td>
+</tr>
+<tr>
+<td>规则 3</td>
+<td>从前缀 X 到前缀 Y 的流量</td>
+<td>源前缀=X，目的前缀=Y</td>
+<td>预留 50 Mbps 带宽</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>逐条解释：</p>
+<p><strong>规则 1</strong>：这是一条<strong>基于流量类型的路由规则</strong>。路由器不仅要看源和目的地址，还要识别出这是视频流量，然后专门走 L1 这条链路。这样可以确保视频流量走一条延迟更低或带宽更充足的路径。</p>
+<p><strong>规则 2</strong>：这是一条<strong>防火墙规则</strong>。假设 S2 是一个实验性站点（experimental site），可能会产生不稳定或有害的流量，所以路由器直接丢弃所有来自 S2 的数据包。注意，这条规则只看源地址，不关心目的地址或其他字段。</p>
+<p><strong>规则 3</strong>：这是一条<strong>资源预留规则</strong>。从网络前缀 X 到网络前缀 Y 的所有流量，被保证获得 50 Mbps 的带宽。这确保了这条流的传输质量。</p>
+<hr>
+<h2 id="概念图：数据包分类的全景"><a href="#概念图：数据包分类的全景" class="headerlink" title="概念图：数据包分类的全景"></a>概念图：数据包分类的全景</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">           互联网日益复杂</span><br><span class="line">                │</span><br><span class="line">     ┌──────────┴──────────┐</span><br><span class="line">     │                     │</span><br><span class="line">需要 QoS 保障        需要安全保障</span><br><span class="line">     │                     │</span><br><span class="line">     └──────────┬──────────┘</span><br><span class="line">                │</span><br><span class="line">       仅靠目的 IP 最长前缀匹配不够</span><br><span class="line">                │</span><br><span class="line">                ▼</span><br><span class="line">        数据包分类 (Packet Classification)</span><br><span class="line">        根据多个字段做决策</span><br><span class="line">                │</span><br><span class="line">     ┌──────────┼──────────┐</span><br><span class="line">     │          │          │</span><br><span class="line">  防火墙     资源预留    基于流量类型路由</span><br><span class="line">(Firewalls) (Resource  (Traffic Type</span><br><span class="line">            Reservation) Routing)</span><br><span class="line">     │          │          │</span><br><span class="line">过滤恶意流量  预留带宽   选择最优路径</span><br><span class="line">执行安全策略  (如DiffServ) 避免延迟</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="关键概念总结"><a href="#关键概念总结" class="headerlink" title="关键概念总结"></a>关键概念总结</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>英文</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据包分类</td>
+<td>Packet Classification</td>
+<td>根据数据包头部的多个字段决定如何处理该数据包</td>
+</tr>
+<tr>
+<td>最长前缀匹配</td>
+<td>Longest Prefix Matching (LPM)</td>
+<td>传统路由仅根据目的 IP 地址匹配路由表的方式</td>
+</tr>
+<tr>
+<td>服务质量</td>
+<td>Quality of Service (QoS)</td>
+<td>网络为不同流量提供不同级别服务的能力</td>
+</tr>
+<tr>
+<td>防火墙</td>
+<td>Firewall</td>
+<td>在网络边界过滤流量的安全机制</td>
+</tr>
+<tr>
+<td>差分服务</td>
+<td>DiffServ (Differentiated Services)</td>
+<td>一种资源预留协议，可在源和目的之间预留带宽</td>
+</tr>
+<tr>
+<td>TCP 标志位</td>
+<td>TCP Flags</td>
+<td>TCP 报文头中的控制位，如 SYN、ACK、FIN 等</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="费曼自检-Checklist"><a href="#费曼自检-Checklist" class="headerlink" title="费曼自检 Checklist"></a>费曼自检 Checklist</h2><h3 id="1-什么是数据包分类（Packet-Classification）？它和传统的数据包转发有什么本质区别？"><a href="#1-什么是数据包分类（Packet-Classification）？它和传统的数据包转发有什么本质区别？" class="headerlink" title="1. 什么是数据包分类（Packet Classification）？它和传统的数据包转发有什么本质区别？"></a>1. 什么是数据包分类（Packet Classification）？它和传统的数据包转发有什么本质区别？</h3><details>
+<summary>answer</summary>
+数据包分类是指路由器根据数据包头部的多个字段（如源 IP 地址、目的 IP 地址、端口号、协议类型、TCP 标志位等）来决定如何处理该数据包。传统的数据包转发只根据一个字段——目的 IP 地址——进行最长前缀匹配（Longest Prefix Matching）来决定转发出口。数据包分类是更精细的处理方式，能支持安全策略、服务质量保障等高级功能。
+</details>
+
+<h3 id="2-为什么仅靠目的-IP-地址的最长前缀匹配不足以满足现代网络的需求？"><a href="#2-为什么仅靠目的-IP-地址的最长前缀匹配不足以满足现代网络的需求？" class="headerlink" title="2. 为什么仅靠目的 IP 地址的最长前缀匹配不足以满足现代网络的需求？"></a>2. 为什么仅靠目的 IP 地址的最长前缀匹配不足以满足现代网络的需求？</h3><details>
+<summary>answer</summary>
+因为现代网络需要提供服务质量（QoS）保障和安全保障。比如需要过滤恶意来源的流量（需要看源地址）、为视频流量选择低延迟路径（需要识别流量类型）、为特定流预留带宽（需要匹配源和目的地址对）。这些都需要检查目的 IP 之外的多个字段，单靠目的 IP 无法实现。
+</details>
+
+<h3 id="3-请列举数据包分类的三个经典应用场景，并分别用一句话说明每个场景为什么需要数据包分类。"><a href="#3-请列举数据包分类的三个经典应用场景，并分别用一句话说明每个场景为什么需要数据包分类。" class="headerlink" title="3. 请列举数据包分类的三个经典应用场景，并分别用一句话说明每个场景为什么需要数据包分类。"></a>3. 请列举数据包分类的三个经典应用场景，并分别用一句话说明每个场景为什么需要数据包分类。</h3><details>
+<summary>answer</summary>
+1. 防火墙（Firewalls）：需要根据源地址、端口号、TCP 标志位等多个字段来判断是否放行或丢弃数据包，以实施安全策略。
+2. 资源预留协议（Resource Reservation Protocols，如 DiffServ）：需要根据源和目的地址等字段识别特定流，为其预留带宽。
+3. 基于流量类型的路由（Routing Based on Traffic Type）：需要识别流量类型（如视频、语音），为时间敏感型应用选择低延迟路径，避免不必要的延迟。
+</details>
+
+<h3 id="4-在原文的示例中，三条规则分别对应哪种应用场景？每条规则检查了哪些字段、执行了什么动作？"><a href="#4-在原文的示例中，三条规则分别对应哪种应用场景？每条规则检查了哪些字段、执行了什么动作？" class="headerlink" title="4. 在原文的示例中，三条规则分别对应哪种应用场景？每条规则检查了哪些字段、执行了什么动作？"></a>4. 在原文的示例中，三条规则分别对应哪种应用场景？每条规则检查了哪些字段、执行了什么动作？</h3><details>
+<summary>answer</summary>
+规则 1：对应"基于流量类型的路由"。检查源地址（S1）、目的地址（D）、流量类型（视频），动作是通过 L1 链路转发。
+规则 2：对应"防火墙"。检查源地址（S2），动作是丢弃所有来自 S2 的流量（因为 S2 是实验性站点）。
+规则 3：对应"资源预留"。检查源前缀（X）和目的前缀（Y），动作是为该流预留 50 Mbps 带宽。
+</details>
+
+<h3 id="5-请用你自己的话，向一个完全不懂网络的朋友解释什么是数据包分类，以及为什么需要它。"><a href="#5-请用你自己的话，向一个完全不懂网络的朋友解释什么是数据包分类，以及为什么需要它。" class="headerlink" title="5. 请用你自己的话，向一个完全不懂网络的朋友解释什么是数据包分类，以及为什么需要它。"></a>5. 请用你自己的话，向一个完全不懂网络的朋友解释什么是数据包分类，以及为什么需要它。</h3><details>
+<summary>answer</summary>
+参考回答：想象网络就像一个快递分拣中心。传统做法是只看包裹上的收件地址来决定走哪条运输线路。但现在需求变了：有些寄件人在黑名单上，包裹要直接扔掉；有些是加急件，要走最快的通道；有些大客户预约了固定运力。所以分拣中心不能只看收件地址了，还要看寄件人、包裹类型、是否有特殊标记等多个信息来决定怎么处理。在网络中，这种根据数据包的多个信息（源地址、目的地址、端口、协议类型等）来决定如何处理的机制，就叫数据包分类。
+</details>
+
+<h3 id="6-L1-和-L2-在示例拓扑中代表什么？为什么规则-1-要指定通过-L1-转发？"><a href="#6-L1-和-L2-在示例拓扑中代表什么？为什么规则-1-要指定通过-L1-转发？" class="headerlink" title="6. L1 和 L2 在示例拓扑中代表什么？为什么规则 1 要指定通过 L1 转发？"></a>6. L1 和 L2 在示例拓扑中代表什么？为什么规则 1 要指定通过 L1 转发？</h3><details>
+<summary>answer</summary>
+L1 和 L2 是路由器 R 上的两个特定连接点（即不同的出口链路或接口）。规则 1 指定视频流量通过 L1 转发，是因为 L1 这条链路可能具有更低的延迟或更大的带宽，更适合传输对时间敏感的视频流量。这就是基于流量类型路由的意义——为不同类型的流量选择最合适的路径。
+</details>
+
+<h1 id="数据包分类问题的直观解法（Straightforward-Approaches-to-Packet-Classification）"><a href="#数据包分类问题的直观解法（Straightforward-Approaches-to-Packet-Classification）" class="headerlink" title="数据包分类问题的直观解法（Straightforward Approaches to Packet Classification）"></a>数据包分类问题的直观解法（Straightforward Approaches to Packet Classification）</h1><hr>
+<h2 id="0-先建立背景：什么是数据包分类（Packet-Classification）？"><a href="#0-先建立背景：什么是数据包分类（Packet-Classification）？" class="headerlink" title="0. 先建立背景：什么是数据包分类（Packet Classification）？"></a>0. 先建立背景：什么是数据包分类（Packet Classification）？</h2><p>在正式讲三种方法之前，我们必须先搞清楚”数据包分类”到底在解决什么问题，否则后面的一切都是空中楼阁。</p>
+<p>想象你是一栋大楼的保安。每个进出大楼的人（数据包）都带着一些信息：姓名、工牌号、要去的楼层、来自哪个公司等。你手里有一本厚厚的规则手册（rules database），比如：</p>
+<ul>
+<li>“来自A公司、去5楼的人 → 放行”</li>
+<li>“来自B公司、去机房的人 → 拒绝”</li>
+<li>“所有人去1楼大厅 → 放行”</li>
+</ul>
+<p>你的任务就是：对每一个进来的人，翻规则手册，找到最匹配的那条规则，然后执行对应的动作。</p>
+<p>在网络中，路由器/防火墙就是这个保安。数据包的”信息”就是包头字段（header fields），比如源IP地址、目的IP地址、源端口、目的端口、协议类型等。规则手册就是一组分类规则（classification rules）。每条规则定义了”如果包头字段满足某些条件，就执行某个动作（转发、丢弃、标记优先级等）”。</p>
+<p>核心挑战：规则可能有成千上万条，而数据包到达的速度极快（高速链路上每秒数百万个包），我们必须在极短时间内完成匹配。</p>
+<hr>
+<h2 id="1-方法一：线性搜索（Linear-Search）"><a href="#1-方法一：线性搜索（Linear-Search）" class="headerlink" title="1. 方法一：线性搜索（Linear Search）"></a>1. 方法一：线性搜索（Linear Search）</h2><h3 id="1-1-原理"><a href="#1-1-原理" class="headerlink" title="1.1 原理"></a>1.1 原理</h3><p>这是最朴素、最直接的方法。</p>
+<p>做法：拿到一个数据包后，从规则数据库的第一条规则开始，逐条往下比对。每比对一条，就检查这个包是否匹配该规则。同时，始终记录当前找到的”最佳匹配规则”（best-match rule）。遍历完所有规则后，就用那条最佳匹配规则来处理这个包。</p>
+<p>为什么要记录”最佳匹配”而不是”第一个匹配”？因为规则之间可能有重叠。比如：</p>
+<ul>
+<li>规则1：”所有去80端口的流量 → 放行”（很宽泛）</li>
+<li>规则2：”来自恶意IP且去80端口的流量 → 丢弃”（更具体）</li>
+</ul>
+<p>一个来自恶意IP、去80端口的包同时匹配两条规则，但我们希望用更具体的那条。所以必须全部扫完，找到最佳的。</p>
+<h3 id="1-2-类比"><a href="#1-2-类比" class="headerlink" title="1.2 类比"></a>1.2 类比</h3><p>就像你在一本没有索引的电话簿里找一个人的号码——只能从第一页翻到最后一页。</p>
+<h3 id="1-3-性能分析"><a href="#1-3-性能分析" class="headerlink" title="1.3 性能分析"></a>1.3 性能分析</h3><ul>
+<li>如果规则很少（比如几十条），线性搜索完全够用，简单可靠。</li>
+<li>但如果规则数据库有成千上万条规则（现实中的企业防火墙很常见），每个包都要逐条扫描，时间开销就变得不可接受（prohibitive）。</li>
+</ul>
+<p>假设有 N 条规则，每条规则的比对需要一次内存访问，那么最坏情况下，分类一个包的时间复杂度是 O(N)。</p>
+<h3 id="1-4-实际应用"><a href="#1-4-实际应用" class="headerlink" title="1.4 实际应用"></a>1.4 实际应用</h3><p>原文指出，防火墙（Firewall）的实现中确实使用线性搜索。这说明在规则数量较少的场景下，线性搜索因为实现简单、不需要额外数据结构，是一个合理的选择。</p>
+<hr>
+<h2 id="2-方法二：缓存（Caching）"><a href="#2-方法二：缓存（Caching）" class="headerlink" title="2. 方法二：缓存（Caching）"></a>2. 方法二：缓存（Caching）</h2><h3 id="2-1-原理"><a href="#2-1-原理" class="headerlink" title="2.1 原理"></a>2.1 原理</h3><p>核心思想：如果我们已经对某个数据包做过分类，把结果存起来（缓存），下次遇到相同特征的包时，直接查缓存，不用再搜索规则库。</p>
+<p>这就像你是保安，遇到一个经常来的人，你记住了他的脸和对应的规则，下次他来就不用翻手册了。</p>
+<h3 id="2-2-两个致命问题"><a href="#2-2-两个致命问题" class="headerlink" title="2.2 两个致命问题"></a>2.2 两个致命问题</h3><p>原文明确指出缓存方法有两个问题，我们逐一拆解：</p>
+<h4 id="问题一：缓存未命中（Cache-Miss）仍然不可避免"><a href="#问题一：缓存未命中（Cache-Miss）仍然不可避免" class="headerlink" title="问题一：缓存未命中（Cache Miss）仍然不可避免"></a>问题一：缓存未命中（Cache Miss）仍然不可避免</h4><p>即使缓存命中率（cache-hit rate）高达 80%-90%，仍然有 10%-20% 的包在缓存中找不到结果。这些”未命中”的包怎么办？还是得回去做完整的搜索（比如线性搜索）。所以缓存并没有消除慢速搜索的需求，只是减少了它的频率。</p>
+<h4 id="问题二：即使命中率很高，平均性能仍然可能很差"><a href="#问题二：即使命中率很高，平均性能仍然可能很差" class="headerlink" title="问题二：即使命中率很高，平均性能仍然可能很差"></a>问题二：即使命中率很高，平均性能仍然可能很差</h4><p>这是一个非常关键的定量分析，原文给出了具体数字，我们来完整推导：</p>
+<p>假设条件：</p>
+<ul>
+<li>缓存查找耗时：100 纳秒（nsec），即一次内存访问的时间</li>
+<li>规则库有 10,000 条规则</li>
+<li>线性搜索耗时：每条规则一次内存访问 → 10,000 × 100 nsec = 1,000,000 nsec = 1 毫秒（msec）</li>
+<li>缓存命中率：90%</li>
+</ul>
+<p>计算平均搜索时间：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">平均时间 &#x3D; 命中率 × 缓存查找时间 + 未命中率 × 线性搜索时间</span><br><span class="line">         &#x3D; 0.9 × 100 nsec + 0.1 × 1,000,000 nsec</span><br><span class="line">         &#x3D; 90 nsec + 100,000 nsec</span><br><span class="line">         &#x3D; 100,090 nsec</span><br><span class="line">         ≈ 0.1 msec（毫秒）</span><br></pre></td></tr></table></figure></div>
+<p>0.1 毫秒看起来不大，但对于高速网络来说，这仍然太慢了。一条 10 Gbps 的链路上，最小包（64字节）的到达间隔大约是 50 纳秒左右。0.1 毫秒 = 100,000 纳秒，远远跟不上线速（line rate）。</p>
+<h4 id="直觉理解"><a href="#直觉理解" class="headerlink" title="直觉理解"></a>直觉理解</h4><p>这里的关键洞察是：缓存未命中的代价太高了。即使未命中只占 10%，但每次未命中的代价是命中的 10,000 倍（1,000,000 / 100），所以未命中的那 10% 主导了整体性能。</p>
+<p>这就像一个餐厅，90% 的订单 1 分钟就能出餐，但 10% 的订单需要 100 分钟。平均等待时间 = 0.9×1 + 0.1×100 = 10.9 分钟，体验依然很差。</p>
+<hr>
+<h3 id="🧠-先想再讲（检索练习-Retrieval-Practice）"><a href="#🧠-先想再讲（检索练习-Retrieval-Practice）" class="headerlink" title="🧠 先想再讲（检索练习 Retrieval Practice）"></a>🧠 先想再讲（检索练习 Retrieval Practice）</h3><p>在继续第三种方法之前，请你先思考：</p>
+<blockquote>
+<p>线性搜索太慢，缓存又解决不了未命中的问题。有没有一种方式，可以让大部分数据包根本不需要做分类？换句话说，能不能把分类的工作”提前做好”，后续的路由器直接看结果就行？</p>
+</blockquote>
+<p>请先想 30 秒，再往下看。</p>
+<hr>
+<h2 id="3-方法三：传递标签（Passing-Labels）"><a href="#3-方法三：传递标签（Passing-Labels）" class="headerlink" title="3. 方法三：传递标签（Passing Labels）"></a>3. 方法三：传递标签（Passing Labels）</h2><h3 id="3-1-核心思想"><a href="#3-1-核心思想" class="headerlink" title="3.1 核心思想"></a>3.1 核心思想</h3><p>既然在每个路由器上都做分类太贵，那我们换一个策略：只在网络边缘（edge）做一次分类，然后把分类结果”贴”在数据包上，作为一个标签（label）。后续路径上的所有中间路由器只需要读这个标签，就知道该怎么处理这个包，完全不需要重新做分类。</p>
+<p>这就像机场安检：你在入口安检处被检查一次，然后给你一个登机牌（标签）。之后你在候机厅、登机口、飞机上，工作人员只看你的登机牌，不会再让你重新过安检。</p>
+<h3 id="3-2-MPLS（多协议标签交换，Multiprotocol-Label-Switching）"><a href="#3-2-MPLS（多协议标签交换，Multiprotocol-Label-Switching）" class="headerlink" title="3.2 MPLS（多协议标签交换，Multiprotocol Label Switching）"></a>3.2 MPLS（多协议标签交换，Multiprotocol Label Switching）</h3><p>MPLS 是这种”传递标签”思想的典型实现，主要用于流量工程（Traffic Engineering）。</p>
+<p>完整工作流程：</p>
+<p>第一步：在站点 A 和站点 B 之间，预先建立一条标签交换路径（Label-Switched Path, LSP）。这条路径上的每个路由器都知道”看到标签 X 就转发到下一跳 Y”。</p>
+<p>第二步：当流量要从站点 A 发往站点 B 时，站点 A 边缘的路由器对数据包进行完整的分类（比如识别出这是 Web 流量），然后将分类结果映射为一个 MPLS 头部（MPLS header），贴在数据包上。</p>
+<p>第三步：A 和 B 之间的所有中间路由器（intermediate routers）只需要查看 MPLS 标签，根据标签做转发决策。它们完全不需要重新做数据包分类。这大大加快了中间路由器的处理速度。</p>
+<h3 id="3-3-DiffServ（区分服务，Differentiated-Services）"><a href="#3-3-DiffServ（区分服务，Differentiated-Services）" class="headerlink" title="3.3 DiffServ（区分服务，Differentiated Services）"></a>3.3 DiffServ（区分服务，Differentiated Services）</h3><p>DiffServ 采用了类似的思路，但目标不同——它关注的是服务质量（Quality of Service, QoS）。</p>
+<p>做法：在网络边缘，路由器对数据包进行分类，然后在包头中标记（mark）一个特殊的字段（DSCP，Differentiated Services Code Point），表示这个包应该获得什么级别的服务（比如高优先级、低延迟等）。之后，网络内部的路由器只需要读这个标记，就知道该给这个包什么待遇。</p>
+<h3 id="3-4-传递标签方法的本质"><a href="#3-4-传递标签方法的本质" class="headerlink" title="3.4 传递标签方法的本质"></a>3.4 传递标签方法的本质</h3><p>这种方法并没有让分类本身变快，而是通过架构设计，把分类的工作量从”每个路由器都做”减少到”只在边缘做一次”。这是一种用空间换时间、用预处理换实时计算的策略。</p>
+<p>局限性：这种方法需要网络基础设施的支持（路由器必须理解 MPLS 或 DiffServ），而且只适用于可以预先规划路径或服务等级的场景。对于需要在每个节点独立做分类决策的场景（比如独立的防火墙），这种方法不适用。</p>
+<hr>
+<h2 id="4-三种方法的对比总结"><a href="#4-三种方法的对比总结" class="headerlink" title="4. 三种方法的对比总结"></a>4. 三种方法的对比总结</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>原理</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>线性搜索 (Linear Search)</td>
+<td>逐条扫描规则库</td>
+<td>实现简单</td>
+<td>规则多时太慢，O(N)</td>
+</tr>
+<tr>
+<td>缓存 (Caching)</td>
+<td>存储之前的分类结果</td>
+<td>命中时极快</td>
+<td>未命中代价太高，平均性能仍差</td>
+</tr>
+<tr>
+<td>传递标签 (Passing Labels)</td>
+<td>边缘分类一次，标签传递</td>
+<td>中间节点无需分类</td>
+<td>需要基础设施支持，不通用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这三种方法都是”直观的”（straightforward）解法，各有局限。这也是为什么后续需要研究更高级的算法解法（algorithmic solutions），比如基于 Trie 的方法、决策树方法等。</p>
+<hr>
+<h2 id="5-费曼自检-Checklist"><a href="#5-费曼自检-Checklist" class="headerlink" title="5. 费曼自检 Checklist"></a>5. 费曼自检 Checklist</h2><h3 id="Q1-什么是数据包分类（Packet-Classification）问题？它为什么困难？"><a href="#Q1-什么是数据包分类（Packet-Classification）问题？它为什么困难？" class="headerlink" title="Q1: 什么是数据包分类（Packet Classification）问题？它为什么困难？"></a>Q1: 什么是数据包分类（Packet Classification）问题？它为什么困难？</h3><details>
+<summary>answer</summary>
+数据包分类是指：对于每一个到达的数据包，根据其包头字段（如源/目的IP、端口、协议等），在一组预定义的规则中找到最佳匹配的规则，并执行对应的动作。它困难的原因是：规则可能有成千上万条，而高速链路上数据包到达速度极快，必须在极短时间内完成匹配。
+</details>
+
+<h3 id="Q2-线性搜索为什么要记录”最佳匹配”而不是找到第一个匹配就停下？"><a href="#Q2-线性搜索为什么要记录”最佳匹配”而不是找到第一个匹配就停下？" class="headerlink" title="Q2: 线性搜索为什么要记录”最佳匹配”而不是找到第一个匹配就停下？"></a>Q2: 线性搜索为什么要记录”最佳匹配”而不是找到第一个匹配就停下？</h3><details>
+<summary>answer</summary>
+因为规则之间可能有重叠，一个数据包可能同时匹配多条规则。我们需要找到最具体/最优先的那条规则（best-match rule），所以必须遍历完所有规则，始终跟踪当前最佳匹配。
+</details>
+
+<h3 id="Q3-缓存方法的两个问题分别是什么？请用自己的话解释。"><a href="#Q3-缓存方法的两个问题分别是什么？请用自己的话解释。" class="headerlink" title="Q3: 缓存方法的两个问题分别是什么？请用自己的话解释。"></a>Q3: 缓存方法的两个问题分别是什么？请用自己的话解释。</h3><details>
+<summary>answer</summary>
+问题一：即使命中率高达 80%-90%，仍有 10%-20% 的包需要回退到完整搜索（如线性搜索），缓存无法消除慢速搜索的需求。问题二：未命中的代价远高于命中的代价（可能差几个数量级），所以即使未命中比例小，它对平均时间的贡献仍然是主导性的。原文例子中，90% 命中率下平均时间仍为 0.1 msec，对高速网络来说太慢。
+</details>
+
+<h3 id="Q4-请手动推导：缓存命中率-90-，缓存查找-100-nsec，线性搜索-10-000-条规则每条-100-nsec，平均搜索时间是多少？"><a href="#Q4-请手动推导：缓存命中率-90-，缓存查找-100-nsec，线性搜索-10-000-条规则每条-100-nsec，平均搜索时间是多少？" class="headerlink" title="Q4: 请手动推导：缓存命中率 90%，缓存查找 100 nsec，线性搜索 10,000 条规则每条 100 nsec，平均搜索时间是多少？"></a>Q4: 请手动推导：缓存命中率 90%，缓存查找 100 nsec，线性搜索 10,000 条规则每条 100 nsec，平均搜索时间是多少？</h3><details>
+<summary>answer</summary>
+平均时间 = 0.9 × 100 + 0.1 × (10,000 × 100) = 90 + 100,000 = 100,090 nsec ≈ 0.1 msec。关键洞察：未命中的 10% 贡献了 100,000 nsec，而命中的 90% 只贡献了 90 nsec，未命中完全主导了平均性能。
+</details>
+
+<h3 id="Q5-MPLS-的完整工作流程是什么？它如何避免中间路由器重复做分类？"><a href="#Q5-MPLS-的完整工作流程是什么？它如何避免中间路由器重复做分类？" class="headerlink" title="Q5: MPLS 的完整工作流程是什么？它如何避免中间路由器重复做分类？"></a>Q5: MPLS 的完整工作流程是什么？它如何避免中间路由器重复做分类？</h3><details>
+<summary>answer</summary>
+第一步：在站点 A 和 B 之间预先建立标签交换路径（LSP）。第二步：站点 A 边缘路由器对数据包做完整分类，将结果映射为 MPLS 头部贴在包上。第三步：中间路由器只读 MPLS 标签做转发，不需要重新分类。本质是把分类工作集中在边缘做一次，用标签传递结果。
+</details>
+
+<h3 id="Q6-DiffServ-和-MPLS-的思路有什么相似之处？目标有什么不同？"><a href="#Q6-DiffServ-和-MPLS-的思路有什么相似之处？目标有什么不同？" class="headerlink" title="Q6: DiffServ 和 MPLS 的思路有什么相似之处？目标有什么不同？"></a>Q6: DiffServ 和 MPLS 的思路有什么相似之处？目标有什么不同？</h3><details>
+<summary>answer</summary>
+相似之处：都是在网络边缘做一次分类，然后通过标记/标签传递分类结果，让内部路由器无需重复分类。不同之处：MPLS 主要用于流量工程（Traffic Engineering），控制流量走哪条路径；DiffServ 主要用于服务质量（QoS），标记数据包应获得的服务等级。
+</details>
+
+<h3 id="Q7-为什么说这三种方法都是”直观的”解法，还需要更高级的算法？"><a href="#Q7-为什么说这三种方法都是”直观的”解法，还需要更高级的算法？" class="headerlink" title="Q7: 为什么说这三种方法都是”直观的”解法，还需要更高级的算法？"></a>Q7: 为什么说这三种方法都是”直观的”解法，还需要更高级的算法？</h3><details>
+<summary>answer</summary>
+线性搜索在规则多时太慢；缓存无法解决未命中时的高代价问题；传递标签需要特殊基础设施支持且不通用（不适用于独立防火墙等场景）。三种方法都无法在通用场景下高效解决大规模规则库的快速分类问题，因此需要专门的算法（如基于 Trie、决策树等）来实现更高效的分类。
+</details>
+
+
+<h1 id="集合剪枝-Trie-树（Set-Pruning-Tries）：二维数据包分类"><a href="#集合剪枝-Trie-树（Set-Pruning-Tries）：二维数据包分类" class="headerlink" title="集合剪枝 Trie 树（Set Pruning Tries）：二维数据包分类"></a>集合剪枝 Trie 树（Set Pruning Tries）：二维数据包分类</h1><hr>
+<h2 id="一、问题背景：为什么需要二维分类？"><a href="#一、问题背景：为什么需要二维分类？" class="headerlink" title="一、问题背景：为什么需要二维分类？"></a>一、问题背景：为什么需要二维分类？</h2><h3 id="1-1-从一维到二维"><a href="#1-1-从一维到二维" class="headerlink" title="1.1 从一维到二维"></a>1.1 从一维到二维</h3><p>在网络中，路由器需要对每一个到来的数据包（packet）做出决策：这个包应该走哪条路？应该被允许还是被丢弃？</p>
+<p>最简单的情况是一维分类（one-dimensional classification）：只看数据包的目的 IP 地址（destination IP address），在一棵前缀 Trie 树中做最长前缀匹配（Longest Prefix Match, LPM），就能找到对应的转发规则。这是你之前学过的经典路由查找。</p>
+<p>但现实中，防火墙（firewall）和服务质量（QoS）策略往往需要同时看两个甚至更多字段。比如：</p>
+<ul>
+<li>目的 IP 地址（destination IP）</li>
+<li>源 IP 地址（source IP）</li>
+</ul>
+<p>这就变成了二维分类（two-dimensional classification）问题。</p>
+<p><strong>类比</strong>：想象你在机场安检。一维分类就像只看你的护照（目的地）来决定你走哪个通道。二维分类则是同时看你的护照（目的地）和你的登机牌（出发地），两个条件一起决定你应该走哪个通道。</p>
+<h3 id="1-2-规则表（Rule-Table）"><a href="#1-2-规则表（Rule-Table）" class="headerlink" title="1.2 规则表（Rule Table）"></a>1.2 规则表（Rule Table）</h3><p>我们用一张规则表来定义分类策略。每条规则由两个前缀组成：一个匹配目的地址，一个匹配源地址。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>规则 (Rule)</th>
+<th>目的地址前缀 (Destination Prefix)</th>
+<th>源地址前缀 (Source Prefix)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$R_1$</td>
+<td>$0*$</td>
+<td>$10*$</td>
+</tr>
+<tr>
+<td>$R_2$</td>
+<td>$0*$</td>
+<td>$01*$</td>
+</tr>
+<tr>
+<td>$R_3$</td>
+<td>$0*$</td>
+<td>$1*$</td>
+</tr>
+<tr>
+<td>$R_4$</td>
+<td>$00*$</td>
+<td>$1*$</td>
+</tr>
+<tr>
+<td>$R_5$</td>
+<td>$00*$</td>
+<td>$11*$</td>
+</tr>
+<tr>
+<td>$R_6$</td>
+<td>$10*$</td>
+<td>$1*$</td>
+</tr>
+<tr>
+<td>$R_7$</td>
+<td>$*$（通配符，匹配所有）</td>
+<td>$00*$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>逐条解读：</p>
+<ul>
+<li>$R_1$：如果一个数据包的目的地址以 <code>0</code> 开头，并且源地址以 <code>10</code> 开头，就匹配这条规则。</li>
+<li>$R_2$：目的地址以 <code>0</code> 开头，源地址以 <code>01</code> 开头。</li>
+<li>$R_3$：目的地址以 <code>0</code> 开头，源地址以 <code>1</code> 开头。</li>
+<li>$R_4$：目的地址以 <code>00</code> 开头，源地址以 <code>1</code> 开头。</li>
+<li>$R_5$：目的地址以 <code>00</code> 开头，源地址以 <code>11</code> 开头。</li>
+<li>$R_6$：目的地址以 <code>10</code> 开头，源地址以 <code>1</code> 开头。</li>
+<li>$R_7$：目的地址是 <code>*</code>（通配符，任何地址都匹配），源地址以 <code>00</code> 开头。</li>
+</ul>
+<p>这里的 <code>*</code> 表示”后面可以是任意比特”。所以 <code>0*</code> 匹配所有以 <code>0</code> 开头的地址，<code>00*</code> 匹配所有以 <code>00</code> 开头的地址，而单独的 <code>*</code> 匹配一切地址。</p>
+<p><strong>关键观察</strong>：一个数据包可能同时匹配多条规则。比如一个目的地址为 <code>001...</code>、源地址为 <code>110...</code> 的包，它同时匹配 $R_3$（目的 <code>0*</code>，源 <code>1*</code>）、$R_4$（目的 <code>00*</code>，源 <code>1*</code>）和 $R_5$（目的 <code>00*</code>，源 <code>11*</code>）。当多条规则匹配时，我们需要选择”代价最低”（lowest-cost）或”优先级最高”的那条规则。</p>
+<h3 id="1-3-核心问题"><a href="#1-3-核心问题" class="headerlink" title="1.3 核心问题"></a>1.3 核心问题</h3><p>问题是：给定一个数据包的（目的 IP，源 IP）二元组，如何快速在规则表中找到匹配的最优规则？</p>
+<p>暴力方法是逐条扫描所有规则，但规则可能有成千上万条，这太慢了。我们需要一种高效的数据结构。</p>
+<hr>
+<h2 id="二、Set-Pruning-Tries-的核心思想"><a href="#二、Set-Pruning-Tries-的核心思想" class="headerlink" title="二、Set Pruning Tries 的核心思想"></a>二、Set Pruning Tries 的核心思想</h2><h3 id="2-1-直觉：分而治之"><a href="#2-1-直觉：分而治之" class="headerlink" title="2.1 直觉：分而治之"></a>2.1 直觉：分而治之</h3><p><strong>先想一想</strong>：如果你已经会用 Trie 树做一维的最长前缀匹配，那面对二维问题，你会怎么扩展？</p>
+<p>暂停 3 秒，自己想一想……</p>
+<p>一个自然的想法是：</p>
+<blockquote>
+<p>先用第一个维度（目的地址）缩小范围，再用第二个维度（源地址）精确匹配。</p>
+</blockquote>
+<p>这就是 Set Pruning Tries 的核心思路：</p>
+<ol>
+<li>先建一棵目的地址 Trie 树（destination trie）。</li>
+<li>在目的地址 Trie 树的每个相关节点上，”挂载”（hang）一棵源地址 Trie 树（source trie）。</li>
+<li>查找时，先在目的地址 Trie 中匹配，找到对应的源地址 Trie，再在源地址 Trie 中做最长前缀匹配。</li>
+</ol>
+<p><strong>类比</strong>：想象一个图书馆的分类系统。第一层按”学科”（目的地址）分区，每个学科区域内部再按”作者姓氏”（源地址）排列。你先走到正确的学科区，然后在那个区内找到正确的作者。Set Pruning Tries 就是这种”两层索引”结构。</p>
+<h3 id="2-2-符号约定"><a href="#2-2-符号约定" class="headerlink" title="2.2 符号约定"></a>2.2 符号约定</h3><p>为了方便讨论，我们用 $S_i$ 表示规则 $R_i$ 的源地址前缀（source prefix）。例如：</p>
+<ul>
+<li>$S_1 = 10*$（来自 $R_1$ 的源地址前缀）</li>
+<li>$S_2 = 01*$（来自 $R_2$）</li>
+<li>$S_3 = 1*$（来自 $R_3$）</li>
+<li>$S_4 = 1*$（来自 $R_4$）</li>
+<li>$S_5 = 11*$（来自 $R_5$）</li>
+<li>$S_6 = 1*$（来自 $R_6$）</li>
+<li>$S_7 = 00*$（来自 $R_7$）</li>
+</ul>
+<p>注意 $S_3$、$S_4$、$S_6$ 的值都是 <code>1*</code>，但它们来自不同的规则，关联着不同的目的地址前缀。</p>
+<hr>
+<h2 id="三、构建-Set-Pruning-Tries：逐步详解"><a href="#三、构建-Set-Pruning-Tries：逐步详解" class="headerlink" title="三、构建 Set Pruning Tries：逐步详解"></a>三、构建 Set Pruning Tries：逐步详解</h2><h3 id="3-1-第一步：建立目的地址-Trie-树"><a href="#3-1-第一步：建立目的地址-Trie-树" class="headerlink" title="3.1 第一步：建立目的地址 Trie 树"></a>3.1 第一步：建立目的地址 Trie 树</h3><p>我们先把所有规则的目的地址前缀提取出来：</p>
+<ul>
+<li><code>*</code>（来自 $R_7$）</li>
+<li><code>0*</code>（来自 $R_1, R_2, R_3$）</li>
+<li><code>00*</code>（来自 $R_4, R_5$）</li>
+<li><code>10*</code>（来自 $R_6$）</li>
+</ul>
+<p>用这些前缀构建一棵二进制 Trie 树（binary trie）：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    根 (root)</span><br><span class="line">   &#x2F;        \</span><br><span class="line">  0          1</span><br><span class="line"> &#x2F;            \</span><br><span class="line">0              0</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>根节点代表前缀 <code>*</code>（空前缀，匹配一切）</li>
+<li>从根走 <code>0</code> 到达的节点代表前缀 <code>0*</code></li>
+<li>从根走 <code>0</code> 再走 <code>0</code> 到达的节点代表前缀 <code>00*</code></li>
+<li>从根走 <code>1</code> 再走 <code>0</code> 到达的节点代表前缀 <code>10*</code></li>
+</ul>
+<h3 id="3-2-第二步：在每个节点挂载源-Trie-树"><a href="#3-2-第二步：在每个节点挂载源-Trie-树" class="headerlink" title="3.2 第二步：在每个节点挂载源 Trie 树"></a>3.2 第二步：在每个节点挂载源 Trie 树</h3><p>这是 Set Pruning Tries 最关键的一步。对于目的地址 Trie 中的每个节点（代表某个目的地址前缀 $D$），我们需要挂载一棵源 Trie 树，这棵源 Trie 树包含所有与 $D$ “兼容”（compatible）的规则的源前缀。</p>
+<p><strong>什么叫”兼容”？</strong> 如果一个数据包的目的地址匹配到了前缀 $D$，那么所有目的地址前缀是 $D$ 的前缀（或等于 $D$）的规则，都有可能匹配这个数据包。</p>
+<p><strong>先想一想</strong>：为什么不能只挂载目的地址前缀恰好等于 $D$ 的规则？</p>
+<p>暂停思考……</p>
+<p>答案是：前缀匹配是包含关系。如果一个数据包的目的地址匹配了 <code>00*</code>，那它一定也匹配 <code>0*</code>（因为 <code>0*</code> 是 <code>00*</code> 的前缀），也一定匹配 <code>*</code>（通配符匹配一切）。所以在 <code>00*</code> 这个节点上，我们不仅要考虑目的地址恰好是 <code>00*</code> 的规则，还要考虑目的地址是 <code>0*</code> 和 <code>*</code> 的规则。</p>
+<p><strong>类比</strong>：这就像地理上的包含关系。如果你在”北京市海淀区”，那你同时也在”北京市”，也在”中国”。所以”海淀区”这个节点需要继承”北京市”和”中国”层级的所有规则。</p>
+<h3 id="3-3-逐节点分析"><a href="#3-3-逐节点分析" class="headerlink" title="3.3 逐节点分析"></a>3.3 逐节点分析</h3><p>现在我们逐个节点来确定应该挂载哪些源前缀：</p>
+<p><strong>节点：根（代表 <code>*</code>）</strong></p>
+<p>哪些规则的目的地址前缀是 <code>*</code> 的前缀或等于 <code>*</code>？只有 $R_7$（目的地址就是 <code>*</code>）。</p>
+<p>所以根节点挂载的源 Trie 包含：${S_7}$，即 ${00*}$。</p>
+<p><strong>节点：<code>0</code>（代表 <code>0*</code>）</strong></p>
+<p>一个数据包如果目的地址匹配到 <code>0*</code>，那它也匹配 <code>*</code>。所以我们需要包含：</p>
+<ul>
+<li>目的地址恰好是 <code>0*</code> 的规则：$R_1, R_2, R_3$ → 源前缀 $S_1=10<em>, S_2=01</em>, S_3=1*$</li>
+<li>目的地址是 <code>0*</code> 的祖先前缀的规则（即 <code>*</code>）：$R_7$ → 源前缀 $S_7=00*$</li>
+</ul>
+<p>合计：${S_1, S_2, S_3, S_7}$，即 ${10<em>, 01</em>, 1<em>, 00</em>}$。</p>
+<p><strong>节点：<code>00</code>（代表 <code>00*</code>）</strong></p>
+<p>一个数据包如果目的地址匹配到 <code>00*</code>，那它也匹配 <code>0*</code>，也匹配 <code>*</code>。所以我们需要包含：</p>
+<ul>
+<li>目的地址恰好是 <code>00*</code> 的规则：$R_4, R_5$ → 源前缀 $S_4=1<em>, S_5=11</em>$</li>
+<li>目的地址是 <code>0*</code> 的规则：$R_1, R_2, R_3$ → 源前缀 $S_1=10<em>, S_2=01</em>, S_3=1*$</li>
+<li>目的地址是 <code>*</code> 的规则：$R_7$ → 源前缀 $S_7=00*$</li>
+</ul>
+<p>合计：${S_1, S_2, S_3, S_4, S_5, S_7}$，即 ${10<em>, 01</em>, 1<em>, 1</em>, 11<em>, 00</em>}$。</p>
+<p>注意这里 $S_3=1<em>$ 和 $S_4=1</em>$ 值相同但来自不同规则，在源 Trie 中它们会映射到同一个 Trie 节点，但需要记录两条不同的规则。</p>
+<p><strong>节点：<code>10</code>（代表 <code>10*</code>）</strong></p>
+<p>一个数据包如果目的地址匹配到 <code>10*</code>，那它也匹配 <code>1*</code>（但我们的规则表中没有目的地址恰好是 <code>1*</code> 的规则），也匹配 <code>*</code>。所以：</p>
+<ul>
+<li>目的地址恰好是 <code>10*</code> 的规则：$R_6$ → 源前缀 $S_6=1*$</li>
+<li>目的地址是 <code>*</code> 的规则：$R_7$ → 源前缀 $S_7=00*$</li>
+</ul>
+<p>合计：${S_6, S_7}$，即 ${1<em>, 00</em>}$。</p>
+<h3 id="3-4-完整结构总览"><a href="#3-4-完整结构总览" class="headerlink" title="3.4 完整结构总览"></a>3.4 完整结构总览</h3><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">                    根 (root) ─── 源Trie: &#123;S7&#125;</span><br><span class="line">                   &#x2F;          \</span><br><span class="line">                  0            1</span><br><span class="line">                 &#x2F;              \</span><br><span class="line">    源Trie: &#123;S1,S2,S3,S7&#125;       (无直接规则)</span><br><span class="line">               &#x2F;                    \</span><br><span class="line">              0                      0</span><br><span class="line">             &#x2F;                        \</span><br><span class="line">源Trie: &#123;S1,S2,S3,S4,S5,S7&#125;    源Trie: &#123;S6,S7&#125;</span><br><span class="line">     (dest &#x3D; 00*)                (dest &#x3D; 10*)</span><br></pre></td></tr></table></figure></div>
+<p>每个挂载的源 Trie 本身也是一棵二进制 Trie 树，用于对源地址做最长前缀匹配。</p>
+<hr>
+<h2 id="四、查找过程（Lookup）"><a href="#四、查找过程（Lookup）" class="headerlink" title="四、查找过程（Lookup）"></a>四、查找过程（Lookup）</h2><h3 id="4-1-算法步骤"><a href="#4-1-算法步骤" class="headerlink" title="4.1 算法步骤"></a>4.1 算法步骤</h3><p>假设来了一个数据包，目的地址为 <code>00110...</code>，源地址为 <code>11010...</code>。</p>
+<p><strong>第一步：在目的地址 Trie 中匹配</strong></p>
+<p>从根开始，逐比特匹配目的地址：</p>
+<ul>
+<li>第 1 位是 <code>0</code> → 走左子树，到达节点 <code>0</code>（匹配前缀 <code>0*</code>）</li>
+<li>第 2 位是 <code>0</code> → 走左子树，到达节点 <code>00</code>（匹配前缀 <code>00*</code>）</li>
+<li>第 3 位是 <code>1</code> → 没有子节点了，停止</li>
+</ul>
+<p>在这个过程中，我们经过了三个有源 Trie 的节点：根（<code>*</code>）、<code>0</code>（<code>0*</code>）、<code>00</code>（<code>00*</code>）。</p>
+<p><strong>第二步：在每个经过的源 Trie 中匹配源地址</strong></p>
+<p>对于每个经过的节点，我们用源地址 <code>11010...</code> 在其挂载的源 Trie 中做最长前缀匹配：</p>
+<ul>
+<li>根节点的源 Trie ${S_7=00<em>}$：源地址以 <code>1</code> 开头，不匹配 `00</em>`。无匹配。</li>
+<li>节点 <code>0</code> 的源 Trie ${S_1=10<em>, S_2=01</em>, S_3=1<em>, S_7=00</em>}$：源地址 <code>11...</code> 匹配 $S_3=1*$。记录 $R_3$。</li>
+<li>节点 <code>00</code> 的源 Trie ${S_1, S_2, S_3, S_4, S_5, S_7}$：源地址 <code>11...</code> 匹配 $S_3=1<em>$、$S_4=1</em>$、$S_5=11<em>$。最长匹配是 $S_5=11</em>$，对应 $R_5$。</li>
+</ul>
+<p><strong>第三步：选择最优规则</strong></p>
+<p>在所有匹配的规则中（$R_3, R_4, R_5$ 等），根据预定义的优先级或代价（cost），选择代价最低的那条。</p>
+<p><strong>但实际上</strong>，Set Pruning Tries 有一个优化：因为每个节点的源 Trie 已经包含了所有祖先节点的规则，所以我们只需要在目的地址 Trie 中匹配到的最深节点（最长前缀匹配）的源 Trie 中查找即可。在这个例子中，最深匹配是 <code>00*</code>，所以只需在 <code>00*</code> 的源 Trie 中查找。这正是 Set Pruning 的精髓——通过预先”剪枝”（pruning）并复制规则到子节点，使得查找时只需访问一棵源 Trie。</p>
+<h3 id="4-2-用一句话总结查找"><a href="#4-2-用一句话总结查找" class="headerlink" title="4.2 用一句话总结查找"></a>4.2 用一句话总结查找</h3><blockquote>
+<p>在目的地址 Trie 中找到最长匹配的节点，然后在该节点挂载的源 Trie 中对源地址做最长前缀匹配，得到最终规则。</p>
+</blockquote>
+<hr>
+<h2 id="五、关键挑战：源-Trie-中应该存什么？（Pruning-的含义）"><a href="#五、关键挑战：源-Trie-中应该存什么？（Pruning-的含义）" class="headerlink" title="五、关键挑战：源 Trie 中应该存什么？（Pruning 的含义）"></a>五、关键挑战：源 Trie 中应该存什么？（Pruning 的含义）</h2><h3 id="5-1-“剪枝”（Pruning）的含义"><a href="#5-1-“剪枝”（Pruning）的含义" class="headerlink" title="5.1 “剪枝”（Pruning）的含义"></a>5.1 “剪枝”（Pruning）的含义</h3><p>“Set Pruning” 这个名字中的 “pruning”（剪枝）指的是：对于目的地址 Trie 中的每个前缀 $D$，我们把整个规则集”剪枝”为只保留与 $D$ 兼容的规则子集。</p>
+<p>具体来说，对于目的地址前缀 $D$，兼容的规则是指：规则的目的地址前缀是 $D$ 的前缀（prefix of $D$），或者等于 $D$。</p>
+<p><strong>为什么是”$D$ 的前缀”而不是”$D$ 的子串”？</strong> 因为如果一个数据包的目的地址精确匹配到了 $D$，那么所有比 $D$ 更短的、且是 $D$ 前缀的目的地址前缀也一定匹配。</p>
+<h3 id="5-2-以-D-00-为例的详细推导"><a href="#5-2-以-D-00-为例的详细推导" class="headerlink" title="5.2 以 $D = 00*$ 为例的详细推导"></a>5.2 以 $D = 00*$ 为例的详细推导</h3><p><strong>先想一想</strong>：如果我们只在 <code>00*</code> 的源 Trie 中放 $R_4$ 和 $R_5$ 的源前缀（因为只有它们的目的地址恰好是 <code>00*</code>），会出什么问题？</p>
+<p>暂停思考……</p>
+<p>问题是：一个目的地址匹配 <code>00*</code> 的数据包，它的目的地址也一定匹配 <code>0*</code> 和 <code>*</code>。所以 $R_1$（目的 <code>0*</code>，源 <code>10*</code>）、$R_2$（目的 <code>0*</code>，源 <code>01*</code>）、$R_3$（目的 <code>0*</code>，源 <code>1*</code>）、$R_7$（目的 <code>*</code>，源 <code>00*</code>）都可能匹配这个数据包。</p>
+<p>如果我们不把这些规则的源前缀也放进 <code>00*</code> 的源 Trie，我们就会漏掉合法的匹配，导致错误的分类结果。</p>
+<p>所以，<code>00*</code> 的源 Trie 必须包含：</p>
+<ul>
+<li>$R_4, R_5$ 的源前缀（目的地址恰好是 <code>00*</code>）</li>
+<li>$R_1, R_2, R_3$ 的源前缀（目的地址是 <code>0*</code>，是 <code>00*</code> 的前缀）</li>
+<li>$R_7$ 的源前缀（目的地址是 <code>*</code>，是一切前缀的前缀）</li>
+</ul>
+<p>这就是为什么 <code>00*</code> 节点的源 Trie 包含 ${S_1, S_2, S_3, S_4, S_5, S_7}$——总共 6 个源前缀，几乎是全部 7 条规则。</p>
+<hr>
+<h2 id="六、致命缺陷：内存爆炸（Memory-Explosion）"><a href="#六、致命缺陷：内存爆炸（Memory-Explosion）" class="headerlink" title="六、致命缺陷：内存爆炸（Memory Explosion）"></a>六、致命缺陷：内存爆炸（Memory Explosion）</h2><h3 id="6-1-问题的本质"><a href="#6-1-问题的本质" class="headerlink" title="6.1 问题的本质"></a>6.1 问题的本质</h3><p>你可能已经注意到了：同一个源前缀会被复制到多棵源 Trie 中。</p>
+<p>以 $S_7 = 00<em>$（来自 $R_7$，目的地址为 `</em>`）为例：</p>
+<ul>
+<li>根节点的源 Trie 包含 $S_7$ ✓</li>
+<li><code>0*</code> 节点的源 Trie 包含 $S_7$ ✓</li>
+<li><code>00*</code> 节点的源 Trie 包含 $S_7$ ✓</li>
+<li><code>10*</code> 节点的源 Trie 包含 $S_7$ ✓</li>
+</ul>
+<p>$S_7$ 出现在每一棵源 Trie 中！因为 $R_7$ 的目的地址是通配符 <code>*</code>，它与所有目的地址前缀都兼容。</p>
+<p>类似地，$S_1, S_2, S_3$（来自目的地址 <code>0*</code> 的规则）出现在 <code>0*</code> 和 <code>00*</code> 两棵源 Trie 中。</p>
+<h3 id="6-2-最坏情况分析"><a href="#6-2-最坏情况分析" class="headerlink" title="6.2 最坏情况分析"></a>6.2 最坏情况分析</h3><p>假设有 $N$ 条规则，目的地址 Trie 有 $M$ 个节点。在最坏情况下（比如很多规则的目的地址是短前缀或通配符），每条规则的源前缀可能被复制到 $O(M)$ 棵源 Trie 中。总的存储空间可能达到 $O(N \times M)$，远远超过原始规则表的 $O(N)$。</p>
+<p><strong>类比</strong>：这就像一个公司的通知系统。如果 CEO 发了一条全公司通知（相当于通配符规则），这条通知需要被复制到每个部门的公告板上、每个小组的公告板上、每个人的收件箱里。一条通知变成了成百上千份副本。</p>
+<h3 id="6-3-数字直觉"><a href="#6-3-数字直觉" class="headerlink" title="6.3 数字直觉"></a>6.3 数字直觉</h3><p>在我们的小例子中，7 条规则产生了 $4 + 4 + 6 + 2 = 16$ 个源前缀条目（分布在 4 棵源 Trie 中），而原始规则表只有 7 条。膨胀率约为 2.3 倍。</p>
+<p>在真实的路由器中，规则可能有数十万条，目的地址 Trie 可能有数万个节点，膨胀率可能达到几十倍甚至上百倍，导致内存需求不可接受。</p>
+<h3 id="6-4-权衡总结"><a href="#6-4-权衡总结" class="headerlink" title="6.4 权衡总结"></a>6.4 权衡总结</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方面</th>
+<th>Set Pruning Tries 的表现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查找速度</td>
+<td>快——只需遍历两棵 Trie（目的 + 源），时间复杂度 $O(W)$，$W$ 为地址位宽</td>
+</tr>
+<tr>
+<td>内存占用</td>
+<td>差——源前缀大量重复存储，最坏 $O(N \times W)$</td>
+</tr>
+<tr>
+<td>更新难度</td>
+<td>中等——插入/删除一条规则可能需要更新多棵源 Trie</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这就是 Set Pruning Tries 的核心矛盾：用空间换时间。它通过预先复制规则来加速查找，但代价是内存爆炸。</p>
+<hr>
+<h2 id="七、概念图总结"><a href="#七、概念图总结" class="headerlink" title="七、概念图总结"></a>七、概念图总结</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">二维数据包分类问题</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">  Set Pruning Tries</span><br><span class="line">        │</span><br><span class="line">        ├── 第一层：目的地址 Trie（Destination Trie）</span><br><span class="line">        │       按目的地址前缀构建二进制 Trie</span><br><span class="line">        │</span><br><span class="line">        ├── 第二层：源地址 Trie（Source Trie）</span><br><span class="line">        │       每个目的 Trie 节点挂载一棵源 Trie</span><br><span class="line">        │</span><br><span class="line">        ├── 关键操作：规则继承（Pruning）</span><br><span class="line">        │       子节点继承所有祖先节点的兼容规则</span><br><span class="line">        │       └── 原因：前缀匹配的包含关系</span><br><span class="line">        │</span><br><span class="line">        ├── 查找流程</span><br><span class="line">        │       目的 Trie 最长匹配 → 对应源 Trie 最长匹配 → 最优规则</span><br><span class="line">        │</span><br><span class="line">        └── 致命缺陷：内存爆炸</span><br><span class="line">                同一源前缀被复制到多棵源 Trie</span><br><span class="line">                最坏空间 O(N × W)</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="八、费曼自检-Checklist"><a href="#八、费曼自检-Checklist" class="headerlink" title="八、费曼自检 Checklist"></a>八、费曼自检 Checklist</h2><h3 id="1-什么是二维数据包分类问题？为什么一维的-Trie-不够用？"><a href="#1-什么是二维数据包分类问题？为什么一维的-Trie-不够用？" class="headerlink" title="1. 什么是二维数据包分类问题？为什么一维的 Trie 不够用？"></a>1. 什么是二维数据包分类问题？为什么一维的 Trie 不够用？</h3><details>
+<summary>answer</summary>
+二维数据包分类是指同时根据数据包的两个字段（如目的 IP 地址和源 IP 地址）来匹配规则。一维 Trie 只能处理单个字段的最长前缀匹配，无法同时考虑两个字段的组合匹配条件。防火墙、QoS 等场景需要多字段联合判断，因此需要二维分类。
+</details>
+
+<h3 id="2-Set-Pruning-Tries-的基本结构是什么？它由哪两层组成？"><a href="#2-Set-Pruning-Tries-的基本结构是什么？它由哪两层组成？" class="headerlink" title="2. Set Pruning Tries 的基本结构是什么？它由哪两层组成？"></a>2. Set Pruning Tries 的基本结构是什么？它由哪两层组成？</h3><details>
+<summary>answer</summary>
+Set Pruning Tries 由两层 Trie 树组成：第一层是目的地址 Trie（destination trie），按所有规则的目的地址前缀构建；第二层是源地址 Trie（source trie），挂载在目的地址 Trie 的每个节点上，包含与该目的地址前缀兼容的所有规则的源地址前缀。
+</details>
+
+<h3 id="3-对于目的地址-Trie-中的某个节点（比如代表前缀-00-），它挂载的源-Trie-应该包含哪些规则的源前缀？为什么？"><a href="#3-对于目的地址-Trie-中的某个节点（比如代表前缀-00-），它挂载的源-Trie-应该包含哪些规则的源前缀？为什么？" class="headerlink" title="3. 对于目的地址 Trie 中的某个节点（比如代表前缀 00*），它挂载的源 Trie 应该包含哪些规则的源前缀？为什么？"></a>3. 对于目的地址 Trie 中的某个节点（比如代表前缀 <code>00*</code>），它挂载的源 Trie 应该包含哪些规则的源前缀？为什么？</h3><details>
+<summary>answer</summary>
+应该包含所有目的地址前缀是 `00*` 的前缀（或等于 `00*`）的规则的源前缀。在本例中，`00*` 的祖先前缀有 `0*` 和 `*`，所以需要包含目的地址为 `00*` 的规则（$R_4, R_5$）、目的地址为 `0*` 的规则（$R_1, R_2, R_3$）、以及目的地址为 `*` 的规则（$R_7$）的源前缀。原因是：任何目的地址匹配 `00*` 的数据包，其目的地址也必然匹配 `0*` 和 `*`，所以这些规则都可能适用。
+</details>
+
+<h3 id="4-为什么-R-7-的源前缀-S-7-会出现在每一棵源-Trie-中？"><a href="#4-为什么-R-7-的源前缀-S-7-会出现在每一棵源-Trie-中？" class="headerlink" title="4. 为什么 $R_7$ 的源前缀 $S_7$ 会出现在每一棵源 Trie 中？"></a>4. 为什么 $R_7$ 的源前缀 $S_7$ 会出现在每一棵源 Trie 中？</h3><details>
+<summary>answer</summary>
+因为 $R_7$ 的目的地址前缀是通配符 `*`，它是所有前缀的前缀，与目的地址 Trie 中的每一个节点都兼容。所以无论数据包的目的地址匹配到哪个节点，$R_7$ 都是一个潜在的匹配规则，其源前缀 $S_7$ 必须出现在每棵源 Trie 中。
+</details>
+
+<h3 id="5-Set-Pruning-Tries-的查找过程是怎样的？请用自己的话描述完整步骤。"><a href="#5-Set-Pruning-Tries-的查找过程是怎样的？请用自己的话描述完整步骤。" class="headerlink" title="5. Set Pruning Tries 的查找过程是怎样的？请用自己的话描述完整步骤。"></a>5. Set Pruning Tries 的查找过程是怎样的？请用自己的话描述完整步骤。</h3><details>
+<summary>answer</summary>
+(1) 拿到数据包的目的地址，在目的地址 Trie 中逐比特匹配，找到最长匹配的节点。(2) 在该节点挂载的源 Trie 中，用数据包的源地址做最长前缀匹配。(3) 源 Trie 中的最长匹配对应一条或多条规则，从中选择代价最低（优先级最高）的规则作为最终分类结果。由于每个节点的源 
+</details>
+
+
+<h1 id="回溯法省内存换时间"><a href="#回溯法省内存换时间" class="headerlink" title="回溯法省内存换时间"></a>回溯法省内存换时间</h1><h2 id="🧑‍💻-User"><a href="#🧑‍💻-User" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p><a href="https://gatech.instructure.com/courses/498462/pages/?module_item_id=5548782#" target="_blank" rel="external nofollow noopener noreferrer">Close</a></p>
+<h2 id="Reducing-Memory-Using-Backtracking"><a href="#Reducing-Memory-Using-Backtracking" class="headerlink" title="Reducing Memory Using Backtracking"></a>Reducing Memory Using Backtracking</h2><hr>
+<p>The set pruning approach has a high cost in memory to reduce time.</p>
+<p>The opposite approach is to pay in time to reduce memory.</p>
+<p>Let’s assume a destination prefix D. The backtracking approach has each destination prefix D point to a source trie that stores the rules whose destination field is exactly D. The search algorithm then performs a “backtracking” search on the source tries associated with all ancestors of D.</p>
+<p>So first, the algorithm goes through the destination trie and finds the longest destination prefix D matching the header. Then it works its way back up the destination trie and searches the source trie associated with every ancestor prefix of D that points to a nonempty source trie.</p>
+<p>Since each rule is stored exactly once, the memory requirements are lower than the previous scheme. But, the lookup cost for backtracking is worse than for set-pruning tries.</p>
+<hr>
+<h4 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h4><p>Varghese, Network Algorithmics, Section 12.5.2</p>
+<p>Fast Searching Using Set-Pruning Tries Grid of Tries</p>
+<hr>
+<h2 id="🤖-Assistant"><a href="#🤖-Assistant" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><h1 id="使用回溯法减少内存（Reducing-Memory-Using-Backtracking）"><a href="#使用回溯法减少内存（Reducing-Memory-Using-Backtracking）" class="headerlink" title="使用回溯法减少内存（Reducing Memory Using Backtracking）"></a>使用回溯法减少内存（Reducing Memory Using Backtracking）</h1><h2 id="从头建立背景：为什么需要这个方法？"><a href="#从头建立背景：为什么需要这个方法？" class="headerlink" title="从头建立背景：为什么需要这个方法？"></a>从头建立背景：为什么需要这个方法？</h2><h3 id="问题的起点：数据包分类（Packet-Classification）"><a href="#问题的起点：数据包分类（Packet-Classification）" class="headerlink" title="问题的起点：数据包分类（Packet Classification）"></a>问题的起点：数据包分类（Packet Classification）</h3><p>路由器收到一个数据包（packet）时，需要根据数据包头部（header）中的多个字段来决定如何处理它。最常见的两个字段是：</p>
+<ul>
+<li>目的地址前缀（Destination Prefix）：数据包要去哪里</li>
+<li>源地址前缀（Source Prefix）：数据包从哪里来</li>
+</ul>
+<p>路由器内部存储着一张规则表（rule table），每条规则形如：</p>
+<blockquote>
+<p>“如果目的地址匹配 <code>10*</code>，且源地址匹配 <code>01*</code>，则执行动作 X”</p>
+</blockquote>
+<p>路由器的任务就是：对于每个到来的数据包，快速找到最匹配的规则。</p>
+<h3 id="用-Trie-来做匹配"><a href="#用-Trie-来做匹配" class="headerlink" title="用 Trie 来做匹配"></a>用 Trie 来做匹配</h3><p>Trie（前缀树）是一种树形数据结构，非常适合做前缀匹配。对于单个字段（比如只看目的地址），一棵 trie 就够了。但我们有两个字段，所以需要一种二维的结构。</p>
+<p>常见的做法是构建一个两层的 trie 结构：</p>
+<ol>
+<li>第一层：目的地址 trie（Destination Trie）—— 根据目的地址前缀组织</li>
+<li>第二层：源地址 trie（Source Trie）—— 挂在目的地址 trie 的某些节点上，存储与该目的前缀相关的规则</li>
+</ol>
+<hr>
+<h2 id="前置知识回顾：Set-Pruning-Trie-的问题"><a href="#前置知识回顾：Set-Pruning-Trie-的问题" class="headerlink" title="前置知识回顾：Set-Pruning Trie 的问题"></a>前置知识回顾：Set-Pruning Trie 的问题</h2><p>在讲回溯法之前，必须先理解它要解决的问题。</p>
+<p>Set-Pruning Trie（集合剪枝 trie）的核心思想是：为了让查找速度尽可能快，它把规则复制到所有可能匹配的源 trie 中。</p>
+<p>举个类比帮助理解：</p>
+<blockquote>
+<p>想象你是一个图书管理员。有一本书同时属于”计算机科学”和”数学”两个分类。Set-Pruning 的做法是：在”计算机科学”书架上放一本，在”数学”书架上也放一本副本。这样无论读者去哪个书架，都能直接找到这本书，查找很快。但代价是什么？你需要买两本书，占用两个书架位置——内存翻倍了。</p>
+</blockquote>
+<p>Set-Pruning Trie 的特点：</p>
+<ul>
+<li>查找速度快（只需要在目的 trie 中找到最长匹配，然后搜索对应的一棵源 trie 即可）</li>
+<li>内存开销大（同一条规则可能被复制存储在多棵源 trie 中）</li>
+</ul>
+<p>这就是原文第一句话的含义：</p>
+<blockquote>
+<p>“The set pruning approach has a high cost in memory to reduce time.”<br>（集合剪枝方法以高内存代价换取低时间开销。）</p>
+</blockquote>
+<hr>
+<h2 id="核心内容：回溯法（Backtracking）"><a href="#核心内容：回溯法（Backtracking）" class="headerlink" title="核心内容：回溯法（Backtracking）"></a>核心内容：回溯法（Backtracking）</h2><h3 id="设计哲学：反过来做取舍"><a href="#设计哲学：反过来做取舍" class="headerlink" title="设计哲学：反过来做取舍"></a>设计哲学：反过来做取舍</h3><p>原文说：</p>
+<blockquote>
+<p>“The opposite approach is to pay in time to reduce memory.”<br>（相反的方法是以时间换内存。）</p>
+</blockquote>
+<p>回溯法的核心理念就是：每条规则只存储一次，绝不复制。这样内存省了，但查找时需要多做一些工作。</p>
+<h3 id="回溯法的数据结构是怎么建的？"><a href="#回溯法的数据结构是怎么建的？" class="headerlink" title="回溯法的数据结构是怎么建的？"></a>回溯法的数据结构是怎么建的？</h3><p>关键区别在于每个目的前缀节点挂载的源 trie 里存什么：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>目的节点 D 的源 trie 里存什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Set-Pruning</td>
+<td>存所有目的字段能匹配 D 或 D 的祖先的规则（规则被复制）</td>
+</tr>
+<tr>
+<td>Backtracking</td>
+<td>只存目的字段恰好是 D 的规则（每条规则只存一次）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>原文的精确表述：</p>
+<blockquote>
+<p>“The backtracking approach has each destination prefix D point to a source trie that stores the rules whose destination field is exactly D.”<br>（回溯法让每个目的前缀 D 指向一棵源 trie，该源 trie 只存储目的字段恰好等于 D 的那些规则。）</p>
+</blockquote>
+<p>用图书管理员的类比继续：</p>
+<blockquote>
+<p>回溯法的做法是：那本同时属于”计算机科学”和”数学”的书，只放在它最精确归属的那个书架上（比如”计算机科学”）。如果读者在”数学”书架上没找到，就需要回头去检查相关的其他书架。省了买书的钱（内存），但读者要多跑几趟（时间）。</p>
+</blockquote>
+<h3 id="回溯法的查找过程（Search-Algorithm）"><a href="#回溯法的查找过程（Search-Algorithm）" class="headerlink" title="回溯法的查找过程（Search Algorithm）"></a>回溯法的查找过程（Search Algorithm）</h3><p>这是最关键的部分，分两个阶段：</p>
+<h4 id="阶段一：向下走——找最长目的前缀匹配"><a href="#阶段一：向下走——找最长目的前缀匹配" class="headerlink" title="阶段一：向下走——找最长目的前缀匹配"></a>阶段一：向下走——找最长目的前缀匹配</h4><p>算法首先在目的地址 trie 中，从根节点开始，逐位匹配数据包头部的目的地址，一直走到能匹配的最深节点。这个最深节点对应的前缀就是最长匹配目的前缀 D。</p>
+<p>这一步和普通的最长前缀匹配（Longest Prefix Match）完全一样。</p>
+<h4 id="阶段二：向上走——回溯搜索所有祖先的源-trie"><a href="#阶段二：向上走——回溯搜索所有祖先的源-trie" class="headerlink" title="阶段二：向上走——回溯搜索所有祖先的源 trie"></a>阶段二：向上走——回溯搜索所有祖先的源 trie</h4><p>找到 D 之后，算法不是只搜索 D 的源 trie 就结束了。它还需要沿着目的 trie 往回走（backtrack），依次检查 D 的每一个祖先节点（ancestor）。</p>
+<p>对于每个祖先节点，如果该祖先节点挂载了一棵非空的源 trie（nonempty source trie），就在那棵源 trie 中搜索数据包的源地址。</p>
+<p>原文的精确描述：</p>
+<blockquote>
+<p>“First, the algorithm goes through the destination trie and finds the longest destination prefix D matching the header. Then it works its way back up the destination trie and searches the source trie associated with every ancestor prefix of D that points to a nonempty source trie.”</p>
+</blockquote>
+<h4 id="为什么必须回溯？"><a href="#为什么必须回溯？" class="headerlink" title="为什么必须回溯？"></a>为什么必须回溯？</h4><p>这是理解回溯法的关键难点。</p>
+<p>先想一想（pause and think）：如果我们只在最长匹配的目的节点 D 的源 trie 中搜索，会漏掉什么？</p>
+<details>
+<summary>想好了再看答案</summary>
+
+因为每条规则只存在"恰好匹配"的那个目的节点上。假设有一条规则 R 的目的字段是 `1*`（一个较短的前缀），而数据包的目的地址最长匹配到了 `10*`（一个更长的前缀）。规则 R 存在 `1*` 节点的源 trie 中，而不是 `10*` 节点的源 trie 中。如果我们只看 `10*` 的源 trie，就会漏掉规则 R。
+
+但 `1*` 是 `10*` 的祖先（ancestor）！所以我们必须回溯到 `1*`，检查它的源 trie，才能找到规则 R。
+
+在 Set-Pruning 中，规则 R 会被复制到 `10*` 的源 trie 中，所以不需要回溯。回溯法因为不复制规则，就必须自己"走回去找"。
+</details>
+
+<h3 id="用一个具体例子走一遍"><a href="#用一个具体例子走一遍" class="headerlink" title="用一个具体例子走一遍"></a>用一个具体例子走一遍</h3><p>假设目的 trie 的结构如下（从根到叶）：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">根(*)  →  1*  →  10*  →  101*</span><br></pre></td></tr></table></figure></div>
+<p>规则表：</p>
+<ul>
+<li>规则 R1：目的 = <code>*</code>（通配），源 = <code>00*</code>，动作 = Drop</li>
+<li>规则 R2：目的 = <code>1*</code>，源 = <code>10*</code>，动作 = Allow</li>
+<li>规则 R3：目的 = <code>10*</code>，源 = <code>01*</code>，动作 = Deny</li>
+<li>规则 R4：目的 = <code>101*</code>，源 = <code>11*</code>，动作 = Allow</li>
+</ul>
+<p>在回溯法中，每条规则只存在恰好对应的目的节点上：</p>
+<ul>
+<li><code>*</code> 节点的源 trie：包含 R1</li>
+<li><code>1*</code> 节点的源 trie：包含 R2</li>
+<li><code>10*</code> 节点的源 trie：包含 R3</li>
+<li><code>101*</code> 节点的源 trie：包含 R4</li>
+</ul>
+<p>现在来了一个数据包：目的地址 = <code>1011...</code>，源地址 = <code>1001...</code></p>
+<p>第一步（向下）：在目的 trie 中匹配，最长匹配到 <code>101*</code>。</p>
+<p>第二步（向上回溯）：</p>
+<ol>
+<li>搜索 <code>101*</code> 的源 trie → 用源地址 <code>1001...</code> 匹配，R4 的源是 <code>11*</code>，不匹配</li>
+<li>回溯到 <code>10*</code> 的源 trie → 用源地址 <code>1001...</code> 匹配，R3 的源是 <code>01*</code>，不匹配</li>
+<li>回溯到 <code>1*</code> 的源 trie → 用源地址 <code>1001...</code> 匹配，R2 的源是 <code>10*</code>，匹配！</li>
+<li>继续回溯到 <code>*</code> 的源 trie → 用源地址 <code>1001...</code> 匹配，R1 的源是 <code>00*</code>，不匹配</li>
+</ol>
+<p>最终找到匹配的规则是 R2。</p>
+<p>注意：如果在第一步就停下来，只看 <code>101*</code> 的源 trie，就会漏掉 R2。这就是回溯的必要性。</p>
+<hr>
+<h2 id="性能分析对比"><a href="#性能分析对比" class="headerlink" title="性能分析对比"></a>性能分析对比</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Set-Pruning Trie</th>
+<th>Backtracking</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内存（Memory）</td>
+<td>高（规则被复制多次）</td>
+<td>低（每条规则只存一次）</td>
+</tr>
+<tr>
+<td>查找时间（Lookup Time）</td>
+<td>快（只搜一棵源 trie）</td>
+<td>慢（可能搜多棵源 trie）</td>
+</tr>
+<tr>
+<td>规则存储次数</td>
+<td>一条规则可能存在多棵源 trie 中</td>
+<td>每条规则恰好存一次</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>内存充裕、追求速度</td>
+<td>内存紧张、可以容忍较慢查找</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>原文总结：</p>
+<blockquote>
+<p>“Since each rule is stored exactly once, the memory requirements are lower than the previous scheme. But, the lookup cost for backtracking is worse than for set-pruning tries.”</p>
+</blockquote>
+<hr>
+<h2 id="概念图总结"><a href="#概念图总结" class="headerlink" title="概念图总结"></a>概念图总结</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">数据包分类（Packet Classification）</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">  二维 Trie 结构（Destination Trie + Source Tries）</span><br><span class="line">        │</span><br><span class="line">        ├── Set-Pruning Trie</span><br><span class="line">        │     ├── 规则复制到所有相关源 trie</span><br><span class="line">        │     ├── 内存高 ✗</span><br><span class="line">        │     └── 查找快 ✓</span><br><span class="line">        │</span><br><span class="line">        └── Backtracking</span><br><span class="line">              ├── 规则只存在恰好匹配的源 trie</span><br><span class="line">              ├── 内存低 ✓</span><br><span class="line">              ├── 查找慢 ✗（需要回溯搜索祖先节点）</span><br><span class="line">              └── 查找过程：</span><br><span class="line">                    1. 向下：找最长目的前缀匹配 D</span><br><span class="line">                    2. 向上：回溯搜索 D 的所有祖先的源 trie</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="费曼自检-Checklist-1"><a href="#费曼自检-Checklist-1" class="headerlink" title="费曼自检 Checklist"></a>费曼自检 Checklist</h2><h3 id="1-为什么-Set-Pruning-Trie-的内存开销高？"><a href="#1-为什么-Set-Pruning-Trie-的内存开销高？" class="headerlink" title="1. 为什么 Set-Pruning Trie 的内存开销高？"></a>1. 为什么 Set-Pruning Trie 的内存开销高？</h3><details>
+<summary>answer</summary>
+因为 Set-Pruning Trie 会把同一条规则复制到所有可能匹配的目的节点的源 trie 中。一条规则的目的字段如果是较短的前缀（如 `1*`），那么所有以 `1` 开头的更长目的前缀节点（如 `10*`、`11*`、`101*` 等）的源 trie 中都会存一份该规则的副本。规则数量乘以复制次数，导致内存大幅膨胀。
+</details>
+
+<h3 id="2-在回溯法中，每个目的前缀节点-D-的源-trie-里存储的是什么？"><a href="#2-在回溯法中，每个目的前缀节点-D-的源-trie-里存储的是什么？" class="headerlink" title="2. 在回溯法中，每个目的前缀节点 D 的源 trie 里存储的是什么？"></a>2. 在回溯法中，每个目的前缀节点 D 的源 trie 里存储的是什么？</h3><details>
+<summary>answer</summary>
+只存储目的字段恰好等于 D 的那些规则（whose destination field is exactly D）。不会存储目的字段是 D 的祖先或后代的规则。这保证了每条规则在整个数据结构中只被存储一次。
+</details>
+
+<h3 id="3-回溯法的查找过程分哪两个阶段？请具体描述。"><a href="#3-回溯法的查找过程分哪两个阶段？请具体描述。" class="headerlink" title="3. 回溯法的查找过程分哪两个阶段？请具体描述。"></a>3. 回溯法的查找过程分哪两个阶段？请具体描述。</h3><details>
+<summary>answer</summary>
+阶段一（向下）：在目的地址 trie 中，从根节点开始逐位匹配数据包的目的地址，找到最长匹配的目的前缀 D。
+
+阶段二（向上回溯）：从 D 开始，沿目的 trie 向根方向回溯。对于 D 本身以及 D 的每一个祖先节点，如果该节点挂载了非空的源 trie，就在该源 trie 中搜索数据包的源地址，寻找匹配的规则。最终从所有匹配的规则中选出最佳匹配。
+</details>
+
+<h3 id="4-为什么回溯法必须搜索祖先节点的源-trie，而不能只搜索最长匹配节点-D-的源-trie？"><a href="#4-为什么回溯法必须搜索祖先节点的源-trie，而不能只搜索最长匹配节点-D-的源-trie？" class="headerlink" title="4. 为什么回溯法必须搜索祖先节点的源 trie，而不能只搜索最长匹配节点 D 的源 trie？"></a>4. 为什么回溯法必须搜索祖先节点的源 trie，而不能只搜索最长匹配节点 D 的源 trie？</h3><details>
+<summary>answer</summary>
+因为可能存在目的字段比 D 更短（即 D 的祖先前缀）的规则，这些规则同样能匹配该数据包的目的地址。由于回溯法中每条规则只存在恰好对应的目的节点上，这些规则不会出现在 D 的源 trie 中，只会出现在 D 的某个祖先节点的源 trie 中。如果不回溯检查祖先，就会漏掉这些合法匹配的规则。
+</details>
+
+<h3 id="5-回溯法相比-Set-Pruning-Trie，在时间和空间上的取舍是什么？"><a href="#5-回溯法相比-Set-Pruning-Trie，在时间和空间上的取舍是什么？" class="headerlink" title="5. 回溯法相比 Set-Pruning Trie，在时间和空间上的取舍是什么？"></a>5. 回溯法相比 Set-Pruning Trie，在时间和空间上的取舍是什么？</h3><details>
+<summary>answer</summary>
+回溯法用时间换空间。空间上，每条规则只存一次，内存需求显著低于 Set-Pruning。时间上，查找时可能需要搜索多棵源 trie（最长匹配节点及其所有祖先的源 trie），而 Set-Pruning 只需搜索一棵源 trie，所以回溯法的查找代价更高。
+</details>
+
+<h3 id="6-如果目的-trie-的深度为-W（比如-IPv4-地址是-32-位，W-32），回溯法最坏情况下需要搜索多少棵源-trie？"><a href="#6-如果目的-trie-的深度为-W（比如-IPv4-地址是-32-位，W-32），回溯法最坏情况下需要搜索多少棵源-trie？" class="headerlink" title="6. 如果目的 trie 的深度为 W（比如 IPv4 地址是 32 位，W=32），回溯法最坏情况下需要搜索多少棵源 trie？"></a>6. 如果目的 trie 的深度为 W（比如 IPv4 地址是 32 位，W=32），回溯法最坏情况下需要搜索多少棵源 trie？</h3><details>
+<summary>answer</summary>
+最坏情况下需要搜索 W+1 棵源 trie（从最长匹配节点 D 一直回溯到根节点，路径上每个节点都可能有非空的源 trie）。对于 32 位地址，最坏情况下可能需要搜索多达 33 棵源 trie。这就是回溯法查找时间较慢的根本原因。
+</details>
+
+<hr>
+<h2 id="🧑‍💻-User-1"><a href="#🧑‍💻-User-1" class="headerlink" title="🧑‍💻 User"></a>🧑‍💻 User</h2><p>所以set pruning trie是要找到能匹配的最远的那个树节点么,</p>
+<hr>
+<h2 id="🤖-Assistant-1"><a href="#🤖-Assistant-1" class="headerlink" title="🤖 Assistant"></a>🤖 Assistant</h2><p>对，你的理解方向是对的，稍微精确一下：</p>
+<p>Set-Pruning Trie 的查找确实是在目的 trie 中找到最长匹配（最深的那个节点）D，然后只搜索 D 上挂载的那一棵源 trie 就结束了。</p>
+<p>它能这么”省事”的原因是：在构建阶段，它已经把规则往下复制了。比如一条规则的目的字段是 <code>1*</code>，那么 <code>10*</code>、<code>11*</code>、<code>101*</code> 等所有后代节点的源 trie 里都会预先塞一份这条规则的副本。</p>
+<p>所以当你匹配到最深的节点 <code>101*</code> 时，那棵源 trie 里已经包含了所有祖先节点上本该有的规则，不需要再回头找了。</p>
+<p>一句话总结这个区别：</p>
+<ul>
+<li>Set-Pruning：构建时多做功（复制规则到后代），查找时少做功（只看一棵源 trie）</li>
+<li>Backtracking：构建时少做功（规则只存一次），查找时多做功（回溯搜索祖先的源 trie）</li>
+</ul>
+<p>两者在目的 trie 中找最长匹配这一步是一样的，区别在于找到之后要不要回溯。</p>
+<h1 id="Grid-of-Tries（网格字典树）——-数据包分类中的高效查找方法"><a href="#Grid-of-Tries（网格字典树）——-数据包分类中的高效查找方法" class="headerlink" title="Grid of Tries（网格字典树）—— 数据包分类中的高效查找方法"></a>Grid of Tries（网格字典树）—— 数据包分类中的高效查找方法</h1><hr>
+<h2 id="一、前置知识回顾：为什么需要二维匹配？"><a href="#一、前置知识回顾：为什么需要二维匹配？" class="headerlink" title="一、前置知识回顾：为什么需要二维匹配？"></a>一、前置知识回顾：为什么需要二维匹配？</h2><p>在网络中，路由器收到一个数据包（packet）后，需要根据规则表（rule table）决定如何处理它。最简单的情况是只看一个字段，比如目的地址（destination address）。但在实际的数据包分类（packet classification）中，我们往往需要同时匹配两个甚至多个字段，比如：</p>
+<ul>
+<li>目的地址前缀（destination prefix）</li>
+<li>源地址前缀（source prefix）</li>
+</ul>
+<p>这就是所谓的二维匹配问题（two-dimensional classification problem）。</p>
+<blockquote>
+<p>类比理解：想象你在图书馆找书。一维匹配就像只按”作者姓氏”查找；二维匹配则是同时按”作者姓氏”和”出版年份”查找。你需要两个条件都满足，才算找到目标。</p>
+</blockquote>
+<hr>
+<h2 id="二、Trie（字典树）是什么？——核心数据结构"><a href="#二、Trie（字典树）是什么？——核心数据结构" class="headerlink" title="二、Trie（字典树）是什么？——核心数据结构"></a>二、Trie（字典树）是什么？——核心数据结构</h2><p>在深入之前，必须理解 Trie（字典树/前缀树）。</p>
+<p>Trie 是一种树形数据结构，专门用来做前缀匹配（prefix matching）。每个节点代表前缀的一个比特（bit），从根节点到某个节点的路径就构成了一个前缀。</p>
+<p>举例：假设我们有前缀 <code>0*</code>、<code>00*</code>、<code>001*</code>，在 Trie 中：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">      根</span><br><span class="line">     &#x2F; </span><br><span class="line">    0</span><br><span class="line">   &#x2F; </span><br><span class="line">  0    (匹配 0*)</span><br><span class="line"> &#x2F;</span><br><span class="line">1      (匹配 00*)</span><br><span class="line">       (匹配 001*)</span><br></pre></td></tr></table></figure></div>
+<p>沿着树往下走，每走一步就多匹配一个比特。最长前缀匹配（longest prefix match）就是沿着路径尽可能走到最深的、有规则的节点。</p>
+<hr>
+<h2 id="三、已有的两种方案及其问题"><a href="#三、已有的两种方案及其问题" class="headerlink" title="三、已有的两种方案及其问题"></a>三、已有的两种方案及其问题</h2><p>在 Grid of Tries 出现之前，已经有两种解决二维匹配的方案。理解它们的缺陷，是理解 Grid of Tries 价值的关键。</p>
+<h3 id="方案-A：Set-Pruning（集合剪枝）"><a href="#方案-A：Set-Pruning（集合剪枝）" class="headerlink" title="方案 A：Set Pruning（集合剪枝）"></a>方案 A：Set Pruning（集合剪枝）</h3><p>核心思路：</p>
+<ol>
+<li>先对目的地址（destination）建一棵 Trie。</li>
+<li>对于目的地址 Trie 中的每一个前缀节点，都单独建一棵完整的源地址（source）Trie。</li>
+</ol>
+<p>查找过程：先在目的地址 Trie 中找到最长匹配的前缀，然后直接在该节点挂载的源地址 Trie 中查找源地址的最长匹配。</p>
+<p>优点：查找速度快，一次目的地址匹配 + 一次源地址匹配就完成了。</p>
+<p>致命缺点：内存开销巨大。因为每个目的地址前缀节点都要维护一棵独立的源地址 Trie，很多规则会被重复存储在多棵源地址 Trie 中。</p>
+<blockquote>
+<p>类比：就像图书馆为每个作者都复制了一整套按年份排列的书架。虽然找书很快，但你需要巨大的空间来放这些重复的书架。</p>
+</blockquote>
+<h3 id="方案-B：Backtracking（回溯）"><a href="#方案-B：Backtracking（回溯）" class="headerlink" title="方案 B：Backtracking（回溯）"></a>方案 B：Backtracking（回溯）</h3><p>核心思路：</p>
+<ol>
+<li>同样先对目的地址建一棵 Trie。</li>
+<li>但源地址 Trie 不再为每个目的前缀都复制一份，而是只在有规则的目的前缀节点上挂载对应的源地址 Trie（共享，不重复）。</li>
+</ol>
+<p>查找过程：</p>
+<ol>
+<li>先在目的地址 Trie 中找到最长前缀匹配，比如匹配到了 <code>D = 00*</code>。</li>
+<li>在 <code>D = 00*</code> 对应的源地址 Trie 中查找源地址。</li>
+<li>如果在这棵源地址 Trie 中没找到匹配——关键来了——需要回溯（backtrack）到目的地址 Trie 中 <code>00*</code> 的父节点（即 <code>0*</code>），再去 <code>0*</code> 对应的源地址 Trie 中查找。</li>
+<li>如果还是没找到，继续回溯到更短的目的前缀，重复这个过程。</li>
+</ol>
+<p>优点：内存开销小，因为源地址 Trie 不重复。</p>
+<p>致命缺点：时间开销大。每次回溯都意味着要重新遍历一棵源地址 Trie，最坏情况下可能要回溯很多次。</p>
+<blockquote>
+<p>类比：图书馆只有一套书架，但如果你在”作者 = Smith, J.”的书架上没找到 2020 年的书，你就得退回去看”作者 = Smith”的书架，再没有就退回”作者 = S”的书架……每次退回都要从头翻一遍。</p>
+</blockquote>
+<hr>
+<h3 id="🧠-先想再讲（在继续之前，请你先思考）"><a href="#🧠-先想再讲（在继续之前，请你先思考）" class="headerlink" title="🧠 先想再讲（在继续之前，请你先思考）"></a>🧠 先想再讲（在继续之前，请你先思考）</h3><blockquote>
+<p>我们有两个极端：Set Pruning 用空间换时间，Backtracking 用时间换空间。有没有一种方法，既不像 Set Pruning 那样浪费大量内存，又不像 Backtracking 那样反复回溯浪费时间？</p>
+<p>提示：回溯之所以慢，是因为我们不知道”下一个有用的源地址 Trie 在哪里”，如果我们能提前算好这个信息呢？</p>
+</blockquote>
+<p>请先自己想 30 秒，再往下看。</p>
+<hr>
+<h2 id="四、Grid-of-Tries（网格字典树）——核心方案"><a href="#四、Grid-of-Tries（网格字典树）——核心方案" class="headerlink" title="四、Grid of Tries（网格字典树）——核心方案"></a>四、Grid of Tries（网格字典树）——核心方案</h2><h3 id="4-1-核心思想：用预计算（precomputation）消除回溯"><a href="#4-1-核心思想：用预计算（precomputation）消除回溯" class="headerlink" title="4.1 核心思想：用预计算（precomputation）消除回溯"></a>4.1 核心思想：用预计算（precomputation）消除回溯</h3><p>Grid of Tries 的本质是对 Backtracking 方案的优化。它保留了 Backtracking 的内存优势（源地址 Trie 不重复），但通过预计算（precomputation）一种叫做 switch pointer（切换指针）的结构，彻底消除了回溯过程中的浪费。</p>
+<p>关键机制：</p>
+<p>在每棵源地址 Trie 中，当某个节点是一个”失败点”（failure point）——即沿着源地址继续匹配时走不下去了——我们预先计算一个 switch pointer。这个 switch pointer 直接指向下一棵可能包含匹配规则的源地址 Trie 中的对应节点。</p>
+<blockquote>
+<p>类比：还是图书馆的例子。这次，在”Smith, J.”书架上 2020 年的位置，如果没有书，我们贴了一个便签条，上面写着”请直接去 Smith 书架的 2020 年位置看”。你不需要退回去重新找书架，直接跟着便签条跳过去就行了。这个便签条就是 switch pointer。</p>
+</blockquote>
+<h3 id="4-2-Switch-Pointer-的含义"><a href="#4-2-Switch-Pointer-的含义" class="headerlink" title="4.2 Switch Pointer 的含义"></a>4.2 Switch Pointer 的含义</h3><p>Switch pointer 的标签（label）表示的是：当你沿着源地址 Trie 走到这个失败点时，你正在匹配的源地址的下一个比特是什么。指针指向的目标是：在目的地址 Trie 中更短的某个祖先前缀所对应的源地址 Trie 中，与当前匹配进度对应的节点。</p>
+<p>换句话说，switch pointer 帮你”跳过”了两个步骤：</p>
+<ol>
+<li>回溯到目的地址 Trie 的祖先节点（不需要了）</li>
+<li>从头遍历那个祖先节点的源地址 Trie（不需要了）</li>
+</ol>
+<p>你直接跳到了那棵源地址 Trie 中你应该继续匹配的位置。</p>
+<h3 id="4-3-完整查找流程"><a href="#4-3-完整查找流程" class="headerlink" title="4.3 完整查找流程"></a>4.3 完整查找流程</h3><ol>
+<li>在目的地址 Trie 中找到最长前缀匹配 D。</li>
+<li>进入 D 对应的源地址 Trie，开始匹配源地址。</li>
+<li>如果匹配成功，记录当前最佳匹配规则。</li>
+<li>如果匹配失败（走到了失败点），不回溯，而是沿着 switch pointer 跳转到下一棵源地址 Trie 的对应位置。</li>
+<li>在新位置继续匹配源地址。</li>
+<li>重复步骤 3-5，直到没有更多的 switch pointer 可以跟随。</li>
+<li>返回记录的最佳匹配规则。</li>
+</ol>
+<p>在整个过程中，我们始终维护一个”当前最佳源地址匹配”（current best source match）。每次跳转后，如果新位置有更好的匹配，就更新它。</p>
+<p>重要细节：switch pointer 的跳转会跳过那些源字段比我们当前最佳源匹配更短的源地址 Trie。这是因为我们已经有了一个更长的匹配，更短的不可能更优，所以可以安全跳过。</p>
+<hr>
+<h2 id="五、具体例子详解"><a href="#五、具体例子详解" class="headerlink" title="五、具体例子详解"></a>五、具体例子详解</h2><p>原文给出了一个例子，让我们一步步走完整个过程。</p>
+<p>查找目标：目的地址 = <code>001</code>，源地址 = <code>001</code></p>
+<h3 id="第-1-步：目的地址-Trie-匹配"><a href="#第-1-步：目的地址-Trie-匹配" class="headerlink" title="第 1 步：目的地址 Trie 匹配"></a>第 1 步：目的地址 Trie 匹配</h3><p>在目的地址 Trie 中查找 <code>001</code>。假设 Trie 中存在前缀 <code>0*</code>、<code>00*</code> 等，最长前缀匹配结果是 D = <code>00</code>。</p>
+<p>（注意：<code>001</code> 的前两位是 <code>00</code>，如果 Trie 中没有 <code>001</code> 这个目的前缀，但有 <code>00</code>，那么最长匹配就是 <code>00</code>。）</p>
+<h3 id="第-2-步：进入-D-00-的源地址-Trie"><a href="#第-2-步：进入-D-00-的源地址-Trie" class="headerlink" title="第 2 步：进入 D = 00 的源地址 Trie"></a>第 2 步：进入 D = <code>00</code> 的源地址 Trie</h3><p>在 <code>00</code> 对应的源地址 Trie 中查找源地址 <code>001</code>。</p>
+<p>结果：查找失败。这棵源地址 Trie 中没有能匹配 <code>001</code> 的规则。</p>
+<h3 id="第-3-步：跟随-Switch-Pointer"><a href="#第-3-步：跟随-Switch-Pointer" class="headerlink" title="第 3 步：跟随 Switch Pointer"></a>第 3 步：跟随 Switch Pointer</h3><p>在失败点处，有一个 switch pointer，标签为 <code>0</code>（表示我们正在匹配源地址的某个比特位为 0 的分支）。这个指针指向节点 x。</p>
+<p>节点 x 位于目的地址 Trie 中某个更短的祖先前缀（比如 <code>0*</code>）所对应的源地址 Trie 中。</p>
+<h3 id="第-4-步：在节点-x-继续匹配"><a href="#第-4-步：在节点-x-继续匹配" class="headerlink" title="第 4 步：在节点 x 继续匹配"></a>第 4 步：在节点 x 继续匹配</h3><p>在节点 x 处继续匹配源地址 <code>001</code>。</p>
+<p>结果：再次失败。</p>
+<h3 id="第-5-步：再次跟随-Switch-Pointer"><a href="#第-5-步：再次跟随-Switch-Pointer" class="headerlink" title="第 5 步：再次跟随 Switch Pointer"></a>第 5 步：再次跟随 Switch Pointer</h3><p>在节点 x 的失败点处，又有一个 switch pointer，指向节点 y。</p>
+<h3 id="第-6-步：在节点-y-处终止"><a href="#第-6-步：在节点-y-处终止" class="headerlink" title="第 6 步：在节点 y 处终止"></a>第 6 步：在节点 y 处终止</h3><p>到达节点 y 后，算法终止。返回在整个过程中记录的最佳匹配规则。</p>
+<h3 id="对比-Backtracking-的过程"><a href="#对比-Backtracking-的过程" class="headerlink" title="对比 Backtracking 的过程"></a>对比 Backtracking 的过程</h3><p>如果用 Backtracking 方案：</p>
+<ol>
+<li>在 D = <code>00</code> 的源 Trie 中查找 <code>001</code> → 失败</li>
+<li>回溯到 D = <code>0</code>，从头在 <code>0</code> 的源 Trie 中查找 <code>001</code> → 可能失败</li>
+<li>回溯到 D = <code>*</code>（根），从头在根的源 Trie 中查找 <code>001</code></li>
+<li>……</li>
+</ol>
+<p>每次回溯都要从源 Trie 的根节点重新开始遍历，浪费了之前已经匹配过的比特信息。</p>
+<p>而 Grid of Tries 通过 switch pointer，直接跳到了正确的位置，跳过了重复的匹配步骤。</p>
+<hr>
+<h2 id="六、三种方案的对比总结"><a href="#六、三种方案的对比总结" class="headerlink" title="六、三种方案的对比总结"></a>六、三种方案的对比总结</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────┬──────────────────┬──────────────────┐</span><br><span class="line">│     方案         │   时间开销        │   内存开销        │</span><br><span class="line">├─────────────────┼──────────────────┼──────────────────┤</span><br><span class="line">│ Set Pruning     │ 低（快）          │ 高（大量重复）     │</span><br><span class="line">│ Backtracking    │ 高（反复回溯）     │ 低（不重复）       │</span><br><span class="line">│ Grid of Tries   │ 较低（switch跳转） │ 较低（+指针开销）  │</span><br><span class="line">└─────────────────┴──────────────────┴──────────────────┘</span><br></pre></td></tr></table></figure></div>
+<p>Grid of Tries 是一个时间和空间之间的优秀折中方案。它用少量额外的内存（存储 switch pointers）换取了大幅的时间节省（消除回溯）。</p>
+<hr>
+<h2 id="七、概念图"><a href="#七、概念图" class="headerlink" title="七、概念图"></a>七、概念图</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">      二维数据包分类问题</span><br><span class="line">      ┌───────┼───────┐</span><br><span class="line">      ▼       ▼       ▼</span><br><span class="line">Set Pruning  Backtracking  Grid of Tries</span><br><span class="line">(空间换时间)  (时间换空间)   (预计算优化)</span><br><span class="line">      │       │             │</span><br><span class="line">      │       │        ┌────┴────┐</span><br><span class="line">      │       │        ▼         ▼</span><br><span class="line">      │       │   保留Backtracking  添加Switch</span><br><span class="line">      │       │   的内存优势       Pointers</span><br><span class="line">      │       │                    │</span><br><span class="line">      │       │                    ▼</span><br><span class="line">      │       │              失败时不回溯</span><br><span class="line">      │       │              直接跳转到下一个</span><br><span class="line">      │       │              可能匹配的源Trie</span><br><span class="line">      ▼       ▼                    ▼</span><br><span class="line">   快但费内存  省内存但慢        兼顾时间和空间</span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="八、费曼自检-Checklist-1"><a href="#八、费曼自检-Checklist-1" class="headerlink" title="八、费曼自检 Checklist"></a>八、费曼自检 Checklist</h2><p>用以下问题检验你是否真正理解了 Grid of Tries。如果你能用自己的话向一个完全不懂的人解释清楚每一个问题，说明你真的懂了。</p>
+<h3 id="1-二维数据包分类问题是什么？为什么比一维匹配更难？"><a href="#1-二维数据包分类问题是什么？为什么比一维匹配更难？" class="headerlink" title="1. 二维数据包分类问题是什么？为什么比一维匹配更难？"></a>1. 二维数据包分类问题是什么？为什么比一维匹配更难？</h3><details>
+<summary>answer</summary>
+二维数据包分类需要同时匹配数据包的两个字段（如目的地址前缀和源地址前缀），找到两个字段都匹配的规则。比一维难是因为你不能只在一个维度上做最长前缀匹配就结束——目的地址的最长匹配对应的规则，其源地址字段未必匹配当前数据包的源地址，所以可能需要检查多个目的前缀对应的源地址规则。
+</details>
+
+<h3 id="2-Set-Pruning-方案的核心思路是什么？它的主要缺点是什么？"><a href="#2-Set-Pruning-方案的核心思路是什么？它的主要缺点是什么？" class="headerlink" title="2. Set Pruning 方案的核心思路是什么？它的主要缺点是什么？"></a>2. Set Pruning 方案的核心思路是什么？它的主要缺点是什么？</h3><details>
+<summary>answer</summary>
+Set Pruning 为目的地址 Trie 中的每一个前缀节点都构建一棵独立的、完整的源地址 Trie。查找时先匹配目的地址，再在对应的源 Trie 中匹配源地址。主要缺点是内存开销巨大，因为同一条规则可能被复制到多棵源地址 Trie 中，造成大量冗余存储。
+</details>
+
+<h3 id="3-Backtracking-方案的核心思路是什么？它的主要缺点是什么？"><a href="#3-Backtracking-方案的核心思路是什么？它的主要缺点是什么？" class="headerlink" title="3. Backtracking 方案的核心思路是什么？它的主要缺点是什么？"></a>3. Backtracking 方案的核心思路是什么？它的主要缺点是什么？</h3><details>
+<summary>answer</summary>
+Backtracking 只在有规则的目的前缀节点上挂载对应的源地址 Trie（不重复复制）。查找时先找目的地址最长匹配，在其源 Trie 中查找源地址；如果失败，回溯到目的 Trie 的上一级祖先前缀，再从头搜索那个祖先的源 Trie。主要缺点是时间开销大，因为每次回溯都要重新从源 Trie 根节点开始遍历，之前已匹配的比特信息被浪费了。
+</details>
+
+<h3 id="4-Grid-of-Tries-中的-switch-pointer-是什么？它解决了什么问题？"><a href="#4-Grid-of-Tries-中的-switch-pointer-是什么？它解决了什么问题？" class="headerlink" title="4. Grid of Tries 中的 switch pointer 是什么？它解决了什么问题？"></a>4. Grid of Tries 中的 switch pointer 是什么？它解决了什么问题？</h3><details>
+<summary>answer</summary>
+Switch pointer 是在源地址 Trie 的失败点（即无法继续匹配的节点）上预先计算好的指针。它直接指向下一棵可能包含匹配规则的源地址 Trie 中的对应位置。它解决的问题是：消除 Backtracking 方案中的回溯开销。不需要退回目的 Trie 的祖先节点再从头遍历源 Trie，而是一步跳到正确位置继续匹配。
+</details>
+
+<h3 id="5-请用自己的话描述-Grid-of-Tries-的完整查找流程。"><a href="#5-请用自己的话描述-Grid-of-Tries-的完整查找流程。" class="headerlink" title="5. 请用自己的话描述 Grid of Tries 的完整查找流程。"></a>5. 请用自己的话描述 Grid of Tries 的完整查找流程。</h3><details>
+<summary>answer</summary>
+(1) 在目的地址 Trie 中找到最长前缀匹配 D。(2) 进入 D 对应的源地址 Trie，开始匹配源地址。(3) 如果匹配成功，记录为当前最佳匹配。(4) 如果匹配失败，不回溯，而是沿着该失败点的 switch pointer 跳转到另一棵源 Trie 的对应节点。(5) 在新节点继续匹配源地址，如果有更好的匹配就更新最佳记录。(6) 重复 (4)-(5) 直到没有更多 switch pointer。(7) 返回最佳匹配规则。
+</details>
+
+<h3 id="6-为什么-switch-pointer-跳转时可以安全地跳过某些源地址-Trie？"><a href="#6-为什么-switch-pointer-跳转时可以安全地跳过某些源地址-Trie？" class="headerlink" title="6. 为什么 switch pointer 跳转时可以安全地跳过某些源地址 Trie？"></a>6. 为什么 switch pointer 跳转时可以安全地跳过某些源地址 Trie？</h3><details>
+<summary>answer</summary>
+因为在跳转过程中，我们维护着"当前最佳源地址匹配"。如果某棵源 Trie 中的源字段比我们已经找到的最佳源匹配更短，那它不可能提供更优的匹配结果，所以可以安全跳过。Switch pointer 的预计算已经考虑了这一点，直接指向下一个有可能提供更长/更优匹配的源 Trie。
+</details>
+
+<h3 id="7-Grid-of-Tries-相比-Set-Pruning-和-Backtracking，在时间和空间上的权衡是怎样的？"><a href="#7-Grid-of-Tries-相比-Set-Pruning-和-Backtracking，在时间和空间上的权衡是怎样的？" class="headerlink" title="7. Grid of Tries 相比 Set Pruning 和 Backtracking，在时间和空间上的权衡是怎样的？"></a>7. Grid of Tries 相比 Set Pruning 和 Backtracking，在时间和空间上的权衡是怎样的？</h3><details>
+<summary>answer</summary>
+Grid of Tries 的内存开销接近 Backtracking（源 Trie 不重复，只多了 switch pointer 的存储），远低于 Set Pruning。时间开销接近 Set Pruning（通过 switch pointer 跳转避免了回溯），远低于 Backtracking。它是时间和空间之间的一个优秀折中方案。
+</details>
+
+
+</div></article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2026/02/09/20-areas/tech/ai%20coding/ai%20coding%20rule%20one%20file%20version/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/supersheepbear/blog_source@master/blog/image/20200202103940.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>ai coding rule one file version</span></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
 var verify = true == true ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = 'nick,mail,link'.split(',').filter(function(item){
